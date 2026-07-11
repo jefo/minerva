@@ -1,7 +1,7 @@
 ---
 name: minerva
 description: Композиционный движок знаний — имплементация Knowledge Services. Skill-native: bounded contexts живут в references/ скилла. Агент получает KB через skill_view без дополнительного кода навигации.
-version: 0.2.0
+version: 0.3.0
 status: draft
 triggers:
   - Работа с Knowledge Services workspace (references/ скилла minerva)
@@ -57,6 +57,8 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 
 ## Capabilities
 
+### Tier 0 — Навигация (MVP)
+
 | Capability | Реализация | Статус |
 |---|---|---|
 | `workspace-orientation` | `skill_view("minerva")` → SKILL.md + linked_files | MVP |
@@ -64,7 +66,19 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 | `level-browsing` | фильтр `linked_files` по префиксу `references/{context}/{level}/` | MVP |
 | `knowledge-retrieval` | `skill_view("minerva", file_path="references/{context}/{level}/{file}.md")` | MVP |
 
+### Tier 1 — Primitive Management
+
+| Capability | Контракт | Статус |
+|---|---|---|
+| `primitive-create` | context + type + title + fields → новый .md с frontmatter | active |
+| `primitive-validate` | путь к .md → PASS/WARN/FAIL | active |
+| `primitive-bulk-import` | structured source → N созданных Primitives | scaffolding |
+| `primitive-update` | путь + fields → обновлённый файл | scaffolding |
+| `primitive-deprecate` | путь + reason → status: deprecated | scaffolding |
+
 ## Оркестрация
+
+### Tier 0 — навигация
 
 | Интент пользователя | Действие |
 |---|---|
@@ -72,6 +86,16 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 | «Расскажи про контекст coffee» | `skill_view("minerva", file_path="references/coffee/index.md")` |
 | «Какие Primitives в coffee?» | фильтр `linked_files` → `references/coffee/primitives/*.md` |
 | «Прочитай Extraction Law» | `skill_view("minerva", file_path="references/coffee/primitives/extraction-law.md")` |
+
+### Tier 1 — создание знаний
+
+| Интент пользователя | Действие |
+|---|---|
+| «Создай Primitive типа Concept» | `primitive-create` |
+| «Проверь Primitive на валидность» | `primitive-validate` |
+| «Импортируй 15 GPU из JSON» | `primitive-bulk-import` |
+| «Обнови TDP у RTX 5070» | `primitive-update` |
+| «Пометъ pump-pressure как устаревший» | `primitive-deprecate` |
 
 ## Правила
 
@@ -87,3 +111,4 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 - [ADR-002](../knowledge-service-scaffolding/references/adr/002-five-level-hierarchy.md) — 5 уровней
 - [ADR-006](../knowledge-service-scaffolding/references/adr/006-filesystem-premises.md) — KB = файлы
 - [ADR-010](../knowledge-service-scaffolding/references/adr/010-skill-native-knowledge-base.md) — skill-native KB
+- [ADR-011](../knowledge-service-scaffolding/references/adr/011-capability-roadmap.md) — capability roadmap
