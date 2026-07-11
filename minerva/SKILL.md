@@ -1,7 +1,7 @@
 ---
 name: minerva
 description: Композиционный движок знаний — имплементация Knowledge Services. Skill-native: bounded contexts живут в references/ скилла. Агент получает KB через skill_view без дополнительного кода навигации.
-version: 0.3.0
+version: 0.4.0
 status: draft
 triggers:
   - Работа с Knowledge Services workspace (references/ скилла minerva)
@@ -76,6 +76,15 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 | `primitive-update` | путь + fields → обновлённый файл | scaffolding |
 | `primitive-deprecate` | путь + reason → status: deprecated | scaffolding |
 
+### Tier 2 — Composition
+
+| Capability | Контракт | Статус |
+|---|---|---|
+| `component-compose` | context + title + 2+ Primitive IDs → новый Component | active |
+| `module-assemble` | context + title + Component IDs + Primitive IDs → новый Module | active |
+| `view-define` | context + title + 2+ sections → новый View | active |
+| `artifact-compile` | context + title + View ID + Module/Component/Primitive IDs → новый Artifact | active |
+
 ## Оркестрация
 
 ### Tier 0 — навигация
@@ -96,6 +105,15 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 | «Импортируй 15 GPU из JSON» | `primitive-bulk-import` |
 | «Обнови TDP у RTX 5070» | `primitive-update` |
 | «Пометъ pump-pressure как устаревший» | `primitive-deprecate` |
+
+### Tier 2 — композиция
+
+| Интент пользователя | Действие |
+|---|---|
+| «Собери Component из этих Primitives» | `component-compose` |
+| «Собери Module из Components и Primitives» | `module-assemble` |
+| «Создай схему анализа GPU» | `view-define` |
+| «Собери обзор RTX 5070 из GPU Analysis + GB205 Module» | `artifact-compile` |
 
 ## Правила
 
