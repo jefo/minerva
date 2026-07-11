@@ -31,12 +31,12 @@ Atomic Design в Knowledge Services — это **архитектура комп
 
 **Критерий:** если знание можно разложить → это Component или Module, не Primitive.
 
-**Примеры из GPU-домена:**
-- RTX 5070, GB205, CUDA Core, DLSS (Concept)
-- TDP 250W, Boost Clock 2.5 GHz, Bandwidth 672 GB/s (Metric/Specification)
-- FPS = 87 в Cyberpunk 2077 (Observation)
-- bandwidth = frequency × bus_width / 8 (Law)
-- RTX 5070 —[uses]→ GB205 (Relation)
+**Примеры:**
+- Espresso, Arabica, Burr Grinder, Extraction (Concept)
+- Dose = 18 g, Temperature = 93°C, TDS = 1.35% (Metric/Specification)
+- Bloom phase: 30 s at grind size 15 (Observation)
+- extraction ∝ surface_area × contact_time / particle_size (Law)
+- Espresso —[requires]→ Fine Grind (Relation)
 
 **Типы Primitives** — см. раздел 3.
 
@@ -47,23 +47,21 @@ Atomic Design в Knowledge Services — это **архитектура комп
 **Критерий:** Component содержит минимум 2 Primitives и отвечает на вопрос «что это вместе значит?».
 
 **Примеры:**
-- Memory Subsystem = VRAM + Bus Width + Bandwidth + Compression
-- Rendering Pipeline = Raster + RT + Tensor
-- Power Delivery = TDP + Transient Spike + Connector + PSU Requirement
+- Brewing Parameters = Dose + Temperature + Pressure + Time
+- Grind Quality = Particle Size + Uniformity + Burr Type
+- Water Chemistry = Mineral Content + pH + Hardness
 
-### 2.3 Modules — законченные инженерные модели
+### 2.3 Modules — законченные модели
 
-**Определение:** полное описание подсистемы или продукта. Module — это то, что может быть independently verified инженером.
+**Определение:** полное описание подсистемы, процесса или сущности. Module — это то, что может быть independently verified специалистом в предметной области.
 
 **Критерий:** Module содержит Components и Primitives в количестве, достаточном для полного понимания подсистемы без обращения к внешним источникам.
 
 **Примеры:**
-- GPU Architecture (GB205)
-- Compute Pipeline
-- Memory Architecture
-- Power Architecture
-- Display Engine
-- Intel Arrow Lake CPU
+- Espresso Extraction Model
+- Burr Grinder Engineering Model
+- Water Filtration System
+- Roast Profile Model
 
 ### 2.4 Views — аналитические схемы
 
@@ -72,9 +70,9 @@ Atomic Design в Knowledge Services — это **архитектура комп
 **Критерий:** если из документа убрать все факты и оставить заголовки секций — получится View.
 
 **Примеры:**
-- GPU Analysis: Architecture → Memory → Power → Performance → Tradeoffs → Envelope → Recommendations
-- CPU Review: Architecture → Cache → Memory Controller → Platform → Benchmarks → Positioning
-- Comparison: Context → Dimensions → Side-by-Side → Verdict
+- Brewing Method Analysis: Principle → Equipment → Parameters → Technique → Taste Profile → Recommendations
+- Equipment Comparison: Context → Specifications → Performance → Ergonomics → Value → Verdict
+- Process Guide: Goal → Prerequisites → Step-by-Step → Common Mistakes → Troubleshooting
 
 ### 2.5 Artifacts — конечные продукты
 
@@ -83,8 +81,9 @@ Atomic Design в Knowledge Services — это **архитектура комп
 **Критерий:** Artifact почти ничего своего не содержит. Он — композиция существующих знаний. Если из Artifact убрать все ссылки на нижние уровни и остаётся полноценный документ — это не Artifact, а самостоятельный документ (нарушение модели).
 
 **Примеры:**
-- RTX 5070 Review = GPU Analysis View + GB205 Module + 16GB GDDR7 Component + Benchmarks + Price
-- RTX 5070 vs RX 9070 XT = Comparison View + два GPU Module + Memory Components
+- Espresso Brewing Guide = Process Guide View + Espresso Extraction Module + Brewing Parameters Component
+- Grinder Comparison = Equipment Comparison View + два Burr Grinder Module + Grind Quality Component
+- Water for Coffee = Brewing Method Analysis View + Water Chemistry Component + Water Filtration Module
 
 ## 3. Типы Primitives
 
@@ -96,39 +95,39 @@ Atomic Design в Knowledge Services — это **архитектура комп
 
 **Форма:** именованный концепт с определением. Может иметь атрибуты (синонимы, аббревиатуры, контекст использования).
 
-**Примеры:** GPU, VRAM, PCIe Lane, CUDA Core, DLSS, Frame Generation, SM, L2 Cache
+**Примеры:** Espresso, Arabica, Burr Grinder, Extraction, Bloom, Crema
 
-**Граница:** Concept — это понятие, не факт. «CUDA Core» — Concept. «CUDA Core выполняет одну операцию с плавающей точкой за такт» — это Specification или Metric.
+**Граница:** Concept — это понятие, не факт. «Espresso» — Concept. «Espresso готовится при давлении 9 bar» — Specification.
 
 ### 3.2 Metric
 
-**Вопрос:** какое значение у измеримой величины?
+**Вопрос:** какое значение у измеримой/вычисляемой величины?
 
 **Форма:** имя + значение + единица измерения + метод получения (вычислено/измерено).
 
-**Примеры:** Bandwidth = 672 GB/s, Boost Clock = 2.5 GHz, Die Size = 378 mm²
+**Примеры:** Extraction Yield = 20%, TDS = 1.35%, Flow Rate = 2.5 ml/s
 
-**Граница:** Metric — вычисленная или измеренная величина. Если значение заявлено производителем — это Specification. Если получено в тесте — Observation.
+**Граница:** Metric — вычисленная или измеренная величина. Если значение заявлено производителем оборудования — это Specification. Если получено в конкретном тесте — Observation.
 
 ### 3.3 Observation
 
-**Вопрос:** что показал тест/измерение?
+**Вопрос:** что показал конкретный тест/измерение?
 
-**Форма:** источник + условия + значение. Observation всегда имеет provenance: где, когда, кем, на каком стенде.
+**Форма:** источник + условия + значение. Observation всегда имеет provenance: где, когда, кем, при каких условиях.
 
-**Примеры:** FPS = 87 в Cyberpunk 2077 (1440p, Ultra), температура под нагрузкой = 72°C (FurMark, 30 мин)
+**Примеры:** Bloom phase 30 s at grind size 15 (Baratza Encore, Ethiopia Yirgacheffe), extraction yield 21.3% (VST refractometer, 2026-06-15)
 
-**Граница:** Observation ≠ Metric. Metric — это свойство (Bandwidth), Observation — это конкретное измерение свойства в конкретных условиях.
+**Граница:** Observation ≠ Metric. Extraction Yield — это Metric (свойство). «Extraction yield = 21.3% для Ethiopia Yirgacheffe на Encore, помол 15» — Observation (конкретное измерение).
 
 ### 3.4 Specification
 
-**Вопрос:** что заявлено производителем?
+**Вопрос:** что заявлено производителем или авторитетным источником?
 
-**Форма:** источник (даташит, спецификация) + значение. Отличается от Observation тем, что это заявленная, а не измеренная характеристика.
+**Форма:** источник (даташит, стандарт, спецификация) + значение. Отличается от Observation тем, что это заявленная, а не измеренная характеристика.
 
-**Примеры:** 16 GB GDDR7, PCIe 5.0 x16, 3× DisplayPort 2.1, TDP 250W
+**Примеры:** Pump pressure 9 bar (модель Rancilio Silvia), Burr diameter 40 mm (модель Baratza Encore), Basket capacity 18 g
 
-**Граница:** TDP 250W — Specification (заявлено NVIDIA). Реальное энергопотребление под нагрузкой 280W — Observation (измерено).
+**Граница:** «Pump pressure 9 bar» — Specification (заявлено Rancilio). «Measured pressure at group head = 8.7 bar» — Observation (измерено).
 
 ### 3.5 Law
 
@@ -136,9 +135,9 @@ Atomic Design в Knowledge Services — это **архитектура комп
 
 **Форма:** формула + объяснение. Law не содержит конкретных значений — только отношения.
 
-**Примеры:** bandwidth = frequency × bus_width / 8, performance ∝ CUDA cores × clock, latencyₜₒₜₐₗ = latencyₘₑₘ + latencyₛₘ + latencyₚ𝒸ᵢₑ
+**Примеры:** extraction ∝ surface_area × contact_time / particle_size, flow_rate ∝ pressure / resistance, TDS × brew_weight = extraction_yield × dose
 
-**Граница:** Law — это отношение, не факт. «RTX 5070 имеет bandwidth 672 GB/s» — это Specification. «bandwidth = frequency × bus_width / 8» — это Law.
+**Граница:** Law — это отношение, не факт. «Extraction yield = 20%» — это Metric. «extraction ∝ surface_area × contact_time / particle_size» — это Law.
 
 ### 3.6 Relation
 
@@ -146,9 +145,9 @@ Atomic Design в Knowledge Services — это **архитектура комп
 
 **Форма:** субъект + предикат + объект. Именованная связь между двумя или более Concepts.
 
-**Примеры:** RTX 5070 —[uses]→ GB205, GB205 —[manufactured_on]→ TSMC 4N, DLSS 4 —[requires]→ Tensor Core
+**Примеры:** Espresso —[requires]→ Fine Grind, Arabica —[has_variety]→ Bourbon, Burr Grinder —[produces]→ Uniform Particles
 
-**Граница:** Relation — бинарная или N-арная связь. Если связь имеет внутреннюю структуру (например, «RTX 5070 использует GB205 для рендеринга и отдельный чип для дисплея») — это Component.
+**Граница:** Relation — бинарная или N-арная связь. Если связь имеет внутреннюю структуру (например, «помол влияет на экстракцию через площадь поверхности и время контакта») — это Component или Law.
 
 ## 4. Правила композиции
 
@@ -173,7 +172,7 @@ Atomic Design в Knowledge Services — это **архитектура комп
 Каждый уровень должен быть самодостаточен для своей аудитории:
 - Primitive: понятен читателю, который знает предметную область
 - Component: понятен читателю без обращения к отдельным Primitives
-- Module: полное описание — инженеру не нужно искать другие источники
+- Module: полное описание — специалисту не нужно искать другие источники
 - View: полная схема анализа — автору Artifact не нужно додумывать структуру
 - Artifact: готовый продукт — читателю не нужно знать о существовании уровней
 
@@ -183,38 +182,37 @@ Atomic Design в Knowledge Services — это **архитектура комп
 
 ## 5. Пример: полная цепочка композиции
 
-RTX 5070 Review — от Primitives до Artifact:
+Espresso Brewing Guide — от Primitives до Artifact:
 
 ```
 Primitives:
-  Concept: RTX 5070, GB205, GDDR7, CUDA Core, DLSS 4, ...
-  Specification: 16 GB, PCIe 5.0, TDP 250W, 6144 CUDA Cores
-  Metric: Bandwidth 672 GB/s, Boost Clock 2.51 GHz
-  Observation: FPS Cyberpunk 1440p Ultra = 87, Power peak = 280W
-  Law: bandwidth = freq × width / 8
-  Relation: RTX 5070 —[uses]→ GB205, GB205 —[process]→ TSMC 4N
+  Concept: Espresso, Arabica, Burr Grinder, Extraction, Bloom, Crema, Portafilter
+  Specification: Pump pressure 9 bar, Basket 18 g, Temperature stability ±1°C
+  Metric: Extraction yield 20%, TDS 1.35%, Flow rate 2.5 ml/s, Brew ratio 1:2
+  Observation: Bloom 30 s at grind 15 (Encore, Yirgacheffe), yield 21.3% (refractometer)
+  Law: extraction ∝ surface_area × contact_time / particle_size
+  Relation: Espresso —[requires]→ Fine Grind, Arabica —[has_variety]→ Bourbon
 
 Components:
-  Memory Subsystem = VRAM + Bus Width + Bandwidth + Compression
-  Rendering Pipeline = Raster + RT + Tensor
-  Power Delivery = TDP + Transient Spike + Connector + PSU
+  Brewing Parameters = Dose + Temperature + Pressure + Time + Ratio
+  Grind Quality = Particle Size + Uniformity + Burr Type
+  Water Chemistry = Mineral Content + pH + Hardness
 
 Modules:
-  GB205 Architecture = SM + CUDA Core + RT Core + Tensor Core + Cache + ...
-  Blackwell Memory Architecture = GDDR7 + Controller + Compression
+  Espresso Extraction Model = Brewing Parameters + Grind Quality + Extraction Law + Water Chemistry
+  Burr Grinder Engineering Model = Burr Type + Particle Distribution + Motor + Adjustment Mechanism
 
 View:
-  GPU Analysis = Architecture → Memory → Power → Performance → Tradeoffs → Envelope → Recommendations
+  Process Guide = Goal → Prerequisites → Step-by-Step → Common Mistakes → Troubleshooting
 
 Artifact:
-  RTX 5070 Review = GPU Analysis View
-                  + GB205 Module
-                  + Blackwell Memory Architecture Module
-                  + Memory Subsystem Component
-                  + Power Delivery Component
-                  + Benchmarks (Observations)
-                  + Price (Metric)
-                  + Engineering Commentary
+  Espresso Brewing Guide = Process Guide View
+                         + Espresso Extraction Module
+                         + Burr Grinder Engineering Module
+                         + Brewing Parameters Component
+                         + Grind Quality Component
+                         + Water Chemistry Component
+                         + Taste Profile Notes (editorial)
 ```
 
 Artifact не содержит ни одного факта, которого нет на нижних уровнях. Он содержит композицию и нарратив.

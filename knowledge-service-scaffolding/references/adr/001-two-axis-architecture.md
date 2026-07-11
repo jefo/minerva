@@ -27,11 +27,11 @@ tags: [architecture, ddd, atomic-design]
 | Онтология | **DDD** (Domain-Driven Design) | Что существует? Сущности, агрегаты, bounded contexts |
 | Композиция | **Atomic Design** (адаптированный) | Как представления собираются из знаний? Иерархия композиции |
 
-DDD определяет модель предметной области: GPU, CPU, Memory, Benchmark, Specification. Bounded contexts разделяют зоны ответственности: Product Catalog, Benchmarks, Engineering Analysis.
+DDD определяет модель предметной области: Product, Equipment, Process, Metric, Specification. Bounded contexts разделяют зоны ответственности: Product Catalog, Measurements, Domain Analysis.
 
 Atomic Design определяет, как из этих сущностей собираются представления: Primitives → Components → Modules → Views → Artifacts.
 
-**Ключевой принцип:** Atomic Design не заменяет DDD. Он становится архитектурой представлений **над** DDD-моделью. Одна и та же DDD-сущность (например, GPU GB205) может быть использована в десятках Artifacts (обзорах, сравнениях, гайдах) через разные Views.
+**Ключевой принцип:** Atomic Design не заменяет DDD. Он становится архитектурой представлений **над** DDD-моделью. Одна и та же DDD-сущность (например, модель экстракции эспрессо) может быть использована в десятках Artifacts (гайдах, сравнениях, обзорах) через разные Views.
 
 ## Альтернативы
 

@@ -11,7 +11,7 @@ tags: [architecture, primitives, taxonomy, ontology]
 
 ## Контекст
 
-Primitives — первый уровень композиции, «атомы знаний». Но что именно считать неделимым? «RTX 5070» — это Primitive? А «TDP 250W»? А «пропускная способность памяти = частота × ширина шины / 8»?
+Primitives — первый уровень композиции, «атомы знаний». Но что именно считать неделимым? «Espresso» — это Primitive? А «Pump pressure 9 bar»? А «extraction ∝ surface_area × contact_time / particle_size»?
 
 Без формальной таксономии типов примитивов граница между Primitive и Component размывается. Разные авторы будут проводить её по-разному, что разрушит композиционную модель.
 
@@ -21,14 +21,14 @@ Primitives — первый уровень композиции, «атомы з
 
 Шесть типов Knowledge Primitives:
 
-| Тип | Назначение | Пример (GPU-домен) | Форма |
+| Тип | Назначение | Пример | Форма |
 |---|---|---|---|
-| **Concept** | Понятие, сущность предметной области | GPU, VRAM, PCIe Lane, CUDA Core, DLSS | Именованный концепт с определением |
-| **Metric** | Измеримая/вычислимая величина | TDP 250W, Boost Clock 2.5 GHz, Bandwidth 672 GB/s | Имя + значение + единица измерения |
-| **Observation** | Зафиксированный эмпирический факт | FPS в Cyberpunk 2077 = 87, температура под нагрузкой = 72°C | Источник + условия + значение |
-| **Specification** | Заявленная производителем характеристика | 16 GB GDDR7, PCIe 5.0 x16, 3× DisplayPort 2.1 | Источник (даташит) + значение |
-| **Law** | Физический/инженерный закон, формула, отношение | bandwidth = frequency × bus_width / 8, performance ∝ CUDA cores × clock | Формула + объяснение |
-| **Relation** | Именованная связь между сущностями | RTX 5070 —[uses]→ GB205, GB205 —[manufactured_on]→ TSMC 4N | Субъект + предикат + объект |
+| **Concept** | Понятие, сущность предметной области | Espresso, Extraction, Burr Grinder, Bloom | Именованный концепт с определением |
+| **Metric** | Измеримая/вычислимая величина | Extraction Yield 20%, TDS 1.35%, Flow Rate 2.5 ml/s | Имя + значение + единица измерения |
+| **Observation** | Зафиксированный эмпирический факт | Bloom 30 s при помоле 15 (Encore, Yirgacheffe), yield 21.3% (рефрактометр) | Источник + условия + значение |
+| **Specification** | Заявленная производителем характеристика | Pump pressure 9 bar, Basket 18 g, Burr diameter 40 mm | Источник (даташит) + значение |
+| **Law** | Закономерность, формула, отношение | extraction ∝ surface_area × contact_time / particle_size, flow_rate ∝ pressure / resistance | Формула + объяснение |
+| **Relation** | Именованная связь между сущностями | Espresso —[requires]→ Fine Grind, Arabica —[has_variety]→ Bourbon | Субъект + предикат + объект |
 
 **Почему именно шесть, а не три или десять:**
 
@@ -44,10 +44,10 @@ Primitives — первый уровень композиции, «атомы з
 
 | Знание | Primitive или Component? | Почему |
 |---|---|---|
-| RTX 5070 | **Primitive** (Concept) | Понятие «RTX 5070» не разлагается на более мелкие онтологические единицы |
-| Memory Subsystem | **Component** | Разлагается на VRAM (Concept), Bus Width (Metric), Bandwidth (Metric), Compression (Concept) |
-| TDP 250W | **Primitive** (Specification) | Неделимая характеристика |
-| GPU Architecture | **Component/Module** | Разлагается на SM (Concept), CUDA Core (Concept), Cache Hierarchy (Concept), ... |
+| Espresso | **Primitive** (Concept) | Понятие «Espresso» не разлагается на более мелкие онтологические единицы |
+| Brewing Parameters | **Component** | Разлагается на Dose (Metric), Temperature (Metric), Pressure (Specification), Time (Metric) |
+| Pump pressure 9 bar | **Primitive** (Specification) | Неделимая характеристика |
+| Extraction Model | **Component/Module** | Разлагается на Brewing Parameters, Grind Quality, Water Chemistry, Extraction Law, ... |
 
 ## Альтернативы
 
@@ -55,19 +55,19 @@ Primitives — первый уровень композиции, «атомы з
 |---------|-------|--------|------------|
 | Только Concept + Metric | Простота | Law и Relation не влезают ни в одну категорию | Потеря значимых типов знаний |
 | Concept + Fact (Observation, Spec, Metric объединены) | Меньше типов | Разная природа фактов: эмпирический ≠ заявленный ≠ вычисленный. При объединении теряется provenance | Разная достоверность и процедура обновления |
-| Всё — Concept (плоский словарь) | Предельная простота | TDP 250W — не «понятие»; Law — не «понятие»; категориальная ошибка | Размывает семантику |
+| Всё — Concept (плоский словарь) | Предельная простота | Pump pressure 9 bar — не «понятие»; Law — не «понятие»; категориальная ошибка | Размывает семантику |
 | Открытый набор типов (extensible) | Гибкость | Без контроля типы будут плодиться; потеря совместимости между доменами | Таксономия должна быть стабильной |
 
 ## Последствия
 
 **Что становится проще:**
 - Автоматическая валидация: каждый Primitive должен принадлежать одному из шести типов
-- Query layer: «дай все Metric для GPU», «покажи Relation от GB205»
+- Query layer: «дай все Metric для Espresso», «покажи Relation от Burr Grinder»
 - Происхождение знания: Observation всегда имеет источник (тест), Specification — даташит, Metric — формулу
 
 **Что усложняется:**
 - При создании Primitive нужно выбрать тип — дополнительное решение
-- Пограничные случаи: «16 GB GDDR7» — это Specification или Metric? (ответ: Specification, потому что заявлено производителем; Metric — когда вычислено или измерено)
+- Пограничные случаи: «Pump pressure 9 bar» — это Specification или Metric? (ответ: Specification, потому что заявлено производителем; Metric — когда вычислено или измерено)
 - Law наиболее редкий и может быть перепутан с Relation
 
 **Что требует внимания:**

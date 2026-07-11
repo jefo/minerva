@@ -6,7 +6,7 @@
 
 ## 1. Проблема
 
-Базы знаний сегодня — это коллекции документов. Статья про RTX 5070, статья про выбор видеокарты, статья про архитектуру Blackwell. Каждый документ самодостаточен, содержит свою копию фактов и аналитики. При обновлении одного факта (например, TDP видеокарты) нужно править десятки документов. Одна и та же инженерная модель дублируется в обзорах, сравнениях, гайдах и обучающих материалах.
+Базы знаний сегодня — это коллекции документов. Статья про эспрессо, статья про выбор кофемолки, статья про химию воды. Каждый документ самодостаточен, содержит свою копию фактов и аналитики. При обновлении одного факта (например, оптимальной температуры заваривания) нужно править десятки документов. Одна и та же модель экстракции дублируется в гайдах, сравнениях, обзорах и обучающих материалах.
 
 Это проблема композиции, а не хранения. Факты и модели уже есть. Они просто не переиспользуются.
 
@@ -34,7 +34,7 @@ Atomic Design, адаптированный для знаний:
 
 **Фундаментальное правило:** нижние уровни не знают о верхних. Primitive не знает, в какой Artifact попадёт. Module не знает, в скольких Views будет использован. Только верхние уровни определяют композицию.
 
-Это превращает базу знаний в композиционный движок. При обновлении Module (например, микроархитектуры GB205) все Artifact'ы, использующие этот Module, получают обновление автоматически.
+Это превращает базу знаний в композиционный движок. При обновлении Module (например, модели экстракции эспрессо) все Artifact'ы, использующие этот Module, получают обновление автоматически.
 
 ## 4. Две ортогональные оси
 
@@ -53,12 +53,12 @@ DDD определяет границы моделей и их отношени�
 
 Атомы знаний, которые нельзя логически разложить дальше. Словарь предметной области. Типы примитивов:
 
-- **Concept** — понятие (GPU, VRAM, PCIe Lane)
-- **Metric** — измеримая величина (TDP 250W, Boost Clock 2.5 GHz)
-- **Observation** — зафиксированный факт из тестирования (FPS в игре)
-- **Specification** — заявленная производителем характеристика (16 GB GDDR7)
-- **Law** — физический/инженерный закон (пропускная способность = частота × ширина шины / 8)
-- **Relation** — связь между сущностями (RTX 5070 использует GB205)
+- **Concept** — понятие (Espresso, Extraction, Burr Grinder)
+- **Metric** — измеримая величина (Extraction Yield 20%, TDS 1.35%)
+- **Observation** — зафиксированный факт из тестирования (Bloom 30 s при помоле 15)
+- **Specification** — заявленная производителем характеристика (Pump pressure 9 bar, Basket 18 g)
+- **Law** — закономерность или формула (extraction ∝ surface_area × contact_time / particle_size)
+- **Relation** — связь между сущностями (Espresso требует Fine Grind)
 
 Никакой аналитики. Только факты.
 
@@ -66,36 +66,35 @@ DDD определяет границы моделей и их отношени�
 
 Связанные примитивы, образующие осмысленную единицу. Появляется семантика:
 
-- Memory Subsystem = VRAM + Bus Width + Bandwidth + Compression
-- Rendering Pipeline = Raster + RT + Tensor
-- Power Delivery = TDP + Transient Spike + Connector + PSU Requirement
+- Brewing Parameters = Dose + Temperature + Pressure + Time
+- Grind Quality = Particle Size + Uniformity + Burr Type
+- Water Chemistry = Mineral Content + pH + Hardness
 
-### 5.3 Modules — законченные инженерные модели
+### 5.3 Modules — законченные модели
 
-Полные описания подсистем или продуктов:
+Полные описания подсистем, процессов или сущностей:
 
-- GPU Architecture (GB205)
-- Compute Pipeline
-- Memory Architecture
-- Power Architecture
-- Display Engine
+- Espresso Extraction Model
+- Burr Grinder Engineering Model
+- Water Filtration System
+- Roast Profile Model
 
-Module может быть как спецификацией продукта (GB205), так и инженерной моделью (Memory Architecture).
+Module может быть как моделью процесса (Extraction Model), так и моделью оборудования (Grinder Engineering Model).
 
 ### 5.4 Views — аналитические схемы
 
 Шаблоны, определяющие структуру анализа. Не содержат контента — только схему:
 
-- GPU Analysis: Architecture → Memory → Power → Performance → Tradeoffs → Envelope → Recommendations
-- CPU Review: Architecture → Cache → Memory Controller → Platform → Benchmarks → Positioning
-- Comparison: Context → Dimensions → Side-by-side → Verdict
+- Brewing Method Analysis: Principle → Equipment → Parameters → Technique → Taste Profile → Recommendations
+- Equipment Comparison: Context → Specifications → Performance → Ergonomics → Value → Verdict
+- Process Guide: Goal → Prerequisites → Step-by-Step → Common Mistakes → Troubleshooting
 
 ### 5.5 Artifacts — конечные продукты
 
 Конкретные страницы: обзоры, сравнения, гайды, статьи. Собираются композицией View + конкретных Modules/Components/Primitives:
 
-- RTX 5070 Review = GPU Analysis View + GB205 Module + 16GB GDDR7 Component + Benchmarks + Price
-- RTX 5070 vs RX 9070 XT = Comparison View + два GPU Module + Memory Components
+- Espresso Brewing Guide = Process Guide View + Espresso Extraction Module + Brewing Parameters Component
+- Grinder Comparison = Equipment Comparison View + два Grinder Module + Grind Quality Component
 
 Artifact почти ничего своего не содержит. Он — композиция.
 

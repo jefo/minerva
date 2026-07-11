@@ -19,13 +19,13 @@ tags: [architecture, atomic-design, composition, hierarchy]
 
 Пять уровней с семантическими названиями, адаптированными для Knowledge Base:
 
-| Уровень | Atomic Design | Назначение | Пример (GPU-домен) |
+| Уровень | Atomic Design | Назначение | Пример |
 |---|---|---|---|
-| 1 | Atoms → **Primitives** | Неделимые единицы знания. Словарь предметной области. Никакой аналитики. | RTX 5070, 16 GB, GDDR7, TDP 250W, GB205, CUDA Core, DLSS |
-| 2 | Molecules → **Components** | Устойчивые композиции примитивов. Появляется смысл. | Memory Subsystem, Rendering Pipeline, Power Delivery |
-| 3 | Organisms → **Modules** | Законченные инженерные модели подсистем или продуктов. | GPU Architecture, Compute Pipeline, Memory Architecture |
-| 4 | Templates → **Views** | Аналитические схемы. Структура анализа без контента. | GPU Analysis, CPU Review, Comparison |
-| 5 | Pages → **Artifacts** | Конечные продукты. Композиция View + конкретных Modules. | RTX 5070 Review, RTX 5070 vs RX 9070 XT |
+| 1 | Atoms → **Primitives** | Неделимые единицы знания. Словарь предметной области. Никакой аналитики. | Espresso, Extraction Yield 20%, Pump pressure 9 bar, Bloom 30 s, extraction ∝ surface_area × contact_time |
+| 2 | Molecules → **Components** | Устойчивые композиции примитивов. Появляется смысл. | Brewing Parameters, Grind Quality, Water Chemistry |
+| 3 | Organisms → **Modules** | Законченные модели подсистем, процессов или продуктов. | Espresso Extraction Model, Burr Grinder Engineering Model |
+| 4 | Templates → **Views** | Аналитические схемы. Структура анализа без контента. | Brewing Method Analysis, Equipment Comparison, Process Guide |
+| 5 | Pages → **Artifacts** | Конечные продукты. Композиция View + конкретных Modules. | Espresso Brewing Guide, Grinder Comparison |
 
 **Принцип именования:** названия отражают природу уровня в контексте знаний:
 - **Primitive** — то, что не разлагается дальше (атом знания)
