@@ -41,7 +41,8 @@ minerva/                              # Корень монорепо
 │           ├── 003-downward-visibility.md
 │           ├── 004-primitives-taxonomy.md
 │           ├── 005-capabilities.md
-│           └── 006-filesystem-premises.md
+│           ├── 006-filesystem-premises.md
+│           └── 007-workspace-structure.md
 └── minerva/                          # Имплементация knowledge-services
 ```
 
@@ -68,6 +69,7 @@ minerva/                              # Корень монорепо
 | 004 | Knowledge Primitives taxonomy (6 типов) | accepted | 2026-07-11 |
 | 005 | Capabilities как composable-единицы minerva skill | accepted | 2026-07-11 |
 | 006 | Knowledge Base as filesystem — фундаментальные premises | accepted | 2026-07-11 |
+| 007 | Структура workspace — файловая проекция bounded contexts | accepted | 2026-07-11 |
 
 ## References
 
