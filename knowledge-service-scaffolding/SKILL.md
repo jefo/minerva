@@ -45,7 +45,8 @@ minerva/                              # Корень монорепо
 │           ├── 007-workspace-structure.md
 │           ├── 008-context-map.md
 │           ├── 009-mvp-capabilities.md
-│           └── 010-skill-native-knowledge-base.md
+│           ├── 010-skill-native-knowledge-base.md
+│           └── 011-capability-roadmap.md
 └── minerva/                          # Имплементация — skill-native KB
     ├── SKILL.md                      # Оркестратор
     ├── capabilities/                 # 4 capabilities MVP
@@ -91,6 +92,7 @@ minerva/                              # Корень монорепо
 | 008 | Намерение использовать Context Map для интеграции контекстов | accepted | 2026-07-11 |
 | 009 | MVP — capabilities навигации по workspace | accepted | 2026-07-11 |
 | 010 | Bounded contexts как references скилла — skill-native KB | accepted | 2026-07-11 |
+| 011 | Capability roadmap — 4 тира от создания до аналитики | accepted | 2026-07-11 |
 
 ## References
 
