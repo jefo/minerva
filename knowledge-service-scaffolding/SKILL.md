@@ -43,8 +43,19 @@ minerva/                              # Корень монорепо
 │           ├── 005-capabilities.md
 │           ├── 006-filesystem-premises.md
 │           ├── 007-workspace-structure.md
-│           └── 008-context-map.md
+│           ├── 008-context-map.md
+│           └── 009-mvp-capabilities.md
 └── minerva/                          # Имплементация knowledge-services
+    ├── SKILL.md                      # Оркестратор
+    └── capabilities/
+        ├── workspace-orientation/
+        │   └── SKILL.md
+        ├── context-exploration/
+        │   └── SKILL.md
+        ├── level-browsing/
+        │   └── SKILL.md
+        └── knowledge-retrieval/
+            └── SKILL.md
 ```
 
 ## ADR
@@ -72,6 +83,7 @@ minerva/                              # Корень монорепо
 | 006 | Knowledge Base as filesystem — фундаментальные premises | accepted | 2026-07-11 |
 | 007 | Структура workspace — файловая проекция bounded contexts | accepted | 2026-07-11 |
 | 008 | Намерение использовать Context Map для интеграции контекстов | accepted | 2026-07-11 |
+| 009 | MVP — capabilities навигации по workspace | accepted | 2026-07-11 |
 
 ## References
 
