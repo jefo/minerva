@@ -16,7 +16,11 @@ triggers:
 
 ## Назначение проекта
 
-> *Заполняется при определении scope проекта.*
+**Knowledge Services** — композиционный движок знаний. База знаний, в которой статьи, обзоры и гайды не пишутся с нуля, а собираются из переиспользуемых инженерных моделей. Atomic Design, адаптированный для знаний: Primitives → Components → Modules → Views → Artifacts.
+
+DDD определяет онтологию (что существует), Atomic Design — композицию (как представления собираются из сущностей). Это две ортогональные оси.
+
+Подробнее: [`docs/prd.md`](docs/prd.md)
 
 ## Структура репозитория
 
@@ -24,12 +28,16 @@ triggers:
 knowledge-services/
 ├── SKILL.md              # Этот файл — SSOT проекта
 ├── README.md             # Входная точка для контрибьюторов
+├── docs/
+│   └── prd.md            # Product Requirements Document
 ├── references/
 │   └── adr/              # Architecture Decision Records
-│       ├── template.md   # Шаблон ADR
-│       └── 001-example.md
-├── src/                  # Исходный код
-└── ...
+│       ├── template.md
+│       ├── 001-two-axis-architecture.md
+│       ├── 002-five-level-hierarchy.md
+│       ├── 003-downward-visibility.md
+│       └── 004-primitives-taxonomy.md
+└── src/                  # Исходный код
 ```
 
 ## ADR
@@ -49,7 +57,10 @@ knowledge-services/
 
 | ID | Заголовок | Статус | Дата |
 |----|-----------|--------|------|
-| —  | —         | —      | —    |
+| 001 | Two-axis architecture: DDD + Atomic Design | accepted | 2026-07-11 |
+| 002 | Five-level knowledge composition hierarchy | accepted | 2026-07-11 |
+| 003 | Downward-visibility rule | accepted | 2026-07-11 |
+| 004 | Knowledge Primitives taxonomy (6 типов) | accepted | 2026-07-11 |
 
 ## Конвенции
 
