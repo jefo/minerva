@@ -38,7 +38,8 @@ minerva/                              # Корень монорепо
 │           ├── 001-two-axis-architecture.md
 │           ├── 002-five-level-hierarchy.md
 │           ├── 003-downward-visibility.md
-│           └── 004-primitives-taxonomy.md
+│           ├── 004-primitives-taxonomy.md
+│           └── 005-capabilities.md
 └── minerva/                          # Имплементация knowledge-services
 ```
 
@@ -63,6 +64,7 @@ minerva/                              # Корень монорепо
 | 002 | Five-level knowledge composition hierarchy | accepted | 2026-07-11 |
 | 003 | Downward-visibility rule | accepted | 2026-07-11 |
 | 004 | Knowledge Primitives taxonomy (6 типов) | accepted | 2026-07-11 |
+| 005 | Capabilities как composable-единицы minerva skill | accepted | 2026-07-11 |
 
 ## Конвенции
 
