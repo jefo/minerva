@@ -33,6 +33,7 @@ minerva/                              # Корень монорепо
 │   ├── docs/
 │   │   └── prd.md                    # Product Requirements Document
 │   └── references/
+│       ├── taxonomy-and-semantics.md  # Канон таксономии и семантики
 │       └── adr/                      # Architecture Decision Records
 │           ├── template.md
 │           ├── 001-two-axis-architecture.md
@@ -65,6 +66,14 @@ minerva/                              # Корень монорепо
 | 003 | Downward-visibility rule | accepted | 2026-07-11 |
 | 004 | Knowledge Primitives taxonomy (6 типов) | accepted | 2026-07-11 |
 | 005 | Capabilities как composable-единицы minerva skill | accepted | 2026-07-11 |
+
+## References
+
+Канонические справочные документы — не ADR, а стабильные описания системы.
+
+| Файл | Назначение |
+|---|---|
+| [`references/taxonomy-and-semantics.md`](references/taxonomy-and-semantics.md) | Таксономия уровней (Primitives → Artifacts), типы Primitives (6 типов), правила композиции. Основан на ADR-002, ADR-003, ADR-004. Загружается агентами как SSOT семантики Knowledge Services |
 
 ## Конвенции
 
