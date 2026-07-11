@@ -21,6 +21,8 @@ minerva — имплементация Knowledge Services. Это Hermes-ски�
 
 **Capability** — атомарная единица функциональности minerva skill. Capability покрывает одну операцию или один bounded context внутри Knowledge Services. Сам скилл — композиция capabilities.
 
+**Capability — это синоним Use Case из DDD.** Use Case в DDD описывает, какую работу система выполняет для пользователя: вход, выход, граница ответственности — и ничего о реализации. Capability делает ровно это же. Различие только в термине: DDD говорит «Use Case», мы говорим «Capability». Смысл один.
+
 ### Свойства capability
 
 | Свойство | Описание |
@@ -65,14 +67,16 @@ minerva/
 
 Оркестратор — это **composition root** minerva skill. Capabilities — **leaves**.
 
-### Связь с архитектурой уровней (ADR-002)
+### Связь с архитектурой (ADR-001, ADR-002)
 
-Capabilities НЕ являются уровнями композиции знаний. Это другая ось:
+Capability размещается на DDD-оси архитектуры (ADR-001):
 
-| Ось | Что определяет | Метод |
+| Ось | Что определяет | Концепты |
 |---|---|---|
-| Уровни знаний (ADR-002) | Структура самой Knowledge Base | Primitives → Components → Modules → Views → Artifacts |
-| Capabilities (ADR-005) | Функциональность скилла, работающего с KB | primitive-create, query-layer, artifact-compile |
+| Онтология (DDD) | Что существует? Что делает система? | Сущности, Aggregate Roots, **Use Cases (Capabilities)** |
+| Композиция (Atomic Design) | Как представления собираются? | Primitives → Components → Modules → Views → Artifacts |
+
+Capabilities — это Use Cases на DDD-оси. Они НЕ являются уровнями композиции знаний:
 
 Одна capability может работать с несколькими уровнями. Например, `query-layer` ищет по всем уровням. `artifact-compile` работает c View и Module.
 
