@@ -1,0 +1,185 @@
+# Intel CPU Schema v1.0.0
+# Назначение: эталон структурной полноты для KB-записей Intel CPU.
+# Принцип: "лучше 15 узких полей чем одно размытое".
+# Каждое MANDATORY поле ДОЛЖНО присутствовать в каждой Intel KB-записи.
+# Null — осмысленное значение, не синоним отсутствия.
+
+schema:
+  vendor: intel
+  version: "1.0.0"
+  applies_to: "all Intel desktop CPU (LGA1200, LGA1700, LGA1851)"
+
+  mandatory:
+    identity:
+      vendor: intel
+      architecture: string
+      architecture_generation: integer
+      codename: string
+      sku: string
+      sku_family: string
+      release_date: string
+      status: string
+      generation_in_platform: string
+
+    core_config:
+      total_cores: integer
+      total_threads: integer
+      p_cores: integer
+      e_cores: integer
+      p_core_arch: string
+      e_core_arch: [string, "null"]
+      smt_ht: boolean
+      thread_director: [boolean, "null"]
+
+    cache:
+      l1_cache_p: string
+      l1_cache_e: string
+      l2_per_pcore: string
+      l2_per_ecluster: string
+      l2_total: string
+      l3_cache: string
+      l3_topology_known: boolean
+      l3_topology: [string, "null"]
+
+    clocks:
+      base_clock_p: string
+      base_clock_e: [string, "null"]
+      boost_clock_p_max: string
+      boost_clock_e_max: [string, "null"]
+      boost_clock_p_all: [string, "null"]
+      tvb_clock: [string, "null"]
+      tbmt3_clock: [string, "null"]
+
+    power_thermal:
+      tdp_pl1: string
+      tdp_pl2: string
+      tjmax: string
+      typical_gaming_power: [string, "null"]
+
+    lithography:
+      compute_tile_node: string
+      gpu_tile_node: [string, "null"]
+      soc_tile_node: [string, "null"]
+      io_tile_node: [string, "null"]
+      base_tile_node: [string, "null"]
+      die_topology: string
+      transistor_count: [string, "null"]
+
+    platform:
+      socket: string
+      chipset_generation: string
+      memory_type: string
+      memory_channels: integer
+      memory_max_official: string
+      memory_max_practical: [string, "null"]
+      jedec_max: string
+      xmp_max: [string, "null"]
+      cudimm_support: boolean
+      platform_lifecycle_generations: [string, "null"]
+
+    pcie:
+      pcie_version: string
+      pcie_lanes_cpu: integer
+      pcie_config_primary: string
+      pcie_config_alternate: [string, "null"]
+
+    igpu:
+      igpu_present: boolean
+      igpu_arch: [string, "null"]
+      igpu_execution_units: [integer, "null"]
+      igpu_clock_max: [string, "null"]
+      quicksync: boolean
+      av1_encode_hw: boolean
+      av1_decode_hw: boolean
+      max_displays: [integer, "null"]
+      hdmi_version: [string, "null"]
+      dp_version: [string, "null"]
+
+    npu:
+      npu_present: boolean
+      npu_generation: [string, "null"]
+      npu_tops_int8: [integer, "null"]
+      npu_copilot_plus: boolean
+
+    isa_extensions:
+      avx512: boolean
+      avx2: boolean
+      vnni: boolean
+      amx: boolean
+      dl_boost: boolean
+
+    packaging:
+      box_cooler_included: boolean
+      box_cooler_model: [string, "null"]
+      cooler_recommended: [string, "null"]
+      multiplier_locked: boolean
+      contact_frame_recommended: [boolean, "null"]
+
+    market:
+      msrp_usd_launch: [integer, "null"]
+      price_ru_min: [integer, "null"]
+      price_ru_median: [integer, "null"]
+      price_ru_max: [integer, "null"]
+      price_ru_date: [string, "null"]
+      price_ru_source: [string, "null"]
+      segment: string
+      binning_status: string
+
+  conditional:
+    tile_architecture:
+      applies_when: "die_topology == 'tile-based'"
+      fields:
+        tile_count: integer
+        tile_list: "list of {name, function, process_node}"
+        interconnect: string
+        d2d_latency_typical: [string, "null"]
+        d2d_clock: [string, "null"]
+
+    f_series:
+      applies_when: "sku ends with 'F'"
+      overrides:
+        igpu_present: false
+        igpu_arch: null
+        igpu_clock_max: null
+        quicksync: false
+        av1_encode_hw: false
+        av1_decode_hw: false
+
+    unlocked:
+      applies_when: "multiplier_locked == false"
+      fields:
+        typical_oc_pcore: [string, "null"]
+        typical_undervolt: [string, "null"]
+
+  null_semantics:
+    not_applicable:
+      - when: "igpu_present == false"
+        nulls: [igpu_arch, igpu_clock_max, quicksync, av1_encode_hw, av1_decode_hw]
+      - when: "npu_present == false"
+        nulls: [npu_generation, npu_tops_int8, npu_copilot_plus]
+      - when: "e_cores == 0"
+        nulls: [e_core_arch, base_clock_e, boost_clock_e]
+      - when: "die_topology == 'monolithic'"
+        nulls: [tile_list, d2d_latency_typical, gpu_tile_node, soc_tile_node, io_tile_node, base_tile_node]
+
+    unchecked:
+      - field: "price_ru_median"
+        status: "requires pc-parts-price-check"
+      - field: "typical_gaming_power"
+        status: "requires reviews"
+      - field: "d2d_latency_typical"
+        status: "requires die shot or architecture day"
+
+  cross_field_rules:
+    - rule: "total_cores == p_cores + e_cores"
+      severity: BLOCK
+    - rule: "total_threads == p_cores + e_cores (when smt_ht == false)"
+      severity: BLOCK
+    - rule: "total_threads == 2 * p_cores + e_cores (when smt_ht == true)"
+      severity: BLOCK
+    - rule: "tdp_pl2 > tdp_pl1"
+      severity: BLOCK
+    - rule: "l3_topology must be null if l3_topology_known == false"
+      severity: BLOCK
+    - rule: "Arrow Lake F-series: check multiplier_locked (265F=unlocked, 225F=locked)"
+      severity: WARN

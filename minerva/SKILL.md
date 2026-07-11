@@ -1,7 +1,7 @@
 ---
 name: minerva
 description: Композиционный движок знаний — имплементация Knowledge Services. Skill-native: bounded contexts живут в references/ скилла. Агент получает KB через skill_view без дополнительного кода навигации.
-version: 0.4.0
+version: 0.5.0
 status: draft
 triggers:
   - Работа с Knowledge Services workspace (references/ скилла minerva)
@@ -15,7 +15,7 @@ triggers:
 
 Композиционный движок знаний. Реализует архитектуру Knowledge Services: Primitives → Components → Modules → Views → Artifacts.
 
-**Skill-native (ADR-010):** bounded contexts хранятся в `references/` скилла. Hermes раздаёт их через `skill_view` и `linked_files` — progressive disclosure работает без дополнительного кода.
+**Skill-native (ADR-010):** bounded contexts хранятся в `references/` скилла. Discoverability — через `references/index.md` (карта контекстов). Агент загружает его после SKILL.md и знает всё, что есть в workspace.
 
 ## Структура
 
@@ -28,6 +28,7 @@ minerva/                              # Hermes skill = knowledge base
 │   ├── level-browsing/
 │   └── knowledge-retrieval/
 └── references/                       # = workspace
+    ├── index.md                      # карта всех контекстов (discoverability)
     ├── coffee/                       # = bounded context
     │   ├── index.md
     │   ├── primitives/               # 6 primitives всех типов
@@ -35,25 +36,27 @@ minerva/                              # Hermes skill = knowledge base
     │   ├── modules/
     │   ├── views/
     │   └── artifacts/
-    ├── context-map.md                # связи контекстов
-    └── README.md                     # описание workspace (опционально)
+    ├── hardware/                     # = bounded context (bind mount)
+    └── context-map.md                # легенда связей (ADR-008)
 ```
 
 ## Навигационный flow (skill-native)
 
 ```
 skill_view("minerva")
-  → SKILL.md: карта KB, список контекстов
-  → linked_files: все файлы references/ одним списком
+  → SKILL.md: оркестратор, список capabilities
+
+skill_view("minerva", file_path="references/index.md")
+  → карта всех контекстов: coffee (6 Primitives), hardware (legacy, 75+ entries)
 
 skill_view("minerva", file_path="references/coffee/index.md")
-  → описание контекста Coffee
+  → описание контекста Coffee, границы, сущности
 
 skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
   → содержимое знания
 ```
 
-Ни одного `ls`, `find` или `read_file` напрямую. Вся навигация — через один механизм платформы.
+**Правило:** после SKILL.md агент всегда загружает `references/index.md` — это карта всего workspace. Без неё агент не знает, какие контексты существуют.
 
 ## Capabilities
 
@@ -61,9 +64,9 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 
 | Capability | Реализация | Статус |
 |---|---|---|
-| `workspace-orientation` | `skill_view("minerva")` → SKILL.md + linked_files | MVP |
+| `workspace-orientation` | `skill_view("minerva")` → SKILL.md, затем `skill_view("minerva", file_path="references/index.md")` | MVP |
 | `context-exploration` | `skill_view("minerva", file_path="references/{context}/index.md")` | MVP |
-| `level-browsing` | фильтр `linked_files` по префиксу `references/{context}/{level}/` | MVP |
+| `level-browsing` | `skill_view("minerva", file_path="references/{context}/{level}/")` — агент читает index.md контекста, находит нужный уровень | MVP |
 | `knowledge-retrieval` | `skill_view("minerva", file_path="references/{context}/{level}/{file}.md")` | MVP |
 
 ### Tier 1 — Primitive Management
@@ -91,9 +94,9 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 
 | Интент пользователя | Действие |
 |---|---|
-| «Что есть в KB?» / «Какие контексты?» | `skill_view("minerva")` |
+| «Что есть в KB?» / «Какие контексты?» | `skill_view("minerva")` → `skill_view("minerva", file_path="references/index.md")` |
 | «Расскажи про контекст coffee» | `skill_view("minerva", file_path="references/coffee/index.md")` |
-| «Какие Primitives в coffee?» | фильтр `linked_files` → `references/coffee/primitives/*.md` |
+| «Какие Primitives в coffee?» | читаем `references/coffee/index.md` → секция Primitives |
 | «Прочитай Extraction Law» | `skill_view("minerva", file_path="references/coffee/primitives/extraction-law.md")` |
 
 ### Tier 1 — создание знаний
@@ -118,11 +121,11 @@ skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
 ## Правила
 
 1. KB = `references/` скилла. Workspace — это инстанс minerva с заполненными references.
-2. Навигация — через `skill_view` и `linked_files`. Не через `ls` и `read_file`.
-3. Любой агент, загрузивший скилл, получает карту KB через `linked_files` (zero-cost discoverability).
+2. Discoverability — через `references/index.md`. Агент загружает его после SKILL.md и знает все контексты.
+3. Навигация — через `skill_view`. Не через `ls`, `find` или `read_file` напрямую.
 4. Файлы остаются обычными `.md` (ADR-006). `skill_view` — convenience, не lock-in.
 5. SKILL.md — entry point и оркестратор, не дамп содержимого KB.
-6. Новый контекст = новая директория в `references/` + её `index.md`.
+6. Новый контекст = новая директория в `references/` + её `index.md` + запись в `references/index.md`.
 
 ## Зависимости
 

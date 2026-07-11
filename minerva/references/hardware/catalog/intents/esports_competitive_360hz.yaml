@@ -1,0 +1,48 @@
+# esports_competitive_360hz
+# Домен: Гейминг (ультра-низкая задержка, упор в кэш CPU)
+# 
+# ДИРЕКТИВА LLM: все ссылки вида path/to/file.md#section — navigable references.
+# Загрузи файл, найди секцию, извлеки конкретику. Без этого расчёты не делать.
+
+uri: "intent#esports_competitive_360hz"
+type: "SystemRequirementsVector"
+domain: "gaming"
+description: >
+  Соревновательный киберспорт на мониторе 360Hz. Требуется минимальный
+  CPU frame time и нулевой джиттер. Видеокарта вторична — процессор
+  должен гарантировать 1% Low FPS выше 360 Hz.
+
+requirements:
+  budget_allocation_priority: "CPU"
+  domain_modules_required: ["pcbo:modules/gaming"]
+
+  constraints:
+    max_acceptable_noise_load: "A2"
+    max_acceptable_noise_note: "Игрок должен слышать шаги. Гул не должен маскировать звуковые очереди."
+    max_acceptable_thermal_state: "T_Safe"
+    max_acceptable_thermal_note: "Даже кратковременный throttling → frametime spike → проигранный раунд."
+    min_ram_capacity_gb: 32
+    min_ram_note: "Игра + Discord + OBS + браузер. 16GB на пределе, 32GB — стандарт."
+    min_storage_sustained_write: false
+    min_storage_note: "Игра загружается один раз. NVMe Gen3 достаточно."
+
+  maut_weights:
+    performance_importance: 0.9
+    performance_note: "Латентность кадра и 1% Low — главные метрики"
+    silence_importance: 0.4
+    silence_note: "Важно, но не ценой FPS"
+    thermal_margin_importance: 0.7
+    thermal_note: "Без throttling — обязательно"
+    upgrade_longevity_importance: 0.3
+    longevity_note: "AM5 даёт апгрейд, но сейчас не критично"
+
+profile_interaction_matrix:
+  mandatory_steel_man:
+    - profile: "concepts/epistemological-profiles.md#cache_dominant_gaming"
+      reason: "3D V-Cache (L3 ≥ 96MB) обязателен. Без него 1% Low нестабилен на 360Hz. Разница 15–25% vs non-X3D."
+
+  strict_block:
+    - profile: "concepts/epistemological-profiles.md#jedec_native_safe"
+      reason: "JEDEC-память (5200 CL42) → +15–20ns latency → frametime spike. 360Hz не прощает джиттера. BLOCK."
+    - profile: "concepts/epistemological-profiles.md#multi_ccd_disaggregated"
+      reason: "Inter-CCD latency ≥70ns → периодические frametime spike. Игра не знает о топологии CPU. BLOCK."

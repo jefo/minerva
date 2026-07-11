@@ -1,0 +1,228 @@
+# daw_zero_dpc_latency
+# Домен: Audio Production — КОНКРЕТНЫЙ ИНТЕНТ
+# 
+# ДИРЕКТИВА LLM: все ссылки вида path/to/file.md#section — navigable references.
+# Загрузи файл, найди секцию, извлеки конкретику. Без этого расчёты не делать.
+#
+# КАК ИСПОЛЬЗОВАТЬ:
+#   Агент получает NL-запрос на аудио-станцию → загружает этот intent →
+#   → следует Anchor Requirements (dGPU=BLOCK, Wi-Fi/BT=BLOCK, AIO=BLOCK, semi_passive PSU) →
+#   → применяет Constraint Override Map (см. pcbo-master-synthesizer skill) →
+#   → проводит JIT Ingestion для аудио-интерфейса (каталог пуст) →
+#   → синтезирует сборку через pcbo-synthesis.
+
+uri: "intent#daw_zero_dpc_latency"
+type: "SystemRequirements"
+domain: "audio_production"
+abstract: false
+description: >
+  Конкретный интент для построения DAW-станции с гарантированной низкой 
+  латентностью. Целевые метрики: DPC Latency <50 μs (LatencyMon), 
+  стабильная работа Cubase на буфере 32-64 сэмпла, 
+  акустический класс «студийная тишина» (A0_Studio: <15 dBA на 0.5м при нагрузке).
+
+requirements:
+  budget_allocation_priority: "CPU"
+  budget_note: >
+    Процессор — главный compute-ресурс для аудио. GPU отсутствует (iGPU).
+    Память — второй приоритет (стриминг сэмплов). SSD — третий (Kontakt библиотеки).
+    Аудиоинтерфейс — отдельный бюджет, не включён в сборку ПК.
+
+  constraints:
+    # Акустические — самые жёсткие
+    max_acceptable_noise: "A0_Studio"
+    max_acceptable_noise_note: >
+      «Студийная тишина»: <15 dBA на 0.5м при ЛЮБОЙ рабочей нагрузке.
+      Конденсаторный микрофон не регистрирует шум корпуса.
+      Никаких тональных шумов (помпа AIO, coil whine).
+      
+    # DPC Latency — корневое требование
+    max_dpc_latency_us: 50
+    dpc_latency_note: >
+      DPC <50 μs гарантирует работу без дропаутов на буфере 32 сэмпла.
+      Safety margin: 32 сэмпла @ 48kHz = 667 μs → 667/50 = 13.3× — превосходно.
+      
+    # Термальные — умеренные (65-105W CPU, нет dGPU)
+    max_acceptable_thermal_state: "T_Cool"
+    max_acceptable_thermal_note: >
+      Без dGPU система выделяет <150W. Достаточно тихого воздушного охлаждения.
+      
+    # Ограничения по компонентам
+    dgpu_policy: "FORBIDDEN"
+    dgpu_policy_reason: >
+      NVIDIA-драйверы дают DPC-спайки 100-500 μs (смена Power States).
+      Кулер dGPU — источник широкополосного шума.
+      iGPU RDNA2 (Ryzen 7000/9000) или Intel UHD (Core i) достаточно для 2-3 мониторов.
+      
+    cooling_policy: "AIR_ONLY"
+    cooling_policy_reason: >
+      AIO — BLOCK: помпа гудит на ~2000 Hz (тональный шум в слышимом спектре).
+      Только воздушное охлаждение. Предпочтительно top-flow (downdraft на M.2/VRM),
+      либо overrated tower (260W на 65W CPU → вентиляторы на минимальных оборотах).
+      
+    wifi_policy: "FORBIDDEN"
+    bluetooth_policy: "FORBIDDEN"
+    wifi_bt_reason: >
+      Wi-Fi адаптер генерирует DPC-спайки 50-200 μs при сканировании сетей.
+      Bluetooth — 30-150 μs при device discovery. Отключить в UEFI или выбрать 
+      материнскую плату без этих модулей.
+      
+    storage_policy: "NVME_ONLY"
+    storage_policy_reason: >
+      HDD — BLOCK: шпиндель 7200 RPM — тональный шум + вибрация.
+      Только NVMe SSD (пассивные радиаторы, без активного охлаждения).
+      
+    psu_acoustic_policy: "SEMI_PASSIVE"
+    psu_acoustic_policy_reason: >
+      Fan-stop до ≥200W → при системном потреблении <150W вентилятор БП никогда не включается.
+      Coil whine — risk factor для конкретных моделей.
+
+  # MAUT-веса для аудио-интента
+  maut_weights:
+    dpc_compliance_importance: 1.0        # Абсолютный приоритет
+    dpc_note: "Нарушение DPC <50 μs → сборка бракуется независимо от бюджета"
+    
+    acoustic_silence_importance: 0.95
+    acoustic_note: "Студийная тишина — второе по важности после DPC"
+    
+    cpu_multi_thread_performance: 0.85
+    cpu_note: "Ядра и потоки определяют число параллельных VST-цепочек"
+    
+    ram_capacity_importance: 0.80
+    ram_note: "64 GB минимум для оркестровых библиотек. 128 GB — для профессионалов"
+    
+    storage_iops_importance: 0.75
+    storage_note: "Random read (Kontakt DFD-стриминг) критичнее sustained write"
+    
+    thermal_margin_importance: 0.40
+    thermal_note: "65W CPU — тепла мало, но запас нужен для низких оборотов вентиляторов"
+    
+    upgrade_longevity_importance: 0.30
+    longevity_note: "AM5-сокет даёт апгрейд на будущие Zen 6. Остальное — под задачу."
+
+profile_interaction_matrix:
+  mandatory_steel_man: 
+    - profile: "concepts/epistemological-profiles.md#efficient_multithread_professional"
+      reason: "CPU с 8+ ядрами и высокой IPC для VST-цепочек. Ryzen 9 7900/9900X/9950X, Core i7/i9."
+      
+  strict_block:
+    - profile: "concepts/epistemological-profiles.md#discrete_gpu_any"
+      reason: "Любая дискретная GPU — BLOCK. DPC-спайки от драйверов + шум кулера."
+      
+    - profile: "concepts/daw-acoustic-class.md#AIO_COOLING_BLOCK"
+      reason: "Любая AIO (240/280/360/420) — BLOCK. Тональный шум помпы."
+      
+    - profile: "concepts/epistemological-profiles.md#sub_75w_slot_powered"
+      reason: "Карты без внешнего питания — тоже dGPU. BLOCK."
+      
+  warn:
+    - profile: "concepts/epistemological-profiles.md#wifi_integrated"
+      reason: "Материнские платы с Wi-Fi/BT — WARN. Требуется отключение в UEFI."
+      
+    - profile: "concepts/epistemological-profiles.md#intel_lan_i225_i226"
+      reason: "Intel I225-V/I226-V LAN — WARN. Могут давать DPC-спайки 20-60 μs. Предпочесть Realtek RTL8125BG."
+
+# ═══════════════════════════════════════════════════════════════
+# ПАРАМЕТРИЧЕСКАЯ ЗОНА
+# ═══════════════════════════════════════════════════════════════
+
+dynamic_constraints:
+
+  # --- 1. CPU Selection ---
+  cpu_for_daw:
+    function: "select_cpu_daw"
+    description: >
+      Выбирает CPU для DAW по двум осям: многопоточность (микширование) 
+      и single-thread IPC (низкий буфер / живой мониторинг).
+    config:
+      daw_cpu_tiers:
+        T0_Unrestricted:
+          models: ["AMD Ryzen 9 9950X", "Intel Core i9-14900K"]
+          cores_min: 24
+          note: "Максимальная многопоточность для оркестровых проектов 500+ треков"
+          
+        T1_HighPerformance:
+          models: ["AMD Ryzen 9 9900X", "AMD Ryzen 9 9800X3D", "Intel Core i7-14700K"]
+          cores_min: 16
+          note: "9800X3D — лучший выбор для низких буферов (L3-кэш). 9900X — для тяжёлых микс-сессий."
+          
+        T2_Balanced:
+          models: ["AMD Ryzen 7 9700X", "Intel Core i5-14600K"]
+          cores_min: 14
+          note: "Оптимальный баланс цена/качество для профессиональной домашней студии"
+          
+        T3_Budget:
+          models: ["AMD Ryzen 7 7700"]
+          cores_min: 8
+          note: "65W TDP — тихий, холодный. Достаточно для 100+ треков при разумном FX."
+          
+      mandatory_features:
+        - "iGPU (RDNA2 / Intel UHD) — ОБЯЗАТЕЛЬНО. dGPU исключён."
+        - "AVX-512 (опционально) — ускоряет некоторые аудио-плагины (Diva, Acustica)"
+
+  # --- 2. RAM Selection ---
+  ram_for_daw:
+    function: "select_ram_daw"
+    description: >
+      Память для DAW: фокус на ёмкости и bandwidth (Kontakt DFD-стриминг).
+      EXPO/JEDEC-миф разобран: на Zen 4 (AGESA 1.2.0.0+) EXPO не влияет на DPC.
+    config:
+      capacity_tiers:
+        S_Professional:
+          gb: 128
+          note: "Оркестровые проекты 500+ треков, множество Kontakt-инстансов"
+          
+        A_Standard:
+          gb: 64
+          note: "Типичная профессиональная сессия 150-300 треков"
+          
+        B_Budget:
+          gb: 32
+          note: "Домашняя студия, до 100 треков"
+          
+      speed_policy:
+        target: "DDR5-5600 CL36 EXPO"
+        alternative: "DDR5-5200 JEDEC (если EXPO недоступен)"
+        note: >
+          DDR5-6000 CL30 даёт +400 MT/s за +15K ₽ — diminishing returns для аудио.
+          Инвестируй разницу в аудиоинтерфейс.
+          
+      rank_policy:
+        preferred: "2× dual-rank DIMM (4 ранга, максимальный bandwidth interleaving)"
+        acceptable: "2× single-rank DIMM"
+        avoid: "4× single-rank DIMM (нагрузка на IMC, снижение частоты)"
+
+  # --- 3. Motherboard DPC Filter ---
+  motherboard_for_daw:
+    function: "select_mb_daw"
+    description: >
+      Фильтрация материнских плат по DPC-совместимости.
+      Ключевые параметры: LAN-чип, отсутствие Wi-Fi/BT (или возможность отключения),
+      CPU-direct USB для аудиоинтерфейса.
+    config:
+      mandatory:
+        - "Wi-Fi: отсутствует ИЛИ отключается в UEFI"
+        - "Bluetooth: отсутствует ИЛИ отключается в UEFI"
+        - "RGB-контроллер: отключается в UEFI"
+        
+      lan_preference:
+        preferred: "Realtek RTL8125BG (минимальные DPC)"
+        acceptable: "Intel I225-V/I226-V (WARN — DPC 20-60 μs)"
+        avoid: "Realtek RTL8111 (старый чип, хуже драйверы)"
+        
+      usb_requirement:
+        cpu_direct_ports: "≥1 USB-C или USB-A для аудиоинтерфейса"
+        note: "Аудиоинтерфейс на CPU-direct порту → минимальная латентность, без PCH-конкуренции"
+
+  # --- 4. Audio Interface Selection ---
+  audio_interface_for_daw:
+    function: "select_audio_interface"
+    description: >
+      Выбор аудиоинтерфейса по Tier-системе (см. concepts/audio-interface-drivers.md).
+      Для daw_zero_dpc_latency — минимум Tier 1 (MOTU/RME).
+    config:
+      min_tier: "T1_Professional"
+      tier_note: >
+        Tier 0 (RME) — эталон. Tier 1 (MOTU) — профессиональный минимум.
+        Tier 2 (Focusrite Clarett, UA Apollo) — отклоняется для этого интента.
+        Tier 3 (Focusrite Scarlett, consumer) — BLOCK.

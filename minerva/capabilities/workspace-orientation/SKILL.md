@@ -2,46 +2,45 @@
 name: workspace-orientation
 type: capability
 skill: minerva
+version: 0.2.0
 contract:
-  input: "путь к workspace (или текущая директория)"
-  output: "карта workspace: список контекстов, путь к context-map.md, метаданные"
-based_on: [adr-006, adr-007]
+  input: "ничего (текущий скилл = текущий workspace)"
+  output: "список контекстов с описаниями и статусом, наличие context-map.md"
+based_on: [adr-006, adr-007, adr-010]
 ---
 
 # Workspace Orientation
 
-Понять устройство workspace: какие контексты существуют, где служебные файлы.
+Понять, что есть в KB: загрузить `references/index.md` и показать все контексты.
 
 ## Контракт
 
-**Вход:** путь к workspace. Если не указан — текущая директория.
+**Вход:** не требуется — workspace = `references/` текущего скилла minerva.
 
 **Выход:**
-- Список контекстов (имя директории + краткое описание из `index.md`)
-- Наличие и путь к `context-map.md`
-- Метаданные workspace (владелец, домен, версия схемы)
+- Список контекстов (имя, путь, описание, статус, примечания)
+- Ссылка на `context-map.md` (легенда связей)
 
-## Правила
+## Реализация (skill-native)
 
-1. Найти корневой `index.md`. Если его нет — это не workspace, ошибка.
-2. Прочитать `index.md` → извлечь список контекстов и метаданные.
-3. Контекст = поддиректория, содержащая `index.md`. Директории без `index.md` — не контексты.
-4. Проверить наличие `context-map.md` — сообщить, есть или нет.
+```
+skill_view("minerva", file_path="references/index.md")
+```
 
-## Реализация
+`references/index.md` содержит:
+- Заголовок «Minerva Workspace»
+- Секцию «## Контексты» — перечисление всех контекстов с путями, статусом, описанием
+- Секцию «## Связи контекстов»
+- Навигационную подсказку для агентов
 
-```bash
-# 1. Проверить наличие workspace/index.md
-test -f "$WORKSPACE/index.md" || echo "ERROR: not a workspace"
+Агент читает этот файл и получает полную карту workspace. Никаких `ls` или `find`.
 
-# 2. Прочитать карту workspace
-read_file "$WORKSPACE/index.md"
+## Пример вывода
 
-# 3. Найти контексты (директории с index.md)
-for dir in "$WORKSPACE"/*/; do
-  test -f "$dir/index.md" && echo "context: $(basename $dir)"
-done
+```
+Workspace: Minerva
 
-# 4. Проверить context-map.md
-test -f "$WORKSPACE/context-map.md" && echo "context-map: present" || echo "context-map: absent"
+Контексты:
+  coffee/     active    — Модели заваривания кофе (6 Primitives)
+  hardware/   legacy    — База знаний по компьютерному железу (75+ entries, не minerva-таксономия)
 ```

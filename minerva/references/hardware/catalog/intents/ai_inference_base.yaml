@@ -1,0 +1,118 @@
+# ai_inference_base
+# Домен: Compute — АБСТРАКТНЫЙ БАЗОВЫЙ ИНТЕНТ
+# Покрывает локальный инференс LLM 7B–70B через параметризацию.
+# 
+# ДИРЕКТИВА LLM: все ссылки вида path/to/file.md#section — navigable references.
+# Загрузи файл, найди секцию, извлеки конкретику. Без этого расчёты не делать.
+#
+# КАК ИСПОЛЬЗОВАТЬ:
+#   Агент получает NL-запрос → парсит model_size + quantization + context_length →
+#   → вызывает evaluate_llm_vram() из dynamic_constraints.py →
+#   → получает min_vram_gb, target_gpu_profile, min_ram_gb ПОД ЭТУ МОДЕЛЬ.
+
+uri: "intent#ai_inference_base"
+type: "AbstractSystemRequirements"
+domain: "ai_compute"
+abstract: true
+description: >
+  Абстрактный базовый интент для локального инференса LLM. Покрывает модели
+  7B–70B параметров с разным квантованием и длиной контекста.
+  Конкретные требования к VRAM, GPU-профиль и минимальный RAM вычисляются
+  динамически из model_size + quantization + context_length.
+
+requirements:
+  budget_allocation_priority: "GPU"
+  budget_note: "VRAM — главный constraint. Всё остальное вторично."
+  domain_modules_required: ["pcbo:modules/ai_compute"]
+
+  constraints:
+    max_acceptable_noise_load: "A3"
+    max_acceptable_noise_note: "Инференс — длительная равномерная нагрузка. GPU постоянно под нагрузкой."
+    max_acceptable_thermal_state: "T_Warm"
+    max_acceptable_thermal_note: "24/7 без деградации."
+    min_storage_sustained_write: false
+    min_storage_note: "Модель загружается один раз. NVMe Gen4 достаточно."
+
+  # БАЗОВЫЕ ВЕСА — переопределяются через adjust_maut_weights
+  maut_weights:
+    performance_importance: 0.9
+    performance_note: "Токены в секунду — главная метрика"
+    silence_importance: 0.1
+    silence_note: "Можно поставить под стол"
+    thermal_margin_importance: 0.5
+    thermal_note: "24/7 без деградации — важно"
+    upgrade_longevity_importance: 0.7
+    longevity_note: "Апгрейд GPU (больше VRAM) и RAM критичен"
+
+profile_interaction_matrix:
+  # ПУСТО — профили GPU назначаются динамически через evaluate_llm_vram()
+  mandatory_steel_man: []
+  mandatory_steel_man_note: >
+    НЕ ЗАПОЛНЯТЬ. Профиль GPU (tensor_matrix_accelerated для всех +
+    конкретный профиль в зависимости от VRAM) назначается через
+    dynamic_constraints. См. секцию ниже.
+
+  strict_block:
+    - profile: "concepts/epistemological-profiles.md#sub_75w_slot_powered"
+      reason: "Карты без внешнего питания (≤ 75W) не имеют достаточного VRAM и тензорных ядер для LLM. BLOCK всегда."
+
+  warn: []
+
+# ═══════════════════════════════════════════════════════════════
+# ПАРАМЕТРИЧЕСКАЯ ЗОНА
+# ═══════════════════════════════════════════════════════════════
+
+dynamic_constraints:
+
+  # --- 1. VRAM и GPU-профиль для LLM ---
+  llm_vram:
+    function: "evaluate_llm_vram"
+    description: >
+      Вычисляет минимальный VRAM, целевой GPU-профиль и минимальный RAM
+      для заданной модели с учётом квантования и длины контекста.
+    config:
+      # Базовый размер модели в VRAM (GGUF Q4_K_M) — включает веса + overhead
+      model_vram_base:
+        "7B":   { "q4": 5,  "q8": 8,  "fp16": 14 }
+        "13B":  { "q4": 9,  "q8": 15, "fp16": 26 }
+        "32B":  { "q4": 21, "q8": 35, "fp16": 64 }
+        "70B":  { "q4": 43, "q8": 74, "fp16": 140 }
+        notes: >
+          Q4_K_M — стандартное квантование llama.cpp. Размеры включают
+          веса + KV-кэш для контекста 4K + overhead (~10%).
+          Q8_0: ×1.7 от Q4. FP16: ×2.8 от Q4 (без квантования).
+
+      # Дополнительный VRAM на контекст сверх базы (4K уже включён в базу)
+      context_overhead_gb:
+        "4K":   0    # уже в базе
+        "32K":  5
+        "128K": 20
+        notes: >
+          Byte Latent Transformer (BLT) и GQA снижают рост KV-кэша,
+          но для стандартных transformer-моделей (Llama, Mistral, Qwen) —
+          линейный рост с длиной контекста. 128K контекст = ×32 от 4K.
+
+      # Какой GPU-профиль нужен в зависимости от VRAM
+      gpu_profile_by_vram:
+        - { max_vram: 10,  profile: "concepts/epistemological-profiles.md#mainstream_efficiency_gpu",
+            note: "RTX 5060 8GB / Arc B570 — 7B Q4" }
+        - { max_vram: 16,  profile: "concepts/epistemological-profiles.md#balanced_performance_gpu",
+            note: "RTX 5070 12GB / RX 9070 16GB — 13B Q4" }
+        - { max_vram: 24,  profile: "concepts/epistemological-profiles.md#enthusiast_unrestricted_gpu",
+            note: "RTX 4090 24GB / RTX 5090 32GB — 32B Q4" }
+        - { max_vram: 48,  profile: "concepts/epistemological-profiles.md#enthusiast_unrestricted_gpu",
+            note: "RTX 5090 32GB / dual GPU — 32B Q8 или 70B Q4" }
+        - { max_vram: 999, profile: "concepts/epistemological-profiles.md#multi_gpu_interconnect_capable",
+            note: "2× RTX 5090 или HEDT — 70B FP16" }
+
+      # RAM для offload: если модель не влезает в VRAM, нужен offload в RAM
+      min_ram_by_model_size:
+        "7B":  32
+        "13B": 32
+        "32B": 64
+        "70B": 128
+        notes: >
+          Даже если модель влезает в VRAM, RAM нужен для:
+          - загрузки модели в память перед transfer на GPU
+          - предобработки датасетов (Python pandas)
+          - системных нужд

@@ -1,0 +1,110 @@
+# =============================================================================
+# CPU Specifications: Intel Raptor Lake Refresh (14th Gen) — Batch 3
+# Source: Intel ARK (primary) + TechPowerUp CPU Database (cross-check)
+# Date fetched: 2026-06-27
+# =============================================================================
+# PROVENANCE KEY per field:
+#   [ARK] = confirmed from Intel ARK page snippet
+#   [TPU] = confirmed from TechPowerUp CPU database
+#   [ARK+TPU] = confirmed from both sources
+#   [CALC] = calculated from known architecture rules (Raptor Lake: 2MB L2/P-core, 4MB L2/E-core-cluster)
+# =============================================================================
+
+# =============================================================================
+# CPU #1: Intel Core i5-14600K
+# =============================================================================
+- cpu: "Intel Core i5-14600K"
+  socket: "FCLGA1700"                                              # [ARK+TPU]
+  architecture: "Raptor Lake Refresh (Raptor Lake-R)"              # [ARK+TPU]
+  lithography: "Intel 7"                                           # [ARK+TPU] (10nm Enhanced SuperFin)
+  cores: 14                                                        # [ARK+TPU] 6P + 8E
+  threads: 20                                                      # [ARK+TPU] (6P×2 HT) + 8E
+  p_cores: 6                                                       # [ARK+TPU]
+  e_cores: 8                                                       # [ARK+TPU]
+  base_clock_p: "3.5 GHz"                                          # [ARK+TPU]
+  base_clock_e: "2.6 GHz"                                          # [ARK+TPU]
+  boost_clock_p: "5.3 GHz"                                         # [ARK+TPU] Max Turbo (TB2)
+  boost_clock_e: "4.0 GHz"                                         # [ARK+TPU]
+  # No TVB or TBMT3 on i5 SKUs
+  l2_cache: "20 MB"                                                # [CALC] 6P×2MB + 2E-clusters×4MB = 12+8=20
+  l3_cache: "24 MB"                                                # [ARK+TPU] Intel Smart Cache
+  tdp: "125 W"                                                     # [ARK+TPU] Processor Base Power (PBP/PL1)
+  tdp_pl2: "181 W"                                                 # [ARK+TPU] Maximum Turbo Power (MTP)
+  tjmax: "100°C"                                                   # [TPU] Standard for Raptor Lake K-series
+  pcie_lanes: "20"                                                 # [ARK+TPU] 16× PCIe 5.0 + 4× PCIe 4.0
+  memory: "DDR4 up to 3200 MT/s, DDR5 up to 5600 MT/s"             # [ARK+TPU]
+  max_memory: "192 GB"                                             # [ARK+TPU]
+  igpu: "Intel UHD Graphics 770 @ 1.55 GHz max dynamic"            # [ARK+TPU] Base: 300 MHz
+  box_cooler: null                                                 # [ARK] K-series — no included cooler
+  package: "45.0 mm × 37.5 mm"                                     # [ARK+TPU]
+  release_date: "2023-10-17"                                       # [ARK+TPU] Q4'23 launch
+
+# =============================================================================
+# CPU #2: Intel Core i7-14700K
+# =============================================================================
+# ⚠️ CRITICAL: iGPU Graphics Max Dynamic Frequency = 1.60 GHz (NOT 1.65 GHz!)
+#    Multiple training data sets/LLMs incorrectly report 1.65 GHz.
+#    Verified from Intel ARK + multiple retailer spec sheets citing ARK.
+# =============================================================================
+- cpu: "Intel Core i7-14700K"
+  socket: "FCLGA1700"                                              # [ARK+TPU]
+  architecture: "Raptor Lake Refresh (Raptor Lake-R)"              # [ARK+TPU]
+  lithography: "Intel 7"                                           # [ARK+TPU]
+  cores: 20                                                        # [ARK+TPU] 8P + 12E (↑4 E-cores vs 13700K)
+  threads: 28                                                      # [ARK+TPU] (8P×2 HT) + 12E
+  p_cores: 8                                                       # [ARK+TPU]
+  e_cores: 12                                                      # [ARK+TPU]
+  base_clock_p: "3.4 GHz"                                          # [ARK+TPU]
+  base_clock_e: "2.5 GHz"                                          # [ARK+TPU]
+  boost_clock_p: "5.6 GHz"                                         # [ARK+TPU] TBMT 3.0 / Max Turbo
+  boost_clock_e: "4.3 GHz"                                         # [ARK+TPU]
+  # TBMT 3.0 = 5.6 GHz (i7 has TBMT3, NOT TVB)
+  l2_cache: "28 MB"                                                # [CALC] 8P×2MB + 3E-clusters×4MB = 16+12=28
+  l3_cache: "33 MB"                                                # [ARK+TPU] Intel Smart Cache
+  tdp: "125 W"                                                     # [ARK+TPU] Processor Base Power
+  tdp_pl2: "253 W"                                                 # [ARK+TPU] Maximum Turbo Power
+  tjmax: "100°C"                                                   # [TPU] Standard for Raptor Lake K-series
+  pcie_lanes: "20"                                                 # [ARK+TPU] 16× PCIe 5.0 + 4× PCIe 4.0
+  memory: "DDR4 up to 3200 MT/s, DDR5 up to 5600 MT/s"             # [ARK+TPU]
+  max_memory: "192 GB"                                             # [ARK+TPU]
+  igpu: "Intel UHD Graphics 770 @ 1.60 GHz max dynamic"            # [ARK] ⚠️ 1.60 GHz, NOT 1.65 GHz
+  box_cooler: null                                                 # [ARK] K-series — no included cooler
+  package: "45.0 mm × 37.5 mm"                                     # [ARK+TPU]
+  release_date: "2023-10-17"                                       # [ARK+TPU] Q4'23 launch
+
+# =============================================================================
+# CPU #3: Intel Core i9-14900K
+# =============================================================================
+# ⚠️ CRITICAL: TVB vs TBMT3 — distinct technologies, different frequencies:
+#    TVB  (Thermal Velocity Boost)        = 6.00 GHz (single-core, thermal headroom)
+#    TBMT3 (Turbo Boost Max Technology 3.0) = 5.80 GHz (two "favored" cores)
+#    P-core Max Turbo (standard TB2)       = 5.60 GHz
+#    Training data often conflates these or swaps the labels.
+# =============================================================================
+- cpu: "Intel Core i9-14900K"
+  socket: "FCLGA1700"                                              # [ARK+TPU]
+  architecture: "Raptor Lake Refresh (Raptor Lake-R)"              # [ARK+TPU]
+  lithography: "Intel 7"                                           # [ARK+TPU]
+  cores: 24                                                        # [ARK+TPU] 8P + 16E
+  threads: 32                                                      # [ARK+TPU] (8P×2 HT) + 16E
+  p_cores: 8                                                       # [ARK+TPU]
+  e_cores: 16                                                      # [ARK+TPU]
+  base_clock_p: "3.2 GHz"                                          # [ARK+TPU]
+  base_clock_e: "2.4 GHz"                                          # [ARK+TPU]
+  boost_clock_p: "5.6 GHz"                                         # [ARK+TPU] P-core Max Turbo (standard TB2)
+  boost_clock_e: "4.4 GHz"                                         # [ARK+TPU]
+  # === TVB vs TBMT3 (both present on i9-14900K) ===
+  tvb_frequency: "6.00 GHz"                                        # [ARK] Thermal Velocity Boost — max single-core
+  tbmt3_frequency: "5.80 GHz"                                      # [ARK] Turbo Boost Max Technology 3.0 — two favored cores
+  l2_cache: "32 MB"                                                # [CALC] 8P×2MB + 4E-clusters×4MB = 16+16=32
+  l3_cache: "36 MB"                                                # [ARK+TPU] Intel Smart Cache
+  tdp: "125 W"                                                     # [ARK+TPU] Processor Base Power
+  tdp_pl2: "253 W"                                                 # [ARK+TPU] Maximum Turbo Power
+  tjmax: "100°C"                                                   # [TPU] Standard for Raptor Lake K-series
+  pcie_lanes: "20"                                                 # [ARK+TPU] 16× PCIe 5.0 + 4× PCIe 4.0
+  memory: "DDR4 up to 3200 MT/s, DDR5 up to 5600 MT/s"             # [ARK+TPU]
+  max_memory: "192 GB"                                             # [ARK+TPU]
+  igpu: "Intel UHD Graphics 770 @ 1.65 GHz max dynamic"            # [ARK+TPU] Base: 300 MHz
+  box_cooler: null                                                 # [ARK] K-series — no included cooler
+  package: "45.0 mm × 37.5 mm"                                     # [ARK+TPU]
+  release_date: "2023-10-17"                                       # [ARK+TPU] Q4'23 launch

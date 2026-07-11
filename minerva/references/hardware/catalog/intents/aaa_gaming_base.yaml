@@ -1,0 +1,171 @@
+# aaa_gaming_base
+# Домен: Гейминг — АБСТРАКТНЫЙ БАЗОВЫЙ ИНТЕНТ
+# Покрывает ВСЕ разрешения через параметризацию (1080p / 1440p / 4K).
+# 
+# ДИРЕКТИВА LLM: все ссылки вида path/to/file.md#section — navigable references.
+# Загрузи файл, найди секцию, извлеки конкретику. Без этого расчёты не делать.
+#
+# КАК ИСПОЛЬЗОВАТЬ:
+#   Агент получает NL-запрос → парсит resolution + settings + target_fps →
+#   → вызывает evaluate_dynamic_constraints() из dynamic_constraints.py →
+#   → получает конкретные профили и constraints ПОД ЭТО РАЗРЕШЕНИЕ.
+#
+#   НЕ ИСПОЛЬЗУЙ mandatory_steel_man напрямую — он ПУСТОЙ.
+#   Профили назначаются ТОЛЬКО через dynamic_constraints.
+
+uri: "intent#aaa_gaming_base"
+type: "AbstractSystemRequirements"
+domain: "gaming"
+abstract: true
+description: >
+  Абстрактный базовый интент для AAA-гейминга. Покрывает 1080p, 1440p, 4K
+  через параметризацию. Конкретные профили GPU, минимальный VRAM и MAUT-веса
+  вычисляются динамически из resolution + settings + target_fps.
+
+requirements:
+  budget_allocation_priority: "GPU"
+  budget_note: "Любой AAA-гейминг — GPU-first. CPU вторичен на всех разрешениях кроме 1080p."
+  domain_modules_required: ["pcbo:modules/gaming"]
+
+  constraints:
+    min_ram_capacity_gb: 32
+    min_ram_note: "AAA 2026 + фон. 32GB стандарт."
+    min_storage_sustained_write: false
+    min_storage_note: "Игры читают, не пишут."
+
+  # БАЗОВЫЕ ВЕСА — переопределяются через adjust_maut_weights в зависимости от разрешения
+  maut_weights:
+    performance_importance: 0.8
+    silence_importance: 0.2
+    thermal_margin_importance: 0.5
+    upgrade_longevity_importance: 0.4
+
+profile_interaction_matrix:
+  # ПУСТО — профили назначаются динамически через evaluate_gpu_profile()
+  mandatory_steel_man: []
+  mandatory_steel_man_note: >
+    НЕ ЗАПОЛНЯТЬ. Профили GPU (mainstream_efficiency / balanced_performance /
+    enthusiast_unrestricted) назначаются через dynamic_constraints в зависимости
+    от разрешения и целевого FPS. См. секцию dynamic_constraints.target_gpu_profile.
+
+  strict_block:
+    - profile: "concepts/epistemological-profiles.md#sub_75w_slot_powered"
+      reason: "75W через слот недостаточно для любого AAA-гейминга. BLOCK на всех разрешениях."
+    - profile: "concepts/epistemological-profiles.md#bandwidth_constrained_vram_rich"
+      reason_when: "4K или 1440p ultra"
+      reason: >
+        На высоких разрешениях 128-bit шина — bottleneck. На 1080p high — допустимо.
+        Проверяется динамически: если разрешение ≥ 1440p И settings ≥ high → BLOCK.
+        На 1080p medium — WARN.
+
+  warn:
+    - profile: "concepts/epistemological-profiles.md#bandwidth_constrained_vram_rich"
+      reason_when: "1080p medium/high"
+      reason: "На 1080p узкая шина не критична. WARN — карта работает, но не optimal."
+
+# ═══════════════════════════════════════════════════════════════
+# ПАРАМЕТРИЧЕСКАЯ ЗОНА — ЕДИНСТВЕННЫЙ ИСТОЧНИК ПРОФИЛЕЙ И VRAM
+# ═══════════════════════════════════════════════════════════════
+#
+# ВСЕ профили GPU, минимальный VRAM и MAUT-веса вычисляются ЗДЕСЬ.
+# Python-функции — blind executors, числа — только из этого конфига.
+
+dynamic_constraints:
+
+  # --- 1. Минимальный VRAM ---
+  vram_minimum_gb:
+    function: "evaluate_vram_requirement"
+    description: "Минимальный VRAM для AAA-гейминга. Вычисляется из resolution + settings."
+    config:
+      base:
+        "1080p": 8
+        "1080p_note": "8GB — минимум. RTX 5060 8GB на грани, 12GB comfortable."
+        "1440p": 12
+        "1440p_note": "12GB — минимум. RTX 5060 Ti 16GB / RX 9070 recommended."
+        "4K": 16
+        "4K_note": "16GB — жёсткий минимум. RTX 5080 16GB / RX 9070 XT / RTX 4090."
+      modifiers:
+        ultra: +2
+        ultra_note: "Ультра-текстуры высокого разрешения требуют +2GB"
+        path_tracing: +4
+        path_tracing_note: "Path Tracing + текстуры 4K: ещё +4GB сверх ultra"
+        high: 0
+        medium: -2
+        medium_note: "Средние текстуры — экономия 2GB"
+      generation_note: "База привязана к Blackwell/RDNA 4 (2026). При выходе UE6 или новых консолей — пересмотреть 4K base до 20GB."
+
+  # --- 2. Minimum Capability Requirements (v4.1) ---
+  min_capability:
+    gpu:
+      function: "evaluate_min_capability"
+      config:
+        "1080p": "mainstream_efficiency_gpu"
+        "1440p": "balanced_performance_gpu"
+        "4K":    "enthusiast_unrestricted_gpu"
+    cpu:
+      config:
+        "1080p": "budget_efficiency_cpu"
+        "1440p": "budget_efficiency_cpu"
+        "4K":    "budget_efficiency_cpu"
+      note: "Для AAA-гейминга на всех разрешениях CPU вторичен — 6 ядер достаточно."
+    ram:
+      config:
+        "1080p": "standard_ddr5_xmp"
+        "1440p": "standard_ddr5_xmp"
+        "4K":    "standard_ddr5_xmp"
+      note: "XMP/EXPO для стабильного frametime."
+    storage:
+      config:
+        default: "dram_less_hmb_cached"
+      note: "Игры читают, sustained write не требуется."
+    mb:
+      config:
+        default: "budget_platform"
+      note: "B650M достаточно для игровой сборки."
+    psu:
+      config:
+        "1080p": "atx_2x_budget_reliable"
+        "1440p": "atx_3x_transient_capable"
+        "4K":    "atx_3x_transient_capable"
+      note: "1440p+: GPU ≥ 220W → ATX 3.0 для transient spikes."
+    cooling:
+      config:
+        default: "air_tower_standard"
+      note: "65W CPU — любой башенный кулер."
+    case:
+      config:
+        default: "budget_mesh"
+      note: "Mesh для airflow под GPU."
+
+  # --- 3. MAUT-веса ---
+  maut_weights:
+    function: "adjust_maut_weights_for_gaming"
+    description: "Сдвиг весов CPU/GPU в зависимости от разрешения."
+    config:
+      "1080p":
+        cpu_weight: 0.4
+        gpu_weight: 0.6
+        note: "CPU важен — должен успевать готовить кадры. На 1080p GPU часто упирается в CPU bottleneck."
+        noise_load: "A2"
+        thermal_state: "T_Safe"
+      "1440p":
+        cpu_weight: 0.25
+        gpu_weight: 0.75
+        note: "Баланс смещается к GPU. Современный 6-ядерник достаточен."
+        noise_load: "A2"
+        thermal_state: "T_Safe"
+      "4K":
+        cpu_weight: 0.1
+        gpu_weight: 0.9
+        note: "Почти всё решает видеокарта. Даже Ryzen 5 7500F не bottleneck."
+        noise_load: "A3"
+        thermal_state: "T_Warm"
+
+  # --- 4. Динамический BLOCK: bandwidth_constrained_vram_rich ---
+  bandwidth_block_rule:
+    function: "evaluate_bandwidth_block"
+    description: "На каких разрешениях 128-bit шина → BLOCK (а не WARN)."
+    config:
+      block_at: ["1440p_ultra", "1440p_path_tracing", "4K_high", "4K_ultra", "4K_path_tracing"]
+      warn_at: ["1080p_high", "1080p_ultra", "1440p_medium", "1440p_high"]
+      note: "На 4K и 1440p ultra 128-bit — CLIFF_DROP. На 1080p — LINEAR_DEGRADATION (WARN)."

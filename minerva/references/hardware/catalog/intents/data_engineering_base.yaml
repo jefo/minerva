@@ -1,0 +1,103 @@
+# data_engineering_base
+# Домен: Compute — АБСТРАКТНЫЙ БАЗОВЫЙ ИНТЕНТ
+# Покрывает обработку данных 50GB–500GB через параметризацию.
+# 
+# ДИРЕКТИВА LLM: все ссылки вида path/to/file.md#section — navigable references.
+# Загрузи файл, найди секцию, извлеки конкретику. Без этого расчёты не делать.
+#
+# КАК ИСПОЛЬЗОВАТЬ:
+#   Агент получает NL-запрос → парсит dataset_size + workload →
+#   → вызывает evaluate_ram_requirement() из dynamic_constraints.py →
+#   → получает min_ram_gb, min_storage_sustained_write, thermal_state.
+
+uri: "intent#data_engineering_base"
+type: "AbstractSystemRequirements"
+domain: "data_engineering"
+abstract: true
+description: >
+  Абстрактный базовый интент для обработки данных: Apache Spark, pandas,
+  SQL-аналитика. Покрывает датасеты 50GB–500GB. Конкретные требования
+  к RAM, Storage и охлаждению вычисляются динамически из dataset_size + workload.
+
+requirements:
+  budget_allocation_priority: "RAM"
+  budget_note: "RAM — главный constraint. Всё остальное вторично."
+  domain_modules_required: ["pcbo:modules/data_engineering"]
+
+  constraints:
+    max_acceptable_noise_load: "A3"
+    max_acceptable_noise_note: "Длительные batch-задачи. Система может стоять в отдельной комнате."
+
+  # БАЗОВЫЕ ВЕСА — переопределяются через adjust_maut_weights
+  maut_weights:
+    performance_importance: 0.8
+    performance_note: "Многопоточность CPU и sustained I/O"
+    silence_importance: 0.2
+    silence_note: "Не критично — batch-задачи"
+    thermal_margin_importance: 0.6
+    thermal_note: "Длительные нагрузки — охлаждение важно"
+    upgrade_longevity_importance: 0.5
+    longevity_note: "Добавление RAM, замена SSD"
+
+profile_interaction_matrix:
+  mandatory_steel_man:
+    - profile: "concepts/epistemological-profiles.md#multi_ccd_disaggregated"
+      reason: "12–16 ядер на потребительской платформе. Spark/dask распараллеливают — каждое ядро даёт линейный прирост."
+    - profile: "concepts/epistemological-profiles.md#standard_tlc_dram_ssd"
+      reason: "TLC NAND + DRAM-буфер. Sustained write ≥ 1.5 GB/s. Spark shuffle, логи СУБД."
+
+  strict_block:
+    - profile: "concepts/epistemological-profiles.md#dram_less_hmb_cached"
+      reason: "DRAM-less SSD → sustained write 100–300 MB/s + HIGH WRITE AMPLIFICATION. CLIFF_DROP — BLOCK."
+    - profile: "concepts/epistemological-profiles.md#read_heavy_static"
+      reason: "QLC-память. После SLC-кэша 80–150 MB/s. Spark shuffle — таймаут. BLOCK."
+
+  warn: []
+
+# ═══════════════════════════════════════════════════════════════
+# ПАРАМЕТРИЧЕСКАЯ ЗОНА
+# ═══════════════════════════════════════════════════════════════
+
+dynamic_constraints:
+
+  # --- 1. RAM и sustained write ---
+  ram_and_storage:
+    function: "evaluate_ram_requirement"
+    description: >
+      Вычисляет минимальный RAM, sustained write requirement и thermal state
+      для заданного размера датасета и типа нагрузки.
+    config:
+      # Минимальный RAM: Spark executor 16GB × N параллельных тасков + OS
+      ram_by_dataset:
+        "50GB":  { "min": 64,  "recommended": 96,
+                   "note": "4 параллельных таска × 16GB + OS кэш 16GB. 50GB датасет влезает." }
+        "200GB": { "min": 128, "recommended": 192,
+                   "note": "8 тасков × 16GB + OS кэш. 200GB — нужен swap на NVMe." }
+        "500GB": { "min": 256, "recommended": 384,
+                   "note": "16 тасков × 16GB + OS кэш. 500GB — частичный offload на диск. HEDT-территория." }
+
+      # Требования к sustained write в зависимости от workload
+      sustained_write_by_workload:
+        "ETL":
+          required: true
+          note: "Постоянная запись: source → transform → sink. Shuffle — пишет на диск."
+        "SQL_analytics":
+          required: true
+          note: "Аналитические запросы с временными таблицами. Логи СУБД — постоянная запись."
+        "ML_preprocessing":
+          required: false
+          note: "В основном чтение: загрузка датасета → feature engineering в RAM → запись один раз."
+
+      # Термальное состояние в зависимости от размера
+      thermal_by_dataset:
+        "50GB":  "T_Warm"
+        "200GB": "T_Warm"
+        "500GB": "T_Safe"
+        note: "500GB датасет → длительная 100% нагрузка на все ядра. T_Safe — throttling недопустим."
+
+      # Требования к CPU
+      cpu_cores_by_dataset:
+        "50GB":  8
+        "200GB": 12
+        "500GB": 16
+        note: "Минимальное количество ядер для параллельных Spark-тасков."

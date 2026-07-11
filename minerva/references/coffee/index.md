@@ -6,11 +6,20 @@
 
 В этом контексте: понятия, связанные с приготовлением кофе как напитка. Оборудование (кофемолки, машины) — в отдельном контексте `equipment/` (будет добавлен).
 
-## Сущности
+## Primitives (6)
 
-- **Напитки:** Espresso, Filter Coffee, Cold Brew
-- **Параметры:** Dose, Temperature, Pressure, Time, Ratio
-- **Процессы:** Extraction, Bloom, Brewing
+| Файл | Тип | Суть |
+|---|---|---|
+| `espresso.md` | Concept | Базовый концепт: эспрессо как напиток |
+| `extraction-yield.md` | Metric | Измеряемый параметр: процент экстракции |
+| `bloom-observation.md` | Observation | Эмпирический факт: 30 сек при grind size 15 |
+| `pump-pressure.md` | Specification | Техническое требование: 9 bar |
+| `extraction-law.md` | Law | Инвариант: связь времени, температуры и помола |
+| `espresso-requires-fine-grind.md` | Relation | Связь: эспрессо → мелкий помол |
+
+## Components, Modules, Views, Artifacts
+
+Пока пусты. Композиция начнётся на Tier 2+.
 
 ## Правила
 
