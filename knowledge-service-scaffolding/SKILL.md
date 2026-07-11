@@ -25,19 +25,21 @@ DDD определяет онтологию (что существует), Atomi
 ## Структура репозитория
 
 ```
-knowledge-services/
-├── SKILL.md              # Этот файл — SSOT проекта
-├── README.md             # Входная точка для контрибьюторов
-├── docs/
-│   └── prd.md            # Product Requirements Document
-├── references/
-│   └── adr/              # Architecture Decision Records
-│       ├── template.md
-│       ├── 001-two-axis-architecture.md
-│       ├── 002-five-level-hierarchy.md
-│       ├── 003-downward-visibility.md
-│       └── 004-primitives-taxonomy.md
-└── src/                  # Исходный код
+minerva/                              # Корень монорепо
+├── README.md
+├── knowledge-service-scaffolding/    # Мета-проект (эта директория)
+│   ├── SKILL.md                      # SSOT проекта
+│   ├── README.md
+│   ├── docs/
+│   │   └── prd.md                    # Product Requirements Document
+│   └── references/
+│       └── adr/                      # Architecture Decision Records
+│           ├── template.md
+│           ├── 001-two-axis-architecture.md
+│           ├── 002-five-level-hierarchy.md
+│           ├── 003-downward-visibility.md
+│           └── 004-primitives-taxonomy.md
+└── minerva/                          # Имплементация knowledge-services
 ```
 
 ## ADR

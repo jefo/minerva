@@ -1,28 +1,25 @@
-# knowledge-services
+# minerva
 
-> *Описание проекта — заполнить.*
-
-## Быстрый старт
-
-```bash
-git clone ...
-cd knowledge-services
-```
-
-## Архитектура
-
-Архитектурные решения: [`references/adr/`](references/adr/)
-
-SSOT проекта: [`SKILL.md`](SKILL.md) — загружается Hermes Agent при работе в репо.
+Монорепо проекта Knowledge Services.
 
 ## Структура
 
 ```
-knowledge-services/
-├── SKILL.md              # Project SSOT (Hermes skill)
-├── README.md             # Эта страница
-├── references/
-│   └── adr/              # Architecture Decision Records
-│       └── template.md
-└── src/                  # Исходный код
+minerva/
+├── knowledge-service-scaffolding/   # Мета-проект: PRD, ADR, SSOT
+│   ├── SKILL.md                     # Hermes skill — точка входа
+│   ├── docs/prd.md                  # Product Requirements Document
+│   └── references/adr/              # Architecture Decision Records
+└── minerva/                         # Имплементация knowledge-services
 ```
+
+## Быстрый старт
+
+```bash
+git clone https://github.com/jefo/minerva.git
+cd minerva
+```
+
+### Hermes
+
+Скилл `knowledge-services-scaffolding` загружается автоматически при работе в репо. SSOT проекта: `knowledge-service-scaffolding/SKILL.md`.
