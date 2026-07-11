@@ -1,71 +1,89 @@
 ---
 name: minerva
-description: Композиционный движок знаний — имплементация Knowledge Services. Навигация, создание и валидация знаний в файловых workspace-ах.
-version: 0.1.0
+description: Композиционный движок знаний — имплементация Knowledge Services. Skill-native: bounded contexts живут в references/ скилла. Агент получает KB через skill_view без дополнительного кода навигации.
+version: 0.2.0
 status: draft
 triggers:
-  - Работа с Knowledge Services workspace (директория с index.md и контекстами)
-  - Навигация по knowledge base: «что в workspace», «покажи контекст», «какие Primitives»
-  - Чтение знаний: «прочитай espresso.md», «дай Extraction Model»
-  - Создание workspace: «создай workspace», «добавь контекст»
-  - Вопросы о структуре KB: «как устроен workspace», «где лежат Primitives»
+  - Работа с Knowledge Services workspace (references/ скилла minerva)
+  - Навигация по knowledge base: «что в KB», «покажи контекст», «какие Primitives»
+  - Чтение знаний: «прочитай espresso.md», «дай Extraction Law»
+  - Создание workspace: «добавь контекст в references/»
+  - Вопросы о структуре KB
 ---
 
-# minerva — Knowledge Services Implementation
+# minerva — Skill-Native Knowledge Base
 
-Композиционный движок знаний. Реализует архитектуру Knowledge Services: Primitives → Components → Modules → Views → Artifacts в файловом workspace.
+Композиционный движок знаний. Реализует архитектуру Knowledge Services: Primitives → Components → Modules → Views → Artifacts.
 
-Живёт в монорепо [jefo/minerva](https://github.com/jefo/minerva).
+**Skill-native (ADR-010):** bounded contexts хранятся в `references/` скилла. Hermes раздаёт их через `skill_view` и `linked_files` — progressive disclosure работает без дополнительного кода.
 
-## Быстрый старт
-
-Reference workspace для изучения и тестирования:
+## Структура
 
 ```
-references/real-world-workspace/
-├── index.md                 # карта workspace
-├── context-map.md           # связи контекстов
-└── coffee/                  # контекст «Кофе»
-    ├── index.md             # описание контекста
-    ├── primitives/          # 6 primitives (Concept, Metric, Specification, Observation, Law, Relation)
-    ├── components/          # пусто
-    ├── modules/             # пусто
-    ├── views/               # пусто
-    └── artifacts/           # пусто
+minerva/                              # Hermes skill = knowledge base
+├── SKILL.md                          # entry point + оркестратор
+├── capabilities/                     # операции над KB
+│   ├── workspace-orientation/
+│   ├── context-exploration/
+│   ├── level-browsing/
+│   └── knowledge-retrieval/
+└── references/                       # = workspace
+    ├── coffee/                       # = bounded context
+    │   ├── index.md
+    │   ├── primitives/               # 6 primitives всех типов
+    │   ├── components/
+    │   ├── modules/
+    │   ├── views/
+    │   └── artifacts/
+    ├── context-map.md                # связи контекстов
+    └── README.md                     # описание workspace (опционально)
 ```
+
+## Навигационный flow (skill-native)
+
+```
+skill_view("minerva")
+  → SKILL.md: карта KB, список контекстов
+  → linked_files: все файлы references/ одним списком
+
+skill_view("minerva", file_path="references/coffee/index.md")
+  → описание контекста Coffee
+
+skill_view("minerva", file_path="references/coffee/primitives/espresso.md")
+  → содержимое знания
+```
+
+Ни одного `ls`, `find` или `read_file` напрямую. Вся навигация — через один механизм платформы.
 
 ## Capabilities
 
-| Capability | Контракт | Статус |
+| Capability | Реализация | Статус |
 |---|---|---|
-| `workspace-orientation` | workspace → карта контекстов | MVP |
-| `context-exploration` | контекст → описание + уровни | MVP |
-| `level-browsing` | контекст + уровень → список файлов с аннотациями | MVP |
-| `knowledge-retrieval` | путь к файлу → содержимое | MVP |
-
-Подробные контракты, правила и reference-реализации: [`capabilities/`](capabilities/)
+| `workspace-orientation` | `skill_view("minerva")` → SKILL.md + linked_files | MVP |
+| `context-exploration` | `skill_view("minerva", file_path="references/{context}/index.md")` | MVP |
+| `level-browsing` | фильтр `linked_files` по префиксу `references/{context}/{level}/` | MVP |
+| `knowledge-retrieval` | `skill_view("minerva", file_path="references/{context}/{level}/{file}.md")` | MVP |
 
 ## Оркестрация
 
-| Интент пользователя | Capability |
+| Интент пользователя | Действие |
 |---|---|
-| «Что есть в этой KB?» / «Какие контексты?» | `workspace-orientation` |
-| «Расскажи про контекст coffee» / «Что внутри?» | `context-exploration` |
-| «Какие Primitives в coffee?» / «Покажи Modules» | `level-browsing` |
-| «Прочитай espresso.md» / «Дай мне Extraction Law» | `knowledge-retrieval` |
+| «Что есть в KB?» / «Какие контексты?» | `skill_view("minerva")` |
+| «Расскажи про контекст coffee» | `skill_view("minerva", file_path="references/coffee/index.md")` |
+| «Какие Primitives в coffee?» | фильтр `linked_files` → `references/coffee/primitives/*.md` |
+| «Прочитай Extraction Law» | `skill_view("minerva", file_path="references/coffee/primitives/extraction-law.md")` |
 
 ## Правила
 
-1. Оркестратор не реализует операции — маршрутизирует к capabilities.
-2. При неоднозначности — уточнить у пользователя.
-3. Работа с файлами — напрямую (`ls`, `read_file`), без промежуточного API (ADR-006).
-4. Navigation flow: orientation → exploration → browsing → retrieval (ADR-007).
-5. `index.md` — служебный файл, не знание. Запрашивать через Context Exploration.
-6. Reference workspace: `references/real-world-workspace/` — для демонстрации и тестов.
+1. KB = `references/` скилла. Workspace — это инстанс minerva с заполненными references.
+2. Навигация — через `skill_view` и `linked_files`. Не через `ls` и `read_file`.
+3. Любой агент, загрузивший скилл, получает карту KB через `linked_files` (zero-cost discoverability).
+4. Файлы остаются обычными `.md` (ADR-006). `skill_view` — convenience, не lock-in.
+5. SKILL.md — entry point и оркестратор, не дамп содержимого KB.
+6. Новый контекст = новая директория в `references/` + её `index.md`.
 
 ## Зависимости
 
 - [ADR-002](../knowledge-service-scaffolding/references/adr/002-five-level-hierarchy.md) — 5 уровней
-- [ADR-006](../knowledge-service-scaffolding/references/adr/006-filesystem-premises.md) — filesystem premises
-- [ADR-007](../knowledge-service-scaffolding/references/adr/007-workspace-structure.md) — структура workspace
-- [ADR-009](../knowledge-service-scaffolding/references/adr/009-mvp-capabilities.md) — MVP capabilities
+- [ADR-006](../knowledge-service-scaffolding/references/adr/006-filesystem-premises.md) — KB = файлы
+- [ADR-010](../knowledge-service-scaffolding/references/adr/010-skill-native-knowledge-base.md) — skill-native KB

@@ -44,18 +44,24 @@ minerva/                              # Корень монорепо
 │           ├── 006-filesystem-premises.md
 │           ├── 007-workspace-structure.md
 │           ├── 008-context-map.md
-│           └── 009-mvp-capabilities.md
-└── minerva/                          # Имплементация knowledge-services
+│           ├── 009-mvp-capabilities.md
+│           └── 010-skill-native-knowledge-base.md
+└── minerva/                          # Имплементация — skill-native KB
     ├── SKILL.md                      # Оркестратор
-    └── capabilities/
-        ├── workspace-orientation/
-        │   └── SKILL.md
-        ├── context-exploration/
-        │   └── SKILL.md
-        ├── level-browsing/
-        │   └── SKILL.md
-        └── knowledge-retrieval/
-            └── SKILL.md
+    ├── capabilities/                 # 4 capabilities MVP
+    │   ├── workspace-orientation/SKILL.md
+    │   ├── context-exploration/SKILL.md
+    │   ├── level-browsing/SKILL.md
+    │   └── knowledge-retrieval/SKILL.md
+    └── references/                   # = workspace
+        ├── context-map.md
+        └── coffee/                   # bounded context
+            ├── index.md
+            ├── primitives/           # 6 primitives (Concept, Metric, Spec, Obs, Law, Relation)
+            ├── components/
+            ├── modules/
+            ├── views/
+            └── artifacts/
 ```
 
 ## ADR
@@ -84,6 +90,7 @@ minerva/                              # Корень монорепо
 | 007 | Структура workspace — файловая проекция bounded contexts | accepted | 2026-07-11 |
 | 008 | Намерение использовать Context Map для интеграции контекстов | accepted | 2026-07-11 |
 | 009 | MVP — capabilities навигации по workspace | accepted | 2026-07-11 |
+| 010 | Bounded contexts как references скилла — skill-native KB | accepted | 2026-07-11 |
 
 ## References
 
