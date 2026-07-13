@@ -34,19 +34,14 @@ minerva/                              # Корень монорепо
 │   │   └── prd.md                    # Product Requirements Document
 │   └── references/
 │       ├── taxonomy-and-semantics.md  # Канон таксономии и семантики
-│       └── adr/                      # Architecture Decision Records
-│           ├── template.md
-│           ├── 001-two-axis-architecture.md
-│           ├── 002-five-level-hierarchy.md
-│           ├── 003-downward-visibility.md
-│           ├── 004-primitives-taxonomy.md
-│           ├── 005-capabilities.md
-│           ├── 006-filesystem-premises.md
-│           ├── 007-workspace-structure.md
-│           ├── 008-context-map.md
-│           ├── 009-mvp-capabilities.md
-│           ├── 010-skill-native-knowledge-base.md
-│           └── 011-capability-roadmap.md
+│       ├── adr/                      # Architecture Decision Records
+│       │   ├── template.md
+│       │   ├── 001-two-axis-architecture.md
+│       │   ├── ...
+│       │   └── 012-acquisition-layer.md
+│       └── observations/              # Architectural observations
+│           ├── 001-atomic-design-vs-aggregate.md
+│           └── 002-notebooklm-vs-minerva-analytical-layer.md
 └── minerva/                          # Имплементация — skill-native KB
     ├── SKILL.md                      # Оркестратор
     ├── capabilities/                 # 4 capabilities MVP
@@ -93,6 +88,21 @@ minerva/                              # Корень монорепо
 | 009 | MVP — capabilities навигации по workspace | accepted | 2026-07-11 |
 | 010 | Bounded contexts как references скилла — skill-native KB | accepted | 2026-07-11 |
 | 011 | Capability roadmap — 4 тира от создания до аналитики | accepted | 2026-07-11 |
+| 012 | Слой Acquisition — pre-structured research поверх minerva | accepted | 2026-07-11 |
+| 013 | Backend/Frontend split — разделение сырых данных и композиционной витрины | accepted | 2026-07-11 |
+| 014 | Data Warehouse как методологический фундамент minerva | accepted | 2026-07-11 |
+| 015 | System Architecture — minerva как agent-native Data Warehouse | accepted | 2026-07-11 |
+| 016 | Data Model — dimensional schemas, SCD, Bus Matrix | accepted | 2026-07-11 |
+| 017 | Lineage DAG — граф происхождения данных | accepted | 2026-07-11 |
+| 018 | ETL Pipeline — Acquisition как capabilities | accepted | 2026-07-11 |
+| 019 | Agent Query Model — capabilities как stored procedures | accepted | 2026-07-11 |
+| 020 | Methodology Specification — правила проектирования для minerva | accepted | 2026-07-11 |
+| 021 | Architecture Validation — end-to-end walkthrough (RTX 5060) | accepted | 2026-07-11 |
+| 022 | AI Data Analyst Agent — партнёрский слой над DW | accepted | 2026-07-11 |
+| 023 | Consumer Analytics Roadmap — масштабирование аналитики для читателя | accepted | 2026-07-11 |
+| 024 | Data Acquisition First — приоритет ETL над аналитикой | accepted | 2026-07-11 |
+| 025 | Source Layer, Definitions, Bus Matrix Contract | accepted | 2026-07-11 |
+| 026 | Platform / Applications Split — Minerva как платформа, прикладные кейсы поверх | proposed | 2026-07-13 |
 
 ## References
 
@@ -101,6 +111,17 @@ minerva/                              # Корень монорепо
 | Файл | Назначение |
 |---|---|
 | [`references/taxonomy-and-semantics.md`](references/taxonomy-and-semantics.md) | Таксономия уровней (Primitives → Artifacts), типы Primitives (6 типов), правила композиции. Основан на ADR-002, ADR-003, ADR-004. Загружается агентами как SSOT семантики Knowledge Services |
+
+## Observations
+
+Архитектурные наблюдения — не ADR, а анализ напряжений, gap'ов и паттернов до принятия решений.
+
+| Файл | Тема | Дата |
+|---|---|---|
+| [`references/observations/001-atomic-design-vs-aggregate.md`](references/observations/001-atomic-design-vs-aggregate.md) | Atomic Design как файловая структура vs семантика Аггрегата | 2026-07-11 |
+| [`references/observations/002-notebooklm-vs-minerva-analytical-layer.md`](references/observations/002-notebooklm-vs-minerva-analytical-layer.md) | Gap между exploratory synthesis (NotebookLM) и structured analysis (minerva) | 2026-07-11 |
+| [`references/observations/003-dw-as-methodological-foundation.md`](references/observations/003-dw-as-methodological-foundation.md) | DW как структурный изоморфизм | 2026-07-11 |
+| [`references/observations/004-external-review.md`](references/observations/004-external-review.md) | External review — разделение слоёв, Source Layer, Definitions | 2026-07-11 |
 
 ## Конвенции
 
