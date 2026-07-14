@@ -1,0 +1,10 @@
+dimension:
+  id: hell-is-us
+  type: game_title
+  canonical_name: Hell is Us
+  scd_type: 0
+attributes:
+  developer: Rogue Factor
+  engine: Unreal Engine 5
+  release_year: 2025
+  genre: action-adventure

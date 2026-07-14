@@ -1,0 +1,29 @@
+fact:
+  id: arc-b580-hogwarts-legacy-1440p-optimized-xess-uqp-rthigh
+  type: observation
+source:
+  gpu: Arc B580
+  game_title: Hogwarts Legacy
+  resolution: 1440p
+  graphics_preset: Optimized
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 5 5600
+measures:
+  fps_avg: 46
+  fps_1pct_low: 25
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: XeSS Ultra Quality Plus
+  frame_gen: 'false'
+  ray_tracing: High
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'Test bench: AMD Ryzen 5 5600, 16GB DDR4'
+lineage:
+  nodes: []
+  edges: []

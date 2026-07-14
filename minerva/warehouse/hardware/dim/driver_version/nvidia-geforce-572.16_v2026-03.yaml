@@ -1,0 +1,5 @@
+dimension_version:
+  parent_id: "nvidia-geforce-572.16"
+  version_id: "nvidia-geforce-572.16_v2026-03"
+  date: "2026-03"
+  changes: "Initial release. Day-1 support for NVIDIA GeForce RTX 5060. DLSS 4 optimization."

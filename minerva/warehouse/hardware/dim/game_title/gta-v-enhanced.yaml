@@ -1,0 +1,10 @@
+dimension:
+  id: gta-v-enhanced
+  type: game_title
+  canonical_name: Grand Theft Auto V Enhanced
+  scd_type: 0
+attributes:
+  developer: Rockstar
+  engine: RAGE
+  release_year: 2025
+  genre: open-world

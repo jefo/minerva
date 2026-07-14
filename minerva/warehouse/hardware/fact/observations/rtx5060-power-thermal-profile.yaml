@@ -1,0 +1,28 @@
+fact:
+  id: rtx5060-power-thermal-profile
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Cyberpunk 2077
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: '572.16'
+measures:
+  power_draw_w_min: 120
+  power_draw_w_max: 145
+  temp_c_min: 49
+  temp_c_max: 54
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.8
+  confidence_basis: research_report
+  observed_at: 2026-Q2
+  observed_by: research-report
+  source_channel: ИгроЛаба Research
+  note: 'Clock speeds: 2.7-2.8 GHz. Very cool thermal profile.'
+lineage:
+  nodes: []
+  edges: []

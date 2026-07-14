@@ -1,0 +1,26 @@
+definition:
+  id: "average_fps"
+  canonical_name: "Average FPS"
+  domain: "gaming_performance"
+  description: "Среднее арифметическое количество кадров в секунду по 3 прогонам бенчмарка. Первый прогон исключён для прогрева шейдеров."
+  calculation:
+    method: "arithmetic_mean"
+    formula: "sum(fps_values) / count(fps_values)"
+    unit: "fps"
+  measurement:
+    tool: "FrameView"
+    tool_version: "1.5+"
+    passes: 3
+    excludes_first_run: true
+    warmup_required: true
+  interpretation:
+    higher_is_better: true
+    meaningful_difference: 5
+    meaningful_difference_unit: "fps"
+    notes: "Разница <5 fps — в пределах погрешности измерения. Не отражает стабильность (см. 1% low fps)."
+  caveats:
+    - "Не отражает стабильность кадров (см. 1% low fps)"
+    - "Зависит от сцены бенчмарка и маршрута"
+    - "DLSS/FSR меняет методологию — см. definition upscaled-fps"
+  used_in_facts: ["observation"]
+  used_in_marts: ["coverage", "competitive", "engineering"]

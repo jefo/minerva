@@ -1,0 +1,29 @@
+fact:
+  id: rx-9060-xt-delta-force-1440p-max-native
+  type: observation
+source:
+  gpu: RX 9060 XT 16GB
+  game_title: Delta Force
+  resolution: 1440p
+  graphics_preset: Max
+  driver_version: Adrenalin 25.6.1
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 115
+  fps_1pct_low: 91
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'Test bench: AMD Ryzen 7 7800X3D, 2x16GB DDR5 6000 CL36, ASRock B650E Taichi'
+lineage:
+  nodes: []
+  edges: []

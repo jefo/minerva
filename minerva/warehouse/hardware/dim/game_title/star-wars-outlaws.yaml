@@ -1,0 +1,10 @@
+dimension:
+  id: star-wars-outlaws
+  type: game_title
+  canonical_name: 'Star Wars: Outlaws'
+  scd_type: 0
+attributes:
+  developer: Massive Entertainment
+  engine: Snowdrop
+  release_year: 2024
+  genre: open-world

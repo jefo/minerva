@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-ti-resident-evil-requiem-1440p-high-dlss-q-rtpt
+  type: observation
+source:
+  gpu: RTX 5060 Ti 16GB
+  game_title: 'Resident Evil: Requiem'
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: Unknown
+measures:
+  fps_avg: 40
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS Quality
+  frame_gen: 'false'
+  ray_tracing: Path Tracing
+meta:
+  confidence: 0.7
+  confidence_basis: youtube_review_narrative
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'ASUS Prime RTX 5060 Ti OC 16GB. Path Tracing. ~40 FPS. Too heavy, unplayable.
+    VRAM note: 16GB version strongly recommended for 1440p high textures + FG.'
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,10 @@
+dimension:
+  id: 2026-q2
+  type: driver_version
+  canonical_name: 2026-Q2 (generic)
+  scd_type: 0
+attributes:
+  vendor: generic
+  branch: unknown
+  version: 2026-Q2
+  note: Placeholder driver version for observations without specific driver info

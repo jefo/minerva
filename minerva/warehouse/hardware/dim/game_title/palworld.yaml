@@ -1,0 +1,10 @@
+dimension:
+  id: palworld
+  type: game_title
+  canonical_name: Palworld
+  scd_type: 0
+attributes:
+  developer: Pocketpair
+  engine: Unreal Engine 5
+  release_year: 2024
+  genre: survival

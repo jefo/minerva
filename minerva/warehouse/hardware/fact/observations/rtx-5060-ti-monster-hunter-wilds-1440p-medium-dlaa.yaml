@@ -1,0 +1,33 @@
+fact:
+  id: rtx-5060-ti-monster-hunter-wilds-1440p-medium-dlaa
+  type: observation
+source:
+  gpu: RTX 5060 Ti 16GB
+  game_title: Monster Hunter Wilds
+  resolution: 1440p
+  graphics_preset: Medium
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 44
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+  vram_used_mb: 8123
+  power_draw_w: 112
+  temp_c: 60
+conditions:
+  upscaler: DLSS DLAA
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'Test bench: AMD Ryzen 7 9800X3D, 32GB RAM. VRAM: 8123MB, Power: 112W, Temp:
+    60°C.'
+lineage:
+  nodes: []
+  edges: []

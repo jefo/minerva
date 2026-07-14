@@ -1,0 +1,10 @@
+dimension:
+  id: resident-evil-4-remake
+  type: game_title
+  canonical_name: Resident Evil 4 (Remake)
+  scd_type: 0
+attributes:
+  developer: Capcom
+  engine: RE Engine
+  release_year: 2023
+  genre: action-horror

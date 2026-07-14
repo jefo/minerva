@@ -1,0 +1,8 @@
+dimension:
+  id: ultra
+  type: graphics_preset
+  canonical_name: Ultra
+  scd_type: 0
+attributes:
+  tier: 4
+  description: Ультра-настройки графики

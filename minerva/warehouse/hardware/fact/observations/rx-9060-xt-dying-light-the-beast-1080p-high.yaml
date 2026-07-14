@@ -1,0 +1,27 @@
+fact:
+  id: rx-9060-xt-dying-light-the-beast-1080p-high
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: 'Dying Light: The Beast'
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 5800X3D
+measures:
+  fps_avg: 79
+  fps_1pct_low: 0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.9
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'native. Test bench: Ryzen 7 5800X3D, 2x16GB RAM, D3D12.'
+lineage:
+  nodes: []
+  edges: []

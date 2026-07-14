@@ -1,0 +1,10 @@
+dimension:
+  id: need-for-speed-unbound
+  type: game_title
+  canonical_name: Need for Speed Unbound
+  scd_type: 0
+attributes:
+  developer: Criterion
+  engine: Frostbite
+  release_year: 2022
+  genre: racing

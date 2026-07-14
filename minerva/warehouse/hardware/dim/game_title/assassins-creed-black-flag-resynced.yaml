@@ -1,0 +1,9 @@
+dimension:
+  id: assassins-creed-black-flag-resynced
+  type: game_title
+  canonical_name: Assassin's Creed Black Flag Resynced
+  scd_type: 0
+attributes:
+  developer: Ubisoft
+  release_year: 2025
+  genre: action-adventure

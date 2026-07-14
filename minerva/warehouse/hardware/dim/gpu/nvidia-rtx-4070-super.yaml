@@ -1,0 +1,24 @@
+dimension:
+  id: nvidia-rtx-4070-super
+  type: gpu
+  canonical_name: NVIDIA GeForce RTX 4070 Super
+  scd_type: 0
+attributes:
+  vendor: nvidia
+  architecture: Ada Lovelace
+  vram:
+    size_gb: 12
+    type: GDDR6X
+    bus_width_bit: 192
+    bandwidth_gb_s: 504
+  compute:
+    cuda_cores: 7168
+    rt_cores: 56
+    tensor_cores: 224
+  clock:
+    boost_ghz: 2.48
+  power:
+    tdp_w: 220
+  software:
+    upscaler: DLSS 3
+    frame_gen: DLSS FG

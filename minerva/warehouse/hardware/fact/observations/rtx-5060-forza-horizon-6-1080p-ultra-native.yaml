@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5060-forza-horizon-6-1080p-ultra-native
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Forza Horizon 6
+  resolution: 1080p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 85
+  fps_1pct_low: 79
+  fps_0_1pct_low: 74
+  frametime_ms_avg: 11.7
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB'
+lineage:
+  nodes: []
+  edges: []

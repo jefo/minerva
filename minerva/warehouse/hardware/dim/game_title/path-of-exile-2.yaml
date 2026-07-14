@@ -1,0 +1,10 @@
+dimension:
+  id: path-of-exile-2
+  type: game_title
+  canonical_name: Path of Exile 2
+  scd_type: 0
+attributes:
+  developer: Grinding Gear Games
+  engine: Proprietary
+  release_year: 2024
+  genre: arpg

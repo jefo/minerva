@@ -1,0 +1,10 @@
+dimension:
+  id: counter-strike-2
+  type: game_title
+  canonical_name: Counter-Strike 2
+  scd_type: 0
+attributes:
+  developer: Valve
+  engine: Source 2
+  release_year: 2023
+  genre: competitive-fps

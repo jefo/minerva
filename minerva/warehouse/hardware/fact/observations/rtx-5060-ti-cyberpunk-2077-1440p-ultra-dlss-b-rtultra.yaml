@@ -1,0 +1,33 @@
+fact:
+  id: rtx-5060-ti-cyberpunk-2077-1440p-ultra-dlss-b-rtultra
+  type: observation
+source:
+  gpu: RTX 5060 Ti 16GB
+  game_title: Cyberpunk 2077
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 58
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+  vram_used_mb: 10216
+  power_draw_w: 130
+  temp_c: 61
+conditions:
+  upscaler: DLSS 4 Balanced
+  frame_gen: 'false'
+  ray_tracing: Ultra
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'Test bench: AMD Ryzen 7 9800X3D, 32GB RAM. VRAM: 10216MB, Power: 130W, Temp:
+    61°C. RT Ultra + Ray Reconstruction ON'
+lineage:
+  nodes: []
+  edges: []

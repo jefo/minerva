@@ -1,0 +1,8 @@
+dimension:
+  id: medium
+  type: graphics_preset
+  canonical_name: Medium
+  scd_type: 0
+attributes:
+  tier: 2
+  description: Средние настройки графики

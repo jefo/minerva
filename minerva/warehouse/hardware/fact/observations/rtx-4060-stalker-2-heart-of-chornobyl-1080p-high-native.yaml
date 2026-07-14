@@ -1,0 +1,29 @@
+fact:
+  id: rtx-4060-stalker-2-heart-of-chornobyl-1080p-high-native
+  type: observation
+source:
+  gpu: RTX 4060
+  game_title: 'S.T.A.L.K.E.R. 2: Heart of Chornobyl'
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 5 5600X
+measures:
+  fps_avg: 54
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'Test bench: AMD Ryzen 5 5600X, DDR4 ~16GB. DLSS 3 Frame Gen.'
+lineage:
+  nodes: []
+  edges: []

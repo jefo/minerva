@@ -1,0 +1,10 @@
+dimension:
+  id: amd-adrenalin-25.6.1
+  type: driver_version
+  canonical_name: AMD Adrenalin 25.6.1
+  scd_type: 2
+attributes:
+  vendor: amd
+  branch: adrenalin
+  version: 25.6.1
+  release_date: 2025-Q2

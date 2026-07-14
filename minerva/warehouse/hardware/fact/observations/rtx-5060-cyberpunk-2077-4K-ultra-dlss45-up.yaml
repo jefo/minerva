@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-cyberpunk-2077-4K-ultra-dlss45-up
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: 'Cyberpunk 2077: Phantom Liberty'
+  resolution: 4K
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 55
+  fps_1pct_low: 42
+  fps_0_1pct_low: 38
+  frametime_ms_avg: 18.2
+conditions:
+  upscaler: DLSS 4.5 Preset L / Ultra Performance
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB. Upscaler: DLSS 4.5 Preset L / Ultra
+    Performance'
+lineage:
+  nodes: []
+  edges: []

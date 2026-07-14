@@ -1,0 +1,10 @@
+dimension:
+  id: days-gone
+  type: game_title
+  canonical_name: Days Gone
+  scd_type: 0
+attributes:
+  developer: Bend Studio
+  engine: Unreal Engine 4
+  release_year: 2019
+  genre: open-world

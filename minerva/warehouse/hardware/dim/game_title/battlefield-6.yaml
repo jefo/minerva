@@ -1,0 +1,10 @@
+dimension:
+  id: battlefield-6
+  type: game_title
+  canonical_name: Battlefield 6
+  scd_type: 0
+attributes:
+  developer: DICE
+  engine: Frostbite 4
+  release_year: 2025
+  genre: fps

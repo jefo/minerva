@@ -1,0 +1,34 @@
+fact:
+  id: rx-9060-xt-kingdom-come-deliverance-ii-1440p-upscaled
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: 'Kingdom Come: Deliverance II'
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 72
+  fps_1pct_low: 63
+  fps_current: 72
+  gpu_load_pct: 99
+  vram_used_mb: 14681
+  power_draw_w: 157
+  clock_core_mhz: 3214
+  clock_mem_mhz: 2502
+  temp_c: 67
+  temp_hotspot_c: 69
+conditions:
+  upscaler: FSR 4.0 Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 1440p Ultra with upscaling. FSR 4.0 Quality. No frame gen. Mid-game snapshot.
+lineage:
+  nodes: []
+  edges: []

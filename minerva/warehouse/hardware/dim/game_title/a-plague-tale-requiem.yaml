@@ -1,0 +1,10 @@
+dimension:
+  id: a-plague-tale-requiem
+  type: game_title
+  canonical_name: 'A Plague Tale: Requiem'
+  scd_type: 0
+attributes:
+  developer: Asobo Studio
+  engine: Proprietary
+  release_year: 2022
+  genre: action-adventure

@@ -1,0 +1,42 @@
+dimension:
+  id: nvidia-rtx-5050
+  type: gpu
+  canonical_name: NVIDIA GeForce RTX 5050
+  aliases:
+  - RTX 5050
+  - '5050'
+  scd_type: 0
+attributes:
+  vendor: nvidia
+  architecture: Blackwell
+  lithography: TSMC 5nm
+  vram:
+    size_gb: 8
+    type: GDDR7
+    bus_width_bit: 128
+    bandwidth_gb_s: 355
+  compute:
+    cuda_cores: 3072
+    rt_cores: 24
+    tensor_cores: 96
+    rt_generation: 4
+    tensor_generation: 5
+  clock:
+    boost_ghz: 2.82
+    game_ghz: null
+  power:
+    tdp_w: 130
+    connector: 1× 8-pin
+    recommended_psu_w: 450
+  interface:
+    pcie: 5.0 x8
+  software:
+    upscaler: DLSS 4
+    frame_gen: MFG 3×
+    encoder: NVENC Gen 9
+    compute_api: CUDA 12
+relationships: {}
+meta:
+  source: Video benchmark
+  acquired_at: '2026-07-11'
+  acquired_by: manual

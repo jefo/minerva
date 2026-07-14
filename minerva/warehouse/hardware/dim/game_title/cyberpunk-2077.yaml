@@ -1,0 +1,11 @@
+dimension:
+  id: "cyberpunk-2077"
+  type: "game_title"
+  canonical_name: "Cyberpunk 2077"
+  scd_type: 0
+attributes:
+  developer: "CD Projekt Red"
+  engine: "REDengine 4"
+  release_year: 2020
+  genre: "action-rpg"
+  notes: "Phantom Liberty (2023) — обновлённые системные требования"

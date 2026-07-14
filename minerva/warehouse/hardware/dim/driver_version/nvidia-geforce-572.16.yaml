@@ -1,0 +1,11 @@
+dimension:
+  id: "nvidia-geforce-572.16"
+  type: "driver_version"
+  canonical_name: "NVIDIA GeForce Game Ready Driver 572.16"
+  scd_type: 2
+  current_version: "nvidia-geforce-572.16_v2026-03"
+  versions:
+    - {file: "nvidia-geforce-572.16_v2026-03", date: "2026-03", changes: "Initial release with RTX 5060 day-1 support"}
+attributes:
+  branch: "GeForce Game Ready"
+  vendor: "nvidia"

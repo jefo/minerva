@@ -1,0 +1,10 @@
+dimension:
+  id: god-of-war-ragnarok
+  type: game_title
+  canonical_name: 'God of War: Ragnarök'
+  scd_type: 0
+attributes:
+  developer: Santa Monica Studio
+  engine: Proprietary
+  release_year: 2024
+  genre: action-adventure

@@ -1,0 +1,10 @@
+dimension:
+  id: banishers-ghosts-of-new-eden
+  type: game_title
+  canonical_name: 'Banishers: Ghosts of New Eden'
+  scd_type: 0
+attributes:
+  developer: Don't Nod
+  engine: Unreal Engine 5
+  release_year: 2024
+  genre: action-rpg

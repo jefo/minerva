@@ -1,0 +1,10 @@
+dimension:
+  id: "1440p"
+  type: "resolution"
+  canonical_name: "2560×1440 (1440p)"
+  scd_type: 0
+attributes:
+  width: 2560
+  height: 1440
+  aspect_ratio: "16:9"
+  pixel_count_megapixels: 3.7

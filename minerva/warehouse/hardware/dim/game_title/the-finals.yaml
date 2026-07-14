@@ -1,0 +1,10 @@
+dimension:
+  id: the-finals
+  type: game_title
+  canonical_name: The Finals
+  scd_type: 0
+attributes:
+  developer: Embark Studios
+  engine: Unreal Engine 5
+  release_year: 2023
+  genre: competitive-fps

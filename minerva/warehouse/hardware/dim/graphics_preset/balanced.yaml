@@ -1,0 +1,8 @@
+dimension:
+  id: balanced
+  type: graphics_preset
+  canonical_name: Balanced
+  scd_type: 0
+attributes:
+  tier: 3
+  description: Сбалансированные настройки графики (игровой пресет)

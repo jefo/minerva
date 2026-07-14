@@ -1,0 +1,27 @@
+fact:
+  id: rtx5060-vram-limit-heavy-workload
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Horizon Forbidden West
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: '572.16'
+measures:
+  fps_avg: 0
+  fps_1pct_low: 0
+  vram_used_gb: 7.8
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.75
+  confidence_basis: research_report
+  observed_at: 2026-Q2
+  observed_by: research-report
+  source_channel: ИгроЛаба Research
+  note: VRAM at limit (7.5-7.8 GB). 1% low degradation observed — microstutter.
+lineage:
+  nodes: []
+  edges: []

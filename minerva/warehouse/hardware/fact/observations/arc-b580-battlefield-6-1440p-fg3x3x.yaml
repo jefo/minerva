@@ -1,0 +1,27 @@
+fact:
+  id: arc-b580-battlefield-6-1440p-fg3x3x
+  type: observation
+source:
+  gpu: Arc B580
+  game_title: Battlefield 6
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 209
+  fps_1pct_low: 61
+  frame_gen_multiplier: 3
+conditions:
+  upscaler: XeSS 3.0
+  frame_gen: 3x
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.9
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: Arc B580 MFG test. DLSS 4 Native, FG ON (3x). 1440p.
+lineage:
+  nodes: []
+  edges: []

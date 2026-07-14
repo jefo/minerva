@@ -1,0 +1,8 @@
+dimension:
+  id: epic
+  type: graphics_preset
+  canonical_name: Epic
+  scd_type: 0
+attributes:
+  tier: 5
+  description: Эпические настройки графики (выше Ultra)

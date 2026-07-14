@@ -1,0 +1,10 @@
+dimension:
+  id: the-elder-scrolls-v-skyrim
+  type: game_title
+  canonical_name: 'The Elder Scrolls V: Skyrim'
+  scd_type: 0
+attributes:
+  developer: Bethesda
+  engine: Creation Engine
+  release_year: 2011
+  genre: rpg

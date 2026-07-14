@@ -1,0 +1,10 @@
+dimension:
+  id: the-elder-scrolls-iv-oblivion
+  type: game_title
+  canonical_name: 'The Elder Scrolls IV: Oblivion'
+  scd_type: 0
+attributes:
+  developer: Bethesda
+  engine: Creation Engine (modded)
+  release_year: 2025
+  genre: rpg

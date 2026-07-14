@@ -1,0 +1,42 @@
+dimension:
+  id: "amd-rx-9060-xt"
+  type: "gpu"
+  canonical_name: "AMD Radeon RX 9060 XT 16GB"
+  aliases: ["RX 9060 XT", "9060 XT"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  architecture: "RDNA 4"
+  lithography: "TSMC 5nm"
+  vram:
+    size_gb: 16
+    type: "GDDR6"
+    bus_width_bit: 192
+    bandwidth_gb_s: 468
+  compute:
+    compute_units: 48
+    rt_cores: 48
+    ai_accelerators: 96
+    rt_generation: 3
+  clock:
+    boost_ghz: 3.2
+    game_ghz: 3.1
+  power:
+    tdp_w: 180
+    connector: "2× 8-pin"
+    recommended_psu_w: 650
+  interface:
+    pcie: "5.0 x8"
+  software:
+    upscaler: "FSR 4"
+    frame_gen: "AFMF 2"
+    encoder: "VCE 4.0"
+    compute_api: "HIP"
+relationships:
+  architecture_ref: null
+  vendor_ref: null
+meta:
+  source: "AMD Radeon RX 9060 XT Product Specifications"
+  source_url: "https://www.amd.com/en/products/graphics/radeon-rx-9060-xt"
+  acquired_at: "2026-07-11"
+  acquired_by: "manual"

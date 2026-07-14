@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5060-pragmata-1440p-max-dlss4-q
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Pragmata Deluxe Edition
+  resolution: 1440p
+  graphics_preset: Max
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 51
+  fps_1pct_low: 44
+  fps_0_1pct_low: 41
+  frametime_ms_avg: 19.4
+conditions:
+  upscaler: DLSS 4 Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB. Upscaler: DLSS 4 Quality'
+lineage:
+  nodes: []
+  edges: []

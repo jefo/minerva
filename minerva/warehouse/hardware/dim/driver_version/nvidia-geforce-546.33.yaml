@@ -1,0 +1,11 @@
+dimension:
+  id: "nvidia-geforce-546.33"
+  type: "driver_version"
+  canonical_name: "NVIDIA GeForce Game Ready Driver 546.33"
+  scd_type: 2
+  current_version: "nvidia-geforce-546.33_v2024-01"
+  versions:
+    - {file: "nvidia-geforce-546.33_v2024-01", date: "2024-01", changes: "RTX 4060 review driver. Ada Lovelace optimization."}
+attributes:
+  branch: "GeForce Game Ready"
+  vendor: "nvidia"

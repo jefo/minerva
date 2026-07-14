@@ -1,0 +1,10 @@
+dimension:
+  id: hunt-showdown
+  type: game_title
+  canonical_name: 'Hunt: Showdown 1896'
+  scd_type: 0
+attributes:
+  developer: Crytek
+  engine: CryEngine
+  release_year: 2024
+  genre: extraction-shooter

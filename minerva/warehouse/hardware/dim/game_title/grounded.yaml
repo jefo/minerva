@@ -1,0 +1,10 @@
+dimension:
+  id: grounded
+  type: game_title
+  canonical_name: Grounded
+  scd_type: 0
+attributes:
+  developer: Obsidian
+  engine: Unreal Engine 4
+  release_year: 2022
+  genre: survival

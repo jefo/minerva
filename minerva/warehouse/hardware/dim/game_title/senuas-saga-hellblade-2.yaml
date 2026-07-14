@@ -1,0 +1,10 @@
+dimension:
+  id: senuas-saga-hellblade-2
+  type: game_title
+  canonical_name: 'Senua''s Saga: Hellblade 2'
+  scd_type: 0
+attributes:
+  developer: Ninja Theory
+  engine: Unreal Engine 5
+  release_year: 2024
+  genre: action-adventure

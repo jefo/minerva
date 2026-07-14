@@ -1,0 +1,10 @@
+dimension:
+  id: call-of-duty-black-ops-6
+  type: game_title
+  canonical_name: 'Call of Duty: Black Ops 6'
+  scd_type: 0
+attributes:
+  developer: Treyarch/Raven
+  engine: IW Engine
+  release_year: 2024
+  genre: fps

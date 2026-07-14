@@ -1,0 +1,8 @@
+dimension:
+  id: ultra-nightmare
+  type: graphics_preset
+  canonical_name: Ultra Nightmare
+  scd_type: 0
+attributes:
+  tier: 7
+  description: 'Максимальные настройки DOOM: The Dark Ages'

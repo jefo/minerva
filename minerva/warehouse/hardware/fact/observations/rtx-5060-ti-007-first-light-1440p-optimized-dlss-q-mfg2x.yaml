@@ -1,0 +1,31 @@
+fact:
+  id: rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg2x
+  type: observation
+source:
+  gpu: RTX 5060 Ti 16GB
+  game_title: '007: First Light'
+  resolution: 1440p
+  graphics_preset: Optimized
+  driver_version: 2026-Q2
+  cpu: Unknown
+measures:
+  fps_avg: 125
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS Quality
+  frame_gen: 2x
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.7
+  confidence_basis: youtube_review_narrative
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: Testing Games
+  note: 'ASUS Prime RTX 5060 Ti OC 16GB. FG 2x. 120-130 FPS indoor. Base framerate
+    50-55 in heavy scenes. VRAM ~9.5GB. VRAM note: 16GB version strongly recommended
+    for 1440p high textures + FG.'
+lineage:
+  nodes: []
+  edges: []

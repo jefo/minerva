@@ -1,0 +1,10 @@
+dimension:
+  id: assassins-creed-mirage
+  type: game_title
+  canonical_name: Assassin's Creed Mirage
+  scd_type: 0
+attributes:
+  developer: Ubisoft Bordeaux
+  engine: Ubisoft Anvil
+  release_year: 2023
+  genre: action-adventure

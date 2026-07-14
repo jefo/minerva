@@ -1,0 +1,10 @@
+dimension:
+  id: silent-hill-2-remake
+  type: game_title
+  canonical_name: Silent Hill 2 Remake
+  scd_type: 0
+attributes:
+  developer: Bloober Team
+  engine: Unreal Engine 5
+  release_year: 2024
+  genre: horror

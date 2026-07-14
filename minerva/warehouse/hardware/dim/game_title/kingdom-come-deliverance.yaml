@@ -1,0 +1,10 @@
+dimension:
+  id: kingdom-come-deliverance
+  type: game_title
+  canonical_name: 'Kingdom Come: Deliverance'
+  scd_type: 0
+attributes:
+  developer: Warhorse Studios
+  engine: CryEngine
+  release_year: 2018
+  genre: rpg

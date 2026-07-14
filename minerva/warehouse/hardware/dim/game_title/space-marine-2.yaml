@@ -1,0 +1,10 @@
+dimension:
+  id: space-marine-2
+  type: game_title
+  canonical_name: 'Warhammer 40K: Space Marine 2'
+  scd_type: 0
+attributes:
+  developer: Saber Interactive
+  engine: Swarm Engine
+  release_year: 2024
+  genre: action-tps

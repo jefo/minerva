@@ -1,0 +1,8 @@
+dimension:
+  id: very-high
+  type: graphics_preset
+  canonical_name: Very High
+  scd_type: 0
+attributes:
+  tier: 5
+  description: Очень высокие настройки графики

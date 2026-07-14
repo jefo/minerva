@@ -1,0 +1,9 @@
+dimension:
+  id: death-stranding-2-on-the-beach
+  type: game_title
+  canonical_name: Death Stranding 2 On The Beach
+  scd_type: 0
+attributes:
+  developer: Kojima Productions
+  release_year: 2025
+  genre: action-adventure

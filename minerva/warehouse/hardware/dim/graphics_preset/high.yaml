@@ -1,0 +1,8 @@
+dimension:
+  id: "high"
+  type: "graphics_preset"
+  canonical_name: "High"
+  scd_type: 0
+attributes:
+  tier: 3
+  description: "Высокие настройки графики без трассировки лучей"

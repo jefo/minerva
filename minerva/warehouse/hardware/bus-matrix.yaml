@@ -1,0 +1,239 @@
+bus_matrix:
+  domain: hardware
+  dimensions:
+    gpu:
+      canonical_dim: dim/gpu/{vendor}-{model}.yaml
+      id_format: '{vendor}-{model}'
+      description: Дискретная видеокарта
+      scd_default: 0
+      aliases:
+        Arc B580: arc-b580
+        RTX 4060: rtx-4060
+        RTX 4060 Ti 8GB: rtx-4060-ti-8gb
+        RTX 4070 Super: rtx-4070-super
+        RTX 4070 Ti: rtx-4070-ti
+        RTX 4070 Ti Super: rtx-4070-ti-super
+        RTX 5050: rtx-5050
+        RTX 5060: rtx-5060
+        RTX 5060 Ti: rtx-5060-ti
+        RTX 5060 Ti 16GB: rtx-5060-ti-16gb
+        RX 9060 XT: rx-9060-xt
+        RX 9060 XT 16GB: rx-9060-xt-16gb
+      attributes:
+      - architecture
+      - vendor
+      - vram.size_gb
+      - vram.type
+      - vram.bus_width_bit
+      - vram.bandwidth_gb_s
+      - compute.cuda_cores
+      - power.tdp_w
+      used_in_marts:
+      - coverage
+      - engineering
+      - competitive
+      - narrative
+      - compatibility
+    game_title:
+      canonical_dim: dim/game_title/{slug}.yaml
+      id_format: '{slug}'
+      description: Игра, в которой производились замеры
+      aliases:
+        '007: First Light': 007-first-light
+        'A Plague Tale: Requiem': a-plague-tale-requiem
+        Alan Wake 2: alan-wake-2
+        Alan Wake II: alan-wake-ii
+        Apex Legends: apex-legends
+        Assassin's Creed Black Flag Resynced: assassins-creed-black-flag-resynced
+        Assassin's Creed Mirage: assassins-creed-mirage
+        Assassin's Creed Shadows: assassins-creed-shadows
+        Assassins Creed Shadows: assassins-creed-shadows
+        Baldur's Gate 3: baldurs-gate-3
+        'Banishers: Ghosts of New Eden': banishers-ghosts-of-new-eden
+        Battlefield 2042: battlefield-2042
+        Battlefield 6: battlefield-6
+        'Black Myth: Wukong': black-myth-wukong
+        'CO: Expedition 33': co-expedition-33
+        'COD: Black Ops 6 MP': cod-black-ops-6-mp
+        'COD: Black Ops 6 SP': cod-black-ops-6-sp
+        'COD: Warzone': cod-warzone
+        'Call of Duty: Black Ops 6': call-of-duty-black-ops-6
+        'Clair Obscur: Expedition 33': clair-obscur-expedition-33
+        Counter Strike 2: counter-strike-2
+        Counter-Strike 2: counter-strike-2
+        Crimson Desert: crimson-desert
+        Cyberpunk 2077: cyberpunk-2077
+        'Cyberpunk 2077: Phantom Liberty': cyberpunk-2077-phantom-liberty
+        'DOOM: The Dark Ages': doom-the-dark-ages
+        Days Gone: days-gone
+        Deadlock: deadlock
+        Death Stranding 2 On The Beach: death-stranding-2-on-the-beach
+        Delta Force: delta-force
+        Desordre: desordre
+        'Doom: The Dark Ages': doom-the-dark-ages
+        'Dying Light: The Beast': dying-light-the-beast
+        Fortnite: fortnite
+        Forza Horizon 5: forza-horizon-5
+        Forza Horizon 6: forza-horizon-6
+        GTA V: gta-v
+        'GTA V Enhanced: Online': gta-v-enhanced-online
+        Ghost of Tsushima: ghost-of-tsushima
+        God of War: god-of-war
+        God of War Ragnarok: god-of-war-ragnarok
+        God of War Ragnarök: god-of-war-ragnarök
+        'God of War: Ragnarök': god-of-war-ragnarok
+        Grounded: grounded
+        Hell is Us: hell-is-us
+        Helldivers 2: helldivers-2
+        Hogwarts Legacy: hogwarts-legacy
+        Horizon Forbidden West: horizon-forbidden-west
+        'Hunt: Showdown 1896': hunt-showdown
+        Indiana Jones and the Great Circle: indiana-jones-and-the-great-circle
+        'Kingdom Come: Deliverance': kingdom-come-deliverance
+        'Kingdom Come: Deliverance 2': kingdom-come-deliverance-2
+        'Kingdom Come: Deliverance II': kingdom-come-deliverance-2
+        Lies of P: lies-of-p
+        'MS: Flight Simulator 24': ms-flight-simulator-24
+        'Mafia: The Old Country': mafia-the-old-country
+        Marvel Rivals: marvel-rivals
+        Microsoft Flight Simulator 2024: microsoft-flight-simulator-2024
+        Minecraft: minecraft
+        Monster Hunter Wilds: monster-hunter-wilds
+        Need for Speed Unbound: need-for-speed-unbound
+        'Need for Speed: Unbound': need-for-speed-unbound
+        Palworld: palworld
+        Path of Exile 2: path-of-exile-2
+        Pragmata: pragmata
+        Pragmata Deluxe Edition: pragmata-deluxe-edition
+        Red Dead Redemption 2: red-dead-redemption-2
+        Resident Evil 4: resident-evil-4
+        Resident Evil 4 Remake: resident-evil-4-remake
+        Resident Evil Requiem: resident-evil-requiem
+        'Resident Evil: Requiem': resident-evil-requiem
+        S.T.A.L.K.E.R. 2: stalker-2
+        'S.T.A.L.K.E.R. 2: Heart of Chornobyl': stalker-2-heart-of-chornobyl
+        'Senua''s Saga: Hellblade 2': senuas-saga-hellblade-2
+        'Senua''s Saga: Hellblade II': senuas-saga-hellblade-ii
+        Silent Hill 2: silent-hill-2
+        Silent Hill 2 Remake: silent-hill-2-remake
+        Silent Hill f: silent-hill-f
+        Sons of the Forest: sons-of-the-forest
+        'Star Wars: Outlaws': star-wars-outlaws
+        Starfield: starfield
+        Stellar Blade: stellar-blade
+        'The Elder Scrolls IV: Oblivion': the-elder-scrolls-iv-oblivion
+        'The Elder Scrolls V: Skyrim': the-elder-scrolls-v-skyrim
+        The Finals: the-finals
+        'The First Berserker: Khazan': the-first-berserker-khazan
+        The Last of Us Part 2: the-last-of-us-part-2
+        The Last of Us Part I: the-last-of-us-part-i
+        The Last of Us Part II: the-last-of-us-part-ii
+        The Last of Us Part II Remastered: the-last-of-us-part-2
+        'Warhammer 40,000: Space Marine 2': warhammer-40,000-space-marine-2
+        'Warhammer 40K: Space Marine 2': space-marine-2
+        Witchfire: witchfire
+      used_in_marts:
+      - coverage
+      - competitive
+    resolution:
+      canonical_dim: dim/resolution/{value}.yaml
+      id_format: '{value}'
+      description: Разрешение экрана
+      canonical_values:
+      - 1080p
+      - 1440p
+      - 4K
+      used_in_marts:
+      - coverage
+      - engineering
+      - competitive
+    graphics_preset:
+      canonical_dim: dim/graphics_preset/{slug}.yaml
+      id_format: '{slug}'
+      description: Пресет графики
+      canonical_values:
+      - balanced
+      - epic
+      - extreme
+      - high
+      - low
+      - max
+      - medium
+      - optimized
+      - ultra
+      - ultra-nightmare
+      - very-high
+      used_in_marts:
+      - coverage
+    driver_version:
+      canonical_dim: dim/driver_version/{vendor}-{branch}-{version}.yaml
+      id_format: '{vendor}-{branch}-{version}'
+      description: Версия драйвера
+      scd_default: 2
+      aliases:
+        2025-Q1: 2025-q1
+        2026-Q2: 2026-q2
+        '546.33': '546.33'
+        '572.16': '572.16'
+        Adrenalin 25.6.1: adrenalin-25.6.1
+      used_in_marts:
+      - coverage
+      - engineering
+    cpu:
+      canonical_dim: dim/cpu/{vendor}-{model}.yaml
+      id_format: '{vendor}-{model}'
+      description: Процессор тестового стенда
+      used_in_marts:
+      - coverage
+      - compatibility
+  facts:
+    observation:
+      description: Единичный замер производительности в игре
+      grain: single_benchmark_run
+      mandatory_dimensions:
+      - gpu
+      - game_title
+      - resolution
+      - graphics_preset
+      - driver_version
+      optional_dimensions:
+      - cpu
+      allowed_measures:
+      - fps_avg
+      - fps_1pct_low
+      - fps_0_1pct_low
+      - frametime_ms_avg
+      - vram_used_gb
+      - power_draw_w_min
+      - power_draw_w_max
+      - temp_c_min
+      - temp_c_max
+      - delta_vs_rtx5060_pct
+      - delta_vs_rx9060xt_pct
+      - fps_current
+      - gpu_load_pct
+      - vram_used_mb
+      - power_draw_w
+      - clock_core_mhz
+      - clock_mem_mhz
+      - temp_c
+      - temp_hotspot_c
+      - frame_gen_multiplier
+      - clock_mhz_min
+      - clock_mhz_max
+      - vram_used_gb_median
+      measure_definitions:
+        fps_avg: definitions/average-fps.yaml
+        fps_1pct_low: definitions/one-percent-low-fps.yaml
+      validation_rules:
+      - Не может быть двух Observation с одинаковыми mandatory_dimensions
+      - fps_avg должен быть больше fps_1pct_low
+    metric:
+      description: Аддитивная метрика (TFLOPS, bandwidth, цена)
+      grain: single_gpu_spec
+      mandatory_dimensions:
+      - gpu
+      allowed_measures:
+      - fp32_tflops
+      - bandwidth_gb_s
+      - price_rub

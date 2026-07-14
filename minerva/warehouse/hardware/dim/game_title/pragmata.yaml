@@ -1,0 +1,9 @@
+dimension:
+  id: pragmata
+  type: game_title
+  canonical_name: Pragmata
+  scd_type: 0
+attributes:
+  developer: Capcom
+  release_year: 2025
+  genre: action-adventure

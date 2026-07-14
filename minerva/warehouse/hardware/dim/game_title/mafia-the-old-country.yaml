@@ -1,0 +1,10 @@
+dimension:
+  id: "mafia-the-old-country"
+  type: "game_title"
+  canonical_name: "Mafia: The Old Country"
+  scd_type: 0
+attributes:
+  developer: "Hangar 13"
+  engine: "Illusion Engine"
+  release_year: 2025
+  genre: "action-adventure"

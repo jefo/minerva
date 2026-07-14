@@ -1,0 +1,10 @@
+dimension:
+  id: battlefield-2042
+  type: game_title
+  canonical_name: Battlefield 2042
+  scd_type: 0
+attributes:
+  developer: DICE
+  engine: Frostbite
+  release_year: 2021
+  genre: fps

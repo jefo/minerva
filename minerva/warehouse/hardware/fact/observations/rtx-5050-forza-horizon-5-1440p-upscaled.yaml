@@ -1,0 +1,34 @@
+fact:
+  id: rtx-5050-forza-horizon-5-1440p-upscaled
+  type: observation
+source:
+  gpu: RTX 5050
+  game_title: Forza Horizon 5
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 73
+  fps_1pct_low: 65
+  fps_current: 73
+  gpu_load_pct: 99
+  vram_used_mb: 12818
+  power_draw_w: 52
+  clock_core_mhz: 2824
+  clock_mem_mhz: 10001
+  temp_c: 67
+  temp_hotspot_c: 69
+conditions:
+  upscaler: DLSS 4.5 Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 1440p Ultra with upscaling. DLSS 4.5 Quality. No frame gen. Mid-game snapshot.
+lineage:
+  nodes: []
+  edges: []

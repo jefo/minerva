@@ -1,0 +1,27 @@
+fact:
+  id: rx9060xt-vs-rtx5060-doom-1440p
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: 'DOOM: The Dark Ages'
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 0
+  delta_vs_rtx5060_pct: 42
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.7
+  confidence_basis: research_report_delta
+  observed_at: 2026-Q2
+  observed_by: research-report
+  source_channel: ИгроЛаба Research
+  note: 'Relative delta. Absolute FPS not provided in source report. 1080p delta:
+    +10%.'
+lineage:
+  nodes: []
+  edges: []

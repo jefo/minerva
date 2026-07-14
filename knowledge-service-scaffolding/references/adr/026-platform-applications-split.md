@@ -1,6 +1,6 @@
 ---
 id: adr-026
-status: proposed
+status: accepted
 date: 2026-07-13
 supersedes: []
 superseded_by: []

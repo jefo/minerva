@@ -1,0 +1,10 @@
+dimension:
+  id: fortnite
+  type: game_title
+  canonical_name: Fortnite
+  scd_type: 0
+attributes:
+  developer: Epic Games
+  engine: Unreal Engine 5
+  release_year: 2017
+  genre: battle-royale

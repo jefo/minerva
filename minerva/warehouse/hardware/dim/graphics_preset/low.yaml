@@ -1,0 +1,8 @@
+dimension:
+  id: low
+  type: graphics_preset
+  canonical_name: Low
+  scd_type: 0
+attributes:
+  tier: 1
+  description: Низкие настройки графики

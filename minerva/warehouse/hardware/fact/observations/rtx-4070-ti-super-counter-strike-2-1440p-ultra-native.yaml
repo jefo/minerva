@@ -1,0 +1,29 @@
+fact:
+  id: rtx-4070-ti-super-counter-strike-2-1440p-ultra-native
+  type: observation
+source:
+  gpu: RTX 4070 Ti Super
+  game_title: Counter-Strike 2
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2025-Q1
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 340
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.75
+  confidence_basis: training_data_consensus
+  observed_at: 2025-Q1
+  observed_by: manual
+  source_channel: Training Data — GN/HUB/TechSpot consensus
+  note: Training data consensus. Native. ~300-380. CPU-bound, GPU irrelevant at 1440p.
+lineage:
+  nodes: []
+  edges: []

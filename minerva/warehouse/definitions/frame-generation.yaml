@@ -1,0 +1,18 @@
+definition:
+  id: "frame_generation"
+  canonical_name: "Frame Generation"
+  domain: "gaming_performance"
+  description: "Технология генерации промежуточных кадров (MFG для NVIDIA, AFMF для AMD). Увеличивает плавность ценой latency."
+  calculation:
+    method: "interpolation"
+    unit: "binary"
+  measurement:
+    notes: "FG on/off — отдельные замеры. FG FPS не сравнивается напрямую с native FPS."
+  interpretation:
+    notes: "FG on ≠ native FPS. Добавляет ~10-15ms latency. Не рекомендуется для competitive gaming. Рекомендуется для single-player при базовом FPS > 60."
+  caveats:
+    - "Не применимо к competitive gaming из-за latency"
+    - "Требует базового FPS > 45-60 для комфортной игры"
+    - "MFG 4× генерирует 3 промежуточных кадра на 1 нативный"
+  used_in_facts: ["observation"]
+  used_in_conditions: true

@@ -1,0 +1,10 @@
+dimension:
+  id: sons-of-the-forest
+  type: game_title
+  canonical_name: Sons of the Forest
+  scd_type: 0
+attributes:
+  developer: Endnight Games
+  engine: Unity
+  release_year: 2024
+  genre: survival-horror

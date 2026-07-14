@@ -1,0 +1,44 @@
+dimension:
+  id: intel-arc-b580
+  type: gpu
+  canonical_name: Intel Arc B580 12GB
+  aliases:
+  - Arc B580
+  - ARC B580
+  - B580
+  scd_type: 0
+attributes:
+  vendor: intel
+  architecture: Xe2-HPG (Battlemage)
+  lithography: TSMC 5nm
+  vram:
+    size_gb: 12
+    type: GDDR6
+    bus_width_bit: 192
+    bandwidth_gb_s: 456
+  compute:
+    xe2_cores: 20
+    rt_cores: 20
+    xmx_engines: 160
+    rt_generation: 2
+  clock:
+    boost_ghz: 2.85
+    game_ghz: 2.85
+  power:
+    tdp_w: 190
+    connector: 1× 8-pin
+    recommended_psu_w: 600
+  interface:
+    pcie: 4.0 x8
+  software:
+    upscaler: XeSS 3
+    frame_gen: XeSS MFG (3x/4x)
+    encoder: QSV
+    compute_api: oneAPI
+relationships:
+  architecture_ref: null
+  vendor_ref: null
+meta:
+  source: Intel ARK
+  acquired_at: '2026-07-11'
+  acquired_by: manual

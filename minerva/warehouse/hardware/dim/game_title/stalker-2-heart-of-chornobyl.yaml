@@ -1,0 +1,10 @@
+dimension:
+  id: stalker-2-heart-of-chornobyl
+  type: game_title
+  canonical_name: 'S.T.A.L.K.E.R. 2: Heart of Chornobyl'
+  scd_type: 0
+attributes:
+  developer: GSC Game World
+  engine: Unreal Engine 5
+  release_year: 2024
+  genre: fps-survival

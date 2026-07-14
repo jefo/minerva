@@ -1,0 +1,10 @@
+dimension:
+  id: god-of-war-2018
+  type: game_title
+  canonical_name: God of War (2018)
+  scd_type: 0
+attributes:
+  developer: Santa Monica Studio
+  engine: Proprietary
+  release_year: 2018
+  genre: action-adventure

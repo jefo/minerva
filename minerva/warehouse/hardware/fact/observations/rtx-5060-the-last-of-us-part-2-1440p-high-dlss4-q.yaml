@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5060-the-last-of-us-part-2-1440p-high-dlss4-q
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: The Last of Us Part II Remastered
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 93
+  fps_1pct_low: 88
+  fps_0_1pct_low: 81
+  frametime_ms_avg: 10.7
+conditions:
+  upscaler: DLSS 4 Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB. Upscaler: DLSS 4 Quality'
+lineage:
+  nodes: []
+  edges: []

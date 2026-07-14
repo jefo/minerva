@@ -1,0 +1,24 @@
+dimension:
+  id: nvidia-rtx-4070-ti-super
+  type: gpu
+  canonical_name: NVIDIA GeForce RTX 4070 Ti Super
+  scd_type: 0
+attributes:
+  vendor: nvidia
+  architecture: Ada Lovelace
+  vram:
+    size_gb: 16
+    type: GDDR6X
+    bus_width_bit: 256
+    bandwidth_gb_s: 672
+  compute:
+    cuda_cores: 8448
+    rt_cores: 66
+    tensor_cores: 264
+  clock:
+    boost_ghz: 2.61
+  power:
+    tdp_w: 285
+  software:
+    upscaler: DLSS 3
+    frame_gen: DLSS FG

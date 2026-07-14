@@ -1,0 +1,10 @@
+dimension:
+  id: crimson-desert
+  type: game_title
+  canonical_name: Crimson Desert
+  scd_type: 0
+attributes:
+  developer: Pearl Abyss
+  engine: BlackSpace Engine
+  release_year: 2025
+  genre: action-rpg

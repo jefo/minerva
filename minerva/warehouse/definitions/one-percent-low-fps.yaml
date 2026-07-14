@@ -1,0 +1,24 @@
+definition:
+  id: "one_percent_low_fps"
+  canonical_name: "1% Low FPS"
+  domain: "gaming_performance"
+  description: "Нижний перцентиль FPS. 1% самых медленных кадров — показатель стабильности."
+  calculation:
+    method: "percentile"
+    formula: "p1(fps_values)"
+    unit: "fps"
+  measurement:
+    tool: "FrameView"
+    tool_version: "1.5+"
+    passes: 3
+    aggregates_over_passes: true
+  interpretation:
+    higher_is_better: true
+    meaningful_difference: 3
+    meaningful_difference_unit: "fps"
+    notes: "Падение 1% low ниже 30 fps — субъективно воспринимается как статтер. Критичнее average FPS для плавности."
+  caveats:
+    - "Может варьироваться между прогонами сильнее чем average FPS"
+    - "VRAM pressure проявляется в первую очередь здесь"
+  used_in_facts: ["observation"]
+  used_in_marts: ["coverage", "engineering"]

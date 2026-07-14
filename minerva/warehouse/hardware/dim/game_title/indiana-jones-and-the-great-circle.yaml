@@ -1,0 +1,10 @@
+dimension:
+  id: indiana-jones-and-the-great-circle
+  type: game_title
+  canonical_name: Indiana Jones and the Great Circle
+  scd_type: 0
+attributes:
+  developer: MachineGames
+  engine: id Tech
+  release_year: 2024
+  genre: action-adventure

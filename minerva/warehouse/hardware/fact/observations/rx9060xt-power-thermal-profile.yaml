@@ -1,0 +1,28 @@
+fact:
+  id: rx9060xt-power-thermal-profile
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: Cyberpunk 2077
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+measures:
+  power_draw_w_min: 150
+  power_draw_w_max: 180
+  temp_c_min: 60
+  temp_c_max: 66
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.8
+  confidence_basis: research_report
+  observed_at: 2026-Q2
+  observed_by: research-report
+  source_channel: ИгроЛаба Research
+  note: 'Clock speeds: 3.1-3.3 GHz. Aggressive boost. Hotter profile.'
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,8 @@
+dimension:
+  id: optimized
+  type: graphics_preset
+  canonical_name: Optimized
+  scd_type: 0
+attributes:
+  tier: 4
+  description: Оптимизированные настройки (смесь высоких и ультра)

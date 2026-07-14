@@ -1,0 +1,27 @@
+fact:
+  id: rtx-5060-ti-crimson-desert-1080p-ultra
+  type: observation
+source:
+  gpu: RTX 5060 Ti
+  game_title: Crimson Desert
+  resolution: 1080p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 5800X3D
+measures:
+  fps_avg: 76
+  fps_1pct_low: 0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.9
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'native. Test bench: Ryzen 7 5800X3D, 2x16GB RAM, D3D12.'
+lineage:
+  nodes: []
+  edges: []

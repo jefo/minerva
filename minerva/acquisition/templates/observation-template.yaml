@@ -1,0 +1,36 @@
+# Вставь сюда значения из YouTube-бенчмарка.
+# Скопируй этот файл в acquisition/manual/ и переименуй:
+#   {gpu}-{game}-{resolution}-{preset}-driver{version}.yaml
+# Пример: rtx5060-cp2077-1440p-high-driver572.yaml
+
+fact:
+  id: ""                         # {gpu}-{game}-{res}-{preset}-driver{ver}
+  type: "observation"
+source:
+  gpu: ""                        # "RTX 5060", "RTX 4060", "RX 9060 XT", "Arc B580"
+  game_title: ""                 # "Cyberpunk 2077", "Alan Wake 2", "Starfield", ...
+  resolution: ""                 # "1080p", "1440p", "4K"
+  graphics_preset: ""            # "Low", "Medium", "High", "Ultra", "RT Overdrive"
+  driver_version: ""             # "572.16", "575.10", "546.33"
+  cpu: ""                        # опционально: "Intel Core Ultra 5 225F"
+measures:
+  fps_avg: 0                     # средний FPS (по 3 прогонам, первый исключён)
+  fps_1pct_low: 0                # 1% low
+  fps_0_1pct_low: 0              # 0.1% low (если не показано — оставь 0)
+  frametime_ms_avg: 0.0          # frametime в ms (если показано)
+conditions:
+  upscaler: ""                   # "DLSS 4 Quality", "FSR 4 Quality", "native"
+  frame_gen: false               # true если Frame Generation включён
+  ray_tracing: ""                # "Off", "High", "Ultra", "Path Tracing"
+meta:
+  confidence: 0.85               # 0.95 = свой замер, 0.85 = YouTube-бенчмарк, 0.70 = один источник
+  confidence_basis: "youtube_benchmark"
+  observed_at: ""                # "2026-03" — когда сделан замер (не когда импортирован)
+  observed_by: "manual"
+  source_url: ""                 # ссылка на YouTube-видео
+  source_channel: ""             # "Hardware Unboxed", "Gamers Nexus", ...
+  source_video_title: ""         # название видео
+  source_timestamp: ""           # "12:34" — где в видео показан результат
+lineage:
+  nodes: []
+  edges: []

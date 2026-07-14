@@ -1,0 +1,10 @@
+dimension:
+  id: alan-wake-2
+  type: game_title
+  canonical_name: Alan Wake 2
+  scd_type: 0
+attributes:
+  developer: Remedy
+  engine: Northlight
+  release_year: 2023
+  genre: survival-horror

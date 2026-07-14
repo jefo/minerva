@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5060-resident-evil-requiem-1440p-high-dlss4-q-mfg4x
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Resident Evil Requiem
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 318
+  fps_1pct_low: 52
+  fps_0_1pct_low: 43
+  frametime_ms_avg: 3.1
+conditions:
+  upscaler: DLSS 4 Quality
+  frame_gen: 4x
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB. Upscaler: DLSS 4 Quality. MFG: 4x'
+lineage:
+  nodes: []
+  edges: []

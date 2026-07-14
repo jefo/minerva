@@ -1,0 +1,9 @@
+dimension:
+  id: forza-horizon-6
+  type: game_title
+  canonical_name: Forza Horizon 6
+  scd_type: 0
+attributes:
+  developer: Playground Games
+  release_year: 2025
+  genre: racing

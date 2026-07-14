@@ -1,0 +1,28 @@
+fact:
+  id: rx9060xt-vram-heavy-workload
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: Horizon Forbidden West
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 0
+  fps_1pct_low: 0
+  vram_used_gb: 13.5
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.75
+  confidence_basis: research_report
+  observed_at: 2026-Q2
+  observed_by: research-report
+  source_url: ''
+  source_channel: ИгроЛаба Research
+  note: 'VRAM utilization range: 10-13.5 GB in heavy workloads'
+lineage:
+  nodes: []
+  edges: []

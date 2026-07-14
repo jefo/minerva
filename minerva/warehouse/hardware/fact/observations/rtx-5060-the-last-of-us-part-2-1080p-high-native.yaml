@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5060-the-last-of-us-part-2-1080p-high-native
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: The Last of Us Part II Remastered
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 8800X3D
+measures:
+  fps_avg: 115
+  fps_1pct_low: 99
+  fps_0_1pct_low: 92
+  frametime_ms_avg: 8.6
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Test bench: AMD Ryzen 7 8800X3D, 2x16GB'
+lineage:
+  nodes: []
+  edges: []

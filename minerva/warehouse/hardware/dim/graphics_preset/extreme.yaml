@@ -1,0 +1,8 @@
+dimension:
+  id: "extreme"
+  type: "graphics_preset"
+  canonical_name: "Extreme"
+  scd_type: 0
+attributes:
+  tier: 6
+  description: "Экстремальные настройки графики (выше ультра, Forza Horizon 5)"

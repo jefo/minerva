@@ -1,0 +1,10 @@
+dimension:
+  id: "doom-the-dark-ages"
+  type: "game_title"
+  canonical_name: "DOOM: The Dark Ages"
+  scd_type: 0
+attributes:
+  developer: "id Software"
+  engine: "id Tech 8"
+  release_year: 2025
+  genre: "fps"

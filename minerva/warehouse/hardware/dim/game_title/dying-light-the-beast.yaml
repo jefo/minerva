@@ -1,0 +1,10 @@
+dimension:
+  id: dying-light-the-beast
+  type: game_title
+  canonical_name: 'Dying Light: The Beast'
+  scd_type: 0
+attributes:
+  developer: Techland
+  engine: C-Engine
+  release_year: 2025
+  genre: action-horror

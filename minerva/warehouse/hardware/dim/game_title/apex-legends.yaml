@@ -1,0 +1,10 @@
+dimension:
+  id: apex-legends
+  type: game_title
+  canonical_name: Apex Legends
+  scd_type: 0
+attributes:
+  developer: Respawn
+  engine: Source
+  release_year: 2019
+  genre: battle-royale

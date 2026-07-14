@@ -1,0 +1,10 @@
+dimension:
+  id: the-last-of-us-part-i
+  type: game_title
+  canonical_name: The Last of Us Part I
+  scd_type: 0
+attributes:
+  developer: Naughty Dog
+  engine: Naughty Dog Engine
+  release_year: 2023
+  genre: action-adventure

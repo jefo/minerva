@@ -1,0 +1,10 @@
+dimension:
+  id: baldurs-gate-3
+  type: game_title
+  canonical_name: Baldur's Gate 3
+  scd_type: 0
+attributes:
+  developer: Larian Studios
+  engine: Divinity Engine 4.0
+  release_year: 2023
+  genre: rpg

@@ -1,0 +1,29 @@
+fact:
+  id: rtx-4060-ti-8gb-starfield-1440p-ultra-native
+  type: observation
+source:
+  gpu: RTX 4060 Ti 8GB
+  game_title: Starfield
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2025-Q1
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 42
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.7
+  confidence_basis: training_data_consensus
+  observed_at: 2025-Q1
+  observed_by: manual
+  source_channel: Training Data — review consensus
+  note: Training data consensus. 1440p Ultra native.
+lineage:
+  nodes: []
+  edges: []

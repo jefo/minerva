@@ -1,0 +1,10 @@
+dimension:
+  id: silent-hill-f
+  type: game_title
+  canonical_name: Silent Hill f
+  scd_type: 0
+attributes:
+  developer: Neobards Entertainment
+  engine: Unreal Engine 5
+  release_year: 2025
+  genre: survival-horror

@@ -1,0 +1,10 @@
+dimension:
+  id: assassins-creed-shadows
+  type: game_title
+  canonical_name: Assassin's Creed Shadows
+  scd_type: 0
+attributes:
+  developer: Ubisoft Quebec
+  engine: AnvilNext
+  release_year: 2025
+  genre: action-rpg

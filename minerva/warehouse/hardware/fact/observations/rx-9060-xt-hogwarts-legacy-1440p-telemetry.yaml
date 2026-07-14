@@ -1,0 +1,34 @@
+fact:
+  id: rx-9060-xt-hogwarts-legacy-1440p-telemetry
+  type: observation
+source:
+  gpu: RX 9060 XT
+  game_title: Hogwarts Legacy
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 61
+  fps_1pct_low: 52
+  fps_current: 58
+  gpu_load_pct: 100
+  vram_used_mb: 9270
+  power_draw_w: 172
+  clock_core_mhz: 2502
+  clock_mem_mhz: 3272
+  temp_c: 56
+  temp_hotspot_c: 59
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  observed_at: 2026-Q2
+  observed_by: manual
+  source_channel: ИгроЛаба
+  note: 'Pure raster. Mid-game snapshot. Two temp readings: GPU edge + hotspot/memory.'
+lineage:
+  nodes: []
+  edges: []

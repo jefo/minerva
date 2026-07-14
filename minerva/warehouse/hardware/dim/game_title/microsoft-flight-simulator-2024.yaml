@@ -1,0 +1,9 @@
+dimension:
+  id: microsoft-flight-simulator-2024
+  type: game_title
+  canonical_name: Microsoft Flight Simulator 2024
+  scd_type: 0
+attributes:
+  developer: Asobo Studio
+  release_year: 2024
+  genre: simulation
