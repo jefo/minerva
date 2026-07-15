@@ -12,6 +12,43 @@ triggers:
 
 # knowledge-services — Project SSOT
 
+## ADR Index
+
+| ID | Заголовок | Статус | Дата |
+|----|-----------|--------|------|
+| 001 | Two-axis architecture: DDD + Atomic Design | accepted | 2026-07-11 |
+| 002 | Five-level knowledge composition hierarchy | accepted | 2026-07-11 |
+| 003 | Downward-visibility rule | accepted | 2026-07-11 |
+| 004 | Knowledge Primitives taxonomy (6 типов) | accepted | 2026-07-11 |
+| 005 | Capabilities как composable-единицы | accepted | 2026-07-11 |
+| 006 | KB as filesystem — фундаментальные premises | accepted | 2026-07-11 |
+| 007 | Структура workspace — bounded contexts | accepted | 2026-07-11 |
+| 008 | Context Map для интеграции контекстов | accepted | 2026-07-11 |
+| 009 | MVP — capabilities навигации | accepted | 2026-07-11 |
+| 010 | Bounded contexts как references скилла | accepted | 2026-07-11 |
+| 011 | Capability roadmap — 4 тира | accepted | 2026-07-11 |
+| 012 | Слой Acquisition — pre-structured research | accepted | 2026-07-11 |
+| 013 | Backend/Frontend split | accepted | 2026-07-11 |
+| 014 | Data Warehouse как методологический фундамент | accepted | 2026-07-11 |
+| 015 | System Architecture — agent-native DW | accepted | 2026-07-11 |
+| 016 | Data Model — dimensional schemas, SCD | accepted | 2026-07-11 |
+| 017 | Lineage DAG — граф происхождения данных | accepted | 2026-07-11 |
+| 018 | ETL Pipeline — Acquisition как capabilities | superseded → 029 | 2026-07-11 |
+| 019 | Agent Query Model — capabilities как stored procedures | accepted | 2026-07-11 |
+| 020 | Methodology Specification | accepted | 2026-07-11 |
+| 021 | Architecture Validation — walkthrough (RTX 5060) | accepted | 2026-07-11 |
+| 022 | AI Data Analyst Agent | accepted | 2026-07-11 |
+| 023 | Consumer Analytics Roadmap | accepted | 2026-07-11 |
+| 024 | Data Acquisition First | accepted | 2026-07-11 |
+| 025 | Source Layer, Definitions, Bus Matrix Contract | accepted | 2026-07-11 |
+| 026 | Platform / Applications Split | proposed | 2026-07-13 |
+| 027 | CPU Decision-Centric ViewModel | accepted | 2026-07-13 |
+| 028 | Fact Insert — Ingestion Gateway | accepted | 2026-07-13 |
+| 029 | Agent-Native ETL Override | accepted | 2026-07-13 |
+| 030 | Tech Debt & Data Debt Register | accepted | 2026-07-13 |
+| 031 | CPU Data Model Engineering Lab | accepted | 2026-07-13 |
+| 032 | Data Engineer Capabilities — Design, Build, Operate, Explore | proposed | 2026-07-13 |
+
 ## Конвенции
 
 ### Capability Authoring
