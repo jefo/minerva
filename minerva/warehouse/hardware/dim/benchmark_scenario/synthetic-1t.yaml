@@ -1,0 +1,12 @@
+dimension:
+  id: "synthetic-1t"
+  type: "benchmark_scenario"
+  canonical_name: "Synthetic Single-Thread"
+  aliases: ["Synthetic 1T", "Cinebench 1T", "Geekbench ST"]
+  scd_type: 0
+attributes:
+  category: "synthetic"
+  test_type: "single_thread"
+  purpose: "Изолированная оценка одного ядра. Отражает IPC и частотный потенциал архитектуры."
+  gpu_bound_risk: "n/a"
+  notes: "Синтетика. Коррелирует с игровой производительностью в старых/легких движках (CS2). Не отражает многопоточные игры."

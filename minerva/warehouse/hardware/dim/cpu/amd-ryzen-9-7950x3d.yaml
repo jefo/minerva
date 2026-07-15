@@ -1,0 +1,56 @@
+dimension:
+  id: "amd-ryzen-9-7950x3d"
+  type: "cpu"
+  canonical_name: "AMD Ryzen 9 7950X3D"
+  aliases: ["Ryzen 9 7950X3D", "R9 7950X3D", "7950X3D"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  family: "Ryzen 9"
+  generation: 7000
+  architecture: "amd-zen-4"
+  socket: "am5"
+  lithography: "TSMC N5 (5nm)"
+  compute:
+    cores: 16
+    threads: 32
+    base_clock_mhz: 4200
+    boost_clock_mhz: 5700
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 1024
+    l2_kb: 16384
+    l3_kb: 131072
+    l3_type: "3d-v-cache"
+    note: "Dual CCD: one with 3D V-Cache (96MB), one standard (32MB). Total L3: 128MB."
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 5200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: "RDNA 2 (2 CUs, 2200 MHz)"
+  power:
+    tdp_w: 120
+    ppt_w: 162
+    tjmax_c: 89
+  release:
+    date: "2023-02-28"
+    msrp_usd: 699
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+      pbo: true
+      curve_optimizer: true
+      notes: "CPU ratio locked on 3D V-Cache CCD. PBO and Curve Optimizer available. Asymmetric cache requires AMD 3D V-Cache Performance Optimizer driver."
+meta:
+  source_url: "training_data"
+  confidence: 0.85
+  confidence_basis: "training_data"
+  observed_at: "2026-07"
+  observed_by: "cpu-dimension-etl"

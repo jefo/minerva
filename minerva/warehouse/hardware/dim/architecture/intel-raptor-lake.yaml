@@ -1,0 +1,46 @@
+dimension:
+  id: "intel-raptor-lake"
+  type: "architecture"
+  canonical_name: "Intel Raptor Lake (13th/14th Gen)"
+  aliases: ["Raptor Lake", "RaptorLake", "RPL"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  predecessor: "alder-lake"
+  successor: "arrow-lake"
+  isa: "x86-64"
+  node: "Intel 7 (10nm Enhanced)"
+  release_year: 2022
+  hybrid: true
+  core_types:
+    p_core:
+      microarchitecture: "Raptor Cove"
+      design:
+        decoder_width: 6
+        dispatch_width: 8
+        rob_entries: 512
+      cache:
+        l1i_kb: 32
+        l1d_kb: 48
+        l2_kb: 2048
+    e_core:
+      microarchitecture: "Gracemont"
+      design:
+        decoder_width: 6
+        dispatch_width: 8
+      cache:
+        l1i_kb: 64
+        l1d_kb: 32
+        l2_kb: 4096
+      cluster_size: 4
+  shared:
+    l3_kb_max: 36864
+    ring_bus: true
+  features:
+    - "Thread Director (hardware-guided scheduling)"
+    - "DLVR (Digital Linear Voltage Regulator)"
+  key_improvements_over_predecessor:
+    - "P-core: Raptor Cove with +512KB L2 cache over Golden Cove"
+    - "P-core IPC: modest +2-5% over Alder Lake"
+    - "E-core clusters: doubled to 4 per die"
+    - "Frequency: +200-400 MHz across stack"

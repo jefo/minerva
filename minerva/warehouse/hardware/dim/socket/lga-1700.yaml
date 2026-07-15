@@ -1,0 +1,16 @@
+dimension:
+  id: "lga-1700"
+  type: "socket"
+  canonical_name: "LGA 1700"
+  aliases: ["LGA1700", "Socket LGA1700"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  type: "LGA"
+  pin_count: 1700
+  release_year: 2021
+  compatible_memory: ["DDR4", "DDR5"]
+  predecessor: "lga-1200"
+  platform_lifespan:
+    promised_until_year: 2024
+    current_status: "mature"

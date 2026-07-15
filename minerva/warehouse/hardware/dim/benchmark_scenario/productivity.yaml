@@ -1,0 +1,11 @@
+dimension:
+  id: "productivity"
+  type: "benchmark_scenario"
+  canonical_name: "Productivity"
+  aliases: ["Productivity", "Blender", "Premiere Pro", "Компиляция"]
+  scd_type: 0
+attributes:
+  category: "productivity"
+  purpose: "Реальные рабочие нагрузки: рендеринг, видеомонтаж, компиляция, архивация."
+  gpu_bound_risk: "n/a"
+  notes: "Сценарий для оценки CPU вне игр. Важен для позиционирования 'рабочая станция vs игровая'."

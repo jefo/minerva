@@ -1,0 +1,20 @@
+definition:
+  id: "frametime_ms_p99"
+  canonical_name: "99th Percentile Frametime"
+  domain: "gaming_performance"
+  description: "99-й перцентиль времени кадра. 1% самых долгих кадров — показатель стабильности и микро-статтеров."
+  calculation:
+    method: "percentile"
+    formula: "p99(frametime_values)"
+    unit: "ms"
+  measurement:
+    tool: "FrameView"
+    tool_version: "1.5+"
+    passes: 3
+    note: "Измеряется на тех же прогонах что и fps_avg."
+  interpretation:
+    lower_is_better: true
+    meaningful_difference: 1
+    meaningful_difference_unit: "ms"
+    notes: "Рост frametime p99 при стабильном fps_avg — признак CPU bottleneck. Процессор не успевает подготовить кадры равномерно."
+  used_in_facts: ["cpu_observation"]

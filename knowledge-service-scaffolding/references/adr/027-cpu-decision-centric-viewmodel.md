@@ -1,7 +1,8 @@
 ---
 id: adr-027
-status: proposed
+status: accepted
 date: 2026-07-13
+accepted: 2026-07-13
 supersedes: []
 superseded_by: []
 tags: [igrolab, cpu, viewmodel, decision-centric, catalog, hub]
@@ -1101,4 +1102,4 @@ interface ComparisonDrawerViewModel {
 - UI-паттерн для threshold/temporal comparisonMode (DecisionExplorer/BenchmarkVisualizer) ещё не спроектирован
 
 ### Открытые вопросы (v0.3.3)
-- Gaming Index: вариант А (убрать полностью) или Б (modeled-индекс с видимым scope и epistemicTag) — **единственный открытый вопрос**
+- Все вопросы разрешены. Gaming Index: выбран вариант Б (modeled-композит с видимым scope и epistemicTag). Требует наполнения Minerva бенчмарками (Phase 0).

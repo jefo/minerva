@@ -1,0 +1,55 @@
+dimension:
+  id: "intel-core-i5-13400f"
+  type: "cpu"
+  canonical_name: "Intel Core i5-13400F"
+  aliases: ["13400F", "i5-13400F", "Core i5-13400F"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  family: "Core i5"
+  generation: 13
+  architecture: "intel-raptor-lake"
+  socket: "lga-1700"
+  lithography: "Intel 7 (10nm Enhanced)"
+  compute:
+    p_cores: 6
+    e_cores: 4
+    total_cores: 10
+    threads: 16
+    p_core_base_clock_mhz: 2500
+    p_core_boost_clock_mhz: 4600
+    e_core_base_clock_mhz: 1800
+    e_core_boost_clock_mhz: 3300
+    simultaneous_multithreading: true
+    smt_note: "Hyper-Threading only on P-cores. E-cores: no HT."
+  cache:
+    l1_kb: 608
+    l2_kb: 9728
+    l3_kb: 20480
+    l3_type: "standard"
+    note: "P-core: 32KB L1I + 48KB L1D + 2048KB L2. E-core: 64KB L1I + 32KB L1D + 4096KB L2 (per cluster). L3: 20MB Intel Smart Cache."
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 4800
+    type_alt: "DDR4"
+    max_official_speed_alt_mt_s: 3200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 20
+  graphics:
+    integrated: false
+    note: "F-series — нет iGPU"
+  power:
+    tdp_w: 65
+    turbo_power_w: 148
+    tjmax_c: 100
+  release:
+    date: "2023-01-03"
+    msrp_usd: 196
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+      notes: "Non-K series — CPU ratio locked. Memory overclocking available."

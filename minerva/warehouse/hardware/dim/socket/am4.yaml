@@ -1,0 +1,17 @@
+dimension:
+  id: "am4"
+  type: "socket"
+  canonical_name: "Socket AM4 (PGA 1331)"
+  aliases: ["AM4"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  type: "PGA"
+  pin_count: 1331
+  release_year: 2016
+  compatible_memory: ["DDR4"]
+  predecessor: "am3+"
+  platform_lifespan:
+    promised_until_year: 2022
+    current_status: "mature"
+    note: "Поддерживает Ryzen 1000–5000. Самый долгоживущий сокет AMD."

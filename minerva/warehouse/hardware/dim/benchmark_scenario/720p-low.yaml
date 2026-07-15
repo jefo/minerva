@@ -1,0 +1,13 @@
+dimension:
+  id: "720p-low"
+  type: "benchmark_scenario"
+  canonical_name: "720p Low — Extreme CPU-bound Gaming"
+  aliases: ["720p Low", "720p low"]
+  scd_type: 0
+attributes:
+  category: "gaming"
+  resolution: "720p"
+  preset: "Low"
+  purpose: "Максимально снять GPU-bound. Показать теоретический максимум разницы между CPU."
+  gpu_bound_risk: "minimal"
+  notes: "Искусственный сценарий. Не отражает реальный гейминг, но показывает архитектурный потенциал CPU."

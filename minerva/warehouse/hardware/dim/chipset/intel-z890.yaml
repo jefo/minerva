@@ -1,0 +1,24 @@
+dimension:
+  id: "intel-z890"
+  type: "chipset"
+  canonical_name: "Intel Z890"
+  aliases: ["Z890"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  socket: "lga-1851"
+  pcie:
+    total_lanes: 48
+    pcie_5_lanes: 24
+    pcie_4_lanes: 24
+  usb:
+    usb_3_2_gen2x2: 5
+    thunderbolt_5: 2
+  sata_ports: 8
+  overclocking:
+    cpu: true
+    memory: true
+  multi_gpu: true
+  release_year: 2024
+  supported_cpu_generations:
+    - "Core Ultra 200 (Arrow Lake)"

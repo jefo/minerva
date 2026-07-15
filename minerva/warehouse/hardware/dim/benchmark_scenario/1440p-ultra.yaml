@@ -1,0 +1,13 @@
+dimension:
+  id: "1440p-ultra"
+  type: "benchmark_scenario"
+  canonical_name: "1440p Ultra — Mixed-bound Gaming"
+  aliases: ["1440p Ultra", "1440p ultra"]
+  scd_type: 0
+attributes:
+  category: "gaming"
+  resolution: "1440p"
+  preset: "Ultra"
+  purpose: "Реалистичный гейминг-сценарий. Частично GPU-bound, разница между CPU сжата."
+  gpu_bound_risk: "moderate"
+  notes: "Полезен для проверки: достаточен ли CPU для целевого разрешения. Разница между топ-CPU минимальна."

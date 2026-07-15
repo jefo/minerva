@@ -1,0 +1,42 @@
+dimension:
+  id: "amd-zen-5"
+  type: "architecture"
+  canonical_name: "AMD Zen 5"
+  aliases: ["Zen 5", "Zen5"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  predecessor: "zen-4"
+  successor: null
+  isa: "x86-64"
+  node: "TSMC N4P (4nm)"
+  release_year: 2024
+  design:
+    decoder_width: 4
+    dispatch_width: 8
+    rob_entries: 448
+    execution_units:
+      alu: 6
+      agu: 4
+    integer_register_file: 240
+    floating_point_register_file: 384
+    load_store_queue:
+      load: 160
+      store: 96
+  cache:
+    l1i_kb_per_core: 64
+    l1d_kb_per_core: 48
+    l2_kb_per_core: 1024
+    l3_shared: true
+    l3_kb_per_ccd: 32768
+  features:
+    - "Full 512-bit AVX-512 datapath"
+  branch_prediction:
+    predictor_type: "TAGE + perceptron hybrid"
+  key_improvements_over_predecessor:
+    - "+16% IPC over Zen 4"
+    - "Full 512-bit AVX-512 (was 256-bit dual-pumped)"
+    - "Dispatch width: 6 → 8"
+    - "ROB: 320 → 448 entries"
+    - "L1D: 32KB → 48KB per core"
+    - "Dual decode: 2×4 instructions/cycle"

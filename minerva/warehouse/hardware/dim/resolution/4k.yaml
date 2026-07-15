@@ -1,0 +1,11 @@
+dimension:
+  id: "4k"
+  type: "resolution"
+  canonical_name: "3840×2160 (4K UHD)"
+  aliases: ["4K", "2160p", "UHD"]
+  scd_type: 0
+attributes:
+  width: 3840
+  height: 2160
+  aspect_ratio: "16:9"
+  pixel_count_megapixels: 8.3

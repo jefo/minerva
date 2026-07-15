@@ -1,0 +1,11 @@
+dimension:
+  id: "720p"
+  type: "resolution"
+  canonical_name: "1280×720 (720p)"
+  aliases: ["720p", "HD"]
+  scd_type: 0
+attributes:
+  width: 1280
+  height: 720
+  aspect_ratio: "16:9"
+  pixel_count_megapixels: 0.9

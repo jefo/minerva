@@ -1,0 +1,12 @@
+dimension:
+  id: "synthetic-mt"
+  type: "benchmark_scenario"
+  canonical_name: "Synthetic Multi-Thread"
+  aliases: ["Synthetic MT", "Cinebench nT", "Geekbench MT", "Cinebench R23"]
+  scd_type: 0
+attributes:
+  category: "synthetic"
+  test_type: "multi_thread"
+  purpose: "Оценка всех ядер под полной нагрузкой. Отражает scaling и энергоэффективность."
+  gpu_bound_risk: "n/a"
+  notes: "Синтетика. Коррелирует с productivity-нагрузками (рендеринг, компиляция). С играми корреляция слабая — большинство игр не нагружают все ядра."

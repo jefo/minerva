@@ -1,0 +1,54 @@
+dimension:
+  id: "amd-ryzen-7-5700x3d"
+  type: "cpu"
+  canonical_name: "AMD Ryzen 7 5700X3D"
+  aliases: ["Ryzen 7 5700X3D", "R7 5700X3D", "5700X3D"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  family: "Ryzen 7"
+  generation: 5000
+  architecture: "amd-zen-3"
+  socket: "am4"
+  lithography: "TSMC N7 (7nm)"
+  compute:
+    cores: 8
+    threads: 16
+    base_clock_mhz: 3000
+    boost_clock_mhz: 4100
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 512
+    l2_kb: 4096
+    l3_kb: 98304
+    l3_type: "3d-v-cache"
+    note: "3D V-Cache on Zen 3 CCD. Lower clocks than 5800X3D due to binning."
+  memory:
+    type: "DDR4"
+    max_official_speed_mt_s: 3200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "4.0"
+    lanes: 24
+  graphics:
+    integrated: false
+  power:
+    tdp_w: 105
+    ppt_w: 142
+    tjmax_c: 90
+  release:
+    date: "2024-01-31"
+    msrp_usd: 249
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+      pbo: false
+      notes: "CPU ratio locked — 3D V-Cache thermal constraints. PBO not available on X3D AM4 parts."
+meta:
+  source_url: "training_data"
+  confidence: 0.85
+  confidence_basis: "training_data"
+  observed_at: "2026-07"
+  observed_by: "cpu-dimension-etl"

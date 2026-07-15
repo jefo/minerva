@@ -1,0 +1,54 @@
+dimension:
+  id: amd-ryzen-9-9950x
+  type: cpu
+  canonical_name: AMD Ryzen 9 9950X (170W) — Zen 5 флагман, 16 ядер
+  aliases:
+  - AMD Ryzen 9 9950X
+  scd_type: 0
+attributes:
+  vendor: amd
+  family: Ryzen 9
+  architecture: amd-zen-5
+  socket: am5
+  lithography: TSMC 4nm (CCD ×2) + 6nm (IOD)
+  compute:
+    cores: 16
+    threads: 32
+    base_clock_mhz: 4300
+    boost_clock_mhz: 5700
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 1536
+    l2_kb: 16384
+    l3_kb: 65536
+    l3_type: standard
+  memory:
+    type: DDR5
+    max_official_speed_mt_s: 5600
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: '5.0'
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: RDNA 2 (2 CU, 2200 MHz, базовый вывод)
+  power:
+    tdp_w: 170
+    ppt_w: 229
+    tjmax_c: 95
+  release:
+    msrp_usd: 649
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+      pbo: true
+      curve_optimizer: true
+meta:
+  source_url: pc_hardware_knowledge_base://amd-ryzen-9-9950x.md
+  source_title: 'KB entry: AMD Ryzen 9 9950X (170W) — Zen 5 флагман, 16 ядер'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-06-07'
+  observed_by: kb-etl

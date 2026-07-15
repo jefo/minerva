@@ -1,0 +1,25 @@
+dimension:
+  id: "intel-z790"
+  type: "chipset"
+  canonical_name: "Intel Z790"
+  aliases: ["Z790"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  socket: "lga-1700"
+  pcie:
+    total_lanes: 28
+    pcie_5_lanes: 0
+    pcie_4_lanes: 20
+  usb:
+    usb_3_2_gen2x2: 5
+  sata_ports: 8
+  overclocking:
+    cpu: true
+    memory: true
+  multi_gpu: true
+  release_year: 2022
+  supported_cpu_generations:
+    - "12th Gen (Alder Lake)"
+    - "13th Gen (Raptor Lake)"
+    - "14th Gen (Raptor Lake Refresh)"

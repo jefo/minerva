@@ -1,0 +1,11 @@
+dimension:
+  id: "1080p"
+  type: "resolution"
+  canonical_name: "1920×1080 (1080p)"
+  aliases: ["1080p", "FHD", "Full HD"]
+  scd_type: 0
+attributes:
+  width: 1920
+  height: 1080
+  aspect_ratio: "16:9"
+  pixel_count_megapixels: 2.1

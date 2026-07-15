@@ -1,0 +1,16 @@
+dimension:
+  id: "lga-1851"
+  type: "socket"
+  canonical_name: "LGA 1851"
+  aliases: ["LGA1851", "Socket LGA1851"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  type: "LGA"
+  pin_count: 1851
+  release_year: 2024
+  compatible_memory: ["DDR5"]
+  predecessor: "lga-1700"
+  platform_lifespan:
+    promised_until_year: 2027
+    current_status: "active"

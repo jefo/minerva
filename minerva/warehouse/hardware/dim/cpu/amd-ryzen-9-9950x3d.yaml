@@ -1,0 +1,56 @@
+dimension:
+  id: "amd-ryzen-9-9950x3d"
+  type: "cpu"
+  canonical_name: "AMD Ryzen 9 9950X3D"
+  aliases: ["Ryzen 9 9950X3D", "R9 9950X3D", "9950X3D"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  family: "Ryzen 9"
+  generation: 9000
+  architecture: "amd-zen-5"
+  socket: "am5"
+  lithography: "TSMC N4P (4nm)"
+  compute:
+    cores: 16
+    threads: 32
+    base_clock_mhz: 4300
+    boost_clock_mhz: 5700
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 1152
+    l2_kb: 16384
+    l3_kb: 131072
+    l3_type: "3d-v-cache"
+    note: "2nd gen 3D V-Cache: V-Cache under both CCDs (128MB total). CPU ratio unlocked — first for dual-CCD X3D."
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 5600
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: "RDNA 2 (2 CUs, 2200 MHz)"
+  power:
+    tdp_w: 170
+    ppt_w: 230
+    tjmax_c: 95
+  release:
+    date: "2025-03-12"
+    msrp_usd: 699
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+      pbo: true
+      curve_optimizer: true
+      notes: "2nd gen 3D V-Cache: V-Cache below CCD. CPU ratio unlocked. Full overclocking on both CCDs."
+meta:
+  source_url: "training_data"
+  confidence: 0.85
+  confidence_basis: "training_data"
+  observed_at: "2026-07"
+  observed_by: "cpu-dimension-etl"

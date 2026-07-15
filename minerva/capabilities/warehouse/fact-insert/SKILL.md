@@ -29,7 +29,7 @@ contract:
       - name: meta
         type: map
         required: true
-        description: "Provenance: confidence, confidence_basis, observed_at, observed_by"
+        description: "Provenance: confidence, confidence_basis, observed_at, observed_by, source_url (обязательно)"
   out:
     result: fact_insert_result
     format: |
@@ -49,6 +49,8 @@ contract:
       meaning: "Нарушено бизнес-правило (validation_rules bus matrix)"
     - code: DUPLICATE_FACT
       meaning: "Fact с теми же mandatory_dimensions уже существует"
+    - code: MISSING_SOURCE_URL
+      meaning: "meta.source_url отсутствует или пуст"
 idempotency: "write"
 ---
 
@@ -91,6 +93,7 @@ warehouse/{domain}/
 | 5 | Все validation_rules выполняются | Проверка выражений (measure > measure, ...) |
 | 6 | Fact уникален по mandatory_dimensions | Проверка существующих Fact-файлов |
 | 7 | Структура файла — строго по шаблону | Платформа диктует формат |
+| 8 | meta.source_url — обязательное поле | Проверка наличия и непустоты |
 
 ## Template
 
@@ -109,6 +112,8 @@ conditions:                               # опционально — конт�
 meta:
   confidence: {number}                    # обязательно
   confidence_basis: "{string}"            # обязательно
+  source_url: "{string}"                  # обязательно — URL источника или "training_data" / "manual"
+  source_title: "{string}"                # опционально — название видео/статьи
   observed_at: "{string}"
   observed_by: "{string}"
   source_channel: "{string}"
@@ -118,9 +123,9 @@ lineage:
   edges: []
 ```
 
-Обязательные поля: `fact`, `source` (все mandatory dims), `measures`, `meta.confidence`, `meta.confidence_basis`, `lineage`.
+Обязательные поля: `fact`, `source` (все mandatory dims), `measures`, `meta.confidence`, `meta.confidence_basis`, `meta.source_url`, `lineage`.
 
-Опциональные: `source`-поля optional_dims, `conditions` (нет условий → секция отсутствует), `meta.note`, `meta.source_url`, `meta.source_video_title`, `meta.source_timestamp`.
+Опциональные: `source`-поля optional_dims, `conditions` (нет условий → секция отсутствует), `meta.source_title`, `meta.note`, `meta.source_timestamp`.
 
 ## Naming
 
@@ -149,6 +154,7 @@ lineage:
 
 - **Не заменять source-значения на dim_id при записи.** Source хранит `"RTX 5060"`, не `"nvidia-rtx-5060"`. Резолвинг — для валидации и ответа, не для мутации данных
 - **confidence — обязательное.** Приложение должно указать. Нет default
+- **source_url — обязательное.** Без него факт невалиден. Допустимые значения: HTTP(S) URL → реальный источник; `"training_data"` → данные из knowledge модели; `"manual"` → ручной замер без публичной ссылки
 - **fact_id генерируется, не принимается.** Приложение не может диктовать ID файла
 - **Batch не атомарен.** Не полагаться на откат
 - **Dimensions создаются отдельно.** Если source-значение не резолвится — ошибка, не создавай dim на лету

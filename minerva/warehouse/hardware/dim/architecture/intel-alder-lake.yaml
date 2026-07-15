@@ -1,0 +1,45 @@
+dimension:
+  id: "intel-alder-lake"
+  type: "architecture"
+  canonical_name: "Intel Alder Lake (12th Gen)"
+  aliases: ["Alder Lake", "AlderLake", "ADL"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  predecessor: null
+  successor: "raptor-lake"
+  isa: "x86-64"
+  node: "Intel 7 (10nm Enhanced SuperFin)"
+  release_year: 2021
+  hybrid: true
+  core_types:
+    p_core:
+      microarchitecture: "Golden Cove"
+      design:
+        decoder_width: 6
+        dispatch_width: 6
+        rob_entries: 512
+      cache:
+        l1i_kb: 32
+        l1d_kb: 48
+        l2_kb: 1280
+    e_core:
+      microarchitecture: "Gracemont"
+      design:
+        decoder_width: 6
+        dispatch_width: 5
+      cache:
+        l1i_kb: 64
+        l1d_kb: 32
+        l2_kb: 2048
+      cluster_size: 4
+  shared:
+    l3_kb_max: 30720
+  features:
+    - "First Intel hybrid architecture (P-core + E-core)"
+    - "Thread Director (hardware-guided scheduling)"
+    - "DDR5 + PCIe 5.0 debut"
+  key_improvements_over_predecessor:
+    - "Hybrid architecture: P-core for ST, E-core for MT"
+    - "Golden Cove: +19% IPC over Cypress Cove"
+    - "DDR5 and PCIe 5.0 support"

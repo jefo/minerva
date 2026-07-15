@@ -1,0 +1,13 @@
+dimension:
+  id: "1080p-low"
+  type: "benchmark_scenario"
+  canonical_name: "1080p Low — CPU-bound Gaming"
+  aliases: ["1080p Low", "1080p low"]
+  scd_type: 0
+attributes:
+  category: "gaming"
+  resolution: "1080p"
+  preset: "Low"
+  purpose: "Снять GPU-bound. Проявить разницу между CPU в играх."
+  gpu_bound_risk: "low"
+  notes: "Стандартный сценарий для CPU gaming benchmarks. Большинство современных GPU не упираются в 1080p Low."

@@ -1,0 +1,38 @@
+dimension:
+  id: "amd-zen-4"
+  type: "architecture"
+  canonical_name: "AMD Zen 4"
+  aliases: ["Zen 4", "Zen4"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  predecessor: "zen-3"
+  successor: "zen-5"
+  isa: "x86-64"
+  node: "TSMC N5 (5nm)"
+  release_year: 2022
+  design:
+    decoder_width: 4
+    dispatch_width: 6
+    rob_entries: 320
+    integer_register_file: 224
+    floating_point_register_file: 192
+    load_store_queue:
+      load: 128
+      store: 72
+  cache:
+    l1i_kb_per_core: 64
+    l1d_kb_per_core: 32
+    l2_kb_per_core: 1024
+    l3_shared: true
+    l3_kb_per_ccd: 32768
+  features:
+    - "AVX-512 (256-bit dual-pumped)"
+  branch_prediction:
+    predictor_type: "perceptron-based TAGE"
+  key_improvements_over_predecessor:
+    - "+13% IPC over Zen 3"
+    - "AVX-512 support"
+    - "Front-end: doubled L1 BTB entries (1K → 2K)"
+    - "Load/store: +22% queue depth"
+    - "L2 cache: doubled to 1MB per core"

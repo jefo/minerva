@@ -1,0 +1,53 @@
+dimension:
+  id: amd-ryzen-5-7500f
+  type: cpu
+  canonical_name: AMD Ryzen 5 7500F (OEM)
+  aliases:
+  - AMD Ryzen 5 7500F
+  scd_type: 0
+attributes:
+  vendor: amd
+  family: Ryzen 5
+  architecture: amd-zen-4
+  socket: am5
+  lithography: TSMC 5nm (CCD) + 6nm (IOD)
+  compute:
+    cores: 6
+    threads: 12
+    base_clock_mhz: 3700
+    boost_clock_mhz: 5000
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 576
+    l2_kb: 6144
+    l3_kb: 32768
+    l3_type: standard
+  memory:
+    type: DDR5
+    max_official_speed_mt_s: 5200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: '5.0'
+    lanes: 28
+  graphics:
+    integrated: false
+  power:
+    tdp_w: 65
+    ppt_w: 87
+    tjmax_c: 95
+  release:
+    msrp_usd: 179
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+      pbo: true
+      curve_optimizer: true
+meta:
+  source_url: pc_hardware_knowledge_base://amd-ryzen-5-7500f.md
+  source_title: 'KB entry: AMD Ryzen 5 7500F (OEM)'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-06-03'
+  observed_by: kb-etl

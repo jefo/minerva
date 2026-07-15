@@ -1,0 +1,53 @@
+dimension:
+  id: "intel-core-ultra-5-245k"
+  type: "cpu"
+  canonical_name: "Intel Core Ultra 5 245K"
+  aliases: ["245K", "Ultra 5 245K", "Core Ultra 5 245K"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  family: "Core Ultra 5"
+  generation: 200
+  architecture: "intel-arrow-lake"
+  socket: "lga-1851"
+  lithography: "TSMC N3B (3nm)"
+  compute:
+    p_cores: 6
+    e_cores: 8
+    total_cores: 14
+    threads: 14
+    p_core_base_clock_mhz: 3600
+    p_core_boost_clock_mhz: 5200
+    e_core_base_clock_mhz: 2600
+    e_core_boost_clock_mhz: 4600
+    simultaneous_multithreading: false
+    smt_note: "Hyper-Threading removed on Lion Cove P-cores. Threads = total cores."
+  cache:
+    l1_kb: 640
+    l2_kb: 22528
+    l3_kb: 24576
+    l3_type: "standard"
+    note: "P-core: 64KB L1I + 48KB L1D + 3072KB L2. E-core: 64KB L1I + 32KB L1D + 4096KB L2 (per cluster). L3: 24MB Intel Smart Cache."
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 6400
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 24
+  graphics:
+    integrated: true
+    igpu_model: "Intel Xe (4 Xe-cores, 2000 MHz)"
+  power:
+    tdp_w: 125
+    turbo_power_w: 159
+    tjmax_c: 105
+  release:
+    date: "2024-10-24"
+    msrp_usd: 309
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+      notes: "K-series — unlocked. New LGA 1851 platform. No Hyper-Threading."

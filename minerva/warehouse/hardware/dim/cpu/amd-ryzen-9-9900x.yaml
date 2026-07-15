@@ -1,0 +1,54 @@
+dimension:
+  id: amd-ryzen-9-9900x
+  type: cpu
+  canonical_name: AMD Ryzen 9 9900X (Zen 5, 120W) — 12-ядерный dual-CCD
+  aliases:
+  - AMD Ryzen 9 9900X
+  scd_type: 0
+attributes:
+  vendor: amd
+  family: Ryzen 9
+  architecture: amd-zen-5
+  socket: am5
+  lithography: TSMC 4nm (CCD ×2) + 6nm (IOD)
+  compute:
+    cores: 12
+    threads: 24
+    base_clock_mhz: 4400
+    boost_clock_mhz: 5600
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 1152
+    l2_kb: 12288
+    l3_kb: 65536
+    l3_type: standard
+  memory:
+    type: DDR5
+    max_official_speed_mt_s: 5600
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: '5.0'
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: RDNA 2 (2 CUs, 2200 MHz, базовый вывод)
+  power:
+    tdp_w: 120
+    ppt_w: 162
+    tjmax_c: 95
+  release:
+    msrp_usd: 499
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+      pbo: true
+      curve_optimizer: true
+meta:
+  source_url: pc_hardware_knowledge_base://amd-ryzen-9-9900x.md
+  source_title: 'KB entry: AMD Ryzen 9 9900X (Zen 5, 120W) — 12-ядерный dual-CCD'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-06-07'
+  observed_by: kb-etl

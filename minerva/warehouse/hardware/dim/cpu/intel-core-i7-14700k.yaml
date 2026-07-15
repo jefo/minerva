@@ -1,0 +1,53 @@
+dimension:
+  id: intel-core-i7-14700k
+  type: cpu
+  canonical_name: Intel Core i7-14700K (253W) — 20 ЯДЕР, RAPTOR LAKE REFRESH
+  aliases:
+  - Intel Core i7-14700K
+  scd_type: 0
+attributes:
+  vendor: intel
+  family: Core i7
+  generation: 1400
+  architecture: intel-raptor-lake
+  socket: lga-1700
+  lithography: Intel 7 (10nm Enhanced SuperFin)
+  compute:
+    p_cores: 8
+    e_cores: 12
+    total_cores: 20
+    threads: 28
+    p_core_base_clock_mhz: 3400
+    e_core_base_clock_mhz: 2500
+    e_core_boost_clock_mhz: 4300
+    simultaneous_multithreading: true
+  cache:
+    l3_kb: 33792
+    l3_type: standard
+  memory:
+    type: DDR5
+    max_official_speed_mt_s: 3200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: '5.0'
+  graphics:
+    integrated: true
+    igpu_model: Intel UHD 770 (32 EU, до 1.60 GHz, QuickSync)
+  power:
+    tdp_w: 125
+    turbo_power_w: 253
+    tjmax_c: 100
+  release:
+    msrp_usd: 409
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+meta:
+  source_url: pc_hardware_knowledge_base://intel-core-i7-14700k.md
+  source_title: 'KB entry: Intel Core i7-14700K (253W) — 20 ЯДЕР, RAPTOR LAKE REFRESH'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-06-07'
+  observed_by: kb-etl

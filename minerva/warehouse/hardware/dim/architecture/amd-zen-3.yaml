@@ -1,0 +1,31 @@
+dimension:
+  id: "amd-zen-3"
+  type: "architecture"
+  canonical_name: "AMD Zen 3"
+  aliases: ["Zen 3", "Zen3"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  predecessor: "zen-2"
+  successor: "zen-4"
+  isa: "x86-64"
+  node: "TSMC N7 (7nm)"
+  release_year: 2020
+  design:
+    decoder_width: 4
+    dispatch_width: 6
+    rob_entries: 256
+    integer_register_file: 192
+    floating_point_register_file: 160
+  cache:
+    l1i_kb_per_core: 32
+    l1d_kb_per_core: 32
+    l2_kb_per_core: 512
+    l3_shared: true
+    l3_kb_per_ccd: 32768
+  features:
+    - "Unified 8-core CCD (CCX barrier removed)"
+  key_improvements_over_predecessor:
+    - "+19% IPC over Zen 2"
+    - "Unified 8-core CCD — no more CCX split"
+    - "L3 cache: doubled bandwidth"

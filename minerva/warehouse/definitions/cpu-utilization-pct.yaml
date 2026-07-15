@@ -1,0 +1,15 @@
+definition:
+  id: "cpu_utilization_pct"
+  canonical_name: "CPU Utilization"
+  domain: "gaming_performance"
+  description: "Средняя загрузка CPU (всех ядер) во время бенчмарка. Для игр — обычно ниже 50% даже при CPU-bound: большинство игр не нагружают все ядра равномерно."
+  calculation:
+    method: "arithmetic_mean"
+    formula: "mean(cpu_load_values)"
+    unit: "percent"
+  measurement:
+    tool: "FrameView / MSI Afterburner / PresentMon"
+    passes: 3
+  interpretation:
+    notes: "Высокая CPU utilisation ≠ хорошая производительность. Полезна в паре с GPU utilisation для диагностики bottleneck. На однопоточных играх (CS2) — 20-30% даже при CPU-bound."
+  used_in_facts: ["cpu_observation"]

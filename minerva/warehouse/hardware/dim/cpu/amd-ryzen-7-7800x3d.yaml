@@ -1,0 +1,50 @@
+dimension:
+  id: "amd-ryzen-7-7800x3d"
+  type: "cpu"
+  canonical_name: "AMD Ryzen 7 7800X3D"
+  aliases: ["7800X3D", "R7 7800X3D", "Ryzen 7 7800X3D"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  family: "Ryzen 7"
+  generation: 7000
+  architecture: "amd-zen-4"
+  socket: "am5"
+  lithography: "TSMC N5 (5nm)"
+  compute:
+    cores: 8
+    threads: 16
+    base_clock_mhz: 4200
+    boost_clock_mhz: 5000
+    boost_clock_single_core_mhz: 5050
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 512
+    l2_kb: 8192
+    l3_kb: 98304
+    l3_type: "3d-v-cache"
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 5200
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: "RDNA 2 (2 CUs, 2200 MHz)"
+  power:
+    tdp_w: 120
+    ppt_w: 162
+    tjmax_c: 89
+  release:
+    date: "2023-04-06"
+    msrp_usd: 449
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+      pbo: true
+      curve_optimizer: true
+      notes: "CPU ratio locked (3D V-Cache thermal sensitivity). PBO + Curve Optimizer available."

@@ -139,10 +139,22 @@ bus_matrix:
       canonical_dim: dim/resolution/{value}.yaml
       id_format: '{value}'
       description: Разрешение экрана
+      aliases:
+        '1080p': 1080p
+        'FHD': 1080p
+        'Full HD': 1080p
+        '1440p': 1440p
+        'QHD': 1440p
+        '4K': 4k
+        '2160p': 4k
+        'UHD': 4k
+        '720p': 720p
+        'HD': 720p
       canonical_values:
       - 1080p
       - 1440p
       - 4K
+      - 720p
       used_in_marts:
       - coverage
       - engineering
@@ -182,10 +194,157 @@ bus_matrix:
     cpu:
       canonical_dim: dim/cpu/{vendor}-{model}.yaml
       id_format: '{vendor}-{model}'
-      description: Процессор тестового стенда
+      description: Процессор
+      aliases:
+        7500F: amd-ryzen-5-7500f
+        7600: amd-ryzen-5-7600
+        7600X: amd-ryzen-5-7600x
+        7700: amd-ryzen-7-7700
+        7700X: amd-ryzen-7-7700x
+        7800X3D: amd-ryzen-7-7800x3d
+        7900: amd-ryzen-9-7900
+        7950X: amd-ryzen-9-7950x
+        7950X3D: amd-ryzen-9-7950x3d
+        9600X: amd-ryzen-5-9600x
+        9700X: amd-ryzen-7-9700x
+        9800X3D: amd-ryzen-7-9800x3d
+        9900X: amd-ryzen-9-9900x
+        9950X: amd-ryzen-9-9950x
+        9950X3D: amd-ryzen-9-9950x3d
+        5600: amd-ryzen-5-5600
+        5700X3D: amd-ryzen-7-5700x3d
+        12100F: intel-core-i3-12100f
+        12400F: intel-core-i5-12400f
+        13400F: intel-core-i5-13400f
+        14600K: intel-core-i5-14600k
+        14700K: intel-core-i7-14700k
+        14900K: intel-core-i9-14900k
+        225F: intel-core-ultra-5-225f
+        245K: intel-core-ultra-5-245k
+        265F: intel-core-ultra-7-265f
+        265K: intel-core-ultra-7-265k
+        285K: intel-core-ultra-9-285k
+        'Ryzen 5 5600': amd-ryzen-5-5600
+        'Ryzen 5 7500F': amd-ryzen-5-7500f
+        'Ryzen 5 7600': amd-ryzen-5-7600
+        'Ryzen 5 7600X': amd-ryzen-5-7600x
+        'Ryzen 5 9600X': amd-ryzen-5-9600x
+        'Ryzen 7 5700X3D': amd-ryzen-7-5700x3d
+        'Ryzen 7 7700': amd-ryzen-7-7700
+        'Ryzen 7 7700X': amd-ryzen-7-7700x
+        'Ryzen 7 7800X3D': amd-ryzen-7-7800x3d
+        'Ryzen 7 9700X': amd-ryzen-7-9700x
+        'Ryzen 7 9800X3D': amd-ryzen-7-9800x3d
+        'Ryzen 9 7900': amd-ryzen-9-7900
+        'Ryzen 9 7950X': amd-ryzen-9-7950x
+        'Ryzen 9 7950X3D': amd-ryzen-9-7950x3d
+        'Ryzen 9 9900X': amd-ryzen-9-9900x
+        'Ryzen 9 9950X': amd-ryzen-9-9950x
+        'Ryzen 9 9950X3D': amd-ryzen-9-9950x3d
+        'Core i3-12100F': intel-core-i3-12100f
+        'Core i5-12400F': intel-core-i5-12400f
+        'Core i5-13400F': intel-core-i5-13400f
+        'Core i5-14600K': intel-core-i5-14600k
+        'Core i7-14700K': intel-core-i7-14700k
+        'Core i9-14900K': intel-core-i9-14900k
+        'Core Ultra 5 225F': intel-core-ultra-5-225f
+        'Core Ultra 5 245K': intel-core-ultra-5-245k
+        'Core Ultra 7 265F': intel-core-ultra-7-265f
+        'Core Ultra 7 265K': intel-core-ultra-7-265k
+        'Core Ultra 9 285K': intel-core-ultra-9-285k
+      attributes:
+        - vendor, family, generation
+        - architecture, socket, lithography
+        - compute
+        - cache
+        - memory
+        - pcie
+        - graphics
+        - power
+        - release
+        - platform
       used_in_marts:
-      - coverage
-      - compatibility
+        - coverage
+        - compatibility
+        - engineering
+    socket:
+      canonical_dim: dim/socket/{slug}.yaml
+      id_format: '{slug}'
+      description: Процессорный разъём
+      aliases:
+        AM4: am4
+        AM5: am5
+        LGA1700: lga-1700
+        LGA1851: lga-1851
+      attributes:
+        - vendor, type, pin_count
+        - compatible_memory, predecessor
+        - platform_lifespan
+      used_in_marts:
+        - compatibility
+        - platform
+    architecture:
+      canonical_dim: dim/architecture/{vendor}-{name}.yaml
+      id_format: '{vendor}-{name}'
+      description: Микроархитектура
+      aliases:
+        'Zen 3': amd-zen-3
+        'Zen 4': amd-zen-4
+        'Zen 5': amd-zen-5
+        'Alder Lake': intel-alder-lake
+        'Raptor Lake': intel-raptor-lake
+        'Arrow Lake': intel-arrow-lake
+      attributes:
+        - vendor, predecessor, successor, isa, node
+        - design
+        - cache
+        - features, branch_prediction
+        - key_improvements
+      used_in_marts:
+        - engineering
+        - competitive
+    chipset:
+      canonical_dim: dim/chipset/{vendor}-{model}.yaml
+      id_format: '{vendor}-{model}'
+      description: Чипсет материнской платы
+      aliases:
+        B650: amd-b650
+        Z790: intel-z790
+        Z890: intel-z890
+      attributes:
+        - vendor, socket
+        - pcie, usb, sata_ports
+        - overclocking, multi_gpu
+        - supported_cpu_generations
+      used_in_marts:
+        - compatibility
+        - platform
+    benchmark_scenario:
+      canonical_dim: dim/benchmark_scenario/{slug}.yaml
+      id_format: '{slug}'
+      description: 'Сценарий бенчмарка (определяет bound: CPU, GPU, synthetic)'
+      aliases:
+        '1080p Low': 1080p-low
+        '1080p low': 1080p-low
+        '720p Low': 720p-low
+        '720p low': 720p-low
+        '1440p Ultra': 1440p-ultra
+        'Synthetic 1T': synthetic-1t
+        'Cinebench 1T': synthetic-1t
+        'Geekbench ST': synthetic-1t
+        'Synthetic MT': synthetic-mt
+        'Cinebench nT': synthetic-mt
+        'Geekbench MT': synthetic-mt
+        'Productivity': productivity
+        'Blender': productivity
+      attributes:
+        - category
+        - resolution, preset
+        - purpose
+        - gpu_bound_risk
+      used_in_marts:
+        - comparison
+        - engineering
   facts:
     observation:
       description: Единичный замер производительности в игре
@@ -237,3 +396,36 @@ bus_matrix:
       - fp32_tflops
       - bandwidth_gb_s
       - price_rub
+    cpu_observation:
+      description: Замер производительности CPU в сценарии (игровой бенчмарк или синтетика)
+      grain: single_cpu_benchmark_run
+      mandatory_dimensions:
+        - cpu
+        - benchmark_scenario
+        - game_title
+        - resolution
+        - graphics_preset
+        - driver_version
+      optional_dimensions:
+        - gpu
+      allowed_measures:
+        - fps_avg
+        - fps_1pct_low
+        - fps_0_1pct_low
+        - frametime_ms_avg
+        - frametime_ms_p99
+        - gpu_utilization_pct
+        - cpu_utilization_pct
+        - score
+        - power_draw_w
+        - temp_c
+      measure_definitions:
+        fps_avg: definitions/average-fps.yaml
+        fps_1pct_low: definitions/one-percent-low-fps.yaml
+        frametime_ms_p99: definitions/frametime-ms-p99.yaml
+        gpu_utilization_pct: definitions/gpu-utilization-pct.yaml
+        cpu_utilization_pct: definitions/cpu-utilization-pct.yaml
+      validation_rules:
+        - Не может быть двух cpu_observation с одинаковыми mandatory_dimensions
+        - fps_avg должен быть больше fps_1pct_low
+        - Если benchmark_scenario.category == "synthetic", game_title НЕ обязателен

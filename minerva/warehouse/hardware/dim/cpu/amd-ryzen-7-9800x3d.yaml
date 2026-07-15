@@ -1,0 +1,51 @@
+dimension:
+  id: "amd-ryzen-7-9800x3d"
+  type: "cpu"
+  canonical_name: "AMD Ryzen 7 9800X3D"
+  aliases: ["9800X3D", "R7 9800X3D", "Ryzen 7 9800X3D"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  family: "Ryzen 7"
+  generation: 9000
+  architecture: "amd-zen-5"
+  socket: "am5"
+  lithography: "TSMC N4P (4nm)"
+  compute:
+    cores: 8
+    threads: 16
+    base_clock_mhz: 4300
+    boost_clock_mhz: 5200
+    boost_clock_single_core_mhz: 5200
+    simultaneous_multithreading: true
+  cache:
+    l1_kb: 576
+    l2_kb: 8192
+    l3_kb: 98304
+    l3_type: "3d-v-cache"
+    note: "3D V-Cache placed under CCD (2nd gen). Better thermals, CPU ratio unlocked."
+  memory:
+    type: "DDR5"
+    max_official_speed_mt_s: 5600
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: "5.0"
+    lanes: 28
+  graphics:
+    integrated: true
+    igpu_model: "RDNA 2 (2 CUs, 2200 MHz)"
+  power:
+    tdp_w: 120
+    ppt_w: 162
+    tjmax_c: 95
+  release:
+    date: "2024-11-07"
+    msrp_usd: 479
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+      pbo: true
+      curve_optimizer: true
+      notes: "2nd gen 3D V-Cache: V-Cache below CCD. CPU ratio unlocked — first for X3D series."

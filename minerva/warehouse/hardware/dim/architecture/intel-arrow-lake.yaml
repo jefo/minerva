@@ -1,0 +1,49 @@
+dimension:
+  id: "intel-arrow-lake"
+  type: "architecture"
+  canonical_name: "Intel Arrow Lake (Core Ultra 200)"
+  aliases: ["Arrow Lake", "ArrowLake", "ARL"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  predecessor: "raptor-lake"
+  successor: null
+  isa: "x86-64"
+  node: "TSMC N3B (3nm)"
+  release_year: 2024
+  hybrid: true
+  tile_architecture: true
+  core_types:
+    p_core:
+      microarchitecture: "Lion Cove"
+      design:
+        decoder_width: 8
+        dispatch_width: 8
+        rob_entries: 576
+      cache:
+        l1i_kb: 64
+        l1d_kb: 48
+        l2_kb: 3072
+    e_core:
+      microarchitecture: "Skymont"
+      design:
+        decoder_width: 9
+        dispatch_width: 8
+      cache:
+        l1i_kb: 64
+        l1d_kb: 32
+        l2_kb: 4096
+      cluster_size: 4
+  shared:
+    l3_kb_max: 40960
+  features:
+    - "Tile architecture: Compute / GPU / SoC / I/O"
+    - "NPU 4 (13 TOPS)"
+    - "Thunderbolt 5 integrated"
+    - "Thread Director v2"
+  key_improvements_over_predecessor:
+    - "P-core: Lion Cove — new from scratch, +14% IPC over Raptor Cove"
+    - "E-core: Skymont — +38% IPC over Gracemont"
+    - "Node: Intel 7 → TSMC N3B"
+    - "Tile-based disaggregation (first time for Intel mainstream)"
+    - "Hyper-Threading removed on P-cores"

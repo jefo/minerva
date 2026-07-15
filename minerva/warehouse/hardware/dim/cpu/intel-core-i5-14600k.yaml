@@ -1,0 +1,51 @@
+dimension:
+  id: intel-core-i5-14600k
+  type: cpu
+  canonical_name: Intel Core i5-14600K (Raptor Lake Refresh)
+  aliases:
+  - Intel Core i5-14600K
+  scd_type: 0
+attributes:
+  vendor: intel
+  family: Core i5
+  generation: 1400
+  architecture: intel-raptor-lake
+  socket: lga-1700
+  lithography: Intel 7 (10nm Enhanced SuperFin)
+  compute:
+    p_cores: 6
+    e_cores: 8
+    total_cores: 14
+    threads: 28
+    p_core_base_clock_mhz: 3500
+    p_core_boost_clock_mhz: 5300
+    e_core_base_clock_mhz: 2600
+    simultaneous_multithreading: true
+  cache:
+    l3_kb: 24576
+    l3_type: standard
+  memory:
+    type: DDR5
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: 5.0 / 4.0
+  graphics:
+    integrated: ''
+  power:
+    tdp_w: 125
+    turbo_power_w: 181
+    tjmax_c: 100
+  release:
+    msrp_usd: 319
+  platform:
+    overclocking:
+      cpu_ratio: true
+      memory: true
+meta:
+  source_url: pc_hardware_knowledge_base://intel-core-i5-14600k.md
+  source_title: 'KB entry: Intel Core i5-14600K (Raptor Lake Refresh)'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-06-07'
+  observed_by: kb-etl

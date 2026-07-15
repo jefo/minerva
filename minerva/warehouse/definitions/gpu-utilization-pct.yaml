@@ -1,0 +1,18 @@
+definition:
+  id: "gpu_utilization_pct"
+  canonical_name: "GPU Utilization"
+  domain: "gaming_performance"
+  description: "Процент загрузки GPU во время бенчмарка. Ключевая CPU-метрика: если GPU utilisation < 95% — процессор не успевает кормить карту."
+  calculation:
+    method: "arithmetic_mean"
+    formula: "mean(gpu_load_values)"
+    unit: "percent"
+  measurement:
+    tool: "FrameView / MSI Afterburner / PresentMon"
+    passes: 3
+  interpretation:
+    higher_is_better: true
+    threshold_fully_gpu_bound: 95
+    threshold_unit: "percent"
+    notes: "GPU utilisation < 95% → CPU bottleneck. GPU utilisation < 80% → значительный CPU bottleneck. Для GPU-бенчмарков — диагностика валидности теста."
+  used_in_facts: ["cpu_observation"]

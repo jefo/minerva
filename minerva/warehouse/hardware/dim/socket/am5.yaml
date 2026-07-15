@@ -1,0 +1,16 @@
+dimension:
+  id: "am5"
+  type: "socket"
+  canonical_name: "Socket AM5 (LGA 1718)"
+  aliases: ["AM5"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  type: "LGA"
+  pin_count: 1718
+  release_year: 2022
+  compatible_memory: ["DDR5"]
+  predecessor: "am4"
+  platform_lifespan:
+    promised_until_year: 2027
+    current_status: "active"

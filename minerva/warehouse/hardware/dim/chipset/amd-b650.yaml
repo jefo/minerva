@@ -1,0 +1,26 @@
+dimension:
+  id: "amd-b650"
+  type: "chipset"
+  canonical_name: "AMD B650"
+  aliases: ["B650"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  socket: "am5"
+  pcie:
+    total_lanes: 36
+    pcie_5_lanes: 0
+    pcie_4_lanes: 8
+  usb:
+    usb_3_2_gen2x2: 1
+    usb_3_2_gen2: 6
+  sata_ports: 4
+  overclocking:
+    cpu: true
+    memory: true
+  multi_gpu: false
+  release_year: 2022
+  supported_cpu_generations:
+    - "Ryzen 7000"
+    - "Ryzen 8000"
+    - "Ryzen 9000"

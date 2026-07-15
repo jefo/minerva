@@ -17,12 +17,12 @@ knowledge-service-scaffolding/
 ├── docs/
 │   └── prd.md            # Product Requirements Document
 └── references/
-    └── adr/              # Architecture Decision Records
-        ├── template.md
-        ├── 001-two-axis-architecture.md
-        ├── 002-five-level-hierarchy.md
-        ├── 003-downward-visibility.md
-        └── 004-primitives-taxonomy.md
+    ├── adr/              # Architecture Decision Records (29 ADR)
+    │   ├── 001–029       # Полный перечень см. в директории
+    │   └── template.md
+    ├── observations/     # Наблюдения (4 записи)
+    ├── migration-hardware-kb.md
+    └── taxonomy-and-semantics.md
 ```
 
 ## Имплементация

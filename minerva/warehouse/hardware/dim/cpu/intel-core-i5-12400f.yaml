@@ -1,0 +1,50 @@
+dimension:
+  id: intel-core-i5-12400f
+  type: cpu
+  canonical_name: Intel Core i5-12400F (Alder Lake)
+  aliases:
+  - Intel Core i5-12400F
+  scd_type: 0
+attributes:
+  vendor: intel
+  family: Core i5
+  generation: 1200
+  architecture: intel-alder-lake
+  socket: lga-1700
+  lithography: Intel 7 (10nm Enhanced SuperFin)
+  compute:
+    p_cores: 6
+    e_cores: 0
+    total_cores: 6
+    threads: 12
+    p_core_base_clock_mhz: 2500
+    p_core_boost_clock_mhz: 4400
+    simultaneous_multithreading: true
+  cache:
+    l3_kb: 18432
+    l3_type: standard
+  memory:
+    type: DDR5
+    channels: 2
+    ecc_support: false
+  pcie:
+    version: 5.0 / 4.0
+  graphics:
+    integrated: ''
+  power:
+    tdp_w: 65
+    turbo_power_w: 117
+    tjmax_c: 100
+  release:
+    msrp_usd: 167
+  platform:
+    overclocking:
+      cpu_ratio: false
+      memory: true
+meta:
+  source_url: pc_hardware_knowledge_base://intel-core-i5-12400f.md
+  source_title: 'KB entry: Intel Core i5-12400F (Alder Lake)'
+  confidence_basis: kb_entry
+  confidence: 0.9
+  observed_at: '2026-07-06'
+  observed_by: kb-etl
