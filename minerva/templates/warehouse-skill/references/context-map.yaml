@@ -1,0 +1,19 @@
+# Context Map — {domain_title}
+# АВТОГЕНЕРИРУЕМЫЙ индекс склада.
+# Перегенерировать: capability compile-context-map.
+# Вручную не редактировать.
+
+context_map:
+  warehouse: {domain}
+  generated: null
+  dimensions: {}
+  observations:
+    total: 0
+  marts:
+    laws:
+      count: 0
+      items: []
+    patterns:
+      count: 0
+      items: []
+  capabilities: []

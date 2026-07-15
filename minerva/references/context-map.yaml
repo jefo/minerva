@@ -1,0 +1,1197 @@
+context_map:
+  warehouse: hardware
+  generated: '2026-07-15T18:30:17Z'
+  dimensions:
+    architecture:
+      count: 6
+      entities:
+      - id: amd-zen-3
+        canonical_name: AMD Zen 3
+        vendor: amd
+      - id: amd-zen-4
+        canonical_name: AMD Zen 4
+        vendor: amd
+      - id: amd-zen-5
+        canonical_name: AMD Zen 5
+        vendor: amd
+      - id: intel-alder-lake
+        canonical_name: Intel Alder Lake (12th Gen)
+        vendor: intel
+      - id: intel-arrow-lake
+        canonical_name: Intel Arrow Lake (Core Ultra 200)
+        vendor: intel
+      - id: intel-raptor-lake
+        canonical_name: Intel Raptor Lake (13th/14th Gen)
+        vendor: intel
+    benchmark_scenario:
+      count: 6
+      entities:
+      - id: 1080p-low
+        canonical_name: 1080p Low — CPU-bound Gaming
+      - id: 1440p-ultra
+        canonical_name: 1440p Ultra — Mixed-bound Gaming
+      - id: 720p-low
+        canonical_name: 720p Low — Extreme CPU-bound Gaming
+      - id: productivity
+        canonical_name: Productivity
+      - id: synthetic-1t
+        canonical_name: Synthetic Single-Thread
+      - id: synthetic-mt
+        canonical_name: Synthetic Multi-Thread
+    chipset:
+      count: 3
+      entities:
+      - id: amd-b650
+        canonical_name: AMD B650
+      - id: intel-z790
+        canonical_name: Intel Z790
+      - id: intel-z890
+        canonical_name: Intel Z890
+    cpu:
+      count: 28
+      entities:
+      - id: amd-ryzen-5-5600
+        canonical_name: AMD Ryzen 5 5600
+        vendor: amd
+        architecture: amd-zen-3
+        socket: am4
+        cores: 6
+      - id: amd-ryzen-5-7500f
+        canonical_name: AMD Ryzen 5 7500F (OEM)
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 6
+      - id: amd-ryzen-5-7600
+        canonical_name: AMD Ryzen 5 7600 (65W, BOX)
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 6
+      - id: amd-ryzen-5-7600x
+        canonical_name: AMD Ryzen 5 7600X
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 6
+      - id: amd-ryzen-5-9600x
+        canonical_name: AMD Ryzen 5 9600X (Zen 5, 65W)
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 6
+      - id: amd-ryzen-7-5700x3d
+        canonical_name: AMD Ryzen 7 5700X3D
+        vendor: amd
+        architecture: amd-zen-3
+        socket: am4
+        cores: 8
+      - id: amd-ryzen-7-7700
+        canonical_name: AMD Ryzen 7 7700 (65W)
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 8
+      - id: amd-ryzen-7-7700x
+        canonical_name: AMD Ryzen 7 7700X (105W)
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 8
+      - id: amd-ryzen-7-7800x3d
+        canonical_name: AMD Ryzen 7 7800X3D
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 8
+      - id: amd-ryzen-7-9700x
+        canonical_name: AMD Ryzen 7 9700X (Zen 5, 65W)
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 8
+      - id: amd-ryzen-7-9800x3d
+        canonical_name: AMD Ryzen 7 9800X3D
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 8
+      - id: amd-ryzen-9-7900
+        canonical_name: AMD Ryzen 9 7900 (65W) — 12 ЯДЕР, 65W
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 12
+      - id: amd-ryzen-9-7950x
+        canonical_name: AMD Ryzen 9 7950X (170W) — ФЛАГМАН AM5
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 16
+      - id: amd-ryzen-9-7950x3d
+        canonical_name: AMD Ryzen 9 7950X3D
+        vendor: amd
+        architecture: amd-zen-4
+        socket: am5
+        cores: 16
+      - id: amd-ryzen-9-9900x
+        canonical_name: AMD Ryzen 9 9900X (Zen 5, 120W) — 12-ядерный dual-CCD
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 12
+      - id: amd-ryzen-9-9950x
+        canonical_name: AMD Ryzen 9 9950X (170W) — Zen 5 флагман, 16 ядер
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 16
+      - id: amd-ryzen-9-9950x3d
+        canonical_name: AMD Ryzen 9 9950X3D
+        vendor: amd
+        architecture: amd-zen-5
+        socket: am5
+        cores: 16
+      - id: intel-core-i3-12100f
+        canonical_name: Intel Core i3-12100F (Alder Lake)
+        vendor: intel
+        architecture: intel-alder-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-i5-12400f
+        canonical_name: Intel Core i5-12400F (Alder Lake)
+        vendor: intel
+        architecture: intel-alder-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-i5-13400f
+        canonical_name: Intel Core i5-13400F
+        vendor: intel
+        architecture: intel-raptor-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-i5-14600k
+        canonical_name: Intel Core i5-14600K (Raptor Lake Refresh)
+        vendor: intel
+        architecture: intel-raptor-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-i7-14700k
+        canonical_name: Intel Core i7-14700K (253W) — 20 ЯДЕР, RAPTOR LAKE REFRESH
+        vendor: intel
+        architecture: intel-raptor-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-i9-14900k
+        canonical_name: Intel Core i9-14900K
+        vendor: intel
+        architecture: intel-raptor-lake
+        socket: lga-1700
+        cores: ''
+      - id: intel-core-ultra-5-225f
+        canonical_name: Intel Core Ultra 5 225F (65W)
+        vendor: intel
+        architecture: intel-arrow-lake
+        socket: lga-1851
+        cores: ''
+      - id: intel-core-ultra-5-245k
+        canonical_name: Intel Core Ultra 5 245K
+        vendor: intel
+        architecture: intel-arrow-lake
+        socket: lga-1851
+        cores: ''
+      - id: intel-core-ultra-7-265f
+        canonical_name: Intel Core Ultra 7 265F (65W)
+        vendor: intel
+        architecture: intel-arrow-lake
+        socket: lga-1851
+        cores: ''
+      - id: intel-core-ultra-7-265k
+        canonical_name: Intel Core Ultra 7 265K (125W)
+        vendor: intel
+        architecture: intel-arrow-lake
+        socket: lga-1851
+        cores: ''
+      - id: intel-core-ultra-9-285k
+        canonical_name: Intel Core Ultra 9 285K (125W)
+        vendor: intel
+        architecture: intel-arrow-lake
+        socket: lga-1851
+        cores: ''
+    driver_version:
+      count: 5
+      entities:
+      - id: 2026-q2
+        canonical_name: 2026-Q2 (generic)
+      - id: amd-adrenalin-25.6.1
+        canonical_name: AMD Adrenalin 25.6.1
+      - id: nvidia-geforce-546.33
+        canonical_name: NVIDIA GeForce Game Ready Driver 546.33
+      - id: nvidia-geforce-572.16
+        canonical_name: NVIDIA GeForce Game Ready Driver 572.16
+      - id: nvidia-geforce-572.16_v2026-03
+        canonical_name: ''
+    game_title:
+      count: 71
+      entities:
+      - id: 007-first-light
+        canonical_name: '007: First Light'
+        genre: stealth-action
+      - id: a-plague-tale-requiem
+        canonical_name: 'A Plague Tale: Requiem'
+        genre: action-adventure
+      - id: alan-wake-2
+        canonical_name: Alan Wake 2
+        genre: survival-horror
+      - id: apex-legends
+        canonical_name: Apex Legends
+        genre: battle-royale
+      - id: assassins-creed-black-flag-resynced
+        canonical_name: Assassin's Creed Black Flag Resynced
+        genre: action-adventure
+      - id: assassins-creed-mirage
+        canonical_name: Assassin's Creed Mirage
+        genre: action-adventure
+      - id: assassins-creed-shadows
+        canonical_name: Assassin's Creed Shadows
+        genre: action-rpg
+      - id: baldurs-gate-3
+        canonical_name: Baldur's Gate 3
+        genre: rpg
+      - id: banishers-ghosts-of-new-eden
+        canonical_name: 'Banishers: Ghosts of New Eden'
+        genre: action-rpg
+      - id: battlefield-2042
+        canonical_name: Battlefield 2042
+        genre: fps
+      - id: battlefield-6
+        canonical_name: Battlefield 6
+        genre: fps
+      - id: black-myth-wukong
+        canonical_name: 'Black Myth: Wukong'
+        genre: action-rpg
+      - id: call-of-duty-black-ops-6
+        canonical_name: 'Call of Duty: Black Ops 6'
+        genre: fps
+      - id: call-of-duty-warzone
+        canonical_name: 'Call of Duty: Warzone'
+        genre: battle-royale
+      - id: clair-obscur-expedition-33
+        canonical_name: 'Clair Obscur: Expedition 33'
+        genre: rpg
+      - id: counter-strike-2
+        canonical_name: Counter-Strike 2
+        genre: competitive-fps
+      - id: crimson-desert
+        canonical_name: Crimson Desert
+        genre: action-rpg
+      - id: cyberpunk-2077
+        canonical_name: Cyberpunk 2077
+        genre: action-rpg
+      - id: days-gone
+        canonical_name: Days Gone
+        genre: open-world
+      - id: deadlock
+        canonical_name: Deadlock
+        genre: moba-shooter
+      - id: death-stranding-2-on-the-beach
+        canonical_name: Death Stranding 2 On The Beach
+        genre: action-adventure
+      - id: delta-force
+        canonical_name: Delta Force
+        genre: fps
+      - id: desordre
+        canonical_name: Desordre
+        genre: puzzle-action
+      - id: doom-the-dark-ages
+        canonical_name: 'DOOM: The Dark Ages'
+        genre: fps
+      - id: dying-light-the-beast
+        canonical_name: 'Dying Light: The Beast'
+        genre: action-horror
+      - id: fortnite
+        canonical_name: Fortnite
+        genre: battle-royale
+      - id: forza-horizon-5
+        canonical_name: Forza Horizon 5
+        genre: racing
+      - id: forza-horizon-6
+        canonical_name: Forza Horizon 6
+        genre: racing
+      - id: ghost-of-tsushima
+        canonical_name: Ghost of Tsushima
+        genre: action-adventure
+      - id: god-of-war-2018
+        canonical_name: God of War (2018)
+        genre: action-adventure
+      - id: god-of-war-ragnarok
+        canonical_name: 'God of War: Ragnarök'
+        genre: action-adventure
+      - id: grounded
+        canonical_name: Grounded
+        genre: survival
+      - id: gta-v-enhanced
+        canonical_name: Grand Theft Auto V Enhanced
+        genre: open-world
+      - id: gta-v
+        canonical_name: Grand Theft Auto V
+        genre: open-world
+      - id: hell-is-us
+        canonical_name: Hell is Us
+        genre: action-adventure
+      - id: helldivers-2
+        canonical_name: Helldivers 2
+        genre: coop-shooter
+      - id: hogwarts-legacy
+        canonical_name: Hogwarts Legacy
+        genre: action-rpg
+      - id: horizon-forbidden-west
+        canonical_name: Horizon Forbidden West
+        genre: action-rpg
+      - id: hunt-showdown
+        canonical_name: 'Hunt: Showdown 1896'
+        genre: extraction-shooter
+      - id: indiana-jones-and-the-great-circle
+        canonical_name: Indiana Jones and the Great Circle
+        genre: action-adventure
+      - id: kingdom-come-deliverance-2
+        canonical_name: 'Kingdom Come: Deliverance II'
+        genre: action-rpg
+      - id: kingdom-come-deliverance
+        canonical_name: 'Kingdom Come: Deliverance'
+        genre: rpg
+      - id: lies-of-p
+        canonical_name: Lies of P
+        genre: soulslike
+      - id: mafia-the-old-country
+        canonical_name: 'Mafia: The Old Country'
+        genre: action-adventure
+      - id: marvel-rivals
+        canonical_name: Marvel Rivals
+        genre: hero-shooter
+      - id: microsoft-flight-simulator-2024
+        canonical_name: Microsoft Flight Simulator 2024
+        genre: simulation
+      - id: minecraft
+        canonical_name: Minecraft
+        genre: sandbox
+      - id: monster-hunter-wilds
+        canonical_name: Monster Hunter Wilds
+        genre: action-rpg
+      - id: need-for-speed-unbound
+        canonical_name: Need for Speed Unbound
+        genre: racing
+      - id: palworld
+        canonical_name: Palworld
+        genre: survival
+      - id: path-of-exile-2
+        canonical_name: Path of Exile 2
+        genre: arpg
+      - id: pragmata
+        canonical_name: Pragmata
+        genre: action-adventure
+      - id: red-dead-redemption-2
+        canonical_name: Red Dead Redemption 2
+        genre: action-adventure
+      - id: resident-evil-4-remake
+        canonical_name: Resident Evil 4 (Remake)
+        genre: action-horror
+      - id: resident-evil-requiem
+        canonical_name: Resident Evil Requiem
+        genre: action-horror
+      - id: senuas-saga-hellblade-2
+        canonical_name: 'Senua''s Saga: Hellblade 2'
+        genre: action-adventure
+      - id: silent-hill-2-remake
+        canonical_name: Silent Hill 2 Remake
+        genre: horror
+      - id: silent-hill-f
+        canonical_name: Silent Hill f
+        genre: survival-horror
+      - id: sons-of-the-forest
+        canonical_name: Sons of the Forest
+        genre: survival-horror
+      - id: space-marine-2
+        canonical_name: 'Warhammer 40K: Space Marine 2'
+        genre: action-tps
+      - id: stalker-2-heart-of-chornobyl
+        canonical_name: 'S.T.A.L.K.E.R. 2: Heart of Chornobyl'
+        genre: fps-survival
+      - id: star-wars-outlaws
+        canonical_name: 'Star Wars: Outlaws'
+        genre: open-world
+      - id: starfield
+        canonical_name: Starfield
+        genre: rpg
+      - id: stellar-blade
+        canonical_name: Stellar Blade
+        genre: action
+      - id: the-elder-scrolls-iv-oblivion
+        canonical_name: 'The Elder Scrolls IV: Oblivion'
+        genre: rpg
+      - id: the-elder-scrolls-v-skyrim
+        canonical_name: 'The Elder Scrolls V: Skyrim'
+        genre: rpg
+      - id: the-finals
+        canonical_name: The Finals
+        genre: competitive-fps
+      - id: the-first-berserker-khazan
+        canonical_name: 'The First Berserker: Khazan'
+        genre: action-rpg
+      - id: the-last-of-us-part-2
+        canonical_name: The Last of Us Part II Remastered
+        genre: action-adventure
+      - id: the-last-of-us-part-i
+        canonical_name: The Last of Us Part I
+        genre: action-adventure
+      - id: witchfire
+        canonical_name: Witchfire
+        genre: fps-roguelite
+    gpu:
+      count: 10
+      entities:
+      - id: amd-rx-9060-xt
+        canonical_name: AMD Radeon RX 9060 XT 16GB
+        vendor: amd
+        architecture: RDNA 4
+        vram: 16GB GDDR6
+      - id: intel-arc-b580
+        canonical_name: Intel Arc B580 12GB
+        vendor: intel
+        architecture: Xe2-HPG (Battlemage)
+        vram: 12GB GDDR6
+      - id: nvidia-rtx-4060-ti-8gb
+        canonical_name: NVIDIA GeForce RTX 4060 Ti 8GB
+        vendor: nvidia
+        architecture: Ada Lovelace
+        vram: 8GB GDDR6
+      - id: nvidia-rtx-4060
+        canonical_name: NVIDIA GeForce RTX 4060 8GB
+        vendor: nvidia
+        architecture: Ada Lovelace
+        vram: 8GB GDDR6
+      - id: nvidia-rtx-4070-super
+        canonical_name: NVIDIA GeForce RTX 4070 Super
+        vendor: nvidia
+        architecture: Ada Lovelace
+        vram: 12GB GDDR6X
+      - id: nvidia-rtx-4070-ti-super
+        canonical_name: NVIDIA GeForce RTX 4070 Ti Super
+        vendor: nvidia
+        architecture: Ada Lovelace
+        vram: 16GB GDDR6X
+      - id: nvidia-rtx-4070-ti
+        canonical_name: NVIDIA GeForce RTX 4070 Ti
+        vendor: nvidia
+        architecture: Ada Lovelace
+        vram: 12GB GDDR6X
+      - id: nvidia-rtx-5050
+        canonical_name: NVIDIA GeForce RTX 5050
+        vendor: nvidia
+        architecture: Blackwell
+        vram: 8GB GDDR7
+      - id: nvidia-rtx-5060-ti
+        canonical_name: NVIDIA GeForce RTX 5060 Ti 16GB
+        vendor: nvidia
+        architecture: Blackwell
+        vram: 16GB GDDR7
+      - id: nvidia-rtx-5060
+        canonical_name: NVIDIA GeForce RTX 5060 8GB
+        vendor: nvidia
+        architecture: Blackwell
+        vram: 8GB GDDR7
+    graphics_preset:
+      count: 11
+      entities:
+      - id: balanced
+        canonical_name: Balanced
+      - id: epic
+        canonical_name: Epic
+      - id: extreme
+        canonical_name: Extreme
+      - id: high
+        canonical_name: High
+      - id: low
+        canonical_name: Low
+      - id: max
+        canonical_name: Max
+      - id: medium
+        canonical_name: Medium
+      - id: optimized
+        canonical_name: Optimized
+      - id: ultra-nightmare
+        canonical_name: Ultra Nightmare
+      - id: ultra
+        canonical_name: Ultra
+      - id: very-high
+        canonical_name: Very High
+    resolution:
+      count: 4
+      entities:
+      - id: 1080p
+        canonical_name: 1920×1080 (1080p)
+      - id: 1440p
+        canonical_name: 2560×1440 (1440p)
+      - id: 4k
+        canonical_name: 3840×2160 (4K UHD)
+      - id: 720p
+        canonical_name: 1280×720 (720p)
+    socket:
+      count: 4
+      entities:
+      - id: am4
+        canonical_name: Socket AM4 (PGA 1331)
+      - id: am5
+        canonical_name: Socket AM5 (LGA 1718)
+      - id: lga-1700
+        canonical_name: LGA 1700
+      - id: lga-1851
+        canonical_name: LGA 1851
+  observations:
+    total: 759
+    games_covered:
+    - '007: First Light'
+    - 'A Plague Tale: Requiem'
+    - Alan Wake 2
+    - Alan Wake II
+    - Apex Legends
+    - Assassin's Creed Black Flag Resynced
+    - Assassin's Creed Mirage
+    - Assassin's Creed Shadows
+    - Assassins Creed Shadows
+    - Baldur's Gate 3
+    - Baldurs Gate 3
+    - 'Banishers: Ghosts of New Eden'
+    - Battlefield 2042
+    - Battlefield 6
+    - 'Black Myth: Wukong'
+    - 'CO: Expedition 33'
+    - 'COD: Black Ops 6 MP'
+    - 'COD: Black Ops 6 SP'
+    - 'COD: Warzone'
+    - 'Call of Duty: Black Ops 6'
+    - 'Clair Obscur: Expedition 33'
+    - Counter Strike 2
+    - Counter-Strike 2
+    - Crimson Desert
+    - Cyberpunk 2077
+    - 'Cyberpunk 2077: Phantom Liberty'
+    - 'DOOM: The Dark Ages'
+    - Days Gone
+    - Deadlock
+    - Death Stranding 2 On The Beach
+    - Delta Force
+    - Desordre
+    - 'Doom: The Dark Ages'
+    - 'Dying Light: The Beast'
+    - Fortnite
+    - Forza Horizon 5
+    - Forza Horizon 6
+    - GTA V
+    - 'GTA V Enhanced: Online'
+    - Ghost of Tsushima
+    - God of War
+    - God of War Ragnarok
+    - God of War Ragnarök
+    - 'God of War: Ragnarök'
+    - Grounded
+    - Hell is Us
+    - Helldivers 2
+    - Hogwarts Legacy
+    - Horizon Forbidden West
+    - 'Hunt: Showdown 1896'
+    - Indiana Jones and the Great Circle
+    - 'Kingdom Come: Deliverance'
+    - 'Kingdom Come: Deliverance 2'
+    - 'Kingdom Come: Deliverance II'
+    - Lies of P
+    - 'MS: Flight Simulator 24'
+    - 'Mafia: The Old Country'
+    - Marvel Rivals
+    - Microsoft Flight Simulator 2024
+    - Minecraft
+    - Monster Hunter Wilds
+    - Need for Speed Unbound
+    - 'Need for Speed: Unbound'
+    - Palworld
+    - Path of Exile 2
+    - Pragmata
+    - Pragmata Deluxe Edition
+    - Red Dead Redemption 2
+    - Resident Evil 4
+    - Resident Evil 4 Remake
+    - Resident Evil Requiem
+    - 'Resident Evil: Requiem'
+    - S.T.A.L.K.E.R. 2
+    - 'S.T.A.L.K.E.R. 2: Heart of Chornobyl'
+    - 'Senua''s Saga: Hellblade 2'
+    - 'Senua''s Saga: Hellblade II'
+    - Silent Hill 2
+    - Silent Hill 2 Remake
+    - Silent Hill f
+    - Sons of the Forest
+    - 'Star Wars: Outlaws'
+    - Starfield
+    - Stellar Blade
+    - 'The Elder Scrolls IV: Oblivion'
+    - 'The Elder Scrolls V: Skyrim'
+    - The Finals
+    - 'The First Berserker: Khazan'
+    - The Last of Us Part 2
+    - The Last of Us Part I
+    - The Last of Us Part II
+    - The Last of Us Part II Remastered
+    - 'Warhammer 40,000: Space Marine 2'
+    - 'Warhammer 40K: Space Marine 2'
+    - Witchfire
+    resolutions:
+    - 1080p
+    - 1440p
+    - 4K
+    - 720p
+    - n/a
+    graphics_presets:
+    - Balanced
+    - Epic
+    - Extreme
+    - High
+    - Low
+    - Max
+    - Medium
+    - Optimized
+    - Ultra
+    - Ultra Nightmare
+    - Very High
+    - n/a
+    component_count: 68
+    components:
+    - Arc B580
+    - Core I3 12100F
+    - Core I5 12400F
+    - Core I5 13400F
+    - Core I5 14600K
+    - Core I7 14700K
+    - Core I9 14900K
+    - Core Ultra 5 225F
+    - Core Ultra 5 245K
+    - Core Ultra 7 265F
+    - Core Ultra 7 265K
+    - Core Ultra 9 285K
+    - RTX 4060
+    - RTX 4060 Ti 8GB
+    - RTX 4070 Super
+    - RTX 4070 Ti
+    - RTX 4070 Ti Super
+    - RTX 5050
+    - RTX 5060
+    - RTX 5060 Ti
+    - RTX 5060 Ti 16GB
+    - RX 9060 XT
+    - RX 9060 XT 16GB
+    - Ryzen 5 5600
+    - Ryzen 5 7500F
+    - Ryzen 5 7600
+    - Ryzen 5 7600X
+    - Ryzen 5 9600X
+    - Ryzen 7 5700X3D
+    - Ryzen 7 7700
+    - Ryzen 7 7700X
+    - Ryzen 7 7800X3D
+    - Ryzen 7 9700X
+    - Ryzen 7 9800X3D
+    - Ryzen 9 7900
+    - Ryzen 9 7950X
+    - Ryzen 9 7950X3D
+    - Ryzen 9 9900X
+    - Ryzen 9 9950X
+    - Ryzen 9 9950X3D
+    - amd-ryzen-5-5600
+    - amd-ryzen-5-7500f
+    - amd-ryzen-5-7600
+    - amd-ryzen-5-7600x
+    - amd-ryzen-5-9600x
+    - amd-ryzen-7-5700x3d
+    - amd-ryzen-7-7700
+    - amd-ryzen-7-7700x
+    - amd-ryzen-7-7800x3d
+    - amd-ryzen-7-9700x
+    - amd-ryzen-7-9800x3d
+    - amd-ryzen-9-7900
+    - amd-ryzen-9-7950x
+    - amd-ryzen-9-7950x3d
+    - amd-ryzen-9-9900x
+    - amd-ryzen-9-9950x
+    - amd-ryzen-9-9950x3d
+    - intel-core-i3-12100f
+    - intel-core-i5-12400f
+    - intel-core-i5-13400f
+    - intel-core-i5-14600k
+    - intel-core-i7-14700k
+    - intel-core-i9-14900k
+    - intel-core-ultra-5-225f
+    - intel-core-ultra-5-245k
+    - intel-core-ultra-7-265f
+    - intel-core-ultra-7-265k
+    - intel-core-ultra-9-285k
+    by_component:
+      Arc B580:
+        count: 45
+        sample_ids:
+        - arc-b580-assassin's-creed-black-flag-resynced-1440p-telemetry
+        - arc-b580-battlefield-6-1440p-fg2x2x
+        - arc-b580-battlefield-6-1440p-fg3x3x
+        - arc-b580-battlefield-6-1440p-fg4x4x
+        - arc-b580-battlefield-6-1440p-fgoff
+      Core I3 12100F:
+        count: 2
+        sample_ids:
+        - intel-core-i3-12100f-synthetic-1t-cinebench-r23
+        - intel-core-i3-12100f-synthetic-mt-cinebench-r23
+      Core I5 12400F:
+        count: 2
+        sample_ids:
+        - intel-core-i5-12400f-synthetic-1t-cinebench-r23
+        - intel-core-i5-12400f-synthetic-mt-cinebench-r23
+      Core I5 13400F:
+        count: 2
+        sample_ids:
+        - intel-core-i5-13400f-synthetic-1t-cinebench-r23
+        - intel-core-i5-13400f-synthetic-mt-cinebench-r23
+      Core I5 14600K:
+        count: 2
+        sample_ids:
+        - intel-core-i5-14600k-synthetic-1t-cinebench-r23
+        - intel-core-i5-14600k-synthetic-mt-cinebench-r23
+      Core I7 14700K:
+        count: 2
+        sample_ids:
+        - intel-core-i7-14700k-synthetic-1t-cinebench-r23
+        - intel-core-i7-14700k-synthetic-mt-cinebench-r23
+      Core I9 14900K:
+        count: 2
+        sample_ids:
+        - intel-core-i9-14900k-synthetic-1t-cinebench-r23
+        - intel-core-i9-14900k-synthetic-mt-cinebench-r23
+      Core Ultra 5 225F:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-5-225f-synthetic-1t-cinebench-r23
+        - intel-core-ultra-5-225f-synthetic-mt-cinebench-r23
+      Core Ultra 5 245K:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-5-245k-synthetic-1t-cinebench-r23
+        - intel-core-ultra-5-245k-synthetic-mt-cinebench-r23
+      Core Ultra 7 265F:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-7-265f-synthetic-1t-cinebench-r23
+        - intel-core-ultra-7-265f-synthetic-mt-cinebench-r23
+      Core Ultra 7 265K:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-7-265k-synthetic-1t-cinebench-r23
+        - intel-core-ultra-7-265k-synthetic-mt-cinebench-r23
+      Core Ultra 9 285K:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-9-285k-synthetic-1t-cinebench-r23
+        - intel-core-ultra-9-285k-synthetic-mt-cinebench-r23
+      RTX 4060:
+        count: 56
+        sample_ids:
+        - rtx-4060-alan-wake-2-1080p-high-dlss-q-fg
+        - rtx-4060-alan-wake-2-1080p-high-native
+        - rtx-4060-alan-wake-2-1440p-high-dlss-q-fg
+        - rtx-4060-alan-wake-2-1440p-high-native
+        - rtx-4060-assassins-creed-mirage-1080p-very-high-dlss-q
+      RTX 4060 Ti 8GB:
+        count: 5
+        sample_ids:
+        - rtx-4060-ti-8gb-baldurs-gate-3-1440p-ultra-native
+        - rtx-4060-ti-8gb-counter-strike-2-1440p-ultra-native
+        - rtx-4060-ti-8gb-cyberpunk-2077-1440p-ultra-native
+        - rtx-4060-ti-8gb-hogwarts-legacy-1440p-ultra-native
+        - rtx-4060-ti-8gb-starfield-1440p-ultra-native
+      RTX 4070 Super:
+        count: 5
+        sample_ids:
+        - rtx-4070-super-baldurs-gate-3-1440p-ultra-native
+        - rtx-4070-super-counter-strike-2-1440p-ultra-native
+        - rtx-4070-super-cyberpunk-2077-1440p-ultra-native
+        - rtx-4070-super-hogwarts-legacy-1440p-ultra-native
+        - rtx-4070-super-starfield-1440p-ultra-native
+      RTX 4070 Ti:
+        count: 5
+        sample_ids:
+        - rtx-4070-ti-baldurs-gate-3-1440p-ultra-native
+        - rtx-4070-ti-counter-strike-2-1440p-ultra-native
+        - rtx-4070-ti-cyberpunk-2077-1440p-ultra-native
+        - rtx-4070-ti-hogwarts-legacy-1440p-ultra-native
+        - rtx-4070-ti-starfield-1440p-ultra-native
+      RTX 4070 Ti Super:
+        count: 8
+        sample_ids:
+        - rtx-4070-ti-super-baldurs-gate-3-1440p-ultra-native
+        - rtx-4070-ti-super-counter-strike-2-1440p-ultra-native
+        - rtx-4070-ti-super-cyberpunk-2077-1440p-ultra-dlss-q
+        - rtx-4070-ti-super-cyberpunk-2077-1440p-ultra-native
+        - rtx-4070-ti-super-hogwarts-legacy-1440p-ultra-dlss-q
+      RTX 5050:
+        count: 7
+        sample_ids:
+        - rtx-5050-black-myth-wukong-1440p-upscaled
+        - rtx-5050-cyberpunk-2077-1440p-upscaled
+        - rtx-5050-forza-horizon-5-1440p-upscaled
+        - rtx-5050-ghost-of-tsushima-1440p-upscaled
+        - rtx-5050-hogwarts-legacy-1440p-upscaled
+      RTX 5060:
+        count: 101
+        sample_ids:
+        - rtx-5060-007-first-light-1080p-high-dlss4-q-mfg2x
+        - rtx-5060-007-first-light-1080p-high-dlss4-q-mfg4x
+        - rtx-5060-007-first-light-1080p-high-dlss4-q-mfg6x
+        - rtx-5060-007-first-light-1080p-high-dlss4-q
+        - rtx-5060-007-first-light-1080p-high-native
+      RTX 5060 Ti:
+        count: 14
+        sample_ids:
+        - rtx-5060-ti-assassins-creed-shadows-1080p-high
+        - rtx-5060-ti-crimson-desert-1080p-ultra
+        - rtx-5060-ti-cyberpunk-2077-1080p-ultra
+        - rtx-5060-ti-dying-light-the-beast-1080p-high
+        - rtx-5060-ti-forza-horizon-5-1080p-extreme
+      RTX 5060 Ti 16GB:
+        count: 61
+        sample_ids:
+        - rtx-5060-ti-007-first-light-1440p-optimized-dlss-b
+        - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg2x
+        - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg4x
+        - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg6x
+        - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q
+      RX 9060 XT:
+        count: 36
+        sample_ids:
+        - rx-9060-xt-assassin's-creed-black-flag-resynced-1440p-telemetry
+        - rx-9060-xt-assassins-creed-shadows-1080p-high
+        - rx-9060-xt-black-myth-wukong-1440p-upscaled
+        - rx-9060-xt-crimson-desert-1080p-ultra
+        - rx-9060-xt-cyberpunk-2077-1080p-ultra
+      RX 9060 XT 16GB:
+        count: 96
+        sample_ids:
+        - rx-9060-xt-a-plague-tale-requiem-1440p-ultra-native
+        - rx-9060-xt-alan-wake-2-1440p-max-fsr2-q
+        - rx-9060-xt-alan-wake-2-1440p-max-native
+        - rx-9060-xt-apex-legends-1440p-max-native
+        - rx-9060-xt-banishers-ghosts-of-new-eden-1440p-high-fsr-balanced
+      Ryzen 5 5600:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-5600-synthetic-1t-cinebench-r23
+        - amd-ryzen-5-5600-synthetic-mt-cinebench-r23
+      Ryzen 5 7500F:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-7500f-synthetic-1t-cinebench-r23
+        - amd-ryzen-5-7500f-synthetic-mt-cinebench-r23
+      Ryzen 5 7600:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-7600-synthetic-1t-cinebench-r23
+        - amd-ryzen-5-7600-synthetic-mt-cinebench-r23
+      Ryzen 5 7600X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-7600x-synthetic-1t-cinebench-r23
+        - amd-ryzen-5-7600x-synthetic-mt-cinebench-r23
+      Ryzen 5 9600X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-9600x-synthetic-1t-cinebench-r23
+        - amd-ryzen-5-9600x-synthetic-mt-cinebench-r23
+      Ryzen 7 5700X3D:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-5700x3d-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-5700x3d-synthetic-mt-cinebench-r23
+      Ryzen 7 7700:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-7700-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-7700-synthetic-mt-cinebench-r23
+      Ryzen 7 7700X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-7700x-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-7700x-synthetic-mt-cinebench-r23
+      Ryzen 7 7800X3D:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-7800x3d-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-7800x3d-synthetic-mt-cinebench-r23
+      Ryzen 7 9700X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-9700x-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-9700x-synthetic-mt-cinebench-r23
+      Ryzen 7 9800X3D:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-9800x3d-synthetic-1t-cinebench-r23
+        - amd-ryzen-7-9800x3d-synthetic-mt-cinebench-r23
+      Ryzen 9 7900:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-7900-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-7900-synthetic-mt-cinebench-r23
+      Ryzen 9 7950X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-7950x-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-7950x-synthetic-mt-cinebench-r23
+      Ryzen 9 7950X3D:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-7950x3d-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-7950x3d-synthetic-mt-cinebench-r23
+      Ryzen 9 9900X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-9900x-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-9900x-synthetic-mt-cinebench-r23
+      Ryzen 9 9950X:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-9950x-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-9950x-synthetic-mt-cinebench-r23
+      Ryzen 9 9950X3D:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-9950x3d-synthetic-1t-cinebench-r23
+        - amd-ryzen-9-9950x3d-synthetic-mt-cinebench-r23
+      amd-ryzen-5-5600:
+        count: 17
+        sample_ids:
+        - amd-ryzen-5-5600-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-5-5600-1080p-low-counter-strike-2-native
+        - amd-ryzen-5-5600-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-5-5600-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-5-5600-1080p-low-starfield-native
+      amd-ryzen-5-7500f:
+        count: 18
+        sample_ids:
+        - amd-ryzen-5-7500f-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-5-7500f-1080p-low-counter-strike-2-native
+        - amd-ryzen-5-7500f-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-5-7500f-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-5-7500f-1080p-low-starfield-native
+      amd-ryzen-5-7600:
+        count: 2
+        sample_ids:
+        - amd-ryzen-5-7600-synthetic-1t-geekbench6
+        - amd-ryzen-5-7600-synthetic-mt-geekbench6
+      amd-ryzen-5-7600x:
+        count: 17
+        sample_ids:
+        - amd-ryzen-5-7600x-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-5-7600x-1080p-low-counter-strike-2-native
+        - amd-ryzen-5-7600x-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-5-7600x-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-5-7600x-1080p-low-starfield-native
+      amd-ryzen-5-9600x:
+        count: 20
+        sample_ids:
+        - amd-ryzen-5-9600x-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-5-9600x-1080p-low-counter-strike-2-native
+        - amd-ryzen-5-9600x-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-5-9600x-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-5-9600x-1080p-low-starfield-native
+      amd-ryzen-7-5700x3d:
+        count: 18
+        sample_ids:
+        - amd-ryzen-7-5700x3d-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-7-5700x3d-1080p-low-counter-strike-2-native
+        - amd-ryzen-7-5700x3d-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-7-5700x3d-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-7-5700x3d-1080p-low-starfield-native
+      amd-ryzen-7-7700:
+        count: 20
+        sample_ids:
+        - amd-ryzen-7-7700-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-7-7700-1080p-low-counter-strike-2-native
+        - amd-ryzen-7-7700-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-7-7700-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-7-7700-1080p-low-starfield-native
+      amd-ryzen-7-7700x:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-7700x-synthetic-1t-geekbench6
+        - amd-ryzen-7-7700x-synthetic-mt-geekbench6
+      amd-ryzen-7-7800x3d:
+        count: 20
+        sample_ids:
+        - amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native
+        - amd-ryzen-7-7800x3d-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-7-7800x3d-1080p-low-starfield-native
+      amd-ryzen-7-9700x:
+        count: 2
+        sample_ids:
+        - amd-ryzen-7-9700x-synthetic-1t-geekbench6
+        - amd-ryzen-7-9700x-synthetic-mt-geekbench6
+      amd-ryzen-7-9800x3d:
+        count: 20
+        sample_ids:
+        - amd-ryzen-7-9800x3d-1080p-low-baldurs-gate-3-native
+        - amd-ryzen-7-9800x3d-1080p-low-counter-strike-2-native
+        - amd-ryzen-7-9800x3d-1080p-low-cyberpunk-2077-native
+        - amd-ryzen-7-9800x3d-1080p-low-hogwarts-legacy-native
+        - amd-ryzen-7-9800x3d-1080p-low-starfield-native
+      amd-ryzen-9-7900:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-7900-synthetic-1t-geekbench6
+        - amd-ryzen-9-7900-synthetic-mt-geekbench6
+      amd-ryzen-9-7950x:
+        count: 5
+        sample_ids:
+        - amd-ryzen-9-7950x-productivity-7zip
+        - amd-ryzen-9-7950x-productivity-blender-classroom
+        - amd-ryzen-9-7950x-synthetic-1t-geekbench6
+        - amd-ryzen-9-7950x-synthetic-mt-geekbench6
+        - amd-ryzen-9-7950x-synthetic-mt-power-thermal
+      amd-ryzen-9-7950x3d:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-7950x3d-synthetic-1t-geekbench6
+        - amd-ryzen-9-7950x3d-synthetic-mt-geekbench6
+      amd-ryzen-9-9900x:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-9900x-synthetic-1t-geekbench6
+        - amd-ryzen-9-9900x-synthetic-mt-geekbench6
+      amd-ryzen-9-9950x:
+        count: 5
+        sample_ids:
+        - amd-ryzen-9-9950x-productivity-7zip
+        - amd-ryzen-9-9950x-productivity-blender-classroom
+        - amd-ryzen-9-9950x-synthetic-1t-geekbench6
+        - amd-ryzen-9-9950x-synthetic-mt-geekbench6
+        - amd-ryzen-9-9950x-synthetic-mt-power-thermal
+      amd-ryzen-9-9950x3d:
+        count: 2
+        sample_ids:
+        - amd-ryzen-9-9950x3d-synthetic-1t-geekbench6
+        - amd-ryzen-9-9950x3d-synthetic-mt-geekbench6
+      intel-core-i3-12100f:
+        count: 2
+        sample_ids:
+        - intel-core-i3-12100f-synthetic-1t-geekbench6
+        - intel-core-i3-12100f-synthetic-mt-geekbench6
+      intel-core-i5-12400f:
+        count: 17
+        sample_ids:
+        - intel-core-i5-12400f-1080p-low-baldurs-gate-3-native
+        - intel-core-i5-12400f-1080p-low-counter-strike-2-native
+        - intel-core-i5-12400f-1080p-low-cyberpunk-2077-native
+        - intel-core-i5-12400f-1080p-low-hogwarts-legacy-native
+        - intel-core-i5-12400f-1080p-low-starfield-native
+      intel-core-i5-13400f:
+        count: 17
+        sample_ids:
+        - intel-core-i5-13400f-1080p-low-baldurs-gate-3-native
+        - intel-core-i5-13400f-1080p-low-counter-strike-2-native
+        - intel-core-i5-13400f-1080p-low-cyberpunk-2077-native
+        - intel-core-i5-13400f-1080p-low-hogwarts-legacy-native
+        - intel-core-i5-13400f-1080p-low-starfield-native
+      intel-core-i5-14600k:
+        count: 18
+        sample_ids:
+        - intel-core-i5-14600k-1080p-low-baldurs-gate-3-native
+        - intel-core-i5-14600k-1080p-low-counter-strike-2-native
+        - intel-core-i5-14600k-1080p-low-cyberpunk-2077-native
+        - intel-core-i5-14600k-1080p-low-hogwarts-legacy-native
+        - intel-core-i5-14600k-1080p-low-starfield-native
+      intel-core-i7-14700k:
+        count: 5
+        sample_ids:
+        - intel-core-i7-14700k-productivity-7zip
+        - intel-core-i7-14700k-productivity-blender-classroom
+        - intel-core-i7-14700k-synthetic-1t-geekbench6
+        - intel-core-i7-14700k-synthetic-mt-geekbench6
+        - intel-core-i7-14700k-synthetic-mt-power-thermal
+      intel-core-i9-14900k:
+        count: 2
+        sample_ids:
+        - intel-core-i9-14900k-synthetic-1t-geekbench6
+        - intel-core-i9-14900k-synthetic-mt-geekbench6
+      intel-core-ultra-5-225f:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-5-225f-synthetic-1t-geekbench6
+        - intel-core-ultra-5-225f-synthetic-mt-geekbench6
+      intel-core-ultra-5-245k:
+        count: 18
+        sample_ids:
+        - intel-core-ultra-5-245k-1080p-low-baldurs-gate-3-native
+        - intel-core-ultra-5-245k-1080p-low-counter-strike-2-native
+        - intel-core-ultra-5-245k-1080p-low-cyberpunk-2077-native
+        - intel-core-ultra-5-245k-1080p-low-hogwarts-legacy-native
+        - intel-core-ultra-5-245k-1080p-low-starfield-native
+      intel-core-ultra-7-265f:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-7-265f-synthetic-1t-geekbench6
+        - intel-core-ultra-7-265f-synthetic-mt-geekbench6
+      intel-core-ultra-7-265k:
+        count: 5
+        sample_ids:
+        - intel-core-ultra-7-265k-productivity-7zip
+        - intel-core-ultra-7-265k-productivity-blender-classroom
+        - intel-core-ultra-7-265k-synthetic-1t-geekbench6
+        - intel-core-ultra-7-265k-synthetic-mt-geekbench6
+        - intel-core-ultra-7-265k-synthetic-mt-power-thermal
+      intel-core-ultra-9-285k:
+        count: 2
+        sample_ids:
+        - intel-core-ultra-9-285k-synthetic-1t-geekbench6
+        - intel-core-ultra-9-285k-synthetic-mt-geekbench6
+  marts:
+    laws:
+      count: 2
+      items:
+      - id: 3d-vcache-gaming-advantage-1080p
+        type: law
+        statement: 3D V-Cache даёт в среднем +14% FPS в 1080p Low по сравнению с non-X3D
+          аналогом того же поколения Zen 4. Преимущество максимально в играх чувствительных
+          к latency кэша, минимально в GPU-bound сценариях.
+        confidence: 0.75
+        confidence_basis: training_data
+        evidence_count: 10
+      - id: zen5-gaming-uplift-over-zen4-1080p
+        type: law
+        statement: 'Zen 5 (9800X3D) в среднем на 9% быстрее Zen 4 (7800X3D) в 1080p
+          Low. Прирост проявляется во всех играх неравномерно: в CPU-bound тайтлах
+          (CS2) — выше, в GPU-bound — ниже.'
+        confidence: 0.75
+        confidence_basis: training_data
+        evidence_count: 10
+    patterns:
+      count: 0
+      items: []
+  capabilities:
+  - analysis/comparison
+  - analysis/contradiction-detect
+  - analysis/impact-analysis
+  - analysis/lineage-trace
+  - analysis/pattern-promote
+  - analysis/stale-check
+  - warehouse/bus-lookup
+  - warehouse/compile-context-map
+  - warehouse/coverage-matrix
+  - warehouse/cross-reference
+  - warehouse/dim-read
+  - warehouse/fact-insert
+  - warehouse/fact-read

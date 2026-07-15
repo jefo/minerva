@@ -1,38 +1,46 @@
 ---
 name: minerva
-description: "Minerva Data Warehouse — agent-native, файловый DW по Kimball + AI-driven Research. Входная точка: bus matrix + capabilities. LLM ориентируется по fs как по графу."
+description: "Minerva — мета-скилл: фабрика Agent-Native Data Warehouse. Scaffolding DWH-skills, эталонные контракты, compile-context-map. Consumer начинает с context-map, а не с fs-структуры."
 contract:
-  in: "Любой вопрос о данных: сущности, замеры, сравнения, инженерные закономерности"
-  out: "Structured data через capabilities. Laws/Patterns — через analysis-возможности"
+  in: "Запрос на создание DWH для домена X или запрос данных из существующего DWH"
+  out: "Scaffolded DWH-skill или данные через context-map + capabilities"
 domains:
   - id: hardware
     bus_matrix: "warehouse/hardware/bus-matrix.yaml"
-    description: "PC-железо: GPU, CPU, игры, бенчмарки"
+    context_map: "references/context-map.yaml"
+    description: "PC-железо: GPU, CPU, игры, бенчмарки. 759 observation, 148 entities, 2 Laws."
 capabilities:
-  - id: "warehouse/dim-read"
-    contract: "Прочитать Dimension. in: domain, dim_type, dim_id → out: dimension_data"
-  - id: "warehouse/bus-lookup"
-    contract: "Резолвить source-значение в dim_id. in: domain, dim_type, alias → out: resolved_dim_id"
-  - id: "warehouse/cross-reference"
-    contract: "Все Facts для Dimension. in: domain, dim_type, dim_id → out: fact_set"
-  - id: "warehouse/fact-read"
-    contract: "Прочитать Fact с полным контекстом (dimensions + definitions). in: domain, fact_type, fact_id → out: fact_data"
-  - id: "warehouse/fact-insert"
-    contract: "Создать Fact. in: domain, fact_type, source, measures, meta → out: fact_id. Write. Единственная точка записи."
-  - id: "warehouse/coverage-matrix"
-    contract: "Матрица покрытия: GPU/CPU × игры × разрешения. in: domain, dim_type → out: coverage_matrix"
-  - id: "analysis/comparison"
-    contract: "Сравнить два Dimension по метрикам. in: domain, dim_type, dim_a, dim_b, metrics → out: comparison_table"
-  - id: "analysis/pattern-promote"
-    contract: "Сохранить обнаруженный Law/Pattern. in: domain, derived_type, statement, lineage_nodes, confidence → out: derived_ref. Write."
-  - id: "analysis/lineage-trace"
-    contract: "Проследить происхождение вывода. in: derived_id, direction(up|down) → out: lineage_tree"
-  - id: "analysis/impact-analysis"
-    contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
-  - id: "analysis/stale-check"
-    contract: "Найти устаревшие observation и затронутые Law. in: domain, fact_type → out: staleness_report"
-  - id: "analysis/contradiction-detect"
-    contract: "Найти observation с одинаковыми dims но разными значениями. in: domain, fact_type → out: contradiction_report"
+  scaffolding:
+    - id: "warehouse/scaffold-warehouse"
+      contract: "Создать новый DWH-skill из шаблона. in: domain, domain_title, description → out: skill warehouse-{domain}"
+  warehouse:
+    - id: "warehouse/dim-read"
+      contract: "Прочитать Dimension. in: domain, dim_type, dim_id → out: dimension_data"
+    - id: "warehouse/bus-lookup"
+      contract: "Резолвить source-значение в dim_id. in: domain, dim_type, alias → out: resolved_dim_id"
+    - id: "warehouse/cross-reference"
+      contract: "Все Facts для Dimension. in: domain, dim_type, dim_id → out: fact_set"
+    - id: "warehouse/fact-read"
+      contract: "Прочитать Fact с полным контекстом (dimensions + definitions). in: domain, fact_type, fact_id → out: fact_data"
+    - id: "warehouse/fact-insert"
+      contract: "Создать Fact. in: domain, fact_type, source, measures, meta → out: fact_id. Write. Единственная точка записи."
+    - id: "warehouse/coverage-matrix"
+      contract: "Матрица покрытия: GPU/CPU × игры × разрешения. in: domain, dim_type → out: coverage_matrix"
+    - id: "warehouse/compile-context-map"
+      contract: "Сгенерировать context-map.yaml из данных склада. in: domain → out: references/context-map.yaml"
+  analysis:
+    - id: "analysis/comparison"
+      contract: "Сравнить два Dimension по метрикам. in: domain, dim_type, dim_a, dim_b, metrics → out: comparison_table"
+    - id: "analysis/pattern-promote"
+      contract: "Сохранить обнаруженный Law/Pattern. in: domain, derived_type, statement, lineage_nodes, confidence → out: derived_ref. Write."
+    - id: "analysis/lineage-trace"
+      contract: "Проследить происхождение вывода. in: derived_id, direction(up|down) → out: lineage_tree"
+    - id: "analysis/impact-analysis"
+      contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
+    - id: "analysis/stale-check"
+      contract: "Найти устаревшие observation и затронутые Law. in: domain, fact_type → out: staleness_report"
+    - id: "analysis/contradiction-detect"
+      contract: "Найти observation с одинаковыми dims но разными значениями. in: domain, fact_type → out: contradiction_report"
 
 contracts:
   - id: "dimension-contract"
@@ -46,63 +54,57 @@ contracts:
     description: "SCD Type 0 vs Type 2, формат версионирования, связь с lineage."
 ---
 
-# Minerva — Data Warehouse для ИИ-агентов
+# Minerva — Фабрика Agent-Native Data Warehouse
 
-## Что это
+## Две роли
 
-Agent-native Data Warehouse. Данные в YAML-файлах на файловой системе. Агент читает fs как граф: имена директорий = типы сущностей, имена файлов = id сущностей. Методология — Dimensional Modeling по Kimball.
+**Как мета-скилл (scaffolding).** Minerva порождает самодостаточные DWH-skills. Архитектор говорит: «создать склад для домена X» → Minerva выдаёт готовый DWH-skill со структурой, контрактами, compile-context-map. Процесс одноразовый для каждого домена.
 
-## Как устроен
+**Как shared lib (references).** Consumer внутри DWH-skill использует контракты Minerva как эталон — но они уже скопированы в DWH при scaffolding. Consumer не знает о Minerva.
+
+## Consumer workflow (как найти данные)
+
+Раньше: consumer должен был знать fs-структуру — `warehouse/hardware/fact/observations/`. Это хрупко.
+
+Теперь:
+
+```
+1. skill_view('minerva')
+   → SKILL.md: «hardware-DWH: 759 obs, 148 entities, 2 Laws. Карта — references/context-map.yaml»
+   → linked_files: [references/context-map.yaml, references/contracts/...]
+
+2. skill_view('minerva', file_path='references/context-map.yaml')
+   → Полный индекс: все GPU/CPU, игры, разрешения, законы
+   → Consumer видит: «12 GPU, 28 CPU, 439 GPU obs + 320 CPU obs, игры от CS2 до Cyberpunk»
+
+3. Consumer выбирает нужное — например, хочет comparison RTX 5060 vs RTX 4060:
+   → capability 'analysis/comparison' уже доступен внутри DWH
+```
+
+**Consumer не знает о fs-структуре.** Он читает context-map → находит нужный capability → получает данные.
+
+## Как устроен DWH
 
 ```
 warehouse/{domain}/
-├── bus-matrix.yaml        ← контракт домена. Какие dimensions, facts, aliases, allowed_measures
-├── definitions/           ← семантика метрик (average-fps.yaml, ...)
+├── bus-matrix.yaml        ← контракт домена: dimensions, facts, aliases
+├── definitions/           ← семантика метрик
 ├── dim/{type}/{id}.yaml   ← Dimensions: сущности с атрибутами
-└── fact/{type}/{id}.yaml  ← Facts: измерения. Source-значения резолвятся через bus matrix
+└── fact/{type}/{id}.yaml  ← Facts: измерения. Source-значения → bus matrix → dim_id
+
+marts/{domain}/
+├── laws/                  ← Инженерные закономерности (с lineage)
+└── patterns/              ← Повторяющиеся структуры
+
+references/
+└── context-map.yaml       ← АВТОГЕНЕРИРУЕМЫЙ индекс всего склада
 ```
 
-**Bus Matrix — SSOT.** Загрузи `warehouse/{domain}/bus-matrix.yaml` и ты знаешь всё о домене:
-- Какие dimension types существуют (gpu, cpu, game_title, socket, architecture, ...)
-- Какие fact types существуют (observation, cpu_observation, metric)
-- Какие меры допустимы для каждого fact type
-- Какие бизнес-правила валидации
-- Все aliases для резолвинга source-значений
+**Context-map — автогенерируемый.** После любого изменения данных — `compile-context-map`. Consumer всегда видит актуальную картину.
 
-**Marts — Derived Layer (ADR-017).** Производные данные: Laws, Patterns, Comparisons.
-В отличие от Facts (первичные измерения), Marts хранят выводы агента с lineage до исходных observation.
-`marts/engineering/laws/` — инженерные закономерности.
-`marts/engineering/patterns/` — повторяющиеся структуры.
-Агент загружает Law → lineage-trace → видит все observation, на которых Law основан.
+## Ключевые архитектурные решения
 
-**Source Layer (ADR-025).** Fact хранит сырые значения источника (`source.gpu: "RTX 5060"`), не dim_id. Резолвинг через bus matrix aliases — при чтении, не при записи. Fact не знает о структуре dim/.
-
-**Fact-insert — единственная точка записи.** Любой ingest проходит через этот capability. Валидация: mandatory dimensions, allowed measures, бизнес-правила. Разделение: платформа даёт контракт, прикладной слой — данные.
-
-## Как с этим работать
-
-1. Загрузи bus matrix домена. Узнай dimension types, fact types, aliases.
-2. Для поиска сущности: `bus-lookup` → `dim-read`.
-3. Для поиска замеров: `cross-reference` → `fact-read`.
-4. Для сравнения: `comparison`.
-5. Для записи: `fact-insert` (dimensions создаются отдельно — пока вручную).
-6. **Для инженерного анализа:** `comparison` → обнаружил закономерность → `pattern-promote` → сохранил Law.
-7. **Для проверки вывода:** `lineage-trace` → раскрути Law до исходных observation.
-8. **При изменении данных:** `impact-analysis` → узнай какие Law нужно перепроверить.
-9. Иерархия fs = структура данных. `dim/gpu/` = все GPU. `fact/cpu_observations/` = все замеры CPU. `marts/engineering/laws/` = все Laws.
-
-## Ограничения (текущее состояние)
-
-- **Discovery — через bus matrix.** Нет отдельного каталога. Что в bus matrix — то и существует.
-- **Provenance — confidence только.** Source tracing (URL, видео) не структурировано. ADR-017 (lineage DAG) не реализован.
-- **Write path — dimensions вручную.** dim-upsert capability отсутствует. Новые сущности создаются прямым созданием файлов.
-- **Нет cross-domain queries.** Hardware и другие домены изолированы.
-- **Нет SCD Type 2** (кроме одного драйвера). Исторические версии не поддерживаются.
-- **Нет freshness.** Stale-check отсутствует. Система не знает что устарело.
-
-## Grounding
-
-- Методология: Dimensional Modeling (Kimball), Bus Matrix, Star Schema
-- Source layer: ADR-025 (Observation не знает DIM ID)
-- Platform/App split: ADR-026 (платформенные capabilities vs прикладные ingestion-скрипты)
-- Agent-native ETL: ADR-029 (один reasoning-проход агента, не staged pipeline)
+- **Source Layer (ADR-025).** Fact хранит сырые source-значения, не dim_id. Резолвинг через bus matrix aliases — при чтении.
+- **Fact-insert — единственная точка записи.** Валидация: mandatory dimensions, allowed measures, provenance (source_url).
+- **Marts — Derived Layer.** Laws/Patterns с lineage до исходных observation. lineage-trace раскручивает цепочку.
+- **Contract-based.** Dimension/Fact/SCD — инварианты, агент self-enforces. Capabilities — сложная оркестрация.

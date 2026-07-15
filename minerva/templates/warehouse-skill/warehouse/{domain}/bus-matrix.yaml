@@ -1,0 +1,22 @@
+# Bus Matrix — {domain_title}
+# SSOT контракт домена. Все dimensions, facts, aliases, validation rules.
+# Заполняется при создании DWH, расширяется по мере наполнения.
+
+bus_matrix:
+  domain: {domain}
+  description: "{description}"
+  dimensions: {}
+  # Пример заполнения:
+  #   product:
+  #     canonical_dim: dim/product/{slug}.yaml
+  #     id_format: '{slug}'
+  #     description: Продукт/сущность
+  #     aliases: {}
+  #     attributes: []
+  facts: {}
+  # Пример заполнения:
+  #   observation:
+  #     description: Базовый замер
+  #     mandatory_dimensions: [product, metric]
+  #     allowed_measures: [value, unit]
+  #     validation_rules: []
