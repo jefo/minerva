@@ -1,16 +1,16 @@
 ---
 name: minerva
-description: "Minerva Data Warehouse — agent-native, файловый DW по Kimball. Входная точка: bus matrix + capabilities. LLM ориентируется по fs как по графу."
+description: "Minerva Data Warehouse — agent-native, файловый DW по Kimball + AI-driven Research. Входная точка: bus matrix + capabilities. LLM ориентируется по fs как по графу."
 contract:
-  in: "Любой вопрос о данных: сущности, замеры, сравнения"
-  out: "Structured data через capabilities"
+  in: "Любой вопрос о данных: сущности, замеры, сравнения, инженерные закономерности"
+  out: "Structured data через capabilities. Laws/Patterns — через analysis-возможности"
 domains:
   - id: hardware
     bus_matrix: "warehouse/hardware/bus-matrix.yaml"
     description: "PC-железо: GPU, CPU, игры, бенчмарки"
 capabilities:
   - id: "warehouse/dim-read"
-    contract: "Прочитать Dimension по id. in: domain, dim_type, dim_id → out: dimension_data"
+    contract: "Прочитать Dimension. in: domain, dim_type, dim_id → out: dimension_data"
   - id: "warehouse/bus-lookup"
     contract: "Резолвить source-значение в dim_id. in: domain, dim_type, alias → out: resolved_dim_id"
   - id: "warehouse/cross-reference"
@@ -23,6 +23,12 @@ capabilities:
     contract: "Матрица покрытия: какие GPU×игры имеют данные. in: domain → out: coverage_matrix"
   - id: "analysis/comparison"
     contract: "Сравнить два Dimension по метрикам. in: domain, dim_type, dim_a, dim_b, metrics → out: comparison_table"
+  - id: "analysis/pattern-promote"
+    contract: "Сохранить обнаруженный Law/Pattern. in: domain, derived_type, statement, lineage_nodes, confidence → out: derived_ref. Write."
+  - id: "analysis/lineage-trace"
+    contract: "Проследить происхождение вывода. in: derived_id, direction(up|down) → out: lineage_tree"
+  - id: "analysis/impact-analysis"
+    contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
 ---
 
 # Minerva — Data Warehouse для ИИ-агентов
@@ -43,10 +49,16 @@ warehouse/{domain}/
 
 **Bus Matrix — SSOT.** Загрузи `warehouse/{domain}/bus-matrix.yaml` и ты знаешь всё о домене:
 - Какие dimension types существуют (gpu, cpu, game_title, socket, architecture, ...)
-- Какие fact types существуют (observation, metric)
+- Какие fact types существуют (observation, cpu_observation, metric)
 - Какие меры допустимы для каждого fact type
 - Какие бизнес-правила валидации
 - Все aliases для резолвинга source-значений
+
+**Marts — Derived Layer (ADR-017).** Производные данные: Laws, Patterns, Comparisons.
+В отличие от Facts (первичные измерения), Marts хранят выводы агента с lineage до исходных observation.
+`marts/engineering/laws/` — инженерные закономерности.
+`marts/engineering/patterns/` — повторяющиеся структуры.
+Агент загружает Law → lineage-trace → видит все observation, на которых Law основан.
 
 **Source Layer (ADR-025).** Fact хранит сырые значения источника (`source.gpu: "RTX 5060"`), не dim_id. Резолвинг через bus matrix aliases — при чтении, не при записи. Fact не знает о структуре dim/.
 
@@ -59,7 +71,10 @@ warehouse/{domain}/
 3. Для поиска замеров: `cross-reference` → `fact-read`.
 4. Для сравнения: `comparison`.
 5. Для записи: `fact-insert` (dimensions создаются отдельно — пока вручную).
-6. Иерархия fs = структура данных. `dim/gpu/` = все GPU. `fact/observations/` = все замеры.
+6. **Для инженерного анализа:** `comparison` → обнаружил закономерность → `pattern-promote` → сохранил Law.
+7. **Для проверки вывода:** `lineage-trace` → раскрути Law до исходных observation.
+8. **При изменении данных:** `impact-analysis` → узнай какие Law нужно перепроверить.
+9. Иерархия fs = структура данных. `dim/gpu/` = все GPU. `fact/cpu_observations/` = все замеры CPU. `marts/engineering/laws/` = все Laws.
 
 ## Ограничения (текущее состояние)
 
