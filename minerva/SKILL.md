@@ -29,6 +29,16 @@ capabilities:
     contract: "Проследить происхождение вывода. in: derived_id, direction(up|down) → out: lineage_tree"
   - id: "analysis/impact-analysis"
     contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
+  - id: "analysis/stale-check"
+    contract: "Найти устаревшие observation и затронутые Law. in: domain, fact_type → out: staleness_report"
+
+contracts:
+  - id: "dimension-contract"
+    path: "references/contracts/dimension-contract.md"
+    description: "Инварианты создания/изменения Dimension. Агент self-enforces."
+  - id: "scd-contract"
+    path: "references/contracts/scd-contract.md"
+    description: "SCD Type 0 vs Type 2, формат версионирования."
 ---
 
 # Minerva — Data Warehouse для ИИ-агентов
