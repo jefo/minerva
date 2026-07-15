@@ -9,6 +9,11 @@ contract:
         type: string
         required: true
         description: "Bounded context: 'hardware'"
+      - name: dim_type
+        type: string
+        required: false
+        default: "gpu"
+        description: "Тип dimension: 'gpu' (observation) или 'cpu' (cpu_observation)"
       - name: game_set
         type: "[string]"
         required: false
@@ -16,11 +21,15 @@ contract:
       - name: resolution
         type: string
         required: false
-        description: "Фильтр: '1080p', '1440p', '4K'. Если не указан — все"
+        description: "Фильтр: '1080p', '1440p', '4K', '720p'. Если не указан — все"
       - name: preset
         type: string
         required: false
-        description: "Фильтр: 'Ultra', 'High', ... Если не указан — все"
+        description: "Фильтр: 'Ultra', 'High', 'Low', ... Если не указан — все"
+      - name: scenario
+        type: string
+        required: false
+        description: "Фильтр по benchmark_scenario (только для CPU). '1080p-low', '720p-low', ..."
   out:
     result: coverage_report
     format: |
@@ -35,12 +44,17 @@ idempotency: "read"
 
 ## Model
 
-Coverage Matrix — это кросс-продукт GPU × Game × Resolution × Preset × Mode, показывающий для каждой ячейки есть ли данные в складе.
+Coverage Matrix — кросс-продукт Dimension × Game × Resolution × Preset × (Mode | Scenario),
+показывающий для каждой ячейки есть ли данные в складе.
 
-**Mode** извлекается из conditions Fact'а:
+**Для GPU (dim_type='gpu'):** GPU × Game × Resolution × Preset.
+Mode извлекается из conditions Fact'а:
 - `raster` — upscaler=native, frame_gen=false
 - `upscaled` — upscaler ≠ native, frame_gen=false
-- `frame_gen` — frame_gen ≠ false (любой FG/MFG)
+- `frame_gen` — frame_gen ≠ false
+
+**Для CPU (dim_type='cpu'):** CPU × Game × Resolution × Preset × Scenario.
+Scenario из source.benchmark_scenario. Mode не применим — CPU-тесты всегда native.
 
 **Статус ячейки:**
 - 🟢 `covered` — ≥1 observation с confidence ≥ 0.85

@@ -1,0 +1,83 @@
+derived_fact:
+  id: 3d-vcache-gaming-advantage-1080p
+  type: law
+  level: 2
+  statement: 3D V-Cache даёт в среднем +14% FPS в 1080p Low по сравнению с non-X3D
+    аналогом того же поколения Zen 4. Преимущество максимально в играх чувствительных
+    к latency кэша, минимально в GPU-bound сценариях.
+  confidence: 0.75
+  confidence_basis: training_data
+  domain: engineering
+lineage:
+  nodes:
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-baldurs-gate-3-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-counter-strike-2-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-cyberpunk-2077-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-cyberpunk-2077-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-hogwarts-legacy-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-starfield-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-starfield-native.yaml
+    role: baseline
+    level: 0
+  edges:
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-baldurs-gate-3-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-counter-strike-2-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-cyberpunk-2077-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-cyberpunk-2077-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-hogwarts-legacy-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-starfield-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7700-1080p-low-starfield-native.yaml
+    to: 3d-vcache-gaming-advantage-1080p
+    type: generalizes
+relationships:
+  contradicts: []
+  refines: []
+  refined_by: []
+meta:
+  observed_at: 2026-07
+  observed_by: comparison-test-agent
+  source_url: training_data
+  note: Основан на comparison 7800X3D vs 7700 в 1080p Low (5 игр). Training data confidence
+    0.75.

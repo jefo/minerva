@@ -20,7 +20,7 @@ capabilities:
   - id: "warehouse/fact-insert"
     contract: "Создать Fact. in: domain, fact_type, source, measures, meta → out: fact_id. Write. Единственная точка записи."
   - id: "warehouse/coverage-matrix"
-    contract: "Матрица покрытия: какие GPU×игры имеют данные. in: domain → out: coverage_matrix"
+    contract: "Матрица покрытия: GPU/CPU × игры × разрешения. in: domain, dim_type → out: coverage_matrix"
   - id: "analysis/comparison"
     contract: "Сравнить два Dimension по метрикам. in: domain, dim_type, dim_a, dim_b, metrics → out: comparison_table"
   - id: "analysis/pattern-promote"
@@ -31,14 +31,19 @@ capabilities:
     contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
   - id: "analysis/stale-check"
     contract: "Найти устаревшие observation и затронутые Law. in: domain, fact_type → out: staleness_report"
+  - id: "analysis/contradiction-detect"
+    contract: "Найти observation с одинаковыми dims но разными значениями. in: domain, fact_type → out: contradiction_report"
 
 contracts:
   - id: "dimension-contract"
     path: "references/contracts/dimension-contract.md"
     description: "Инварианты создания/изменения Dimension. Агент self-enforces."
+  - id: "fact-contract"
+    path: "references/contracts/fact-contract.md"
+    description: "Инварианты любого Fact: grain, mandatory dims, source layer, provenance."
   - id: "scd-contract"
     path: "references/contracts/scd-contract.md"
-    description: "SCD Type 0 vs Type 2, формат версионирования."
+    description: "SCD Type 0 vs Type 2, формат версионирования, связь с lineage."
 ---
 
 # Minerva — Data Warehouse для ИИ-агентов

@@ -1,0 +1,83 @@
+derived_fact:
+  id: zen5-gaming-uplift-over-zen4-1080p
+  type: law
+  level: 2
+  statement: 'Zen 5 (9800X3D) в среднем на 9% быстрее Zen 4 (7800X3D) в 1080p Low.
+    Прирост проявляется во всех играх неравномерно: в CPU-bound тайтлах (CS2) — выше,
+    в GPU-bound — ниже.'
+  confidence: 0.75
+  confidence_basis: training_data
+  domain: engineering
+lineage:
+  nodes:
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-baldurs-gate-3-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-counter-strike-2-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-cyberpunk-2077-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-cyberpunk-2077-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-hogwarts-legacy-native.yaml
+    role: evidence
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-starfield-native.yaml
+    role: baseline
+    level: 0
+  - ref: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-starfield-native.yaml
+    role: evidence
+    level: 0
+  edges:
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-baldurs-gate-3-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-counter-strike-2-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-cyberpunk-2077-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-cyberpunk-2077-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-hogwarts-legacy-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-7800x3d-1080p-low-starfield-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+  - from: fact/cpu_observations/amd-ryzen-7-9800x3d-1080p-low-starfield-native.yaml
+    to: zen5-gaming-uplift-over-zen4-1080p
+    type: generalizes
+relationships:
+  contradicts: []
+  refines: []
+  refined_by: []
+meta:
+  observed_at: 2026-07
+  observed_by: comparison-test-agent
+  source_url: training_data
+  note: Основан на comparison 7800X3D vs 9800X3D в 1080p Low (5 игр). Все данные —
+    training_data, confidence 0.75.
