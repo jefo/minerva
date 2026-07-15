@@ -1,0 +1,22 @@
+fact:
+  id: amd-ryzen-5-9600x-productivity-blender-classroom
+  type: cpu_observation
+source:
+  cpu: amd-ryzen-5-9600x
+  benchmark_scenario: Blender
+  resolution: n/a
+  graphics_preset: n/a
+  driver_version: n/a
+measures:
+  score: 680
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: Blender Classroom render (training data)
+  observed_at: 2026-07
+  observed_by: cpu-productivity-etl
+  note: Seconds to render. Lower = better. Training data estimate.
+lineage:
+  nodes: []
+  edges: []

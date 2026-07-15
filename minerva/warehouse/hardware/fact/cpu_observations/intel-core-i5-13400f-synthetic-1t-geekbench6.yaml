@@ -1,0 +1,21 @@
+fact:
+  id: intel-core-i5-13400f-synthetic-1t-geekbench6
+  type: cpu_observation
+source:
+  cpu: intel-core-i5-13400f
+  benchmark_scenario: Geekbench ST
+  resolution: n/a
+  graphics_preset: n/a
+  driver_version: n/a
+measures:
+  score: 2450
+meta:
+  confidence: 0.8
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: Geekbench 6 — synthetic benchmark (training data)
+  observed_at: 2026-07
+  observed_by: cpu-synthetic-etl
+lineage:
+  nodes: []
+  edges: []

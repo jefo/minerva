@@ -1,0 +1,28 @@
+fact:
+  id: amd-ryzen-7-5700x3d-1080p-low-hogwarts-legacy-native
+  type: cpu_observation
+source:
+  cpu: amd-ryzen-7-5700x3d
+  benchmark_scenario: 1080p Low
+  game_title: Hogwarts Legacy
+  resolution: 1080p
+  graphics_preset: Low
+  driver_version: 2026-Q2
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+measures:
+  fps_avg: 140
+  fps_1pct_low: 100
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'CPU gaming benchmark: hogwarts-legacy 1080p Low (training data)'
+  observed_at: 2026-07
+  observed_by: cpu-gaming-etl
+  note: Training data estimate. Real benchmarks may differ ±10-15%.
+lineage:
+  nodes: []
+  edges: []

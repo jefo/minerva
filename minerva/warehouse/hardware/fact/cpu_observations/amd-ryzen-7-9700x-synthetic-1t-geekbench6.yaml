@@ -1,0 +1,21 @@
+fact:
+  id: amd-ryzen-7-9700x-synthetic-1t-geekbench6
+  type: cpu_observation
+source:
+  cpu: amd-ryzen-7-9700x
+  benchmark_scenario: Geekbench ST
+  resolution: n/a
+  graphics_preset: n/a
+  driver_version: n/a
+measures:
+  score: 3350
+meta:
+  confidence: 0.8
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: Geekbench 6 — synthetic benchmark (training data)
+  observed_at: 2026-07
+  observed_by: cpu-synthetic-etl
+lineage:
+  nodes: []
+  edges: []

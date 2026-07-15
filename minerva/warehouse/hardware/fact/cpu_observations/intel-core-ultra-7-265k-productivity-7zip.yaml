@@ -1,0 +1,22 @@
+fact:
+  id: intel-core-ultra-7-265k-productivity-7zip
+  type: cpu_observation
+source:
+  cpu: intel-core-ultra-7-265k
+  benchmark_scenario: Productivity
+  resolution: n/a
+  graphics_preset: n/a
+  driver_version: n/a
+measures:
+  score: 170000
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 7-Zip compression MIPS (training data)
+  observed_at: 2026-07
+  observed_by: cpu-productivity-etl
+  note: Million Instructions Per Second. Higher = better. Training data estimate.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,29 @@
+fact:
+  id: intel-core-i5-12400f-1440p-ultra-counter-strike-2-native
+  type: cpu_observation
+source:
+  cpu: intel-core-i5-12400f
+  benchmark_scenario: 1440p Ultra
+  game_title: Counter Strike 2
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+measures:
+  fps_avg: 240
+  fps_1pct_low: 187
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'CPU gaming benchmark: counter-strike-2 1440p Ultra (training data)'
+  observed_at: 2026-07
+  observed_by: cpu-gaming-etl
+  note: Training data estimate. 1440p Ultra is partially GPU-bound — CPU differences
+    compressed.
+lineage:
+  nodes: []
+  edges: []

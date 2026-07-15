@@ -1,0 +1,21 @@
+fact:
+  id: intel-core-i5-14600k-synthetic-mt-geekbench6
+  type: cpu_observation
+source:
+  cpu: intel-core-i5-14600k
+  benchmark_scenario: Geekbench MT
+  resolution: n/a
+  graphics_preset: n/a
+  driver_version: n/a
+measures:
+  score: 17000
+meta:
+  confidence: 0.8
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: Geekbench 6 — synthetic benchmark (training data)
+  observed_at: 2026-07
+  observed_by: cpu-synthetic-etl
+lineage:
+  nodes: []
+  edges: []
