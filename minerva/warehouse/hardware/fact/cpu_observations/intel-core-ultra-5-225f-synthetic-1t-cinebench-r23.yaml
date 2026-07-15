@@ -2,7 +2,7 @@ fact:
   id: intel-core-ultra-5-225f-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core Ultra 5 225F
+  cpu: intel-core-ultra-5-225f
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

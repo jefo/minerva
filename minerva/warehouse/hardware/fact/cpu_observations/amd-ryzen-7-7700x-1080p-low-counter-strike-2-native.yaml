@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-7-7700x-1080p-low-counter-strike-2-native
   type: cpu_observation
 source:
-  cpu: Ryzen 7 7700X
+  cpu: amd-ryzen-7-7700x
   game_title: Counter-Strike 2
   resolution: 1080p
   graphics_preset: Low

@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-7-7700x-1080p-low-baldurs-gate-3-native
   type: cpu_observation
 source:
-  cpu: Ryzen 7 7700X
+  cpu: amd-ryzen-7-7700x
   game_title: Baldur's Gate 3
   resolution: 1080p
   graphics_preset: Low

@@ -1,85 +1,92 @@
 ---
 name: minerva
-description: "Gaming Performance DWH — operating context + workspace for LLM agents."
-project: "ИгроЛаба Gaming Performance DWH"
-department: "Content Operations"
-mission: "Maintain analytical integrity of the Gaming Performance DWH."
-customers:
-  - "Content Team"
-  - "Data Analyst"
-authority:
-  - read_all
-  - write_observation
-  - create_dimension
-  - update_bus_matrix
-  - update_context_map
-must_not:
-  - "Create observation without meta.source_url. Reject the ingest, don't invent one."
-  - "Create dimension without registering it in bus-matrix"
-  - "Remove or modify observation without checking lineage impact on Laws"
-  - "Accept duplicate observation — same source, same game, same resolution, same preset, same driver"
-  - "Leave context-map stale after data change — run compile-context-map immediately"
-success_metrics:
-  - "Every observation has source_url. 0 data debt from new observations."
-  - "Every dimension is reachable through bus-matrix aliases"
-  - "Context-map is ≤1 change behind warehouse state"
-  - "Coverage: diagnostic triad (720p/1080p/1440p) tracked for every CPU"
-workspace:
+description: "Gaming Performance DWH — self-describing knowledge substrate. Any agent loads this skill to understand the world model."
+identity: "Файловый Data Warehouse (Kimball dimensional model). Единый источник истины для gaming-бенчмарков."
+purpose: "Provide a trustworthy analytical representation of gaming hardware performance."
+domain: "PC hardware gaming benchmarks"
+ontology:
+  entities:
+    - "Dimension: описательный атрибут. GPU, CPU, game_title, resolution, graphics_preset, architecture, socket, chipset, driver_version, benchmark_scenario."
+    - "Observation: факт замера. Содержит source-значения, measures (fps_avg, fps_1_percent_low), conditions (upscaler, frame_gen)."
+    - "Law: производный факт. Инженерная закономерность с lineage до observation."
+    - "Pattern: повторяющаяся структура. Слабее Law — кандидат, не доказательство."
+  relationships:
+    - "Observation → ссылается на Dimensions через source-значения (человеческие имена), не dim_id."
+    - "Law → lineage до Observation."
+    - "Bus Matrix → SSOT-контракт: какие dimension types, fact types, aliases, validation rules."
+architecture:
+  layers:
+    - "Source Layer: Observation хранит source-значения. Резолвинг → dim_id через bus-matrix aliases при чтении."
+    - "Warehouse Layer: dim/ (сущности), fact/ (измерения), bus-matrix.yaml (контракт), definitions/ (семантика метрик)."
+    - "Marts Layer: engineering/laws/, engineering/patterns/. Производные данные с lineage."
+  index: "context-map.yaml — автогенерируемый индекс. Всегда актуален."
+contracts:
+  - "Dimension Contract: references/contracts/dimension-contract.md"
+  - "Fact Contract: references/contracts/fact-contract.md"
+  - "SCD Contract: references/contracts/scd-contract.md"
+evolution:
+  - "Observation: создаётся через YAML-файл в fact/. source_url обязателен. После создания → compile-context-map."
+  - "Dimension: создаётся через YAML-файл в dim/. Регистрируется в bus-matrix с aliases."
+  - "Law: promoted из pattern в marts/engineering/laws/. Требует lineage до observation."
+  - "Duplicates: запрещены. Observation с идентичными source × game × resolution × preset × driver — дубликат."
+  - "Staleness: observation устаревает при смене драйвера/патча игры. Старый не удаляется — помечается stale, создаётся новый."
+self_description:
+  context_map: "references/context-map.yaml"
+  bus_matrix: "warehouse/hardware/bus-matrix.yaml"
   knowledge:
-    context_map: "references/context-map.yaml"
-    bus_matrix: "warehouse/hardware/bus-matrix.yaml"
-    ontology: "references/ontology.md"
-    mental_models: "references/mental-models.md"
-    terminology: "references/terminology.md"
-    data: "warehouse/hardware/"
-    marts: "marts/"
-  constraints:
-    contracts: "references/contracts/"
+    - "references/ontology.md"
+    - "references/mental-models.md"
+    - "references/terminology.md"
+  contracts: "references/contracts/"
+  data: "warehouse/hardware/"
+  marts: "marts/"
 tools:
   - "compile-context-map: python3 tools/compile-context-map/generate.py --warehouse-root . --output references/context-map.yaml"
 ---
 
-# Minerva — Gaming Performance DWH
+# Gaming Performance DWH
 
-## Workspace
+## What I Am
 
-You are attached to the Gaming Performance DWH. Before any action, read `references/context-map.yaml`.
+A file-based dimensional Data Warehouse (Kimball). I store gaming benchmark data for PC hardware: CPUs, GPUs, games, resolutions, presets.
 
-**Authoritative sources (in order):**
-1. `context-map.yaml` — current state of the warehouse
-2. `bus-matrix.yaml` — schema, dimension types, fact types, aliases
-3. `contracts/` — invariants (dimension, fact, SCD)
+I am a **knowledge substrate**, not an agent. I don't have a mission — I have a purpose. I don't make decisions — I describe the world.
 
-**Knowledge:**
-- `ontology.md` — entity model (Dimension, Observation, Law, Pattern)
-- `mental-models.md` — coverage, confidence, lineage, provenance, source layer
-- `terminology.md` — domain glossary
-
-## Operational Frame
-
-Your job: every observation is traceable, every dimension is registered, context-map is current.
-
-**After any data change:** run compile-context-map immediately.
-
-**Observation ingest checklist:**
-- [ ] `meta.source_url` present
-- [ ] `meta.confidence` and `meta.confidence_basis` set
-- [ ] Source values resolvable through bus-matrix aliases
-- [ ] Not a duplicate of existing observation (same source × game × resolution × preset × driver)
-- [ ] If replacing stale observation → check lineage impact on Laws first
-
-**Dimension create checklist:**
-- [ ] YAML follows dimension contract
-- [ ] Registered in bus-matrix with aliases
-- [ ] Architecture/socket references resolve to existing dimensions
-
-## Structure
+## How I'm Structured
 
 ```
-minerva/
-├── SKILL.md
-├── references/              ← knowledge + context-map + contracts
-├── tools/compile-context-map/
-├── warehouse/hardware/      ← dim, fact, definitions, bus-matrix
-└── marts/engineering/       ← laws, patterns
+warehouse/hardware/
+├── bus-matrix.yaml      ← schema contract
+├── definitions/         ← metric semantics
+├── dim/                 ← 29 CPUs, 10 GPUs, 71 games, ...
+└── fact/
+    ├── observations/    ← 439 GPU observations
+    └── cpu_observations/← 340 CPU observations
+
+marts/engineering/
+├── laws/                ← 2 Laws with lineage
+└── patterns/
+
+references/
+├── context-map.yaml     ← auto-generated index (779 observations, 149 entities)
+├── ontology.md          ← entity model
+├── mental-models.md     ← coverage, confidence, lineage
+├── terminology.md       ← glossary
+└── contracts/           ← invariants
 ```
+
+## How I Evolve
+
+- **Observation added** → YAML in fact/ → compile-context-map → index updated
+- **Dimension added** → YAML in dim/ → bus-matrix updated → compile-context-map
+- **Law promoted** → YAML in marts/laws/ with lineage
+- **Duplicate blocked** → same source × game × resolution × preset × driver = reject
+- **Stale observation** → marked stale, new observation created. Old preserved for history.
+
+## How to Read Me
+
+1. `references/context-map.yaml` — what data exists right now
+2. `warehouse/hardware/bus-matrix.yaml` — schema, types, aliases
+3. `references/contracts/` — invariants
+
+Knowledge: `references/ontology.md`, `mental-models.md`, `terminology.md`.

@@ -2,7 +2,7 @@ fact:
   id: intel-core-ultra-9-285k-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core Ultra 9 285K
+  cpu: intel-core-ultra-9-285k
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

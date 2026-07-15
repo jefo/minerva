@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-5-9600x-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 5 9600X
+  cpu: amd-ryzen-5-9600x
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

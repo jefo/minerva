@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-9-9950x-synthetic-mt-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 9 9950X
+  cpu: amd-ryzen-9-9950x
   benchmark_scenario: Cinebench nT
   resolution: n/a
   graphics_preset: n/a

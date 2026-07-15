@@ -2,7 +2,7 @@ fact:
   id: intel-core-i9-14900k-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core I9 14900K
+  cpu: intel-core-i9-14900k
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

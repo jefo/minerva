@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-7-7700x-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 7 7700X
+  cpu: amd-ryzen-7-7700x
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

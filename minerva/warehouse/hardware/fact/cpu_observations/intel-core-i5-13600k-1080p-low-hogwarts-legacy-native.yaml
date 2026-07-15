@@ -2,7 +2,7 @@ fact:
   id: intel-core-i5-13600k-1080p-low-hogwarts-legacy-native
   type: cpu_observation
 source:
-  cpu: Core i5-13600K
+  cpu: intel-core-i5-13600k
   game_title: Hogwarts Legacy
   resolution: 1080p
   graphics_preset: Low

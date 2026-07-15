@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-5-5600-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 5 5600
+  cpu: amd-ryzen-5-5600
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

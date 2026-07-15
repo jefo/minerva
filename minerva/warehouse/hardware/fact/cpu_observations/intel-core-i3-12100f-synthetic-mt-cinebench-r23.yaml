@@ -2,7 +2,7 @@ fact:
   id: intel-core-i3-12100f-synthetic-mt-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core I3 12100F
+  cpu: intel-core-i3-12100f
   benchmark_scenario: Cinebench nT
   resolution: n/a
   graphics_preset: n/a

@@ -2,7 +2,7 @@ fact:
   id: intel-core-i9-14900k-1080p-low-starfield-native
   type: cpu_observation
 source:
-  cpu: Core i9-14900K
+  cpu: intel-core-i9-14900k
   game_title: Starfield
   resolution: 1080p
   graphics_preset: Low

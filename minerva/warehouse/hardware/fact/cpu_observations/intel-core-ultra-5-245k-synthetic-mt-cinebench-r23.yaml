@@ -2,7 +2,7 @@ fact:
   id: intel-core-ultra-5-245k-synthetic-mt-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core Ultra 5 245K
+  cpu: intel-core-ultra-5-245k
   benchmark_scenario: Cinebench nT
   resolution: n/a
   graphics_preset: n/a

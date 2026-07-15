@@ -2,7 +2,7 @@ fact:
   id: intel-core-i5-14600k-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core I5 14600K
+  cpu: intel-core-i5-14600k
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

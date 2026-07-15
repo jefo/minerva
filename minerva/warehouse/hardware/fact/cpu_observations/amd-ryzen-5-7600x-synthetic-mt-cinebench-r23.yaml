@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-5-7600x-synthetic-mt-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 5 7600X
+  cpu: amd-ryzen-5-7600x
   benchmark_scenario: Cinebench nT
   resolution: n/a
   graphics_preset: n/a

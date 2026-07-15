@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-9-9950x3d-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 9 9950X3D
+  cpu: amd-ryzen-9-9950x3d
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

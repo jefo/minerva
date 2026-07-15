@@ -2,7 +2,7 @@ fact:
   id: intel-core-i7-14700k-synthetic-1t-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Core I7 14700K
+  cpu: intel-core-i7-14700k
   benchmark_scenario: Cinebench 1T
   resolution: n/a
   graphics_preset: n/a

@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-9-7950x-1080p-low-cyberpunk-2077-native
   type: cpu_observation
 source:
-  cpu: Ryzen 9 7950X
+  cpu: amd-ryzen-9-7950x
   game_title: Cyberpunk 2077
   resolution: 1080p
   graphics_preset: Low

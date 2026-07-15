@@ -2,7 +2,7 @@ fact:
   id: amd-ryzen-7-9700x-synthetic-mt-cinebench-r23
   type: cpu_observation
 source:
-  cpu: Ryzen 7 9700X
+  cpu: amd-ryzen-7-9700x
   benchmark_scenario: Cinebench nT
   resolution: n/a
   graphics_preset: n/a
