@@ -216,6 +216,7 @@ bus_matrix:
         12100F: intel-core-i3-12100f
         12400F: intel-core-i5-12400f
         13400F: intel-core-i5-13400f
+        13600K: intel-core-i5-13600k
         14600K: intel-core-i5-14600k
         14700K: intel-core-i7-14700k
         14900K: intel-core-i9-14900k
@@ -244,6 +245,7 @@ bus_matrix:
         'Core i3-12100F': intel-core-i3-12100f
         'Core i5-12400F': intel-core-i5-12400f
         'Core i5-13400F': intel-core-i5-13400f
+        'Core i5-13600K': intel-core-i5-13600k
         'Core i5-14600K': intel-core-i5-14600k
         'Core i7-14700K': intel-core-i7-14700k
         'Core i9-14900K': intel-core-i9-14900k

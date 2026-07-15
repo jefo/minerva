@@ -1,110 +1,93 @@
 ---
 name: minerva
-description: "Minerva — мета-скилл: фабрика Agent-Native Data Warehouse. Scaffolding DWH-skills, эталонные контракты, compile-context-map. Consumer начинает с context-map, а не с fs-структуры."
-contract:
-  in: "Запрос на создание DWH для домена X или запрос данных из существующего DWH"
-  out: "Scaffolded DWH-skill или данные через context-map + capabilities"
-domains:
-  - id: hardware
-    bus_matrix: "warehouse/hardware/bus-matrix.yaml"
-    context_map: "references/context-map.yaml"
-    description: "PC-железо: GPU, CPU, игры, бенчмарки. 759 observation, 148 entities, 2 Laws."
-capabilities:
-  scaffolding:
-    - id: "warehouse/scaffold-warehouse"
-      contract: "Создать новый DWH-skill из шаблона. in: domain, domain_title, description → out: skill warehouse-{domain}"
-  warehouse:
-    - id: "warehouse/dim-read"
-      contract: "Прочитать Dimension. in: domain, dim_type, dim_id → out: dimension_data"
-    - id: "warehouse/bus-lookup"
-      contract: "Резолвить source-значение в dim_id. in: domain, dim_type, alias → out: resolved_dim_id"
-    - id: "warehouse/cross-reference"
-      contract: "Все Facts для Dimension. in: domain, dim_type, dim_id → out: fact_set"
-    - id: "warehouse/fact-read"
-      contract: "Прочитать Fact с полным контекстом (dimensions + definitions). in: domain, fact_type, fact_id → out: fact_data"
-    - id: "warehouse/fact-insert"
-      contract: "Создать Fact. in: domain, fact_type, source, measures, meta → out: fact_id. Write. Единственная точка записи."
-    - id: "warehouse/coverage-matrix"
-      contract: "Матрица покрытия: GPU/CPU × игры × разрешения. in: domain, dim_type → out: coverage_matrix"
-    - id: "warehouse/compile-context-map"
-      contract: "Сгенерировать context-map.yaml из данных склада. in: domain → out: references/context-map.yaml"
-  analysis:
-    - id: "analysis/comparison"
-      contract: "Сравнить два Dimension по метрикам. in: domain, dim_type, dim_a, dim_b, metrics → out: comparison_table"
-    - id: "analysis/pattern-promote"
-      contract: "Сохранить обнаруженный Law/Pattern. in: domain, derived_type, statement, lineage_nodes, confidence → out: derived_ref. Write."
-    - id: "analysis/lineage-trace"
-      contract: "Проследить происхождение вывода. in: derived_id, direction(up|down) → out: lineage_tree"
-    - id: "analysis/impact-analysis"
-      contract: "Найти всё, затронутое изменением observation. in: fact_ref → out: affected_derived_list"
-    - id: "analysis/stale-check"
-      contract: "Найти устаревшие observation и затронутые Law. in: domain, fact_type → out: staleness_report"
-    - id: "analysis/contradiction-detect"
-      contract: "Найти observation с одинаковыми dims но разными значениями. in: domain, fact_type → out: contradiction_report"
-
-contracts:
-  - id: "dimension-contract"
-    path: "references/contracts/dimension-contract.md"
-    description: "Инварианты создания/изменения Dimension. Агент self-enforces."
-  - id: "fact-contract"
-    path: "references/contracts/fact-contract.md"
-    description: "Инварианты любого Fact: grain, mandatory dims, source layer, provenance."
-  - id: "scd-contract"
-    path: "references/contracts/scd-contract.md"
-    description: "SCD Type 0 vs Type 2, формат версионирования, связь с lineage."
+description: "Gaming Performance DWH — operating context. LLM reads this file → knows what DWH is, what's authoritative, what tools are available."
+dwh: hardware
+mission: "Maintain analytical integrity of the Gaming Performance DWH."
+customer: "Content Team"
+success:
+  - "Coverage: diagnostic triad (720p/1080p/1440p) for every CPU"
+  - "Consistency: no duplicate observations, no contradictions"
+  - "Traceability: every observation has source_url, every Law has lineage"
+authority:
+  - read
+  - write_observation
+  - create_dimension
+  - update_context_map
+  - update_bus_matrix
+must_not:
+  - "Invent benchmark sources. No source_url → observation is invalid."
+  - "Violate contracts (references/contracts/). They are authoritative."
+  - "Remove data without lineage impact analysis."
+sources_of_truth:
+  - "context-map.yaml → what data exists right now. Read first."
+  - "bus-matrix.yaml → schema, aliases, validation rules."
+  - "contracts/ → invariants. Dimension, Fact, SCD."
+tools:
+  - "compile-context-map → python3 tools/compile-context-map/generate.py"
 ---
 
-# Minerva — Фабрика Agent-Native Data Warehouse
+# Minerva — Gaming Performance DWH
 
-## Две роли
+## What This Is
 
-**Как мета-скилл (scaffolding).** Minerva порождает самодостаточные DWH-skills. Архитектор говорит: «создать склад для домена X» → Minerva выдаёт готовый DWH-skill со структурой, контрактами, compile-context-map. Процесс одноразовый для каждого домена.
+You are attached to the **Gaming Performance DWH** (`warehouse/hardware/`).
 
-**Как shared lib (references).** Consumer внутри DWH-skill использует контракты Minerva как эталон — но они уже скопированы в DWH при scaffolding. Consumer не знает о Minerva.
+This is a dimensional model (Kimball): Dimensions describe entities (GPU, CPU, game). Observations are measurements. Laws are patterns derived from observations.
 
-## Consumer workflow (как найти данные)
+Your job: maintain analytical integrity. The Content Team asks for data — you provide it, or explain why it can't be provided.
 
-Раньше: consumer должен был знать fs-структуру — `warehouse/hardware/fact/observations/`. Это хрупко.
+## Before Any Action
 
-Теперь:
+Read `references/context-map.yaml`. Understand what already exists. Don't create duplicates. Don't ask for data that's already there.
+
+## Authoritative Sources (read in this order)
+
+1. **context-map.yaml** — current state of the warehouse
+2. **bus-matrix.yaml** — schema, dimension types, fact types, aliases
+3. **contracts/** — invariants you must not violate
+
+## Knowledge (references/)
+
+- **ontology.md** — what entities exist and how they relate
+- **mental-models.md** — coverage, confidence, lineage, provenance
+- **terminology.md** — domain glossary (benchmark terms, architectures)
+
+## Tools
+
+Only one tool — everything else is reasoning:
 
 ```
-1. skill_view('minerva')
-   → SKILL.md: «hardware-DWH: 759 obs, 148 entities, 2 Laws. Карта — references/context-map.yaml»
-   → linked_files: [references/context-map.yaml, references/contracts/...]
-
-2. skill_view('minerva', file_path='references/context-map.yaml')
-   → Полный индекс: все GPU/CPU, игры, разрешения, законы
-   → Consumer видит: «12 GPU, 28 CPU, 439 GPU obs + 320 CPU obs, игры от CS2 до Cyberpunk»
-
-3. Consumer выбирает нужное — например, хочет comparison RTX 5060 vs RTX 4060:
-   → capability 'analysis/comparison' уже доступен внутри DWH
+python3 tools/compile-context-map/generate.py --warehouse-root . --output references/context-map.yaml
 ```
 
-**Consumer не знает о fs-структуре.** Он читает context-map → находит нужный capability → получает данные.
+Run after any data change.
 
-## Как устроен DWH
+## Data Rules
+
+- Every observation must have `meta.source_url`. No exceptions.
+- training_data → confidence 0.75. Real benchmarks → 0.9+.
+- Dimensions created via YAML files in `warehouse/hardware/dim/{type}/{id}.yaml`.
+- New aliases go in `warehouse/hardware/bus-matrix.yaml`.
+- Laws go in `marts/engineering/laws/`. Must have lineage to observations.
+
+## Structure
 
 ```
-warehouse/{domain}/
-├── bus-matrix.yaml        ← контракт домена: dimensions, facts, aliases
-├── definitions/           ← семантика метрик
-├── dim/{type}/{id}.yaml   ← Dimensions: сущности с атрибутами
-└── fact/{type}/{id}.yaml  ← Facts: измерения. Source-значения → bus matrix → dim_id
-
-marts/{domain}/
-├── laws/                  ← Инженерные закономерности (с lineage)
-└── patterns/              ← Повторяющиеся структуры
-
-references/
-└── context-map.yaml       ← АВТОГЕНЕРИРУЕМЫЙ индекс всего склада
+minerva/
+├── SKILL.md                 ← you are here
+├── references/
+│   ├── context-map.yaml     ← auto-generated index (read first)
+│   ├── ontology.md          ← entity model
+│   ├── mental-models.md     ← how to think about this DWH
+│   ├── terminology.md       ← domain glossary
+│   └── contracts/           ← invariants
+├── tools/
+│   └── compile-context-map/ ← regenerate context-map
+├── warehouse/hardware/
+│   ├── bus-matrix.yaml      ← schema
+│   ├── dim/                 ← dimensions (GPU, CPU, games, ...)
+│   ├── fact/                ← observations & cpu_observations
+│   └── definitions/         ← metric definitions
+└── marts/
+    └── engineering/         ← laws, patterns
 ```
-
-**Context-map — автогенерируемый.** После любого изменения данных — `compile-context-map`. Consumer всегда видит актуальную картину.
-
-## Ключевые архитектурные решения
-
-- **Source Layer (ADR-025).** Fact хранит сырые source-значения, не dim_id. Резолвинг через bus matrix aliases — при чтении.
-- **Fact-insert — единственная точка записи.** Валидация: mandatory dimensions, allowed measures, provenance (source_url).
-- **Marts — Derived Layer.** Laws/Patterns с lineage до исходных observation. lineage-trace раскручивает цепочку.
-- **Contract-based.** Dimension/Fact/SCD — инварианты, агент self-enforces. Capabilities — сложная оркестрация.

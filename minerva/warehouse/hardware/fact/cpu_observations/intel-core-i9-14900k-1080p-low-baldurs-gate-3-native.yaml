@@ -1,0 +1,24 @@
+fact:
+  id: intel-core-i9-14900k-1080p-low-baldurs-gate-3-native
+  type: cpu_observation
+source:
+  cpu: Core i9-14900K
+  game_title: Baldur's Gate 3
+  resolution: 1080p
+  graphics_preset: Low
+  benchmark_scenario: 1080p-low
+measures:
+  fps_avg: 155
+  fps_1_percent_low: 100
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  observed_at: '2026-07-15'
+  observed_by: data-analyst
+lineage:
+  nodes: []
+  edges: []

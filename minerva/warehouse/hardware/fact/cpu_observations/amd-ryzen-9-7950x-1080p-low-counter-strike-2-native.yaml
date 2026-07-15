@@ -1,0 +1,24 @@
+fact:
+  id: amd-ryzen-9-7950x-1080p-low-counter-strike-2-native
+  type: cpu_observation
+source:
+  cpu: Ryzen 9 7950X
+  game_title: Counter-Strike 2
+  resolution: 1080p
+  graphics_preset: Low
+  benchmark_scenario: 1080p-low
+measures:
+  fps_avg: 430
+  fps_1_percent_low: 279
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  observed_at: '2026-07-15'
+  observed_by: data-analyst
+lineage:
+  nodes: []
+  edges: []

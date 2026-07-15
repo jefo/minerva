@@ -1,107 +1,66 @@
 ---
 name: warehouse-{domain}
-description: "Data Warehouse для домена {domain}: {description}. {dim_count} dimensions, {obs_count} observation, {law_count} Laws. Самодостаточный DWH-skill — consumer начинает с context-map."
-contract:
-  in: "Запрос данных домена {domain}: сущности, замеры, сравнения, закономерности"
-  out: "Структурированные данные через context-map + capabilities"
-domain:
-  id: {domain}
-  description: "{description}"
-  context_map: "references/context-map.yaml"
-  bus_matrix: "warehouse/{domain}/bus-matrix.yaml"
-capabilities:
-  warehouse:
-    - compile-context-map
-    - dim-read
-    - bus-lookup
-    - cross-reference
-    - fact-read
-    - fact-insert
-    - coverage-matrix
-  analysis:
-    - comparison
-    - pattern-promote
-    - lineage-trace
-    - impact-analysis
-    - stale-check
-    - contradiction-detect
-contracts:
-  - dimension-contract
-  - fact-contract
-  - scd-contract
+description: "Data Warehouse for {domain}: {description}. Operating context — LLM reads this file to understand the DWH."
+dwh: {domain}
+mission: "Maintain analytical integrity of the {domain_title} DWH."
+customer: "Content Team"
+success:
+  - "Coverage"
+  - "Consistency"
+  - "Traceability"
+authority:
+  - read
+  - write_observation
+  - create_dimension
+  - update_context_map
+  - update_bus_matrix
+must_not:
+  - "Invent data sources"
+  - "Violate contracts"
+sources_of_truth:
+  - "context-map.yaml → read first"
+  - "bus-matrix.yaml → schema"
+  - "contracts/ → invariants"
+tools:
+  - "compile-context-map → python3 tools/compile-context-map/generate.py"
 ---
 
-# Warehouse: {domain_title}
+# {domain_title} DWH
 
-**{description}**
+You are attached to this DWH. Read `references/context-map.yaml` before any action.
 
-## Как найти данные
+## Authoritative Sources
+1. context-map.yaml — current state
+2. bus-matrix.yaml — schema + aliases
+3. contracts/ — invariants
 
-```
-1. skill_view('warehouse-{domain}')
-   → SKILL.md (этот файл): что есть в DWH
-
-2. skill_view('warehouse-{domain}', file_path='references/context-map.yaml')
-   → Полный индекс: все сущности, замеры, законы
-
-3. Выбрать нужное:
-   → comparison: сравнить две сущности
-   → cross-reference: все замеры для сущности
-   → lineage-trace: проследить происхождение закона
-```
-
-**Consumer не знает о fs-структуре.** Он читает context-map → находит capability → получает данные.
-
-## Структура склада
-
+## Structure
 ```
 warehouse/{domain}/
-├── bus-matrix.yaml        ← контракт домена: dimensions, facts, aliases
-├── definitions/           ← семантика метрик
-├── dim/{type}/{id}.yaml   ← Dimensions: сущности с атрибутами
-└── fact/{type}/{id}.yaml  ← Facts: измерения
+├── bus-matrix.yaml
+├── dim/
+├── fact/
+└── definitions/
 
 marts/{domain}/
-├── laws/                  ← Инженерные закономерности (с lineage)
-├── patterns/              ← Повторяющиеся структуры
-└── comparisons/           ← Результаты сравнений
+├── laws/
+├── patterns/
+└── comparisons/
 
 references/
-├── context-map.yaml       ← АВТОГЕНЕРИРУЕМЫЙ индекс склада
-└── contracts/             ← Контракты Dimension, Fact, SCD
+├── context-map.yaml      ← auto-generated
+├── ontology.md
+├── mental-models.md
+├── terminology.md
+└── contracts/
+
+tools/
+└── compile-context-map/
 ```
 
-## Ключевые правила
+## After Any Data Change
+```
+python3 tools/compile-context-map/generate.py --warehouse-root . --output references/context-map.yaml
+```
 
-1. **Fact-insert — единственная точка записи.** Валидация по bus-matrix.
-2. **Source Layer.** Fact хранит source-значения, не dim_id. Резолвинг через bus-lookup.
-3. **Lineage — обязательно.** Law → observation → source_url.
-4. **Context-map — автогенерируемый.** После любого изменения → compile-context-map.
-5. **Provenance.** source_url обязателен в каждом observation.
-
-## Возможности (capabilities)
-
-### Складские
-| Capability | Что делает |
-|---|---|
-| `compile-context-map` | Перегенерировать индекс склада |
-| `dim-read` | Прочитать dimension по id |
-| `bus-lookup` | Найти dimension по названию |
-| `cross-reference` | Все замеры для сущности |
-| `fact-read` | Прочитать замер с контекстом |
-| `fact-insert` | Добавить observation |
-| `coverage-matrix` | Матрица покрытия: сущность × игра × разрешение |
-
-### Аналитические
-| Capability | Что делает |
-|---|---|
-| `comparison` | Сравнить две сущности по метрикам |
-| `pattern-promote` | Сохранить обнаруженный закон |
-| `lineage-trace` | Проследить observation → law |
-| `impact-analysis` | Что затронет изменение данных |
-| `stale-check` | Найти устаревшие observation |
-| `contradiction-detect` | Найти конфликтующие замеры |
-
-## Создан
-
-Scaffolded Minerva {version} на {date}. Обновление структуры — `maintain-warehouse` в Minerva.
+Scaffolded by Minerva on {date}.
