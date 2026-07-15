@@ -1,0 +1,29 @@
+fact:
+  id: intel-core-ultra-5-245k-720p-low-hogwarts-legacy-native
+  type: cpu_observation
+source:
+  cpu: intel-core-ultra-5-245k
+  benchmark_scenario: 720p Low
+  game_title: Hogwarts Legacy
+  resolution: 720p
+  graphics_preset: Low
+  driver_version: 2026-Q2
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+measures:
+  fps_avg: 145
+  fps_1pct_low: 101
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'CPU gaming benchmark: hogwarts-legacy 720p Low (training data)'
+  observed_at: 2026-07
+  observed_by: cpu-gaming-etl
+  note: Диагностический сценарий — максимальный CPU-bound. В реальном гейминге 720p
+    Low не используется.
+lineage:
+  nodes: []
+  edges: []
