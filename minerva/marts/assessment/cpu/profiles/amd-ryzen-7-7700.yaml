@@ -1,0 +1,207 @@
+# CPU Assessment Profile — AMD Ryzen 7 7700 (65W)
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.780563
+
+assessment:
+  cpu_id: amd-ryzen-7-7700
+  cpu_label: AMD Ryzen 7 7700 (65W)
+  generated: '2026-07-19'
+  dwh_observations: 22
+  data_quality:
+    coverage: good
+    gaps:
+    - Cinebench R23 data defective — string labels in score field
+    confidence: 0.76
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: am5
+    socket_lifecycle: active
+    socket_upgrade_note: AM5 поддерживает Zen 4, Zen 5 и ожидаемый Zen 6 без замены платы. Купил B650 в 2023 — поставишь Ryzen
+      10600X3D в 2027.
+    architecture: amd-zen-4
+    architecture_note: ''
+    cores: 8
+    p_cores: null
+    e_cores: null
+    threads: 16
+    core_label: 8C/16T
+    base_clock_mhz: 3800
+    boost_clock_mhz: 5300
+    tdp_w: 65
+    power_draw_mt_w: 75
+    temp_mt_c: 65
+    power_note: 'Спецификация TDP: 65W. Реальное потребление под MT-нагрузкой: 75W. Разница: +10W.'
+    cache_l3: 32MB (standard)
+    memory: DDR5
+    pcie: '5.0'
+    release: null
+    msrp_usd: 329
+  workloads:
+    competitive-gaming:
+      scenario: 1080p Low (CPU-bound)
+      measurements:
+        games_tested: 5
+        games:
+        - title: Baldur's Gate 3
+          fps_avg: 170
+          fps_1pct_low: 122
+        - title: Counter-Strike 2
+          fps_avg: 440
+          fps_1pct_low: 316
+        - title: Cyberpunk 2077
+          fps_avg: 160
+          fps_1pct_low: 115
+        - title: Hogwarts Legacy
+          fps_avg: 138
+          fps_1pct_low: 99
+        - title: Starfield
+          fps_avg: 118
+          fps_1pct_low: 84
+        summary:
+          fps_avg:
+            mean: 205.2
+            min: 118
+            max: 440
+            stdev: 132.8
+          fps_1pct_low:
+            mean: 147.2
+            min: 84
+            max: 316
+            stdev: 95.5
+      targets:
+      - id: 144hz
+        label: Плавный геймплей (144Hz)
+        metric: fps_1pct_low
+        threshold: 144
+        unit: fps
+        mean: 147.2
+        margin_pct: 2.2
+        worst_game:
+          game: Starfield
+          value: 84
+          margin_pct: -41.7
+        best_game:
+          game: Counter-Strike 2
+          value: 316
+          margin_pct: 119.4
+      - id: 240hz
+        label: Киберспорт (240Hz)
+        metric: fps_1pct_low
+        threshold: 240
+        unit: fps
+        mean: 147.2
+        margin_pct: -38.7
+        worst_game:
+          game: Starfield
+          value: 84
+          margin_pct: -65.0
+        best_game:
+          game: Counter-Strike 2
+          value: 316
+          margin_pct: 31.7
+      - id: 360hz
+        label: Профессиональный (360Hz)
+        metric: fps_1pct_low
+        threshold: 360
+        unit: fps
+        mean: 147.2
+        margin_pct: -59.1
+        worst_game:
+          game: Starfield
+          value: 84
+          margin_pct: -76.7
+        best_game:
+          game: Counter-Strike 2
+          value: 316
+          margin_pct: -12.2
+    aaa-gaming:
+      scenario: 1440p Ultra (mixed-bound)
+      measurements:
+        games_tested: 5
+        games:
+        - title: Baldur's Gate 3
+          fps_avg: 133
+          fps_1pct_low: 103
+        - title: Counter-Strike 2
+          fps_avg: 350
+          fps_1pct_low: 273
+        - title: Cyberpunk 2077
+          fps_avg: 114
+          fps_1pct_low: 88
+        - title: Hogwarts Legacy
+          fps_avg: 110
+          fps_1pct_low: 85
+        - title: Starfield
+          fps_avg: 94
+          fps_1pct_low: 73
+        summary:
+          fps_avg:
+            mean: 160.2
+            min: 94
+            max: 350
+            stdev: 107.0
+          fps_1pct_low:
+            mean: 124.4
+            min: 73
+            max: 273
+            stdev: 83.8
+      targets:
+      - id: 60fps
+        label: Минимально играбельно
+        metric: fps_1pct_low
+        threshold: 60
+        unit: fps
+        mean: 124.4
+        margin_pct: 107.3
+        worst_game:
+          game: Starfield
+          value: 73
+          margin_pct: 21.7
+        best_game:
+          game: Counter-Strike 2
+          value: 273
+          margin_pct: 355.0
+      - id: 120fps
+        label: Плавно (120Hz)
+        metric: fps_1pct_low
+        threshold: 120
+        unit: fps
+        mean: 124.4
+        margin_pct: 3.7
+        worst_game:
+          game: Starfield
+          value: 73
+          margin_pct: -39.2
+        best_game:
+          game: Counter-Strike 2
+          value: 273
+          margin_pct: 127.5
+      note: 1440p Ultra — GPU частично ограничивает, разница между CPU сжата.
+    content-creation:
+      geekbench_mt: 16000
+      blender_classroom_sec: 550
+      blender_note: Секунды на рендер сцены Classroom. Меньше = лучше.
+      perf_per_watt: 213.3
+      perf_per_watt_note: Баллов Geekbench MT на 1 Ватт реального потребления. Выше = эффективнее. Training data estimate.
+      data_status: partial
+    software-development:
+      geekbench_st: 2850
+      geekbench_mt: 16000
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 8
+      threads: 16
+      gaming_1pct_low_mean: 147.2
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: 205.2

@@ -11,6 +11,8 @@ attributes:
   release_year: 2022
   compatible_memory: ["DDR5"]
   predecessor: "am4"
-  platform_lifespan:
-    promised_until_year: 2027
-    current_status: "active"
+  lifecycle:
+    status: "active"
+    supported_cpu_generations: ["Zen 4 (Ryzen 7000)", "Zen 5 (Ryzen 9000)", "Zen 6 (ожидается)"]
+    confirmed_chipsets: ["A620", "B650", "B650E", "X670", "X670E", "B840", "B850", "X870", "X870E"]
+    upgrade_note: "AM5 поддерживает Zen 4, Zen 5 и ожидаемый Zen 6 без замены платы. Купил B650 в 2023 — поставишь Ryzen 10600X3D в 2027."

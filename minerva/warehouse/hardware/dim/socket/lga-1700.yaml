@@ -11,6 +11,9 @@ attributes:
   release_year: 2021
   compatible_memory: ["DDR4", "DDR5"]
   predecessor: "lga-1200"
-  platform_lifespan:
-    promised_until_year: 2024
-    current_status: "mature"
+  lifecycle:
+    status: "legacy"
+    supported_cpu_generations: ["Alder Lake (12th Gen)", "Raptor Lake (13th Gen)", "Raptor Lake Refresh (14th Gen)"]
+    confirmed_chipsets: ["H610", "B660", "H670", "Z690", "B760", "H770", "Z790"]
+    upgrade_note: "LGA1700 — финальная платформа. 14900K/14700K — последние CPU. Следующий апгрейд — LGA1851 (Core Ultra 200) с заменой платы."
+    ddr4_note: "LGA1700 — последняя платформа Intel с поддержкой DDR4. Позволяет сэкономить на памяти при сборке."

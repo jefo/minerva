@@ -1,0 +1,74 @@
+# CPU Assessment Profile — Intel Core i7-14700K (253W) — 20 ЯДЕР, RAPTOR LAKE REFRESH
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.850693
+
+assessment:
+  cpu_id: intel-core-i7-14700k
+  cpu_label: Intel Core i7-14700K (253W) — 20 ЯДЕР, RAPTOR LAKE REFRESH
+  generated: '2026-07-19'
+  dwh_observations: 7
+  data_quality:
+    coverage: partial
+    gaps:
+    - no gaming data
+    - Cinebench R23 data defective — string labels in score field
+    confidence: 0.78
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: lga-1700
+    socket_lifecycle: legacy
+    socket_upgrade_note: LGA1700 — финальная платформа. 14900K/14700K — последние CPU. Следующий апгрейд — LGA1851 (Core Ultra
+      200) с заменой платы.
+    architecture: intel-raptor-lake
+    architecture_note: 'Гибридная архитектура: P-cores для нагрузки, E-cores для фона.'
+    cores: 20
+    p_cores: 8
+    e_cores: 12
+    threads: 28
+    core_label: 8P+12E (20C/28T)
+    base_clock_mhz: 3400
+    boost_clock_mhz: null
+    tdp_w: 125
+    power_draw_mt_w: 260
+    temp_mt_c: 92
+    power_note: 'Спецификация TDP: 125W. Реальное потребление под MT-нагрузкой: 260W. Разница: +135W.'
+    cache_l3: 33MB (standard)
+    memory: DDR5
+    pcie: '5.0'
+    release: null
+    msrp_usd: 409
+  workloads:
+    competitive-gaming:
+      data_status: blocked
+      note: no gaming data
+    aaa-gaming:
+      data_status: blocked
+      note: no gaming data
+    content-creation:
+      geekbench_mt: 23000
+      blender_classroom_sec: 300
+      blender_note: Секунды на рендер сцены Classroom. Меньше = лучше.
+      perf_per_watt: 88.5
+      perf_per_watt_note: Баллов Geekbench MT на 1 Ватт реального потребления. Выше = эффективнее. Training data estimate.
+      data_status: partial
+    software-development:
+      geekbench_st: 2950
+      geekbench_mt: 23000
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 20
+      threads: 28
+      gaming_1pct_low_mean: null
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: null

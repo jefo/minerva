@@ -1,0 +1,70 @@
+# CPU Assessment Profile — Intel Core Ultra 7 265F (65W)
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.868950
+
+assessment:
+  cpu_id: intel-core-ultra-7-265f
+  cpu_label: Intel Core Ultra 7 265F (65W)
+  generated: '2026-07-19'
+  dwh_observations: 4
+  data_quality:
+    coverage: partial
+    gaps:
+    - no gaming data
+    - Cinebench R23 data defective — string labels in score field
+    - no productivity data
+    confidence: 0.8
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: lga-1851
+    socket_lifecycle: active
+    socket_upgrade_note: LGA1851 — текущая платформа Intel. Core Ultra 200 сейчас, Nova Lake ожидается. DDR5 only.
+    architecture: intel-arrow-lake
+    architecture_note: 'Гибридная архитектура: P-cores для нагрузки, E-cores для фона.'
+    cores: 20
+    p_cores: 8
+    e_cores: 12
+    threads: 20
+    core_label: 8P+12E (20C/20T)
+    base_clock_mhz: 2400
+    boost_clock_mhz: null
+    tdp_w: 65
+    power_draw_mt_w: null
+    temp_mt_c: null
+    power_note: Нет данных о реальном энергопотреблении. TDP из спецификации.
+    cache_l3: 30MB (standard)
+    memory: DDR5
+    pcie: '5.0'
+    release: null
+    msrp_usd: 299
+  workloads:
+    competitive-gaming:
+      data_status: blocked
+      note: no gaming data
+    aaa-gaming:
+      data_status: blocked
+      note: no gaming data
+    content-creation:
+      geekbench_mt: 22000
+      data_status: partial
+    software-development:
+      geekbench_st: 3250
+      geekbench_mt: 22000
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 20
+      threads: 20
+      gaming_1pct_low_mean: null
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: null

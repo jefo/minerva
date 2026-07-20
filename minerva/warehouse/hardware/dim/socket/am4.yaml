@@ -11,7 +11,9 @@ attributes:
   release_year: 2016
   compatible_memory: ["DDR4"]
   predecessor: "am3+"
-  platform_lifespan:
-    promised_until_year: 2022
-    current_status: "mature"
-    note: "Поддерживает Ryzen 1000–5000. Самый долгоживущий сокет AMD."
+  lifecycle:
+    status: "legacy"
+    supported_cpu_generations: ["Zen (Ryzen 1000)", "Zen+ (Ryzen 2000)", "Zen 2 (Ryzen 3000)", "Zen 3 (Ryzen 5000)", "Zen 3D (5800X3D, 5700X3D)"]
+    confirmed_chipsets: ["A320", "B350", "X370", "B450", "X470", "A520", "B550", "X570"]
+    upgrade_note: "AM4 — завершённая платформа. 5800X3D/5700X3D — финальные CPU. Следующий апгрейд — AM5 с заменой материнской платы и DDR5."
+    still_relevant: "5800X3D на AM4 всё ещё конкурентоспособен в играх. Бюджетный апгрейд без замены платы."

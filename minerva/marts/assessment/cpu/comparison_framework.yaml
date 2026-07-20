@@ -1,0 +1,251 @@
+# CPU Comparison Framework
+#
+# Domain rules for pairwise CPU comparison in DSS.
+# SPA loads two profiles + this framework → computes comparison view.
+# No verdicts. No "X is better". Only atoms and their relational molecules.
+#
+# Usage:
+#   1. Load profile A, profile B
+#   2. Apply comparison rules from this file
+#   3. Render: metric deltas, tradeoff axes, platform divergence, decision boundaries
+
+framework:
+
+  # ── METRIC CLASSIFICATION ────────────────────────────────────
+  # What constitutes a meaningful difference vs noise.
+  # Applied to any metric delta between two CPUs.
+
+  delta_thresholds:
+    gaming_fps:
+      decisive: 15        # >15% = явное преимущество, решение очевидно
+      significant: 8       # 8-15% = заметно, но не решающе
+      noticeable: 3        # 3-8% = разница есть, но в игре незаметна
+      marginal: 0          # <3% = в пределах погрешности
+    synthetic_score:
+      decisive: 20         # >20% для MT (рендеринг масштабируется линейно)
+      significant: 10
+      noticeable: 5
+      marginal: 0
+    note: >
+      Пороги — domain knowledge, не статистика. В играх ±3% незаметно
+      глазу (60fps → 62fps). В рендеринге 20% = часы сэкономленного времени.
+
+  # ── SCENARIO SENSITIVITY ─────────────────────────────────────
+  # How resolution changes the meaning of a CPU delta.
+
+  resolution_context:
+    1080p_low:
+      label: "1080p Low — CPU-bound"
+      interpretation: "Максимальная разница между CPU. GPU не ограничивает."
+      gpu_role: "любая современная карта покажет эту дельту"
+    1440p_ultra:
+      label: "1440p Ultra — Mixed-bound"
+      interpretation: "Разница между CPU сжата. GPU частично берёт нагрузку."
+      gpu_role: "на RTX 4060 и слабее разница CPU почти исчезает"
+    720p_low:
+      label: "720p Low — Extreme CPU-bound"
+      interpretation: "Теоретический максимум CPU. В реальности никто так не играет."
+      gpu_role: "искусственный сценарий — показывает потенциал CPU, не реальный опыт"
+
+  # ── TRADEOFF AXES ────────────────────────────────────────────
+  # Natural tension pairs. When CPU_A leads on one axis and CPU_B on the other,
+  # this is a genuine tradeoff the human must resolve.
+
+  tradeoff_axes:
+    - id: gaming_vs_productivity
+      label: "Игры vs Работа"
+      axis_a:
+        workloads: [competitive-gaming, aaa-gaming]
+        metric: fps_1pct_low_mean
+        label: "Игровая производительность"
+      axis_b:
+        workloads: [content-creation, software-development]
+        metric: geekbench_mt
+        label: "Многопоточная производительность"
+      tradeoff_note: >
+        Классический компромисс: 3D V-Cache CPU (7800X3D, 9800X3D) доминируют
+        в играх, но уступают в MT-нагрузках. Высокочастотные многоядерные CPU
+        (14900K, 9950X) — наоборот.
+
+    - id: gaming_vs_price
+      label: "FPS vs Бюджет"
+      axis_a:
+        workloads: [competitive-gaming]
+        metric: fps_1pct_low_mean
+      axis_b:
+        workloads: [budget-gaming]
+        metric: fps_per_ruble
+      tradeoff_note: "Не computable без pricing-данных."
+
+    - id: single_vs_multi
+      label: "Отзывчивость vs Пропускная способность"
+      axis_a:
+        workloads: [software-development]
+        metric: geekbench_st
+        label: "Однопоточная (IDE, браузер)"
+      axis_b:
+        workloads: [software-development]
+        metric: geekbench_mt
+        label: "Многопоточная (компиляция, Docker)"
+      tradeoff_note: >
+        Некоторые CPU оптимизированы под ST-буст (6.0GHz у 14900K),
+        другие — под MT-плотность (16 ядер у 9950X).
+
+    - id: power_vs_performance
+      label: "Производительность vs Эффективность"
+      axis_a:
+        workloads: [content-creation]
+        metric: geekbench_mt
+        label: "Абсолютная MT-производительность"
+      axis_b:
+        workloads: [content-creation]
+        metric: perf_per_watt
+        label: "Эффективность (score/Watt)"
+      tradeoff_note: >
+        Высокопроизводительные CPU часто неэффективны: 14700K мощнее 7800X3D
+        в MT, но потребляет 260W против 82W. Для SFF-сборок и стран с дорогим
+        электричеством эффективность критична.
+      computable: "Только для CPU с power-thermal данными (12 из 29)."
+
+  # ── PLATFORM DIVERGENCE ──────────────────────────────────────
+  # When two CPUs are on different sockets/platforms, these facts matter.
+
+  platform_aspects:
+    - id: socket_longevity
+      label: "Жизненный цикл платформы"
+      compute: >
+        Сравнить socket_lifecycle из профилей: active → "можно обновить CPU без замены платы",
+        legacy → "платформа завершена, следующий апгрейд = новая материнская плата",
+        eol → "процессоры сняты с производства, только вторичный рынок"
+      divergence_threshold: "разные статусы → показать socket_upgrade_note из каждого профиля"
+
+    - id: memory_type
+      label: "Тип памяти"
+      compute: >
+        Если один CPU поддерживает DDR4, а другой только DDR5:
+        implication = "DDR4-совместимость снижает стоимость сборки на ~5-8K ₽"
+      divergence_threshold: "разные memory.type → показать implication"
+
+    - id: cooling_requirements
+      label: "Энергопотребление и охлаждение"
+      compute: >
+        Сравнить power_draw_mt_w из профилей. Если есть у обоих:
+        показать реальное потребление + дельту.
+        Если разница >50W: implication = "требует СЖО или двухбашенного кулера vs башенный кулер достаточен".
+        Также сравнить temp_mt_c — температура под нагрузкой.
+      fallback: >
+        Если power_draw_mt_w отсутствует — показать spec TDP с предупреждением:
+        "TDP из спецификации. Реальное потребление может отличаться (особенно Intel PL2)."
+
+    - id: igpu_presence
+      label: "Встроенная графика"
+      compute: "Сравнить integrated: true/false"
+      implication: >
+        CPU с iGPU позволяет собрать систему без дискретной карты
+        (офис, HTPC) или диагностировать проблемы с GPU.
+
+  # ── DECISION BOUNDARIES ──────────────────────────────────────
+  # Conditions that flip the better choice. SPA applies these to surface:
+  # "Решение меняется на противоположное если..."
+
+  decision_boundaries:
+    - id: gpu_class_restricts_cpu
+      condition: "Если GPU ≤ midrange (RTX 4060 / RX 7600)"
+      effect: >
+        Разница между CPU на 1440p ultra сжимается до <5% для большинства пар.
+        Фактор CPU становится вторичным — важнее платформа и цена.
+      trigger: "Когда оба CPU показывают >60fps 1% Low в 1440p ultra"
+      computable: partial
+      note: "Требует CPU×GPU bottleneck-данных. Сейчас — эвристика."
+
+    - id: esports_only
+      condition: "Если пользователь играет только в киберспорт (CS2, Valorant, Dota 2)"
+      effect: >
+        3D V-Cache CPU получают максимальное преимущество (+30-50% в CS2).
+        MT-производительность не имеет значения.
+      trigger: "Когда competitive-gaming 1% Low delta > 25%"
+      computable: true
+
+    - id: mixed_use
+      condition: "Если пользователь играет И работает (рендер, компиляция)"
+      effect: >
+        Преимущество в играх может нивелироваться проигрышем в MT.
+        Решение зависит от пропорции: 70% игры / 30% работа → gaming CPU.
+        50/50 → balanced CPU или компромисс.
+      trigger: "Когда tradeoff gaming_vs_productivity — strong"
+      computable: true
+
+    - id: resolution_matters
+      condition: "Если целевое разрешение 4K"
+      effect: >
+        На 4K GPU — абсолютное узкое место. Разница между CPU исчезает
+        почти полностью (<3%). Выбирай по платформе и цене, не по FPS.
+      trigger: "Когда оба CPU имеют схожие fps_1pct_low на высоких разрешениях"
+      computable: false
+      note: "Нет 4K-данных в DWH."
+
+  # ── DATA QUALITY IN COMPARISON ────────────────────────────────
+  # When comparing two profiles, data quality differences matter.
+
+  comparison_integrity:
+    - rule: "confidence_mismatch"
+      condition: "Профили имеют разный confidence"
+      action: "Показать предупреждение: «Сравнение неточное — данные разного качества»"
+    - rule: "coverage_asymmetry"
+      condition: "Один CPU имеет gaming-данные, другой нет"
+      action: "Показать только те workload'ы где данные есть у обоих"
+    - rule: "same_source"
+      condition: "Оба профиля — training_data"
+      action: "Показать общий дисклеймер: «Оценки, не реальные замеры (±10-15%)»"
+
+  # ── PER-GAME DISPERSION ──────────────────────────────────────
+  # When comparing per-game values, classify consistency.
+
+  dispersion_classification:
+    consistent:
+      label: "Преимущество стабильно"
+      rule: "CPU_A лидирует в ≥80% игр на ≥5%"
+      interpretation: "Разница архитектурная, не зависит от игры"
+    mixed:
+      label: "Зависит от игры"
+      rule: "CPU_A лидирует в 50-80% игр"
+      interpretation: "В одних играх лидирует A, в других B. Смотри per-game."
+    inconsistent:
+      label: "Картина неясна"
+      rule: "Лидерство распределено примерно поровну"
+      interpretation: "Нет явного победителя — решение по другим факторам"
+
+  # ── WORKLOAD RELEVANCE IN COMPARISON ──────────────────────────
+  # When showing a comparison, not all workloads matter equally.
+
+  workload_priority:
+    competitive-gaming:
+      relevance: "primary"
+      note: "Главный фактор для геймерского выбора CPU"
+    aaa-gaming:
+      relevance: "primary"
+      note: "Второй ключевой фактор. На 1440p+ разница сжимается."
+    content-creation:
+      relevance: "conditional"
+      note: "Важно только если пользователь работает с контентом"
+    software-development:
+      relevance: "conditional"
+      note: "Важно только для разработчиков"
+    streaming-gaming:
+      relevance: "secondary"
+      note: "Прокси-метрика (нет прямых замеров gaming+OBS)"
+    budget-gaming:
+      relevance: "disabled"
+      note: "Не computable без pricing-данных"
+
+  # ── MAGNITUDE DIRECTION ──────────────────────────────────────
+  # How to interpret which direction the delta goes.
+
+  delta_direction:
+    positive_a_leads:
+      label: "{cpu_a_label} опережает на {delta_pct}%"
+    positive_b_leads:
+      label: "{cpu_b_label} опережает на {delta_pct}%"
+    within_margin:
+      label: "Разница в пределах погрешности ({delta_pct}%)"
+      threshold: 3

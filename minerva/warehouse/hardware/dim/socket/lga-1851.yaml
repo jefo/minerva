@@ -11,6 +11,8 @@ attributes:
   release_year: 2024
   compatible_memory: ["DDR5"]
   predecessor: "lga-1700"
-  platform_lifespan:
-    promised_until_year: 2027
-    current_status: "active"
+  lifecycle:
+    status: "active"
+    supported_cpu_generations: ["Arrow Lake (Core Ultra 200)", "Nova Lake (ожидается)"]
+    confirmed_chipsets: ["Z890", "B860", "H810"]
+    upgrade_note: "LGA1851 — текущая платформа Intel. Core Ultra 200 сейчас, Nova Lake ожидается. DDR5 only."

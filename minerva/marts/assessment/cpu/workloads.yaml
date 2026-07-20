@@ -1,0 +1,193 @@
+# CPU Usage Models — Canonical Taxonomy
+#
+# Описывает ЧТО ДЕЛАЕТ процессор, а не ЧТО ХОЧЕТ пользователь.
+# Каждая usage-model определяет: релевантные сценарии, метрики, пороги.
+# Это контракт для compute-скрипта и SPA.
+
+usage_models:
+
+  competitive-gaming:
+    id: competitive-gaming
+    label: "Киберспорт / Competitive Gaming"
+    description: >
+      Игры с приоритетом высокой и стабильной частоты кадров:
+      CS2, Valorant, Dota 2, Apex Legends, Rainbow Six Siege.
+      Важен не средний FPS, а 1% Low — он определяет плавность
+      в критические моменты (размен, смоки).
+    scenarios:
+      - 1080p-low
+      - 720p-low          # extreme CPU-bound, данные почти отсутствуют
+    primary_metrics:
+      - fps_1pct_low       # главная метрика
+      - fps_avg
+    aggregation:
+      method: "per_game"
+      rationale: >
+        Киберспортсмен играет в 1-2 игры, а не «в среднем по больнице».
+        Показываем каждую игру отдельно, не усредняем.
+    targets:
+      - id: "144hz"
+        label: "Плавный геймплей (144Hz)"
+        metric: fps_1pct_low
+        value: 144
+        unit: fps
+      - id: "240hz"
+        label: "Киберспорт (240Hz)"
+        metric: fps_1pct_low
+        value: 240
+        unit: fps
+      - id: "360hz"
+        label: "Профессиональный (360Hz)"
+        metric: fps_1pct_low
+        value: 360
+        unit: fps
+    relevance: high
+    relevance_note: "CPU — определяющий компонент. GPU вторичен на low-настройках."
+
+  aaa-gaming:
+    id: aaa-gaming
+    label: "AAA-гейминг"
+    description: >
+      Тяжёлые сюжетные игры: Cyberpunk 2077, Starfield, Alan Wake 2,
+      Hogwarts Legacy. Цель — стабильные 60+ FPS с комфортным 1% Low
+      без статтеров.
+    scenarios:
+      - 1440p-ultra       # mixed-bound, большинство играет так
+      - 1080p-low          # CPU-bound, показывает потенциал
+    primary_metrics:
+      - fps_avg
+      - fps_1pct_low
+    aggregation:
+      method: "mean + dispersion"
+      rationale: >
+        AAA-геймер играет в разное. Средний FPS полезен, но дисперсия
+        (min/max/stdev) критична — показывает «падает ли в какой-то игре».
+    targets:
+      - id: "60fps"
+        label: "Минимально играбельно"
+        metric: fps_1pct_low
+        value: 60
+        unit: fps
+      - id: "120fps"
+        label: "Плавно (120Hz)"
+        metric: fps_1pct_low
+        value: 120
+        unit: fps
+    relevance: medium
+    relevance_note: "GPU важнее CPU на высоких настройках. Но CPU bottleneck — реален."
+
+  streaming-gaming:
+    id: streaming-gaming
+    label: "Стриминг (игра + трансляция)"
+    description: >
+      Одновременная нагрузка: игра + OBS-энкодинг + Discord + браузер.
+      Требует запаса по ядрам. Игра использует 4-6 ядер, энкодер — ещё 2-4.
+    scenarios:
+      - synthetic-mt
+      - 1080p-low
+    primary_metrics:
+      - score              # Cinebench MT как прокси многозадачности
+      - fps_1pct_low       # игровая производительность под нагрузкой
+    aggregation:
+      method: "two-axis"
+      rationale: >
+        Стриминг — компромисс: MT-мощность (энкодинг) + gaming-производительность.
+        Показываем обе оси, не сводим в одну.
+    targets:
+      - id: "8-core"
+        label: "8 ядер / 16 потоков"
+        metric: cores
+        value: 8
+        unit: cores
+      - id: "stream-safe"
+        label: "Запас по 1% Low для стрима"
+        metric: fps_1pct_low
+        value: 90
+        unit: fps
+        note: "Цель выше 60 — с запасом на OBS overhead"
+    relevance: high
+    relevance_note: "CPU critical. GPU handles game, CPU handles encode."
+    data_status: partial
+    data_note: "Нет прямых замеров gaming+OBS. MT score — прокси."
+
+  content-creation:
+    id: content-creation
+    label: "Контент-мейкинг / Workstation"
+    description: >
+      Рендеринг (Blender, V-Ray), видео-экспорт (Premiere, DaVinci Resolve),
+      3D-моделирование. Масштабируется по ядрам почти линейно.
+    scenarios:
+      - synthetic-mt
+      - productivity
+    primary_metrics:
+      - score              # Cinebench MT
+    aggregation:
+      method: "single_value"
+      rationale: "MT-рендеринг масштабируется линейно. Cinebench MT — прямой прокси."
+    targets:
+      - id: "budget"
+        label: "Начальный уровень"
+        metric: score
+        value: null
+        unit: "Cinebench R23 MT"
+        note: "Порог будет задан после появления реальных данных"
+      - id: "pro"
+        label: "Профессиональный уровень"
+        metric: score
+        value: null
+        unit: "Cinebench R23 MT"
+    relevance: high
+    relevance_note: "CPU — определяющий компонент для рендеринга."
+    data_status: blocked
+    data_note: "Cinebench данные дефектные — score содержит строки-лейблы вместо чисел."
+
+  software-development:
+    id: software-development
+    label: "Разработка ПО"
+    description: >
+      Компиляция (C++, Rust), Docker, IDE, тесты. Компиляция любит ядра,
+      IDE/DevTools — однопоточную производительность. Важен баланс.
+    scenarios:
+      - synthetic-1t
+      - synthetic-mt
+    primary_metrics:
+      - score              # ST + MT
+    aggregation:
+      method: "two-axis"
+      rationale: "ST для отзывчивости IDE, MT для времени компиляции."
+    targets:
+      - id: "responsive"
+        label: "Отзывчивость IDE"
+        metric: score
+        value: null
+        unit: "Cinebench R23 1T"
+      - id: "compile"
+        label: "Скорость компиляции"
+        metric: score
+        value: null
+        unit: "Cinebench R23 MT"
+    relevance: medium
+    relevance_note: "CPU важен, но не критичен для большинства задач разработки."
+    data_status: blocked
+    data_note: "Cinebench данные дефектные."
+
+  budget-gaming:
+    id: budget-gaming
+    label: "Бюджетная сборка"
+    description: >
+      Лучший FPS на рубль. Важен не абсолютный FPS, а эффективность:
+      сколько кадров даёт каждый потраченный рубль.
+    scenarios:
+      - 1080p-low
+    primary_metrics:
+      - fps_avg
+      - price_rub
+      - fps_per_ruble
+    aggregation:
+      method: "value_ratio"
+      rationale: "FPS / цена. Требует pricing-данных."
+    targets: []
+    relevance: high
+    relevance_note: "В бюджете CPU-выбор критичен: переплата в 5K может дать +30% FPS."
+    data_status: blocked
+    data_note: "Pricing warehouse не заполнен."

@@ -1,0 +1,71 @@
+# CPU Assessment Profile — AMD Ryzen 7 9700X (Zen 5, 65W)
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.799158
+
+assessment:
+  cpu_id: amd-ryzen-7-9700x
+  cpu_label: AMD Ryzen 7 9700X (Zen 5, 65W)
+  generated: '2026-07-19'
+  dwh_observations: 4
+  data_quality:
+    coverage: partial
+    gaps:
+    - no gaming data
+    - Cinebench R23 data defective — string labels in score field
+    - no productivity data
+    confidence: 0.8
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: am5
+    socket_lifecycle: active
+    socket_upgrade_note: AM5 поддерживает Zen 4, Zen 5 и ожидаемый Zen 6 без замены платы. Купил B650 в 2023 — поставишь Ryzen
+      10600X3D в 2027.
+    architecture: amd-zen-5
+    architecture_note: ''
+    cores: 8
+    p_cores: null
+    e_cores: null
+    threads: 16
+    core_label: 8C/16T
+    base_clock_mhz: 3800
+    boost_clock_mhz: 5500
+    tdp_w: 65
+    power_draw_mt_w: null
+    temp_mt_c: null
+    power_note: Нет данных о реальном энергопотреблении. TDP из спецификации.
+    cache_l3: 32MB (standard)
+    memory: DDR5
+    pcie: '5.0'
+    release: null
+    msrp_usd: 359
+  workloads:
+    competitive-gaming:
+      data_status: blocked
+      note: no gaming data
+    aaa-gaming:
+      data_status: blocked
+      note: no gaming data
+    content-creation:
+      geekbench_mt: 18000
+      data_status: partial
+    software-development:
+      geekbench_st: 3350
+      geekbench_mt: 18000
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 8
+      threads: 16
+      gaming_1pct_low_mean: null
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: null

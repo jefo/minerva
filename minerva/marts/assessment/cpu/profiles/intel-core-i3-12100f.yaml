@@ -1,0 +1,71 @@
+# CPU Assessment Profile — Intel Core i3-12100F (Alder Lake)
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.822605
+
+assessment:
+  cpu_id: intel-core-i3-12100f
+  cpu_label: Intel Core i3-12100F (Alder Lake)
+  generated: '2026-07-19'
+  dwh_observations: 4
+  data_quality:
+    coverage: partial
+    gaps:
+    - no gaming data
+    - Cinebench R23 data defective — string labels in score field
+    - no productivity data
+    confidence: 0.8
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: lga-1700
+    socket_lifecycle: legacy
+    socket_upgrade_note: LGA1700 — финальная платформа. 14900K/14700K — последние CPU. Следующий апгрейд — LGA1851 (Core Ultra
+      200) с заменой платы.
+    architecture: intel-alder-lake
+    architecture_note: 'Гибридная архитектура: P-cores для нагрузки, E-cores для фона.'
+    cores: 4
+    p_cores: 4
+    e_cores: 0
+    threads: 8
+    core_label: 4P+0E (4C/8T)
+    base_clock_mhz: 3300
+    boost_clock_mhz: 4300
+    tdp_w: 58
+    power_draw_mt_w: null
+    temp_mt_c: null
+    power_note: Нет данных о реальном энергопотреблении. TDP из спецификации.
+    cache_l3: 12MB (standard)
+    memory: DDR5
+    pcie: 5.0 / 4.0
+    release: null
+    msrp_usd: 97
+  workloads:
+    competitive-gaming:
+      data_status: blocked
+      note: no gaming data
+    aaa-gaming:
+      data_status: blocked
+      note: no gaming data
+    content-creation:
+      geekbench_mt: 7500
+      data_status: partial
+    software-development:
+      geekbench_st: 2200
+      geekbench_mt: 7500
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 4
+      threads: 8
+      gaming_1pct_low_mean: null
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: null

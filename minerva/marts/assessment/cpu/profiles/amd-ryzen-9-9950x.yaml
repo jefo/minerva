@@ -1,0 +1,74 @@
+# CPU Assessment Profile — AMD Ryzen 9 9950X (170W) — Zen 5 флагман, 16 ядер
+# Auto-generated from DWH by compute.py
+# Generated: 2026-07-19T19:48:27.818180
+
+assessment:
+  cpu_id: amd-ryzen-9-9950x
+  cpu_label: AMD Ryzen 9 9950X (170W) — Zen 5 флагман, 16 ядер
+  generated: '2026-07-19'
+  dwh_observations: 7
+  data_quality:
+    coverage: partial
+    gaps:
+    - no gaming data
+    - Cinebench R23 data defective — string labels in score field
+    confidence: 0.78
+    basis: training_data
+    note: Все значения — training data estimates. Реальные бенчмарки могут отличаться на ±10-15%.
+  defects:
+  - type: synthetic_data_defect
+    affected: Cinebench R23 ST/MT
+    detail: Поле score содержит строки-лейблы ('synthetic-mt', 'synthetic-1t') вместо чисел. Geekbench 6 используется как
+      замена.
+  platform:
+    socket: am5
+    socket_lifecycle: active
+    socket_upgrade_note: AM5 поддерживает Zen 4, Zen 5 и ожидаемый Zen 6 без замены платы. Купил B650 в 2023 — поставишь Ryzen
+      10600X3D в 2027.
+    architecture: amd-zen-5
+    architecture_note: ''
+    cores: 16
+    p_cores: null
+    e_cores: null
+    threads: 32
+    core_label: 16C/32T
+    base_clock_mhz: 4300
+    boost_clock_mhz: 5700
+    tdp_w: 170
+    power_draw_mt_w: 210
+    temp_mt_c: 90
+    power_note: 'Спецификация TDP: 170W. Реальное потребление под MT-нагрузкой: 210W. Разница: +40W.'
+    cache_l3: 64MB (standard)
+    memory: DDR5
+    pcie: '5.0'
+    release: null
+    msrp_usd: 649
+  workloads:
+    competitive-gaming:
+      data_status: blocked
+      note: no gaming data
+    aaa-gaming:
+      data_status: blocked
+      note: no gaming data
+    content-creation:
+      geekbench_mt: 33000
+      blender_classroom_sec: 180
+      blender_note: Секунды на рендер сцены Classroom. Меньше = лучше.
+      perf_per_watt: 157.1
+      perf_per_watt_note: Баллов Geekbench MT на 1 Ватт реального потребления. Выше = эффективнее. Training data estimate.
+      data_status: partial
+    software-development:
+      geekbench_st: 3420
+      geekbench_mt: 33000
+      data_status: partial
+      note: Geekbench 6 ST — прокси отзывчивости IDE. MT — прокси времени компиляции.
+    streaming-gaming:
+      data_status: partial
+      note: Нет прямых замеров gaming+OBS. Ядра — прокси многозадачности.
+      cores: 16
+      threads: 32
+      gaming_1pct_low_mean: null
+    budget-gaming:
+      data_status: blocked
+      note: Pricing warehouse не заполнен. FPS/₽ недоступен.
+      gaming_fps_avg_mean: null
