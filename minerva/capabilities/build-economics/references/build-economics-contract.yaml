@@ -1,0 +1,188 @@
+# Build Economics Contract — выходной контракт capability build-economics
+# 9-section economic profile: стоимость владения инженерной стратегией
+
+build_economics:
+  # ── Идентификация ──
+  build_id: "intel-core-i5-14400f_nvidia-rtx-5070"
+  build_label: "i5-14400F + RTX 5070"
+  generated: "2026-07-24"
+  model: "hermes-reasoning-v4"
+  minerva_context_map_ts: "2026-07-15T19:59:35Z"
+
+  # ── Конфигурация ──
+  config:
+    cpu:
+      id: "intel-core-i5-14400f"
+      label: "Intel Core i5-14400F"
+      socket: "LGA1700"
+      tdp_w: 65
+    gpu:
+      id: "nvidia-rtx-5070"
+      label: "NVIDIA GeForce RTX 5070 12GB"
+      tdp_w: 250
+    motherboard:
+      chipset: "B760"
+      form_factor: "ATX"
+    ram: "32GB (2×16GB) DDR5-6000"
+    cooler:
+      type: "air"
+      model: "DeepCool AK400 / Thermalright Peerless Assassin 120"
+    case:
+      form_factor: "ATX"
+      aesthetic: "functional"
+    psu:
+      wattage: 750
+      tier: "Gold"
+    storage: "1TB NVMe Gen4"
+    aesthetic_choices: []
+
+  # ── Ценовые источники ──
+  price_sources:
+    cpu: "model_msrp"
+    gpu: "model_msrp"
+    motherboard: "model_estimate"
+    ram: "model_estimate"
+    cooler: "model_estimate"
+    case: "model_estimate"
+    psu: "model_estimate"
+    storage: "model_estimate"
+    confidence_baseline: 0.70
+    note: "Все цены — оценки модели на основе training data (MSRP + typical market). Реальные розничные цены могут отличаться на ±15-25%. Используйте pc-parts-price-check для актуальных цен."
+
+  # ══════════════════════════════════════════
+  # §1. СТОИМОСТЬ ВХОДНОГО БИЛЕТА
+  # ══════════════════════════════════════════
+  section_1_entry_ticket:
+    rationale: "Платформа — набор компонентов определяющий будущие апгрейды. GPU можно заменить независимо."
+    components:
+      - {item: "CPU", cost: 0, currency: "rub", price_source: "model_msrp"}
+      - {item: "Материнская плата", cost: 0, currency: "rub", price_source: "model_estimate"}
+      - {item: "Память", cost: 0, currency: "rub", price_source: "model_estimate"}
+      - {item: "Кулер", cost: 0, currency: "rub", price_source: "model_estimate"}
+    total_platform_cost: 0
+
+  # ══════════════════════════════════════════
+  # §2. СТРУКТУРА БЮДЖЕТА
+  # ══════════════════════════════════════════
+  section_2_budget_structure:
+    subsystems:
+      - {subsystem: "CPU", cost: 0, currency: "rub", share_pct: 0}
+      - {subsystem: "GPU", cost: 0, currency: "rub", share_pct: 0}
+      - {subsystem: "Платформа (MB+RAM+Cooler)", cost: 0, currency: "rub", share_pct: 0}
+      - {subsystem: "Хранение данных", cost: 0, currency: "rub", share_pct: 0}
+      - {subsystem: "Корпус + охлаждение", cost: 0, currency: "rub", share_pct: 0}
+      - {subsystem: "Питание", cost: 0, currency: "rub", share_pct: 0}
+    total_build_cost: 0
+    imbalances: []  # e.g. "GPU стоит 60% бюджета — типично для игровой сборки"
+
+  # ══════════════════════════════════════════
+  # §3. ЦЕНА ИГРОВОГО ЯДРА
+  # ══════════════════════════════════════════
+  section_3_gaming_core:
+    rationale: "Стоимость компонентов влияющих на FPS. Позволяет сравнивать 'чистые' игровые стратегии."
+    components:
+      - {item: "CPU", cost: 0, currency: "rub"}
+      - {item: "GPU", cost: 0, currency: "rub"}
+      - {item: "RAM", cost: 0, currency: "rub"}
+    total_gaming_core_cost: 0
+    gaming_core_share_pct: 0  # доля от total_build_cost
+
+  # ══════════════════════════════════════════
+  # §4. СТОИМОСТЬ ВИЗУАЛЬНОГО СЛОЯ
+  # ══════════════════════════════════════════
+  section_4_visual_layer:
+    rationale: "Компоненты которые практически не увеличивают FPS."
+    items:
+      - {item: "string", base_component: "string", premium_cost: 0, currency: "rub", note: "string"}
+    total_visual_premium: 0
+    visual_share_pct: 0
+    assessment: "string"  # e.g. "Минимальный visual overhead — сборка оптимизирована под FPS/₽"
+    question: "Сколько рублей ушло не на FPS, а на внешний вид?"
+
+  # ══════════════════════════════════════════
+  # §5. ПОТЕНЦИАЛ ПЛАТФОРМЫ
+  # ══════════════════════════════════════════
+  section_5_platform_potential:
+    max_cpu_on_socket:
+      model: "string"
+      note: "string"
+    next_generation_support: false
+    next_gen_note: "string"
+    memory_change_required: false
+    memory_change_note: "string"
+    motherboard_change_required: false
+    motherboard_change_note: "string"
+    platform_ceiling_assessment: "string"
+
+  # ══════════════════════════════════════════
+  # §6. СЛЕДУЮЩИЙ АПГРЕЙД
+  # ══════════════════════════════════════════
+  section_6_next_upgrade:
+    timeframe: "2-3 года"
+    upgrade_scenario: "string"  # e.g. "Замена CPU в пределах платформы" или "Полная смена платформы"
+    components_to_replace:
+      - {component: "CPU", must_replace: false, reason: "string"}
+      - {component: "Материнская плата", must_replace: false, reason: "string"}
+      - {component: "RAM", must_replace: false, reason: "string"}
+      - {component: "GPU", must_replace: false, reason: "string"}
+      - {component: "Кулер", must_replace: false, reason: "string"}
+      - {component: "БП", must_replace: false, reason: "string"}
+    estimated_upgrade_cost: 0
+    upgrade_cost_note: "string"
+
+  # ══════════════════════════════════════════
+  # §7. ЛИКВИДНОСТЬ ПЛАТФОРМЫ
+  # ══════════════════════════════════════════
+  section_7_liquidity:
+    level: "высокая|средняя|низкая"
+    cpu_liquidity: "string"
+    gpu_liquidity: "string"
+    platform_liquidity: "string"
+    memory_liquidity: "string"
+    factors:
+      - "string"
+    assessment: "string"
+
+  # ══════════════════════════════════════════
+  # §8. РИСК УСТАРЕВАНИЯ
+  # ══════════════════════════════════════════
+  section_8_obsolescence_risk:
+    first_bottleneck: "CPU|GPU|платформа|память"
+    bottleneck_year_estimate: "string"  # e.g. "2029-2030 (CPU в RTS/City Builder)"
+    cpu_risk:
+      level: "низкий|средний|высокий"
+      ipc_gap_by_2030_pct: 0
+      note: "string"
+    gpu_risk:
+      level: "низкий|средний|высокий"
+      note: "string"
+    platform_risk:
+      level: "низкий|средний|высокий"
+      note: "string"
+    memory_risk:
+      level: "низкий|средний|высокий"
+      note: "string"
+    integration_note: "Детальный per-genre прогноз: forecast-lifecycle capability"
+
+  # ══════════════════════════════════════════
+  # §9. ЭКОНОМИЧЕСКИЙ ДИАГНОЗ
+  # ══════════════════════════════════════════
+  section_9_economic_diagnosis:
+    strategy: "string"
+    strategy_description: "string"
+
+    strengths:
+      - "string"
+
+    financial_risks:
+      - "string"
+
+    key_insight: "string"
+
+    comparative_note: "string"
+
+  disclaimers:
+    - "Все цены — оценки на основе training data модели. Не являются розничными предложениями."
+    - "Используйте pc-parts-price-check для получения актуальных розничных цен."
+    - "Прогноз устаревания основан на исторических трендах 2010-2025. Не учитывает архитектурные прорывы."
+    - "Экономический диагноз описывает стратегию, не рекомендует покупку."

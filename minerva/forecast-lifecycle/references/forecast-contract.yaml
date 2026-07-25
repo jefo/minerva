@@ -1,0 +1,216 @@
+# Forecast Contract — LifecycleForecast
+# Выходной контракт capability `forecast-lifecycle`.
+# Определяет структуру, инварианты и эпистемические требования к прогнозу.
+#
+# Структура выходного файла: marts/lifecycle/profiles/{cpu_id}_{gpu_id}@{settings}.yaml
+
+lifecycle_forecast:
+  combo:
+    cpu_id: "intel-core-i5-14400f"
+    cpu_label: "Intel Core i5-14400F"
+    gpu_id: "nvidia-rtx-5070"
+    gpu_label: "NVIDIA GeForce RTX 5070"
+    settings: "1440p-ultra"
+    substitutions:
+      cpu_proxy: "intel-core-i5-13400f"
+      cpu_proxy_note: "Тот же Raptor Lake, 6P+4E. 14400F на 3-5% быстрее по частотам."
+      gpu_proxy: null
+
+  meta:
+    generated: "2026-07-24"
+    model: "hermes-reasoning-v4"
+    minerva_context_map_ts: "2026-07-15T19:59:35Z"
+    calibration: "back-test-4-cpu"
+    forecast_confidence_baseline: 0.70
+
+  snapshot:
+    cpu:
+      architecture: "Raptor Lake"
+      socket: "LGA1700"
+      socket_lifecycle: "legacy"
+      cores: "6P+4E (10C/16T)"
+      cache_l3: "20MB (standard)"
+      tdp_w: 65
+      boost_ghz: 4.7
+      release: "2024-01"
+      gaming_1pct_low_mean_1080p: 118
+      gaming_1pct_low_mean_1440p: 104
+    gpu:
+      architecture: "Blackwell"
+      vram: "12GB GDDR7"
+      dlss_gen: "DLSS 4 (MFG ×4)"
+      rt_gen: 4
+      tensor_gen: 5
+      tdp_w: 250
+      release: "2025"
+
+  assumptions:
+    - id: "ipc_growth"
+      claim: "IPC growth 12-18% per CPU generation, ~18-24 month cadence"
+      basis: "observed_trend"
+      evidence: "Zen 1→Zen 5 (2017-2024), Skylake→Raptor Cove (2015-2022)"
+      confidence: 0.90
+
+    - id: "gpu_raster_growth"
+      claim: "GPU raster performance grows 25-30% per generation"
+      basis: "observed_trend"
+      evidence: "Pascal→Ada→Blackwell (2016-2025)"
+      confidence: 0.85
+
+    - id: "dlss_cadence"
+      claim: "DLSS generations every ~2 years. DLSS 5 ~2028, DLSS 6 ~2030."
+      basis: "extrapolation"
+      evidence: "DLSS 2 (2020) → DLSS 3 (2022) → DLSS 4 (2025)"
+      confidence: 0.75
+
+    - id: "engine_complexity"
+      claim: "Engine CPU requirements grow 15-20% every 2-3 years"
+      basis: "observed_trend"
+      evidence: "Minimum CPU specs: 2015→2025 AAA titles"
+      confidence: 0.80
+
+    - id: "ue6_timeline"
+      claim: "UE6 adoption begins 2028, mainstream 2029"
+      basis: "extrapolation"
+      evidence: "UE4 (2014) → UE5 (2020) = 6yr. UE5→UE6 ~2028."
+      confidence: 0.65
+
+    - id: "ai_npc_overhead"
+      claim: "Generative AI NPC adds 30-50% CPU load when adopted (2029+)"
+      basis: "speculative_estimate"
+      evidence: "Нет исторических данных. Основано на inference cost малых LLM."
+      confidence: 0.50
+
+    - id: "ps6_timeline"
+      claim: "PlayStation 6 ~2028, поднимает baseline CPU spec для кроссплатформы"
+      basis: "extrapolation"
+      evidence: "PS3 (2006) → PS4 (2013) → PS5 (2020) = 7yr cycle"
+      confidence: 0.70
+
+    - id: "parallelism_ceiling"
+      claim: "Diminishing returns beyond 8 threads for AAA, 12 for simulation-heavy"
+      basis: "observed_trend"
+      evidence: "NVIDIA CPU scaling data, multiple independent benchmarks"
+      confidence: 0.85
+
+    - id: "mfg_asymmetry"
+      claim: "Frame Generation снижает GPU-load, НЕ CPU-load. CPU считает мир на base framerate."
+      basis: "engineering_fact"
+      evidence: "DLSS 3/4 documentation, HW Unboxed CPU scaling with FG tests"
+      confidence: 0.95
+
+  forecast_by_year:
+    - year: 2026
+      bottleneck_probability: 0.03
+      confidence_interval: [0.01, 0.06]
+      dominant_factor: "GPU-bound"
+      cpu_base_render_estimate_fps: 65
+      gpu_effective_throughput_fps: 180
+      note: "RTX 5070 ограничивает в 1440p Ultra раньше CPU"
+
+    - year: 2027
+      bottleneck_probability: 0.05
+      confidence_interval: [0.02, 0.10]
+      dominant_factor: "GPU-bound"
+      note: "Игры всё ещё таргетируют текущее поколение консолей"
+
+    - year: 2028
+      bottleneck_probability: 0.10
+      confidence_interval: [0.05, 0.18]
+      dominant_factor: "GPU-bound (early UE6 titles CPU-heavier)"
+      note: "Первые UE6-игры. PS6 speculation."
+
+    - year: 2029
+      bottleneck_probability: 0.22
+      confidence_interval: [0.12, 0.35]
+      dominant_factor: "CPU (engine complexity, AI NPC early)"
+      note: "UE6 mainstream. AI NPC экспериментально."
+
+    - year: 2030
+      bottleneck_probability: 0.40
+      confidence_interval: [0.28, 0.55]
+      dominant_factor: "CPU (IPC gap ~40%, PS6 baseline)"
+      note: "6 P-cores — below recommended for new AAA. GPU still strong."
+
+    - year: 2031
+      bottleneck_probability: 0.62
+      confidence_interval: [0.48, 0.75]
+      dominant_factor: "CPU (below min spec for many titles)"
+      note: "7 лет — исторический предел для mid-range CPU."
+
+    - year: 2032
+      bottleneck_probability: 0.78
+      confidence_interval: [0.65, 0.88]
+      dominant_factor: "CPU (obsolete for new releases)"
+      note: "8 лет. Исторический эквивалент: i5-6600K в 2023 — dead."
+
+  forecast_by_genre:
+    - genre: "aaa_shooter"
+      label: "AAA Shooter (CoD, Battlefield)"
+      cpu_coefficient: 0.7
+      inflection_year: null
+      inflection_probability: 0.10
+      note: "GPU-тяжёлый жанр. CPU живёт дольше всех."
+
+    - genre: "rts"
+      label: "RTS (Total War, AoE, Homeworld)"
+      cpu_coefficient: 1.4
+      inflection_year: 2030
+      inflection_probability: 0.62
+      note: "Pathfinding + simulation. 6 P-cores hit wall."
+
+    - genre: "city_builder"
+      label: "City Builder (Cities: Skylines, Satisfactory)"
+      cpu_coefficient: 1.6
+      inflection_year: 2029
+      inflection_probability: 0.75
+      note: "Agent simulation. Самый CPU-голодный жанр."
+
+    - genre: "mmo"
+      label: "MMO (WoW, FFXIV, Throne & Liberty)"
+      cpu_coefficient: 1.2
+      inflection_year: 2030
+      inflection_probability: 0.40
+      note: "Много сущностей, но server-авторитет смягчает."
+
+    - genre: "simulator"
+      label: "Simulator (MSFS, Assetto Corsa, DCS)"
+      cpu_coefficient: 1.3
+      inflection_year: 2030
+      inflection_probability: 0.50
+      note: "Физика + системы. 6 P-cores tight."
+
+    - genre: "esports"
+      label: "Киберспорт (CS2, Valorant, LoL)"
+      cpu_coefficient: 0.9
+      inflection_year: "already-now"
+      inflection_probability: 0.85
+      note: "1% low 115 fps → 144Hz с трудом, 240Hz недостижим."
+
+  platform:
+    socket: "LGA1700"
+    lifecycle: "legacy"
+    upgrade_path: "14900K/14700K — последние CPU. Следующий апгрейд — LGA1851 с заменой платы."
+    recommendation: "Апгрейд CPU на этой платформе не имеет смысла — менять платформу."
+
+  disclaimers:
+    - "Прогноз основан на исторических трендах 2010-2025. Не учитывает архитектурные прорывы."
+    - "Не учитывает новые ISA-расширения (как AVX-512 изменил картину для некоторых нагрузок)."
+    - "Предполагает сохранение current-gen API overhead (DX12/Vulkan)."
+    - "Не учитывает heterogeneous computing (GPU compute для симуляции — не mainstream)."
+    - "Per-genre коэффициенты — оценки на основе наблюдаемых паттернов, не жёсткие измерения."
+    - "MFG/asymmetry model предполагает что NVIDIA продолжит current trajectory."
+
+# Инварианты контракта (не часть выходного YAML — валидационные правила)
+#
+# 1. Epistemic markers: каждый claim в assumptions имеет basis из словаря:
+#    engineering_fact, observed_trend, extrapolation, speculative_estimate
+#
+# 2. Confidence calibration: per-year confidence_interval расширяется:
+#    ±5pp для +1yr → ±20pp для +6yr
+#
+# 3. Substitution transparency: cpu_proxy/cpu_proxy_note обязательны если CPU нет в Minerva
+#
+# 4. Platform lifecycle: socket_lifecycle + upgrade_path — часть прогноза, не просто CPU bottleneck
+#
+# 5. MFG asymmetry: всегда explicit в assumptions, engineering_fact basis
