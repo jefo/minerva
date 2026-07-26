@@ -40,6 +40,17 @@ self_description:
   contracts: "references/contracts/"
   data: "warehouse/hardware/"
   marts: "marts/"
+  marts_domains:
+    - "assessment/cpu — DSS comparison: 29 CPU × 6 workloads, comparison framework"
+    - "build-economics — TCO analysis: 9-section per-build, real prices, strategy comparison"
+    - "lifecycle — Bottleneck prediction: per-year probability, per-genre, MFG asymmetry"
+    - "engineering/laws — Derived engineering laws with lineage"
+  assessment:
+    methodology: "references/assessment-mart-methodology.md"
+    workloads: "marts/assessment/cpu/workloads.yaml"
+    compute: "marts/assessment/cpu/compute.py"
+    comparison_framework: "marts/assessment/cpu/comparison_framework.yaml"
+    webapp_integration: "references/webapp-integration.md"
 tools:
   - "compile-context-map: python3 tools/compile-context-map/generate.py --warehouse-root . --output references/context-map.yaml"
 ---
