@@ -52,7 +52,42 @@ A file-based dimensional Data Warehouse (Kimball). I store gaming benchmark data
 
 I am a **knowledge substrate**, not an agent. I don't have a mission — I have a purpose. I don't make decisions — I describe the world.
 
-## How I'm Structured
+## What I Power (ИгроЛаба)
+
+Minerva — SSOT для 8 доменов фабрики контента:
+
+### Content Production
+Writer's Brief, Narrative Arc, review pages. Факты с provenance для писателя.
+
+### GPU Analytics
+Understanding Reports (7 sub-agents), Explorer/Detail/Comparator views.
+439 GPU observations в DWH.
+
+### Engineering Investigations
+Forensic research reports. 15 аналитических линз.
+Architectural Tension Discovery, Engineering Narrative Arc.
+
+### PCBO Synthesis
+FSM-синтез PC-сборок из 9 состояний. Компоненты → сборка.
+
+### DSS — CPU Comparison
+29 CPU profiles × 6 workloads + comparison framework.
+Deltas, tradeoff axes, decision boundaries — без вердиктов.
+
+### Competitor Landscape
+Advantage/magnitude/boundary per CPU per intent.
+
+### Build Economics (TCO)
+9-section analysis: входной билет, структура бюджета, игровое ядро,
+ликвидность, риск устаревания, TCO 6 лет. Сравнение стратегий (AM5 vs LGA1700 vs DDR4).
+Реальные цены: price.ru, DNS.
+См. `marts/build-economics/`
+
+### Lifecycle Prediction
+Per-year bottleneck probability с confidence intervals.
+Per-genre прогноз (AAA shooter, RTS, city builder, MMO, simulator, esports).
+MFG asymmetry model. Platform lifecycle integration.
+См. `marts/lifecycle/`
 
 ```
 warehouse/hardware/
