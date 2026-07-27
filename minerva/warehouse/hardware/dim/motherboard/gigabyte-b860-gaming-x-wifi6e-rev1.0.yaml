@@ -1,0 +1,148 @@
+dimension:
+  id: "gigabyte-b860-gaming-x-wifi6e-rev1.0"
+  type: "motherboard"
+  canonical_name: "Gigabyte B860 GAMING X WIFI6E (rev 1.0)"
+  aliases: ["B860 GAMING X WIFI6E", "Gigabyte B860 GAMING X"]
+  scd_type: 2
+attributes:
+  vendor: "gigabyte"
+  model: "B860 GAMING X WIFI6E"
+  revision: "1.0"
+  form_factor: "atx"
+  chipset: "intel-b860"
+  socket: "lga-1851"
+  release_date: "2025-01"
+
+  vrm:
+    pwm_controller: "On Semi NCP81537"
+    mosfet_type: "DrMOS"
+    mosfet_model: "NTNFS4C06-4C10"
+    phase_topology: "parallel"
+    vcore_phases: 12
+    vcore_amps_per_phase: 69
+    vcore_total_amps: 828
+    soc_phases: 2
+    soc_amps_per_phase: 69
+    igpu_phases: 1
+    igpu_mosfet_model: "NCP81526"
+    igpu_amps_per_phase: 40
+    vnnaon_phases: 1
+    vnnaon_mosfet_model: "NCP81526"
+    vnnaon_amps_per_phase: 40
+    total_phases: 16
+    cpu_power_connectors: ["8-pin", "8-pin"]
+    heatsink_type: "aluminum_block"
+
+  pcb:
+    layers: 6
+    material: "mid_loss"
+    pcie5_ready: true
+
+  memory:
+    slots: 4
+    max_capacity_gb: 256
+    topology: "daisy_chain"
+    max_speed_mt_s: 9066
+    supported_types: ["DDR5", "CUDIMM"]
+    jedec_mt_s: 6400
+    xmp_3_0: true
+    single_rank_2dpc_penalty: true
+
+  pcie_slots:
+    - id: "PCI_E1"
+      mechanical: "x16"
+      electrical: "x16"
+      generation: "PCIe 5.0"
+      source: "cpu"
+    - id: "PCI_E2"
+      mechanical: "x16"
+      electrical: "x1"
+      generation: "PCIe 4.0"
+      source: "chipset"
+    - id: "PCI_E3"
+      mechanical: "x16"
+      electrical: "x1"
+      generation: "PCIe 4.0"
+      source: "chipset"
+
+  m2_slots:
+    - id: "M2A_CPU"
+      generation: "PCIe 5.0"
+      lanes: 4
+      source: "cpu"
+      form_factor: ["2280", "2260"]
+      heatsink: true
+    - id: "M2P_SB"
+      generation: "PCIe 4.0"
+      lanes: 4
+      source: "chipset"
+      form_factor: ["2280", "2260"]
+      heatsink: true
+    - id: "M2Q_SB"
+      generation: "PCIe 4.0"
+      lanes: 4
+      source: "chipset"
+      form_factor: ["2280", "2260"]
+      heatsink: true
+
+  sata_ports:
+    total: 4
+    controller: "chipset"
+
+  networking:
+    lan:
+      speed: "2.5GbE"
+      controller: "Realtek RTL8125D"
+    wireless:
+      standard: "Wi-Fi 6E"
+      chip: "Intel AX211"
+      bluetooth: "5.3"
+      note: "rev 1.0 = Intel AX211. rev 1.1 может иметь Realtek RTL8852CE"
+      antenna: "external"
+
+  audio:
+    codec: "Realtek ALC897"
+    channels: "7.1"
+    discrete_dac: false
+    pcb_isolation: false
+
+  usb_ports:
+    rear:
+      usb4_type_c: 1
+      usb_3_2_gen2_type_a: 1
+      usb_3_2_gen1_type_a: 4
+      usb_2_0: 4
+    internal:
+      usb_3_2_gen1_header: 1
+      usb_2_0_header: 2
+    hub: "GL850G (дополнительные USB 2.0)"
+
+  cooling:
+    fan_headers:
+      cpu_fan: {count: 1, max_amps: 2.0}
+      cpu_opt: {count: 1, max_amps: 2.0}
+      sys_fan: {count: 3, max_amps: 2.0}
+
+  qol_debug:
+    bios_flashback: true
+    ez_debug_led: false
+    post_code_display: false
+    clear_cmos_button: false
+    qflash_plus: true
+    ez_latch_plus: true
+
+  price:
+    value_rub: 18000
+    source: "price.ru"
+    date: "2026-07"
+    currency: "RUB"
+    note: "Диапазон 18000-26000 ₽ в зависимости от магазина"
+
+  bios_cpu_support:
+    - bios_version: "F1"
+      supported_cpus:
+        - "intel-core-ultra-5-225f"
+        - "intel-core-ultra-5-245k"
+        - "intel-core-ultra-7-265f"
+        - "intel-core-ultra-7-265k"
+        - "intel-core-ultra-9-285k"

@@ -1,0 +1,152 @@
+dimension:
+  id: "msi-b860-gaming-plus-wifi-rev1.0"
+  type: "motherboard"
+  canonical_name: "MSI B860 GAMING PLUS WIFI (rev 1.0)"
+  aliases: ["B860 Gaming Plus WiFi", "MSI B860 GAMING PLUS WIFI"]
+  scd_type: 2
+attributes:
+  vendor: "msi"
+  model: "B860 GAMING PLUS WIFI"
+  revision: "1.0"
+  form_factor: "atx"
+  chipset: "intel-b860"
+  socket: "lga-1851"
+  release_date: "2025-01"
+
+  vrm:
+    pwm_controller: "Richtek RT3638AJ"
+    mosfet_type: "discrete"
+    mosfet_model: "SM4337 + SM4503NH"
+    phase_topology: "doubler"
+    vcore_phases: 12
+    vcore_amps_per_phase: 55
+    vcore_total_amps: 660
+    soc_phases: 1
+    soc_amps_per_phase: 55
+    misc_phases: 2
+    misc_amps_per_phase: 55
+    total_phases: 15
+    cpu_power_connectors: ["8-pin", "8-pin"]
+    pcie_supplemental_8pin: true
+    heatsink_type: "aluminum_block"
+    thermal_pad_rating_wmk: 7
+
+  pcb:
+    layers: 6
+    material: "server_grade"
+    pcie5_ready: true
+
+  memory:
+    slots: 4
+    max_capacity_gb: 256
+    topology: "daisy_chain"
+    max_speed_mt_s: 8800
+    supported_types: ["DDR5"]
+    jedec_mt_s: 6400
+    xmp_3_0: true
+    single_rank_2dpc_penalty: true
+
+  pcie_slots:
+    - id: "PCI_E1"
+      mechanical: "x16"
+      electrical: "x16"
+      generation: "PCIe 5.0"
+      source: "cpu"
+      reinforcement: "steel_armor"
+    - id: "PCI_E2"
+      mechanical: "x16"
+      electrical: "x1"
+      generation: "PCIe 4.0"
+      source: "chipset"
+    - id: "PCI_E3"
+      mechanical: "x16"
+      electrical: "x4"
+      generation: "PCIe 4.0"
+      source: "chipset"
+    - id: "PCI_E4"
+      mechanical: "x16"
+      electrical: "x1"
+      generation: "PCIe 4.0"
+      source: "chipset"
+
+  m2_slots:
+    - id: "M2_1"
+      generation: "PCIe 5.0"
+      lanes: 4
+      source: "cpu"
+      form_factor: ["2280", "2260"]
+      heatsink: true
+      heatsink_name: "M.2 Shield Frozr"
+    - id: "M2_2"
+      generation: "PCIe 4.0"
+      lanes: 4
+      source: "chipset"
+      form_factor: ["2280", "2260", "2242"]
+      heatsink: false
+    - id: "M2_3"
+      generation: "PCIe 4.0"
+      lanes: 2
+      source: "chipset"
+      form_factor: ["2280", "2260"]
+      heatsink: false
+
+  sata_ports:
+    total: 4
+    controller: "chipset"
+    raid: [0, 1, 5, 10]
+
+  networking:
+    lan:
+      speed: "5GbE"
+      controller: "Intel Killer E5000B"
+    wireless:
+      standard: "Wi-Fi 7"
+      chip: "Intel Killer BE1750x"
+      bluetooth: "5.4"
+      antenna: "external"
+
+  audio:
+    codec: "Realtek ALC897"
+    channels: "7.1"
+    discrete_dac: false
+    pcb_isolation: false
+
+  usb_ports:
+    rear:
+      thunderbolt_4_type_c: 1
+      usb_3_2_gen2_type_a: 2
+      usb_3_2_gen1_type_a: 2
+      usb_2_0: 4
+    internal:
+      usb_3_2_gen2_type_c_header: 1
+      usb_3_2_gen1_header: 2
+      usb_2_0_header: 2
+
+  cooling:
+    fan_headers:
+      cpu_fan: {count: 1, max_amps: 2.0}
+      pump_sys: {count: 1, max_amps: 3.0}
+      sys_fan: {count: 4, max_amps: 1.0}
+    pump_header:
+      present: true
+
+  qol_debug:
+    bios_flashback: true
+    ez_debug_led: true
+    post_code_display: false
+    clear_cmos_button: true
+
+  price:
+    value_rub: 17410
+    source: "price.ru (FormulaTV)"
+    date: "2026-07"
+    currency: "RUB"
+
+  bios_cpu_support:
+    - bios_version: "7E18v1.0"
+      supported_cpus:
+        - "intel-core-ultra-5-225f"
+        - "intel-core-ultra-5-245k"
+        - "intel-core-ultra-7-265f"
+        - "intel-core-ultra-7-265k"
+        - "intel-core-ultra-9-285k"

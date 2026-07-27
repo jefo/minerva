@@ -1,0 +1,156 @@
+dimension:
+  id: "asrock-b860m-pro-rs-rev1.0"
+  type: "motherboard"
+  canonical_name: "ASRock B860M Pro RS (rev 1.0)"
+  aliases: ["B860M Pro RS", "ASRock B860M Pro RS"]
+  scd_type: 2
+attributes:
+  vendor: "asrock"
+  model: "B860M Pro RS"
+  revision: "1.0"
+  form_factor: "micro-atx"
+  chipset: "intel-b860"
+  socket: "lga-1851"
+  bios_version: "2.10"
+  release_date: "2025-01"
+
+  vrm:
+    pwm_controller: "Richtek RT3638AJ"
+    mosfet_type: "DrMOS"
+    mosfet_model: "Vishay SiC654A"
+    phase_topology: "true"
+    vcore_phases: 10
+    vcore_amps_per_phase: 50
+    vcore_total_amps: 500
+    soc_phases: 1
+    soc_amps_per_phase: 50
+    misc_phases: 3
+    misc_amps_per_phase: 50
+    total_phases: 14
+    cpu_power_connectors: ["8-pin"]
+    heatsink_type: "aluminum_block"
+
+  pcb:
+    layers: 6
+    material: "standard_fr4"
+    pcie5_ready: true
+
+  memory:
+    slots: 4
+    max_capacity_gb: 256
+    topology: "daisy_chain"
+    max_speed_mt_s: 8666
+    supported_types: ["DDR5", "CUDIMM"]
+    jedec_mt_s: 6400
+    xmp_3_0: true
+    single_rank_2dpc_penalty: true
+
+  pcie_slots:
+    - id: "PCI_E1"
+      mechanical: "x16"
+      electrical: "x16"
+      generation: "PCIe 5.0"
+      source: "cpu"
+    - id: "PCI_E2"
+      mechanical: "x16"
+      electrical: "x4"
+      generation: "PCIe 4.0"
+      source: "chipset"
+
+  m2_slots:
+    - id: "M2_1"
+      generation: "PCIe 5.0"
+      lanes: 4
+      source: "cpu"
+      form_factor: ["2280", "2260"]
+      heatsink: true
+    - id: "M2_2"
+      generation: "PCIe 4.0"
+      lanes: 4
+      source: "chipset"
+      form_factor: ["2280", "2260"]
+      heatsink: false
+    - id: "M2_3"
+      generation: "PCIe 4.0"
+      lanes: 4
+      source: "chipset"
+      form_factor: ["2280", "2260"]
+      heatsink: false
+    - id: "M2_WIFI"
+      generation: "PCIe 3.0"
+      lanes: 1
+      source: "chipset"
+      form_factor: ["2230"]
+      heatsink: false
+      note: "Key E для Wi-Fi модуля (опционально)"
+
+  lane_sharing:
+    rules:
+      - condition: "M2_3 занят"
+        note: "B860 HSIO: 14 downstream линий на 18 требований. Приоритет M2_3 над PCI_E2 и SATA зависит от прошивки."
+        status: "needs_manual_verification"
+
+  sata_ports:
+    total: 4
+    controller: "chipset"
+    raid: [0, 1, 5, 10]
+
+  networking:
+    lan:
+      speed: "2.5GbE"
+      controller: "Realtek RTL8125BG"
+    wireless:
+      standard: null
+      chip: null
+      note: "M.2 Key E слот для опционального Wi-Fi модуля"
+
+  audio:
+    codec: "Realtek ALC897"
+    channels: "7.1"
+    discrete_dac: false
+    pcb_isolation: false
+    software: "Nahimic Audio"
+
+  usb_ports:
+    rear:
+      usb_3_2_gen2x2_type_c: 1
+      usb_3_2_gen2_type_a: 1
+      usb_3_2_gen1_type_a: 2
+      usb_2_0: 4
+    internal:
+      usb_3_2_gen1_header: 2
+      usb_2_0_header: 2
+
+  cooling:
+    fan_headers:
+      cpu_fan: {count: 1, max_amps: 1.0}
+      cpu_opt: {count: 1, max_amps: 1.0}
+      chassis_fan: {count: 3, max_amps: 1.0}
+      aio_pump: {count: 1, max_amps: 2.0}
+    pump_header:
+      present: true
+    thermal_sensors:
+      vrm: true
+      pch: true
+      external_header: false
+
+  qol_debug:
+    bios_flashback: true
+    ez_debug_led: true
+    post_code_display: false
+    clear_cmos_button: false
+
+  price:
+    value_rub: 14499
+    source: "dns-shop.ru"
+    date: "2026-07"
+    currency: "RUB"
+
+  bios_cpu_support:
+    - bios_version: "2.10"
+      supported_cpus:
+        - "intel-core-ultra-5-225f"
+        - "intel-core-ultra-5-245k"
+        - "intel-core-ultra-7-265f"
+        - "intel-core-ultra-7-265k"
+        - "intel-core-ultra-9-285k"

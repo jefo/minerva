@@ -311,6 +311,7 @@ bus_matrix:
       description: Чипсет материнской платы
       aliases:
         B650: amd-b650
+        B860: intel-b860
         Z790: intel-z790
         Z890: intel-z890
       attributes:
@@ -321,6 +322,25 @@ bus_matrix:
       used_in_marts:
         - compatibility
         - platform
+    motherboard:
+      canonical_dim: dim/motherboard/{vendor}-{model}-{revision}.yaml
+      id_format: '{vendor}-{model}-{revision}'
+      description: Материнская плата — продуктовая реализация чипсета конкретным вендором
+      grain: 'SKU + hardware revision'
+      aliases: {}
+      attributes:
+        - vendor, model, revision, form_factor
+        - chipset, socket, bios_version
+        - vrm, pcb, memory
+        - pcie_slots, m2_slots, sata_ports
+        - networking, audio, usb_ports
+        - cooling, qol_debug
+        - price
+      used_in_marts:
+        - compatibility
+        - platform
+        - build-economics
+        - narrative
     benchmark_scenario:
       canonical_dim: dim/benchmark_scenario/{slug}.yaml
       id_format: '{slug}'

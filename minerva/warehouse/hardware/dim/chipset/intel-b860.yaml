@@ -1,0 +1,34 @@
+dimension:
+  id: "intel-b860"
+  type: "chipset"
+  canonical_name: "Intel B860"
+  aliases: ["B860"]
+  scd_type: 0
+attributes:
+  vendor: "intel"
+  socket: "lga-1851"
+  pcie:
+    total_lanes: 34
+    pcie_5_lanes: 0
+    pcie_4_lanes: 20
+  usb:
+    usb_3_2_gen2x2: 2
+    usb_3_2_gen2: 4
+    usb_3_2_gen1: 6
+  sata_ports: 4
+  overclocking:
+    cpu: false
+    memory: true
+  multi_gpu: false
+  release_year: 2025
+  supported_cpu_generations:
+    - "Core Ultra 200 (Arrow Lake)"
+notes:
+  vs_z890: |
+    B860 — mainstream-чипсет LGA1851. Ключевые отличия от Z890:
+    - Нет CPU overclocking (множитель заблокирован)
+    - Нет мульти-GPU (x8/x8 bifurcation отсутствует)
+    - PCIe 5.0 только от CPU (чипсет — PCIe 4.0)
+    - Меньше USB 3.2 Gen2x2 портов (2 vs 5)
+    - Меньше high-speed I/O линий (34 vs 48)
+    - Сохранён memory overclocking (XMP 8000+)
