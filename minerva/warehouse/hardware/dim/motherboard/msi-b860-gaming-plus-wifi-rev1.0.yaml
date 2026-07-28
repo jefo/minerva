@@ -5,12 +5,12 @@ dimension:
   aliases: ["B860 Gaming Plus WiFi", "MSI B860 GAMING PLUS WIFI"]
   scd_type: 2
 attributes:
-  vendor: "msi"
+  vendor: MSI
   model: "B860 GAMING PLUS WIFI"
   revision: "1.0"
   form_factor: "atx"
-  chipset: "intel-b860"
-  socket: "lga-1851"
+  chipset: Intel B860
+  socket: LGA1851
   release_date: "2025-01"
 
   vrm:
@@ -141,6 +141,7 @@ attributes:
     source: "price.ru (FormulaTV)"
     date: "2026-07"
     currency: "RUB"
+  pick_type: default
 
   bios_cpu_support:
     - bios_version: "7E18v1.0"

@@ -1,0 +1,37 @@
+dimension:
+  id: asrock-b450m-pro4
+  type: motherboard
+  canonical_name: ASRock B450M Pro4
+  scd_type: 0
+attributes:
+  vendor: ASRock
+  chipset: AMD B450
+  socket: AM4
+  form_factor: mATX
+  memory:
+    slots: 4
+    type: DDR4
+    max_speed_mt_s: 3200
+    max_capacity_gb: 64
+  vrm:
+    phases: 3+3
+    power_stages_a: 0
+    heatsink: минимальный (только на VCore)
+  pcie:
+  - slot: PCIe 3.0 x16
+    count: 1
+  - slot: PCIe 2.0 x4
+    count: 1
+  m2_slots:
+  - version: PCIe 3.0 x4
+    count: 1
+  sata_ports: 4
+  lan: 1GbE (Realtek)
+  wifi: нет
+  audio: Realtek ALC892
+  usb_rear: 1x USB-C 5Gbps, 6x USB-A 5Gbps
+  price_rub: 5990
+  price_note: DNS, Jul 2026
+  recommendation: Бюджетная плата AM4. Только для Ryzen 5 5600/5700X3D. VRM не для
+    разгона.
+  pick_type: budget

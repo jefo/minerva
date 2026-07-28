@@ -1,0 +1,15 @@
+dimension:
+  id: amd-rx-7900-xtx
+  type: gpu
+  canonical_name: AMD Radeon RX 7900 XTX 24GB
+  scd_type: 0
+attributes:
+  vendor: amd
+  architecture: RDNA 3
+  vram_gb: 24
+  bus_width_bit: 384
+  tdp_w: 355
+  release_year: 2022
+  msrp_usd: 999
+  performance_tier: high
+  target_resolution: 4K

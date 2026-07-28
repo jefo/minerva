@@ -1,0 +1,25 @@
+fact:
+  id: nvidia-rtx-3060-12gb-starfield-1080p_high
+  type: observation
+source:
+  gpu: NVIDIA GeForce RTX 3060 12GB
+  game_title: Starfield
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 60
+  fps_1pct_low: 48
+  gpu_load_pct: 99
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'GPU gaming benchmark: Starfield 1080p High (training data)'
+  observed_at: 2026-07
+  observed_by: gpu-etl
+  note: Training data estimate for NVIDIA GeForce RTX 3060 12GB. Real benchmarks may
+    differ ±10-15%. Based on relative performance vs measured GPUs.
+lineage:
+  nodes: []
+  edges: []

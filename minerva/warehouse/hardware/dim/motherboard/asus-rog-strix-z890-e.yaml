@@ -1,0 +1,39 @@
+dimension:
+  id: asus-rog-strix-z890-e
+  type: motherboard
+  canonical_name: ASUS ROG Strix Z890-E Gaming WiFi
+  scd_type: 0
+attributes:
+  vendor: ASUS
+  chipset: Intel Z890
+  socket: LGA1851
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 9200
+    max_capacity_gb: 192
+  vrm:
+    phases: 18+1+2
+    power_stages_a: 110
+    heatsink: да, массивные радиаторы + теплотрубка
+  pcie:
+  - slot: PCIe 5.0 x16
+    count: 1
+  - slot: PCIe 4.0 x16 (x4)
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 1
+  - version: PCIe 4.0 x4
+    count: 4
+  sata_ports: 4
+  lan: 5GbE (Realtek)
+  wifi: Wi-Fi 7
+  audio: Realtek ALC4080 + Savitech SV3H712
+  usb_rear: 2x Thunderbolt 4, 1x USB-C 20Gbps, 6x USB-A 10Gbps, 2x USB-A 5Gbps
+  price_rub: 52000
+  price_note: DNS, Jul 2026
+  recommendation: Z890-флагман для Core Ultra 200. Thunderbolt 4, Wi-Fi 7, 5 M.2.
+    DDR5 до 9200.
+  pick_type: special

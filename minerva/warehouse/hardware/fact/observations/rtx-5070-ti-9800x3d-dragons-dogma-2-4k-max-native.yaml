@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5070-ti-9800x3d-dragons-dogma-2-4k-max-native
+  type: observation
+source:
+  gpu: NVIDIA GeForce RTX 5070 Ti
+  game_title: "Dragon's Dogma 2"
+  resolution: 4K
+  graphics_preset: Max
+  driver_version: "2025-02"
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 74
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: "false"
+  ray_tracing: "Off"
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://gamersnexus.net/gpus/do-not-buy-nvidia-rtx-5070-ti-gpu-absurdity-benchmarks-review"
+  source_title: "Gamers Nexus, Feb 2025"
+  observed_at: "2025-02"
+  observed_by: hermes-agent
+  note: "GN test bench: 9800X3D. Dragon's Dogma 2 4K Max. 73.6 FPS — between 4080 Super and 7900 XTX."
+lineage:
+  nodes: []
+  edges: []

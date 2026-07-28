@@ -1,0 +1,15 @@
+dimension:
+  id: amd-rx-7700-xt
+  type: gpu
+  canonical_name: AMD Radeon RX 7700 XT 12GB
+  scd_type: 0
+attributes:
+  vendor: amd
+  architecture: RDNA 3
+  vram_gb: 12
+  bus_width_bit: 192
+  tdp_w: 245
+  release_year: 2023
+  msrp_usd: 449
+  performance_tier: mid
+  target_resolution: 1440p

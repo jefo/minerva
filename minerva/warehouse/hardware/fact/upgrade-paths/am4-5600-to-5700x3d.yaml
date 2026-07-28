@@ -1,0 +1,35 @@
+fact:
+  id: am4-5600-to-5700x3d
+  type: upgrade_path
+source:
+  platform: AM4
+  from_cpu: amd-ryzen-5-5600
+  to_cpu: amd-ryzen-7-5700x3d
+measures:
+  drop_in: true
+  gaming_uplift_pct: 35
+  cpu_only_cost_rub: 24000
+  total_upgrade_cost_rub: 24000
+  worth_it: true
+conditions:
+  requires_bios_update: да, минимум AGESA 1.2.0.7 для поддержки 5800X3D/5700X3D
+  requires_new_motherboard: false
+  requires_new_ram: false
+  requires_new_psu: false
+notes:
+  gaming_uplift_note: 'За счёт 3D V-Cache. 1080p Low: с 76 fps avg до 105 fps. 1440p
+    Ultra: с 85 до 112 fps.'
+  worth_it_note: Лучший апгрейд на AM4 без замены платы. +35% в играх за 24k₽.
+  alternative_stay: Остаться на 5600 — всё ещё тянет 1080p. Апгрейд GPU даст больше
+    в 1440p.
+  data_quality: training_data для обоих CPU, confidence 0.75
+meta:
+  confidence: 0.8
+  confidence_basis: derived_from_training_data
+  observed_at: '2026-07-19'
+  observed_by: hermes-agent
+  note: Derived from DWH gaming observations + market prices. Per-CPU FPS from training_data
+    estimates.
+lineage:
+  nodes: []
+  edges: []

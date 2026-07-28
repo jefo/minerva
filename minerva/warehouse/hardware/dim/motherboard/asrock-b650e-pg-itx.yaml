@@ -1,0 +1,36 @@
+dimension:
+  id: asrock-b650e-pg-itx
+  type: motherboard
+  canonical_name: ASRock B650E PG-ITX WiFi
+  scd_type: 0
+attributes:
+  vendor: ASRock
+  chipset: AMD B650E
+  socket: AM5
+  form_factor: mini-ITX
+  memory:
+    slots: 2
+    type: DDR5
+    max_speed_mt_s: 6400
+    max_capacity_gb: 96
+  vrm:
+    phases: 10+2+1
+    power_stages_a: 105
+    heatsink: да, активное охлаждение VRM
+  pcie:
+  - slot: PCIe 5.0 x16
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 1
+  - version: PCIe 4.0 x4
+    count: 1
+  sata_ports: 2
+  lan: 2.5GbE (Realtek)
+  wifi: Wi-Fi 6E
+  audio: Realtek ALC1220
+  usb_rear: 1x USB-C 20Gbps, 2x USB-A 10Gbps, 4x USB-A 5Gbps
+  price_rub: 26500
+  price_note: DNS, Jul 2026
+  recommendation: SFF-сборка на AM5. VRM держит 9800X3D. Два M.2 в ITX-формате — редкость.
+  pick_type: special

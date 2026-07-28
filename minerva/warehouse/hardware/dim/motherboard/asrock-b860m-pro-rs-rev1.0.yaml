@@ -5,12 +5,12 @@ dimension:
   aliases: ["B860M Pro RS", "ASRock B860M Pro RS"]
   scd_type: 2
 attributes:
-  vendor: "asrock"
+  vendor: ASRock
   model: "B860M Pro RS"
   revision: "1.0"
   form_factor: "micro-atx"
-  chipset: "intel-b860"
-  socket: "lga-1851"
+  chipset: Intel B860
+  socket: LGA1851
   bios_version: "2.10"
   release_date: "2025-01"
 
@@ -145,6 +145,7 @@ attributes:
     source: "dns-shop.ru"
     date: "2026-07"
     currency: "RUB"
+  pick_type: budget
 
   bios_cpu_support:
     - bios_version: "2.10"

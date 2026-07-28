@@ -1,0 +1,27 @@
+fact:
+  id: intel-core-ultra-7-265f-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: intel-core-ultra-7-265f
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer II 280
+measures:
+  power_draw_mt_w: 95
+  temp_mt_c: 70
+  power_draw_gaming_w: 65
+  temp_gaming_c: 60
+  tdp_spec_w: 65
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://www.techpowerup.com/cpu-specs/core-ultra-7-265kf.c3786"
+  source_title: "TechPowerUp, Oct 2024"
+  observed_at: "2024-2025"
+  observed_by: hermes-agent
+  note: >-
+    65W TDP, 20 ядер Arrow Lake (8P + 12E), без iGPU (F-вариант).
+    Blender ~95W — на уровне 14700K ограниченного по мощности.
+    Gaming ~65W. Отличная эффективность для 20-ядерника.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,40 @@
+dimension:
+  id: asus-tuf-gaming-x870-plus-wifi
+  type: motherboard
+  canonical_name: ASUS TUF Gaming X870-Plus WiFi
+  scd_type: 0
+attributes:
+  vendor: ASUS
+  chipset: AMD X870
+  socket: AM5
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 8000
+    max_capacity_gb: 192
+  vrm:
+    phases: 16+2+1
+    power_stages_a: 80
+    heatsink: да, массивные радиаторы + теплотрубка
+  pcie:
+  - slot: PCIe 5.0 x16
+    count: 1
+  - slot: PCIe 4.0 x4
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 1
+  - version: PCIe 4.0 x4
+    count: 3
+  sata_ports: 4
+  lan: 2.5GbE (Realtek)
+  wifi: Wi-Fi 7 (MediaTek MT7925)
+  audio: Realtek ALC1220P
+  usb_rear: 2x USB4 40Gbps, 1x USB-C 20Gbps, 4x USB-A 10Gbps, 2x USB-A 5Gbps
+  price_rub: 32000
+  price_date: 2026-07
+  price_note: оценка рынка
+  recommendation: премиум-вариант — PCIe 5.0, USB4, максимальный запас по VRM
+  pick_type: premium
+  vrms_handle_9800x3d: true

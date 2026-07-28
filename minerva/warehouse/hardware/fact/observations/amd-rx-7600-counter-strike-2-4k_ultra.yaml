@@ -1,0 +1,25 @@
+fact:
+  id: amd-rx-7600-counter-strike-2-4k_ultra
+  type: observation
+source:
+  gpu: AMD Radeon RX 7600 8GB
+  game_title: Counter-Strike 2
+  resolution: 4K
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 95
+  fps_1pct_low: 72
+  gpu_load_pct: 99
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'GPU gaming benchmark: Counter-Strike 2 4K Ultra (training data)'
+  observed_at: 2026-07
+  observed_by: gpu-etl
+  note: Training data estimate for AMD Radeon RX 7600 8GB. Real benchmarks may differ
+    ±10-15%. Based on relative performance vs measured GPUs.
+lineage:
+  nodes: []
+  edges: []

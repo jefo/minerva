@@ -1,0 +1,30 @@
+fact:
+  id: rx-9070-9800x3d-starfield-1440p-ultra-native
+  type: observation
+source:
+  gpu: AMD Radeon RX 9070
+  game_title: Starfield
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: "2025-03"
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 96
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: "false"
+  ray_tracing: "Off"
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://gamersnexus.net/gpus/incredibly-efficient-amd-rx-9070-gpu-review-benchmarks-vs-9070-xt-rtx-5070"
+  source_title: "Gamers Nexus, Mar 2025"
+  observed_at: "2025-03"
+  observed_by: hermes-agent
+  note: "GN test bench: 9800X3D. Starfield 1440p Ultra. Also: 4K=63 FPS, 1080p=118 FPS."
+lineage:
+  nodes: []
+  edges: []

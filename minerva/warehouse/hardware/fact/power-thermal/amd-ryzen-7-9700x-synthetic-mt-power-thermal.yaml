@@ -1,0 +1,26 @@
+fact:
+  id: amd-ryzen-7-9700x-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: amd-ryzen-7-9700x
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer II 280
+measures:
+  power_draw_mt_w: 87
+  temp_mt_c: 61
+  power_draw_gaming_w: 65
+  temp_gaming_c: 58
+  tdp_spec_w: 65
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://gamersnexus.net/cpus/wasted-opportunity-amd-ryzen-7-9700x-cpu-review-benchmarks-vs-7800x3d-7700x-more"
+  source_title: "Gamers Nexus, Aug 2024"
+  observed_at: "2024-2025"
+  observed_by: hermes-agent
+  note: >-
+    65W TDP. Zen 5 efficiency — Blender ~87W at same power as restricted 7700X.
+    PBO unlocks ~150W. Very cool at stock — 61C under AIO 280.
+lineage:
+  nodes: []
+  edges: []

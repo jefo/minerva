@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5070-ti-9800x3d-starfield-1440p-ultra-native
+  type: observation
+source:
+  gpu: NVIDIA GeForce RTX 5070 Ti
+  game_title: Starfield
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: "2025-02"
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 101
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: "false"
+  ray_tracing: "Off"
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://gamersnexus.net/gpus/do-not-buy-nvidia-rtx-5070-ti-gpu-absurdity-benchmarks-review"
+  source_title: "Gamers Nexus, Feb 2025"
+  observed_at: "2025-02"
+  observed_by: hermes-agent
+  note: "GN test bench: 9800X3D. Starfield 1440p Ultra. 5070 Ti at 101 FPS — tied with 4080 Super."
+lineage:
+  nodes: []
+  edges: []

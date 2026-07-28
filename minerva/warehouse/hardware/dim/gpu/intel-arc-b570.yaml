@@ -1,0 +1,15 @@
+dimension:
+  id: intel-arc-b570
+  type: gpu
+  canonical_name: Intel Arc B570 10GB
+  scd_type: 0
+attributes:
+  vendor: intel
+  architecture: Battlemage (Xe2 HPG)
+  vram_gb: 10
+  bus_width_bit: 160
+  tdp_w: 150
+  release_year: 2025
+  msrp_usd: 219
+  performance_tier: budget
+  target_resolution: 1080p

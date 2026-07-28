@@ -1,0 +1,42 @@
+dimension:
+  id: msi-mag-b650-tomahawk-wifi
+  type: motherboard
+  canonical_name: MSI MAG B650 TOMAHAWK WIFI
+  scd_type: 0
+attributes:
+  vendor: MSI
+  chipset: AMD B650
+  socket: AM5
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 6400
+    max_capacity_gb: 192
+  vrm:
+    phases: 14+2+1
+    power_stages_a: 80
+    heatsink: да, два радиатора
+  pcie:
+  - slot: PCIe 4.0 x16
+    count: 1
+  - slot: PCIe 4.0 x4
+    count: 1
+  - slot: PCIe 3.0 x1
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 1
+  - version: PCIe 4.0 x4
+    count: 2
+  sata_ports: 6
+  lan: 2.5GbE (Realtek RTL8125BG)
+  wifi: Wi-Fi 6E (AMD RZ616)
+  audio: Realtek ALC4080
+  usb_rear: 1x USB-C 20Gbps, 3x USB-A 10Gbps, 4x USB-A 5Gbps
+  price_rub: 30254
+  price_date: 2026-07
+  price_note: последняя цена, товар закончился (price.ru)
+  recommendation: оптимальный выбор для 9800X3D — VRM с запасом, три M.2, Wi-Fi 6E
+  pick_type: default
+  vrms_handle_9800x3d: true

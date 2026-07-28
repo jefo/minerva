@@ -5,12 +5,12 @@ dimension:
   aliases: ["B860 GAMING X WIFI6E", "Gigabyte B860 GAMING X"]
   scd_type: 2
 attributes:
-  vendor: "gigabyte"
+  vendor: Gigabyte
   model: "B860 GAMING X WIFI6E"
   revision: "1.0"
   form_factor: "atx"
-  chipset: "intel-b860"
-  socket: "lga-1851"
+  chipset: Intel B860
+  socket: LGA1851
   release_date: "2025-01"
 
   vrm:
@@ -137,6 +137,7 @@ attributes:
     date: "2026-07"
     currency: "RUB"
     note: "Диапазон 18000-26000 ₽ в зависимости от магазина"
+  pick_type: default
 
   bios_cpu_support:
     - bios_version: "F1"

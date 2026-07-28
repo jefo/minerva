@@ -1,0 +1,35 @@
+fact:
+  id: am5-7600x-to-9800x3d
+  type: upgrade_path
+source:
+  platform: AM5
+  from_cpu: amd-ryzen-5-7600x
+  to_cpu: amd-ryzen-7-9800x3d
+measures:
+  drop_in: true
+  gaming_uplift_pct: 35
+  cpu_only_cost_rub: 37500
+  total_upgrade_cost_rub: 37500
+  worth_it: true
+conditions:
+  requires_bios_update: да, AGESA 1.2.0.2+ для Zen 5 X3D
+  requires_new_motherboard: false
+  requires_new_ram: false
+  requires_new_psu: false
+notes:
+  gaming_uplift_note: Zen 4 → Zen 5 + 3D V-Cache. С 420 до 580 fps в CS2 1080p Low.
+    С 155 до 185 fps в Cyberpunk.
+  worth_it_note: Лучший гейминговый апгрейд на AM5. Платформа поддержит ещё Zen 6.
+  alternative_stay: 7600X всё ещё тянет 1440p. Если GPU — узкое место, апгрейд CPU
+    не даст прироста.
+  data_quality: оба CPU в DWH, training_data + ComputerBase для 9800X3D
+meta:
+  confidence: 0.8
+  confidence_basis: derived_from_training_data
+  observed_at: '2026-07-19'
+  observed_by: hermes-agent
+  note: Derived from DWH gaming observations + market prices. Per-CPU FPS from training_data
+    estimates.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,25 @@
+fact:
+  id: "amd-ryzen-7-9800x3d-computerbase-gaming-review-2024-11"
+  type: "gaming_performance_summary"
+source:
+  cpu: "amd-ryzen-7-9800x3d"
+  benchmark_scenario: "1080p Gaming Suite (14 games)"
+  test_system: "DDR5-5600CL32, GeForce RTX 4090"
+measures:
+  performance_index_avg_fps: 152
+  performance_index_1pct_fps: 124
+  gaming_power_w_avg: 120
+  gaming_power_w_peak: 162
+  delta_vs_7800x3d_pct: 14
+  delta_vs_14900k_pct: 30
+meta:
+  confidence: 0.92
+  confidence_basis: "verified_review"
+  source_url: "https://www.computerbase.de/artikel/prozessoren/amd-ryzen-7-9800x3d-test.90151/seite-2"
+  source_title: "ComputerBase, Nov 2024 — 9800X3D Gaming-Benchmarks"
+  observed_at: "2024-11-06"
+  observed_by: "hermes-agent"
+  note: "Cross-game average across 14-title suite. 7800X3D: 134 index. 14900K: 117 index. Test system: RTX 4090, DDR5-5600CL32. Windows 11 24H2 with AMD branch prediction patch."
+lineage:
+  nodes: []
+  edges: []

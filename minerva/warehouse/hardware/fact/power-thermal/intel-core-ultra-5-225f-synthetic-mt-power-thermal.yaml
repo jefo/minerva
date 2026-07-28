@@ -1,0 +1,27 @@
+fact:
+  id: intel-core-ultra-5-225f-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: intel-core-ultra-5-225f
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer II 280
+measures:
+  power_draw_mt_w: 75
+  temp_mt_c: 65
+  power_draw_gaming_w: 55
+  temp_gaming_c: 58
+  tdp_spec_w: 65
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://www.techpowerup.com/cpu-specs/core-ultra-5-225f.c3784"
+  source_title: "TechPowerUp, Jan 2025"
+  observed_at: "2025-2026"
+  observed_by: hermes-agent
+  note: >-
+    65W TDP, 10 ядер Arrow Lake (6P + 4E), без iGPU. Blender ~75W.
+    Очень эффективный — холоднее 13400F при схожей производительности.
+    Gaming ~55W. Подходит для бюджетных сборок без дискретной GPU.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5070-9800x3d-baldurs-gate-3-1440p-ultra-native
+  type: observation
+source:
+  gpu: NVIDIA GeForce RTX 5070
+  game_title: "Baldur's Gate 3"
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: "2025-03"
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_avg: 105
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: "false"
+  ray_tracing: "Off"
+meta:
+  confidence: 0.85
+  confidence_basis: youtube_benchmark
+  source_url: "https://www.youtube.com/watch?v=CRWJzDgMKik"
+  source_title: "RTX 5070 + Ryzen 7 9800X3D: Test in 22 Games, 2026"
+  observed_at: "2025-2026"
+  observed_by: hermes-agent
+  note: "Paired benchmark: 9800X3D + RTX 5070, 22 games at 1440p. BG3 Ultra raster 95-115 FPS range. Midpoint 105 fps_avg used. 1% low not available in video."
+lineage:
+  nodes: []
+  edges: []

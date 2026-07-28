@@ -1,0 +1,34 @@
+fact:
+  id: am5-7600x-to-7800x3d
+  type: upgrade_path
+source:
+  platform: AM5
+  from_cpu: amd-ryzen-5-7600x
+  to_cpu: amd-ryzen-7-7800x3d
+measures:
+  drop_in: true
+  gaming_uplift_pct: 25
+  cpu_only_cost_rub: 28000
+  total_upgrade_cost_rub: 28000
+  worth_it: false
+conditions:
+  requires_bios_update: да
+  requires_new_motherboard: false
+  requires_new_ram: false
+  requires_new_psu: false
+notes:
+  gaming_uplift_note: ''
+  worth_it_note: Неоптимально. За 28k 7800X3D даёт +25%, а 9800X3D за 37.5k — +35%.
+    Лучше доплатить.
+  alternative_stay: ''
+  data_quality: оба CPU в DWH, training_data
+meta:
+  confidence: 0.8
+  confidence_basis: derived_from_training_data
+  observed_at: '2026-07-19'
+  observed_by: hermes-agent
+  note: Derived from DWH gaming observations + market prices. Per-CPU FPS from training_data
+    estimates.
+lineage:
+  nodes: []
+  edges: []

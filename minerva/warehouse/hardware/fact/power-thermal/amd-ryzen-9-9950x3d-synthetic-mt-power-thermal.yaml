@@ -1,0 +1,27 @@
+fact:
+  id: amd-ryzen-9-9950x3d-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: amd-ryzen-9-9950x3d
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer III 360
+measures:
+  power_draw_mt_w: 180
+  temp_mt_c: 79
+  power_draw_gaming_w: 85
+  temp_gaming_c: 62
+  tdp_spec_w: 170
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: "https://gamersnexus.net/cpus/amd-ryzen-9-9950x3d-cpu-review-benchmarks"
+  source_title: "Gamers Nexus, Mar 2025"
+  observed_at: "2025-2026"
+  observed_by: hermes-agent
+  note: >-
+    170W TDP, 16 ядер, 2nd gen 3D V-Cache на обоих CCD (128MB L3 total).
+    Blender ~180W. Gaming ~85W (V-Cache CCD приоритет).
+    Холоднее 7950X3D благодаря перевёрнутому V-Cache. AIO 360 рекомендован.
+lineage:
+  nodes: []
+  edges: []

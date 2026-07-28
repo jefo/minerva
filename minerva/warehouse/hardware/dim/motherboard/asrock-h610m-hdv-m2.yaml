@@ -1,0 +1,37 @@
+dimension:
+  id: asrock-h610m-hdv-m2
+  type: motherboard
+  canonical_name: ASRock H610M-HDV/M.2
+  scd_type: 0
+attributes:
+  vendor: ASRock
+  chipset: Intel H610
+  socket: LGA1700
+  form_factor: mATX
+  memory:
+    slots: 2
+    type: DDR4
+    max_speed_mt_s: 3200
+    max_capacity_gb: 64
+  vrm:
+    phases: 6+1+1
+    power_stages_a: 0
+    heatsink: нет (голый VRM)
+  pcie:
+  - slot: PCIe 4.0 x16
+    count: 1
+  m2_slots:
+  - version: PCIe 3.0 x4
+    count: 1
+  sata_ports: 4
+  lan: 1GbE (Intel I219-V)
+  wifi: нет (опционально M.2 Key-E)
+  audio: Realtek ALC897
+  usb_rear: 2x USB-A 5Gbps, 4x USB 2.0
+  price_rub: 6499
+  price_note: DNS, Jul 2026
+  recommendation: >-
+    Бюджетный вход на LGA1700. Только для i3-12100F/i5-12400F/i5-13400F.
+    VRM без радиатора — не для i5-K и выше. 2 слота DDR4, 1 слот M.2.
+    Минимально достаточная плата для офисной/бюджетной игровой сборки.
+  pick_type: budget

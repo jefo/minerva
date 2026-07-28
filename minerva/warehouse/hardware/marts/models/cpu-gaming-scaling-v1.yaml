@@ -1,0 +1,237 @@
+# CPU Gaming Scaling Model
+# Baseline: AMD Ryzen 7 9800X3D = 1.000
+# Resolution: 1080p (CPU-bound, exposes maximum CPU differences)
+# Source: aggregated from GN, TPU, TechSpot, HUB CPU reviews testing on RTX 4090/5090
+# Methodology: geometric mean of relative FPS across 8-14 game test suite per review
+# Confidence: 0.85 (aggregated from multiple published reviews, not measured by us)
+
+model:
+  name: cpu-gaming-scaling-v1
+  version: "1.0"
+  baseline:
+    cpu: amd-ryzen-7-9800x3d
+    value: 1.000
+  resolution: 1080p
+  test_gpu: "RTX 4090 / RTX 5090"
+  confidence: 0.85
+  confidence_basis: aggregated_reviews
+  sources:
+    - "Gamers Nexus CPU reviews 2023-2025"
+    - "TechPowerUp CPU reviews 2023-2025"
+    - "TechSpot 'Best Value Gaming CPUs' (28 CPUs × 14 games, Dec 2024)"
+    - "Tom's Hardware CPU Hierarchy 2025-2026"
+
+  # Scaling factors: average relative gaming FPS at 1080p vs 9800X3D
+  # Lower value = proportionally less FPS at CPU-bound scenarios
+  # At GPU-bound resolutions (1440p/4K), differences compress — handled by ResolutionCompression model
+
+  scaling_factors:
+    # === AMD Ryzen 9000 (Zen 5) ===
+    amd-ryzen-7-9800x3d:
+      value: 1.000
+      source: "baseline"
+      note: "8-core Zen 5 + 3D V-Cache. Fastest gaming CPU as of 2025."
+
+    amd-ryzen-9-9950x3d:
+      value: 0.985
+      source: "GN 9950X3D review, Mar 2025"
+      note: "16-core Zen 5 + dual V-Cache. Near-identical gaming to 9800X3D but higher MT throughput. V-Cache CCD scheduling adds micro-variance."
+
+    amd-ryzen-9-9950x:
+      value: 0.870
+      source: "TPU 9950X review, Aug 2024"
+      note: "16-core Zen 5 without V-Cache. ~13% behind 9800X3D in gaming. Higher clocks don't compensate for missing V-Cache."
+
+    amd-ryzen-9-9900x:
+      value: 0.855
+      source: "TPU 9900X review, Aug 2024"
+      note: "12-core Zen 5 without V-Cache. Slightly below 9950X due to lower boost and fewer cores."
+
+    amd-ryzen-7-9700x:
+      value: 0.845
+      source: "GN 9700X review, Aug 2024"
+      note: "8-core Zen 5 without V-Cache. PBO unlocks significant gains (~8-10%) but raises power. Stock performance is efficiency-optimized."
+
+    amd-ryzen-5-9600x:
+      value: 0.810
+      source: "GN/TPU 9600X reviews, Aug 2024"
+      note: "6-core Zen 5. Excellent single-thread, limited by 6 cores in heavily-threaded games."
+
+    # === AMD Ryzen 7000 (Zen 4) ===
+    amd-ryzen-7-7800x3d:
+      value: 0.920
+      source: "GN 7800X3D review (Apr 2023), retested in 9800X3D review (Nov 2024)"
+      note: "Previous gaming king. ~8% behind 9800X3D at 1080p CPU-bound. Gap narrows at 1440p+."
+
+    amd-ryzen-9-7950x3d:
+      value: 0.910
+      source: "GN 7950X3D review, Feb 2023"
+      note: "V-Cache on one CCD only. Scheduler-dependent gaming performance. Marginally behind 7800X3D in avg FPS."
+
+    amd-ryzen-9-7950x:
+      value: 0.840
+      source: "GN 7950X review, Sep 2022"
+      note: "16-core Zen 4. No V-Cache penalty. Higher clocks than 7900X help slightly."
+
+    amd-ryzen-9-7900:
+      value: 0.790
+      source: "TechSpot 7600/7700/7900 review, Jan 2023"
+      note: "12-core Zen 4 at 65W. Efficiency-optimized, lower gaming clocks than 7900X."
+
+    amd-ryzen-7-7700x:
+      value: 0.830
+      source: "GN 7700X review, Sep 2022"
+      note: "8-core Zen 4. Higher clocks than 7700 non-X, close to 7800X3D in non-V-Cache games."
+
+    amd-ryzen-7-7700:
+      value: 0.800
+      source: "TechSpot 7700 review, Jan 2023"
+      note: "8-core Zen 4 at 65W. Lower boost than 7700X but identical core config."
+
+    amd-ryzen-5-7600x:
+      value: 0.780
+      source: "GN 7600X review, Sep 2022"
+      note: "6-core Zen 4. Solid gaming but limited by core count in modern titles."
+
+    amd-ryzen-5-7600:
+      value: 0.755
+      source: "TechSpot 7600 review, Jan 2023"
+      note: "6-core Zen 4 at 65W. Excellent value. Stock cooler sufficient."
+
+    amd-ryzen-5-7500f:
+      value: 0.745
+      source: "estimated from 7600 — no iGPU, slightly lower clocks"
+      note: "6-core Zen 4 without iGPU. Marginally below 7600. OEM/China market focused."
+
+    # === AMD Ryzen 5000 (Zen 3, AM4) ===
+    amd-ryzen-7-5700x3d:
+      value: 0.695
+      source: "GN 5700X3D review, Jan 2024"
+      note: "AM4 V-Cache. ~30% behind 9800X3D. Strong upgrade path from 3600/5600."
+
+    amd-ryzen-5-5600:
+      value: 0.555
+      source: "GN 5600 review, Apr 2022"
+      note: "6-core Zen 3. Entry-level AM4 gaming. ~45% behind 9800X3D."
+
+    # === Intel Core Ultra 200 (Arrow Lake, LGA1851) ===
+    intel-core-ultra-9-285k:
+      value: 0.790
+      source: "GN 285K review, Oct 2024; TPU 285K review"
+      note: "24-core Arrow Lake. Competitive MT, gaming lags AMD V-Cache. ~21% behind 9800X3D."
+
+    intel-core-ultra-7-265k:
+      value: 0.775
+      source: "GN/TPU 265K reviews, Oct 2024"
+      note: "20-core Arrow Lake. Gaming close to 285K — same P-core count, slightly lower clocks."
+
+    intel-core-ultra-7-265f:
+      value: 0.770
+      source: "estimated from 265K — no iGPU, lower boost"
+      note: "20-core without iGPU. Marginally below 265K. Budget-friendly Arrow Lake."
+
+    intel-core-ultra-5-245k:
+      value: 0.720
+      source: "GN/TPU 245K reviews, Oct 2024"
+      note: "14-core Arrow Lake. 6 P-cores limit gaming. Behind Zen 5 6-core parts."
+
+    intel-core-ultra-5-225f:
+      value: 0.690
+      source: "estimated from 245K + TechSpot 225F review"
+      note: "10-core Arrow Lake (6P+4E) without iGPU. Budget Arrow Lake entry."
+
+    # === Intel 14th/13th/12th Gen (LGA1700) ===
+    intel-core-i9-14900k:
+      value: 0.820
+      source: "GN 14900K review, Oct 2023; retested vs 9800X3D Nov 2024"
+      note: "Last-gen Intel flagship. Competitive gaming, high power. ~18% behind 9800X3D."
+
+    intel-core-i7-14700k:
+      value: 0.795
+      source: "GN/TPU 14700K reviews, Oct 2023"
+      note: "Best value LGA1700 for gaming+MT. Near 14900K in gaming."
+
+    intel-core-i5-14600k:
+      value: 0.735
+      source: "GN/TPU 14600K reviews, Oct 2023"
+      note: "6+8 core. Strong gaming value on LGA1700. ~27% behind 9800X3D."
+
+    intel-core-i5-13600k:
+      value: 0.720
+      source: "GN 13600K review, Oct 2022"
+      note: "Essentially identical gaming to 14600K. Same architecture, same core config."
+
+    intel-core-i5-13400f:
+      value: 0.635
+      source: "GN/TPU 13400F reviews, Jan 2023"
+      note: "Locked 6+4 Alder Lake refresh. Budget LGA1700 gaming."
+
+    intel-core-i5-12400f:
+      value: 0.590
+      source: "GN 12400F review, Jan 2022"
+      note: "6-core Alder Lake. Pure P-core design, good for older games. ~41% behind 9800X3D."
+
+    intel-core-i3-12100f:
+      value: 0.510
+      source: "GN 12100F review, Jan 2022"
+      note: "4-core Alder Lake. Budget king 2022. Severely limited in modern AAA games."
+
+  # Resolution Compression Model
+  # At higher resolutions, GPU becomes the bottleneck → CPU differences compress
+  # Compression factor applied to (1.0 - scaling_factor) portion
+  resolution_compression:
+    description: "How much CPU differences matter at each resolution"
+    factors:
+      1080p: 1.00    # full CPU difference visible
+      1440p: 0.60    # ~60% of CPU difference visible (GPU starts to bind)
+      4K:    0.30    # ~30% of CPU difference visible (GPU heavily bound)
+
+  usage:
+    formula: |
+      For any GPU g and CPU c at resolution r and game:
+      
+      1. Get GPU_Ceiling = FPS of GPU g on 9800X3D at resolution r
+      2. Get CPU_Scaling = scaling_factors[cpu_id]
+      3. Get Compression = resolution_compression[r]
+      4. Effective_Scaling = 1.0 - (1.0 - CPU_Scaling) × Compression
+      5. Estimated_FPS = GPU_Ceiling × Effective_Scaling
+      
+      Example: RTX 5070 + Ryzen 5 7600 at 1440p, Cyberpunk 2077
+        GPU_Ceiling = 86 FPS (9800X3D @ 1440p)
+        CPU_Scaling = 0.755
+        Compression = 0.60
+        Effective = 1.0 - (1.0 - 0.755) × 0.60 = 0.853
+        Estimated_FPS = 86 × 0.853 ≈ 73 FPS
+        
+        Confidence: 0.75 (synthetic, not directly measured)
+
+  validation_set:
+    description: "Real paired observations used to validate the model"
+    count: 22
+    pairs:
+      - "9800X3D + RX 9070 XT: 6 obs (GN)"
+      - "9800X3D + RTX 5070: 2 obs (TPU + YouTube)"
+      - "9800X3D + RTX 5070 Ti: 5 obs (GN)"
+      - "9800X3D + RX 9070: 4 obs (GN)"
+      - "Various training_data pairs: 5 (7800X3D + RTX 4000)"
+
+  gaps:
+    gpu_ceilings_missing:
+      description: "GPUs without measured ceiling on 9800X3D"
+      items:
+        - "RTX 5060 — нужен GN/TPU обзор (ожидается)"
+        - "RTX 5060 Ti — TPU обзор существует, данные не извлечены"
+        - "RTX 5080 — нужен GN/TPU обзор"
+        - "RTX 5090 — нужен GN/TPU обзор"
+        - "RX 9060 XT — нужен обзор"
+        - "Arc B570/B580 — нужны обзоры (уже есть YouTube paired с 5600/5800X3D)"
+        - "RTX 3060, 4060, 4060 Ti, 4070 Super, 4070 Ti, 4070 Ti Super — старые карты, можно из training_data или вычислить от RTX 5070"
+    cpu_scaling_confidence:
+      description: "Некоторые scaling factors основаны на estimation, а не прямых замерах"
+      estimated:
+        - "7500F: estimated from 7600"
+        - "265F: estimated from 265K"
+        - "225F: estimated from 245K + review"
+        - "7600X3D: отсутствует в модели (Micro Center exclusive)"
+      missing:
+        - "amd-ryzen-5-7600x3d — нет в модели. Добавить как прокси от 7800X3D(-5%)?"

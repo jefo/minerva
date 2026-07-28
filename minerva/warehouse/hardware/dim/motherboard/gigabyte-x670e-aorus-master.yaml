@@ -1,0 +1,39 @@
+dimension:
+  id: gigabyte-x670e-aorus-master
+  type: motherboard
+  canonical_name: Gigabyte X670E AORUS Master
+  scd_type: 0
+attributes:
+  vendor: Gigabyte
+  chipset: AMD X670E
+  socket: AM5
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 8000
+    max_capacity_gb: 192
+  vrm:
+    phases: 16+2+2
+    power_stages_a: 105
+    heatsink: да, массивные радиаторы + теплотрубка + активное охлаждение чипсета
+  pcie:
+  - slot: PCIe 5.0 x16
+    count: 2
+  - slot: PCIe 5.0 x8
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 2
+  - version: PCIe 4.0 x4
+    count: 2
+  sata_ports: 6
+  lan: 10GbE (Marvell AQtion)
+  wifi: Wi-Fi 6E
+  audio: Realtek ALC1220-VB + ESS SABRE DAC
+  usb_rear: 2x USB4 40Gbps, 1x USB-C 20Gbps, 4x USB-A 10Gbps, 4x USB-A 5Gbps
+  price_rub: 62000
+  price_note: DNS + price.ru, Jul 2026
+  recommendation: X670E-флагман. 10GbE LAN, USB4, 4 M.2, ESS DAC. Для тех кому нужно
+    ВСЁ.
+  pick_type: special

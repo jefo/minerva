@@ -1,0 +1,25 @@
+fact:
+  id: amd-ryzen-5-7500f-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: amd-ryzen-5-7500f
+  benchmark_scenario: Synthetic MT
+  cooler: Wraith Stealth (stock)
+measures:
+  power_draw_mt_w: 80
+  temp_mt_c: 55
+  power_draw_gaming_w: 55
+  temp_gaming_c: 50
+  tdp_spec_w: 65
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: https://www.techpowerup.com/cpu-specs/ryzen-5-7500f.c3043
+  source_title: TechPowerUp CPU DB, 2023
+  observed_at: 2024-2025
+  observed_by: hermes-agent
+  note: 'Data from published CPU review. Blender Classroom all-core for MT power/temp.
+    Gaming power: average across test suite.'
+lineage:
+  nodes: []
+  edges: []

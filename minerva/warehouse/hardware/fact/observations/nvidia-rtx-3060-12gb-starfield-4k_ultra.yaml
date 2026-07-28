@@ -1,0 +1,25 @@
+fact:
+  id: nvidia-rtx-3060-12gb-starfield-4k_ultra
+  type: observation
+source:
+  gpu: NVIDIA GeForce RTX 3060 12GB
+  game_title: Starfield
+  resolution: 4K
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 24
+  fps_1pct_low: 20
+  gpu_load_pct: 99
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'GPU gaming benchmark: Starfield 4K Ultra (training data)'
+  observed_at: 2026-07
+  observed_by: gpu-etl
+  note: Training data estimate for NVIDIA GeForce RTX 3060 12GB. Real benchmarks may
+    differ ±10-15%. Based on relative performance vs measured GPUs.
+lineage:
+  nodes: []
+  edges: []

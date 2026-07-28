@@ -1,0 +1,41 @@
+dimension:
+  id: msi-mag-x570-tomahawk-wifi
+  type: motherboard
+  canonical_name: MSI MAG X570 Tomahawk WiFi
+  scd_type: 0
+attributes:
+  vendor: MSI
+  chipset: AMD X570
+  socket: AM4
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR4
+    max_speed_mt_s: 4600
+    max_capacity_gb: 128
+  vrm:
+    phases: 12+2+1
+    power_stages_a: 60
+    heatsink: да, два радиатора + теплотрубка
+  pcie:
+  - slot: PCIe 4.0 x16
+    count: 1
+  - slot: PCIe 4.0 x4
+    count: 1
+  - slot: PCIe 4.0 x1
+    count: 2
+  m2_slots:
+  - version: PCIe 4.0 x4
+    count: 2
+  sata_ports: 6
+  lan: 2.5GbE (Realtek RTL8125B)
+  wifi: Wi-Fi 6 (Intel AX200)
+  audio: Realtek ALC1200
+  usb_rear: 1x USB-C 10Gbps, 2x USB-A 10Gbps, 2x USB-A 5Gbps, 2x USB 2.0
+  price_rub: 18999
+  price_note: DNS + price.ru, Jul 2026 (остатки)
+  recommendation: >-
+    X570-энтузиаст на AM4. VRM держит 5950X и 5800X3D с запасом.
+    Два M.2 PCIe 4.0, Wi-Fi 6, 2.5GbE. Лучшая плата для максимального AM4.
+    Снята с производства — только остатки.
+  pick_type: enthusiast

@@ -1,0 +1,41 @@
+dimension:
+  id: asrock-b650m-pro-rs
+  type: motherboard
+  canonical_name: ASRock B650M Pro RS
+  scd_type: 0
+attributes:
+  vendor: ASRock
+  chipset: AMD B650
+  socket: AM5
+  form_factor: mATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 6400
+    max_capacity_gb: 192
+  vrm:
+    phases: 8+2+1
+    power_stages_a: 50
+    heatsink: да, на MOSFET верхней стороны
+  pcie:
+  - slot: PCIe 4.0 x16
+    count: 1
+  - slot: PCIe 3.0 x16 (x4)
+    count: 1
+  m2_slots:
+  - version: PCIe 5.0 x4
+    count: 1
+  - version: PCIe 4.0 x4
+    count: 1
+  sata_ports: 4
+  lan: 2.5GbE (Realtek RTL8125BG)
+  wifi: нет (опционально M.2 Key-E)
+  audio: Realtek ALC897
+  usb_rear: 1x USB-C 10Gbps, 1x USB-A 10Gbps, 4x USB-A 5Gbps
+  price_rub: 14500
+  price_date: 2026-07
+  price_note: оценка рынка (price.ru + DNS)
+  recommendation: бюджетный вариант для 9800X3D — VRM справляется, но без запаса для
+    разгона
+  pick_type: budget
+  vrms_handle_9800x3d: true

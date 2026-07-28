@@ -1,0 +1,234 @@
+# Paired CPU×GPU Benchmark Research
+# Capability: research/paired-benchmark-research
+# Назначение: системный поиск и валидация парных бенчмарков CPU+GPU для modern hardware
+# Создано: 2026-07-19
+# Статус: active, wave 1 complete (2 CRITICAL pairs)
+
+methodology:
+  name: "Paired Benchmark Research Protocol"
+  version: "1.0"
+
+  trust_model:
+    training_data_cutoff: "Q3 2024"
+    trusted_pairs:
+      description: "Пары CPU+GPU где ОБА компонента вышли до Q3 2024"
+      examples:
+        - "Ryzen 7000 + RTX 4000"
+        - "Ryzen 7000 + RX 7000"
+        - "LGA1700 (12-14th gen) + RTX 4000"
+    untrusted_pairs:
+      description: "Пары где хотя бы один компонент вышел после Q3 2024 — требуется research"
+      examples:
+        - "Ryzen 9000 × любой GPU (вышли Aug 2024)"
+        - "Core Ultra 200 × любой GPU (вышли Oct 2024 — Jan 2025)"
+        - "RTX 5000 × любой CPU (вышли Jan-Mar 2025)"
+        - "RX 9000 × любой CPU (вышли Mar 2025)"
+        - "Intel Arc B500 × любой CPU (вышли Dec 2024 — Jan 2025)"
+
+  source_ontology:
+    sources:
+      - type: cpu_scaling_articles
+        description: "Один GPU × много CPU — золотой стандарт"
+        examples: ["TechSpot CPU Scaling series", "ComputerBase CPU-Skalierung", "Gamers Nexus"]
+        search_pattern: 'site:techspot.com "cpu scaling" "{gpu_name}"'
+      - type: gpu_reviews
+        description: "GPU обзор на флагманском CPU. GN использует 9800X3D как стандартный стенд с 2025."
+        examples: ["Gamers Nexus GPU reviews", "TechPowerUp GPU reviews"]
+        search_pattern: 'site:gamersnexus.net "{gpu_name}" review'
+        note: "GN GPU reviews since late 2024 = paired with 9800X3D by default."
+      - type: cpu_reviews
+        description: "CPU обзор с топ-GPU (4090/5090)"
+        examples: ["GN CPU reviews", "Hardware Unboxed CPU reviews"]
+        search_pattern: 'site:gamersnexus.net "{cpu_name}" review'
+      - type: roundup_comparison
+        description: "Несколько CPU × один GPU сегмент"
+        examples: ["TechSpot Best CPU for RTX 4070 Super", "HUB monthly roundups"]
+        search_pattern: '"best cpu for" "{gpu_name}"'
+      - type: youtube_paired
+        description: "YouTube каналы с прямыми paired-замерами"
+        examples: ["Testing Games", "Daniel Owen", "Hardware Unboxed"]
+        search_pattern: 'youtube "{cpu_name}" "{gpu_name}" benchmark'
+      - type: synthetic_computation
+        description: "GPU_ceiling × CPU_scaling_factor = estimated FPS"
+        confidence: 0.70
+        note: "Использовать когда прямой paired-замер не найден"
+
+  search_protocol:
+    steps:
+      - step: 1
+        name: "CPU Review Baseline"
+        description: "Найти CPU-обзор с флагманским GPU — это ceiling производительности CPU"
+        output: "Gaming FPS на RTX 4090/5090"
+      - step: 2
+        name: "GPU Scaling Search"
+        description: "Найти CPU scaling статью для целевого GPU"
+        output: "Один GPU × много CPU в одной статье"
+      - step: 3
+        name: "Cross-Reference Validation"
+        description: "GPU-обзор на флагманском CPU — ceiling GPU"
+        output: "GPU FPS на флагманском CPU"
+      - step: 4
+        name: "Synthetic Computation"
+        description: "Если шаги 1-3 не дали paired-замер, вычислить: GPU_ceiling × CPU_scaling_factor"
+        output: "Estimated pair FPS (confidence 0.70)"
+
+  priority_matrix:
+    description: "Приоритизация связок CPU×GPU для research. Не все×все — сначала самые частые сборки."
+    tiers:
+      CRITICAL:
+        description: "Самые популярные сборки сегодня. Research немедленно."
+        pairs:
+          - "9800X3D + RTX 5070"
+          - "9800X3D + RX 9070 XT"
+      HIGH:
+        description: "Частые сборки. Research во вторую волну."
+        pairs:
+          - "7800X3D + RTX 5070"
+          - "7800X3D + RX 9070 XT"
+          - "9800X3D + RTX 5070 Ti"
+          - "9600X + RTX 5070"
+          - "9600X + RX 9070 XT"
+          - "7600X + RTX 5060 Ti"
+          - "7600X + RTX 5070"
+          - "245K + RTX 5070"
+          - "265K + RTX 5070 Ti"
+          - "7600X3D + RX 9070"
+      MED:
+        description: "Закрываем когда есть данные, не гонимся."
+        pairs:
+          - "7800X3D + RTX 5080"
+          - "9800X3D + RTX 5080"
+          - "14900K + RTX 5070"
+          - "7800X3D + RTX 5060 Ti"
+
+  data_extraction:
+    format: "paired_gpu_observation"
+    schema:
+      fact:
+        id: "{gpu_id}-{cpu_short}-{game}-{resolution}-{preset}-{conditions}"
+        type: observation
+      source:
+        gpu: "human-readable GPU name"
+        game_title: "human-readable game name"
+        resolution: "1080p | 1440p | 4K"
+        graphics_preset: "Ultra | High | Max"
+        driver_version: "YYYY-QN"
+        cpu: "human-readable CPU name"
+      measures:
+        fps_avg: integer
+        fps_1pct_low: integer  # 0 if unknown
+      conditions:
+        upscaler: "native | dlss | fsr"
+        frame_gen: "true | false"
+        ray_tracing: "On | Off"
+      meta:
+        confidence: 0.70-0.88  # synthetic≤0.70, youtube=0.85, verified_review=0.88
+        confidence_basis: "verified_review | youtube_benchmark | synthetic"
+        source_url: "URL"
+        source_title: "Source Name, Month Year"
+
+wave_1_results:
+  date: "2026-07-19"
+  pair_1:
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "AMD Radeon RX 9070 XT"
+    source: "Gamers Nexus GPU review (Mar 5, 2025)"
+    confidence: 0.88
+    observations_written: 6
+    games:
+      - "Cyberpunk 2077: 1440p=109 FPS, 4K=53 FPS"
+      - "Starfield: 1080p=127 FPS"
+      - "Dragon's Dogma 2: 4K=70 FPS, 1080p=145 FPS"
+      - "Black Myth: Wukong: 1440p=83 FPS"
+    gaps:
+      - "Baldur's Gate 3: не тестировалась в GN обзоре"
+      - "Counter-Strike 2: не тестировалась"
+      - "Hogwarts Legacy: не тестировалась"
+      - "1% low FPS: не извлекаемы из текстовой версии (только в графиках)"
+
+  pair_2:
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    source: "TechPowerUp review + YouTube paired benchmark"
+    confidence: 0.85
+    observations_written: 2
+    games:
+      - "Baldur's Gate 3: 1440p=105 FPS (YouTube paired)"
+      - "Cyberpunk 2077: 1440p=86 FPS (TPU)"
+    gaps:
+      - "Starfield: не найдено paired с 9800X3D"
+      - "Counter-Strike 2: не найдено paired"
+      - "Hogwarts Legacy: не найдено paired"
+      - "4K resolution: RTX 5070 позиционируется как 1440p-карта"
+      - "1% low FPS: отсутствуют"
+
+  next_wave_recommendations:
+    - "Добрать недостающие игры для CRITICAL пар (BG3 + 9070XT, Starfield/CS2 + 5070)"
+    - "Перейти к HIGH-парам: 7800X3D + 5070/9070XT"
+    - "Для YouTube-источников: парсить описание видео (timestamps with FPS)"
+
+wave_2_results:
+  date: "2026-07-19"
+  status: "partial — поиск завершён, извлечение YouTube в техдолг"
+  pairs_written:
+    - pair: "9800X3D + RTX 5070 Ti"
+      source: "Gamers Nexus GPU review (Feb 20, 2025)"
+      confidence: 0.88
+      observations: 5
+      games:
+        - "Starfield: 4K=68 FPS, 1440p=101 FPS"
+        - "Dragon's Dogma 2: 4K=74 FPS, 1080p=151 FPS"
+        - "Black Myth: Wukong: 1440p=87 FPS (1% low 75, 0.1% low 70)"
+    - pair: "9800X3D + RX 9070"
+      source: "Gamers Nexus GPU review (Mar 6, 2025)"
+      confidence: 0.88
+      observations: 4
+      games:
+        - "Cyberpunk 2077: 1080p=148 FPS"
+        - "Starfield: 1440p=96 FPS (also 4K=63, 1080p=118)"
+        - "Dragon's Dogma 2: 4K=64 FPS (also 1440p=106)"
+        - "Black Myth: Wukong: 1440p=75 FPS (also 4K=41, 1080p=104)"
+
+  pairs_found_not_extracted:
+    - pair: "7800X3D + RTX 5070"
+      sources:
+        - "YouTube: 16 games at 1440p (channel: zwORMz Gaming)"
+        - "YouTube: 27 games at 1440p"
+      status: "техдолг — требуется ручной просмотр или парсинг описания"
+    - pair: "9600X + RTX 5070"
+      sources:
+        - "YouTube: 4 games (The Finals, Black Myth Wukong, CS2, Cyberpunk 2077)"
+        - "YouTube: 23 games at 1440p Ultra (Yellow House Gaming)"
+      status: "техдолг"
+    - pair: "7800X3D + RX 9070 XT"
+      sources:
+        - "YouTube: RUST, Spider-Man 2 benchmarks at 1080p/1440p/4K"
+      status: "техдолг"
+    - pair: "245K + RTX 5070"
+      sources:
+        - "YouTube: Core Ultra 5 245K Gaming Benchmark: FPS Across 20 Games"
+        - "evezone.evetech: Gaming Benchmarks article"
+      status: "техдолг"
+    - pair: "265K + RTX 5070 Ti"
+      sources:
+        - "YouTube: RTX 5070 Ti + Ultra 5 250K Plus: Test in 21 Games"
+        - "TechPowerUp: Core Ultra 7 265K CPU review (gaming page)"
+      status: "техдолг"
+
+  pairs_not_found:
+    - pair: "9600X + RX 9070 XT"
+      note: "Нет прямых paired-бенчмарков. Можно вычислить: GN 9070 XT ceiling × 9600X CPU scaling vs 9800X3D."
+      status: "synthetic fallback"
+    - pair: "7600X + RTX 5060 Ti"
+      note: "Нет прямых paired. TPU 5060 Ti review существует (MSI, Palit, ASUS) — тестируется на 9800X3D или 14900K."
+      status: "нужен GPU ceiling + CPU scaling"
+    - pair: "7600X + RTX 5070"
+      note: "Нет прямых paired. Можно вычислить."
+      status: "synthetic fallback"
+    - pair: "7600X3D + RX 9070"
+      note: "7600X3D — Micro Center exclusive, почти нет обзоров. Ближайший прокси: 7800X3D scaling."
+      status: "нет данных"
+
+  tech_debt:
+    - "YouTube extraction pipeline: парсинг описаний видео с timestamps и FPS"
+    - "Synthetic computation engine: GPU_ceiling × CPU_scaling_factor для непарных комбинаций"

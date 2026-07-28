@@ -1,0 +1,25 @@
+fact:
+  id: amd-rx-7700-xt-starfield-1440p_ultra
+  type: observation
+source:
+  gpu: AMD Radeon RX 7700 XT 12GB
+  game_title: Starfield
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 55
+  fps_1pct_low: 42
+  gpu_load_pct: 99
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'GPU gaming benchmark: Starfield 1440p Ultra (training data)'
+  observed_at: 2026-07
+  observed_by: gpu-etl
+  note: Training data estimate for AMD Radeon RX 7700 XT 12GB. Real benchmarks may
+    differ ±10-15%. Based on relative performance vs measured GPUs.
+lineage:
+  nodes: []
+  edges: []

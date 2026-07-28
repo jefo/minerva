@@ -1,0 +1,15 @@
+dimension:
+  id: amd-rx-7600
+  type: gpu
+  canonical_name: AMD Radeon RX 7600 8GB
+  scd_type: 0
+attributes:
+  vendor: amd
+  architecture: RDNA 3
+  vram_gb: 8
+  bus_width_bit: 128
+  tdp_w: 165
+  release_year: 2023
+  msrp_usd: 269
+  performance_tier: entry
+  target_resolution: 1080p

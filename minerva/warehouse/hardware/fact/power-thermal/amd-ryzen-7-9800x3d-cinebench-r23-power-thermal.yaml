@@ -1,0 +1,23 @@
+fact:
+  id: "amd-ryzen-7-9800x3d-cinebench-r23-power-thermal-2026-07"
+  type: "power_thermal_observation"
+source:
+  cpu: "amd-ryzen-7-9800x3d"
+  benchmark_scenario: "Cinebench R23 nT"
+  cooler: "Arctic Liquid Freezer II 280"
+measures:
+  power_draw_mt_w: 118
+  temp_mt_c: 62
+  cinebench_r23_mt: 22650
+  all_core_clock_mhz: 4700
+meta:
+  confidence: 0.88
+  confidence_basis: "verified_review"
+  source_url: "https://gamersnexus.net/cpus/rip-intel-amd-ryzen-7-9800x3d-cpu-review-benchmarks-vs-7800x3d-285k-14900k-more"
+  source_title: "Gamers Nexus, Nov 2024"
+  observed_at: "2024-11"
+  observed_by: "hermes-agent"
+  note: "Cinebench R23 nT: 22,650 pts. All-core clock sustained at 4.7 GHz under Arctic LF II 280. Power draw 118W package."
+lineage:
+  nodes: []
+  edges: []

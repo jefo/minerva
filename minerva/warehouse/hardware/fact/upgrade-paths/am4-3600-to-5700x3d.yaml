@@ -1,0 +1,34 @@
+fact:
+  id: am4-3600-to-5700x3d
+  type: upgrade_path
+source:
+  platform: AM4
+  from_cpu: amd-ryzen-5-3600
+  to_cpu: amd-ryzen-7-5700x3d
+measures:
+  drop_in: true
+  gaming_uplift_pct: 55
+  cpu_only_cost_rub: 24000
+  total_upgrade_cost_rub: 24000
+  worth_it: true
+conditions:
+  requires_bios_update: да, обязательно. B350/X370 — проверка поддержки на сайте производителя
+  requires_new_motherboard: false
+  requires_new_ram: false
+  requires_new_psu: false
+notes:
+  gaming_uplift_note: Zen 2 → Zen 3 + 3D V-Cache. Огромный прирост в CPU-bound сценариях.
+  worth_it_note: Продлевает жизнь AM4-сборке на 2-3 года. Сильнейший апгрейд без замены
+    платформы.
+  alternative_stay: Переход на AM5 с 7500F обойдётся в 40k+ (CPU+MB+RAM).
+  data_quality: 5700X3D — training_data. 3600 — не в DWH.
+meta:
+  confidence: 0.8
+  confidence_basis: derived_from_training_data
+  observed_at: '2026-07-19'
+  observed_by: hermes-agent
+  note: Derived from DWH gaming observations + market prices. Per-CPU FPS from training_data
+    estimates.
+lineage:
+  nodes: []
+  edges: []

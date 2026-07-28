@@ -1,0 +1,25 @@
+fact:
+  id: amd-rx-7800-xt-hogwarts-legacy-1080p_high
+  type: observation
+source:
+  gpu: AMD Radeon RX 7800 XT 16GB
+  game_title: Hogwarts Legacy
+  resolution: 1080p
+  graphics_preset: High
+  driver_version: 2026-Q2
+measures:
+  fps_avg: 118
+  fps_1pct_low: 95
+  gpu_load_pct: 99
+meta:
+  confidence: 0.75
+  confidence_basis: training_data
+  source_url: training_data
+  source_title: 'GPU gaming benchmark: Hogwarts Legacy 1080p High (training data)'
+  observed_at: 2026-07
+  observed_by: gpu-etl
+  note: Training data estimate for AMD Radeon RX 7800 XT 16GB. Real benchmarks may
+    differ ±10-15%. Based on relative performance vs measured GPUs.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,16 @@
+dimension:
+  id: nvidia-rtx-3060-12gb
+  type: gpu
+  canonical_name: NVIDIA GeForce RTX 3060 12GB
+  scd_type: 0
+attributes:
+  vendor: nvidia
+  architecture: Ampere
+  vram_gb: 12
+  bus_width_bit: 192
+  tdp_w: 170
+  release_year: 2021
+  msrp_usd: 329
+  performance_tier: entry
+  target_resolution: 1080p
+  note: Самая популярная видеокарта в Steam (2023-2025). Огромный вторичный рынок.

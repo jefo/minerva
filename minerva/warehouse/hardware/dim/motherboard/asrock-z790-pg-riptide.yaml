@@ -1,0 +1,36 @@
+dimension:
+  id: asrock-z790-pg-riptide
+  type: motherboard
+  canonical_name: ASRock Z790 PG Riptide
+  scd_type: 0
+attributes:
+  vendor: ASRock
+  chipset: Intel Z790
+  socket: LGA1700
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR5
+    max_speed_mt_s: 7200
+    max_capacity_gb: 192
+  vrm:
+    phases: 14+1+1
+    power_stages_a: 50
+    heatsink: да, два радиатора
+  pcie:
+  - slot: PCIe 5.0 x16
+    count: 1
+  - slot: PCIe 4.0 x4
+    count: 1
+  m2_slots:
+  - version: PCIe 4.0 x4
+    count: 4
+  sata_ports: 4
+  lan: 2.5GbE (Killer E3100)
+  wifi: нет (опционально M.2 Key-E)
+  audio: Realtek ALC897
+  usb_rear: 1x USB-C 20Gbps, 2x USB-A 10Gbps, 6x USB-A 5Gbps
+  price_rub: 21500
+  price_note: DNS, Jul 2026
+  recommendation: Z790 для разгона 13600K/14600K. Четыре M.2, Killer LAN.
+  pick_type: enthusiast

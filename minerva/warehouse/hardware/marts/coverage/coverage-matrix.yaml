@@ -1,0 +1,171 @@
+# Coverage Matrix — hardware DWH
+# Артефакт: marts/coverage/coverage-matrix.yaml
+# Назначение: системный взгляд на покрытие dim-сущностей фактами (observations, power-thermal)
+# Обновляется: при массовом наполнении DWH, вручную или скриптом
+# Последнее обновление: 2026-07-19
+
+generated: "2026-07-19T18:00:00+03:00"
+generated_by: hermes-agent
+schema_version: "1.0"
+
+summary:
+  cpu_dim: 29
+  cpu_power_thermal: 29
+  cpu_gaming_observations: 185
+  cpu_power_thermal_missing: 0
+  gpu_dim: 17
+  gpu_gaming_observations: 620
+  gpu_gaming_observations_missing: 0
+  motherboard_dim: 15
+  motherboard_pick_type_missing: 0
+  motherboard_naming_issues: 0
+
+motherboard_coverage:
+  sockets:
+    AM4:
+      total: 3
+      chipsets:
+        - chipset: B450
+          tier: budget
+          vendor: ASRock
+          model: ASRock B450M Pro4
+          price_rub: 5990
+        - chipset: B550
+          tier: default
+          vendor: MSI
+          model: MSI MAG B550 Tomahawk
+          price_rub: 13500
+        - chipset: X570
+          tier: enthusiast
+          vendor: MSI
+          model: MSI MAG X570 Tomahawk WiFi
+          price_rub: 18999
+      gaps:
+        - chipset: A520
+          tier: entry
+          reason: "бюджетный вход на AM4 — низкий приоритет"
+    AM5:
+      total: 5
+      chipsets:
+        - chipset: B650
+          tier: budget
+          vendor: ASRock
+          model: ASRock B650M Pro RS
+          price_rub: 14500
+        - chipset: B650
+          tier: default
+          vendor: MSI
+          model: MSI MAG B650 TOMAHAWK WIFI
+          price_rub: 30254
+        - chipset: B650E
+          tier: special
+          vendor: ASRock
+          model: ASRock B650E PG-ITX WiFi
+          price_rub: 26500
+          note: "mini-ITX, SFF-сборки"
+        - chipset: X670E
+          tier: special
+          vendor: Gigabyte
+          model: Gigabyte X670E AORUS Master
+          price_rub: 62000
+          note: "флагман, 10GbE, USB4"
+        - chipset: X870
+          tier: premium
+          vendor: ASUS
+          model: ASUS TUF Gaming X870-Plus WiFi
+          price_rub: 32000
+      gaps:
+        - chipset: A620
+          tier: entry
+          reason: "бюджетный вход на AM5 — низкий приоритет"
+        - chipset: B840
+          tier: default
+          reason: "новый чипсет 2025, мало данных"
+    LGA1700:
+      total: 3
+      chipsets:
+        - chipset: H610
+          tier: budget
+          vendor: ASRock
+          model: ASRock H610M-HDV/M.2
+          price_rub: 6499
+        - chipset: B760
+          tier: default
+          vendor: MSI
+          model: MSI MAG B760 Tomahawk WiFi
+          price_rub: 18500
+        - chipset: Z790
+          tier: enthusiast
+          vendor: ASRock
+          model: ASRock Z790 PG Riptide
+          price_rub: 21500
+      gaps: []
+    LGA1851:
+      total: 4
+      chipsets:
+        - chipset: B860
+          tier: budget
+          vendor: ASRock
+          model: ASRock B860M Pro RS (rev 1.0)
+          price_rub: 14499
+        - chipset: B860
+          tier: default
+          vendor: Gigabyte
+          model: Gigabyte B860 GAMING X WIFI6E (rev 1.0)
+          price_rub: 18000
+        - chipset: B860
+          tier: default
+          vendor: MSI
+          model: MSI B860 GAMING PLUS WIFI (rev 1.0)
+          price_rub: 17410
+        - chipset: Z890
+          tier: special
+          vendor: ASUS
+          model: ASUS ROG Strix Z890-E Gaming WiFi
+          price_rub: 52000
+      gaps:
+        - chipset: H810
+          tier: entry
+          reason: "бюджетный вход на LGA1851 — ожидается позже 2025"
+
+cpu_power_thermal:
+  total: 29
+  missing:
+    []
+    # Все 29 CPU покрыты power-thermal данными.
+    # Источники: Gamers Nexus, TechPowerUp, TechSpot, ComputerBase.
+    # Confidence: 0.88 (verified_review) для всех записей.
+
+gpu_observations:
+  total_gpu: 17
+  total_observations: 620
+  by_vendor:
+    NVIDIA: 358
+    AMD: 187
+    Intel: 75
+  missing:
+    []
+    # Все 17 GPU покрыты gaming-observations.
+
+naming_conventions:
+  status: clean
+  fixed:
+    - "B860 boards: intel-b860 → Intel B860 (3 файла)"
+    - "B860 boards: lga-1851 → LGA1851 (3 файла)"
+    - "B860 boards: vendor lowercase → proper case (3 файла)"
+  open_issues:
+    - "B860 boards используют расширенную схему VRM (MOSFET model, phase topology) — старые платы используют упрощённую схему. Дрифт между old-schema и new-schema не блокирует, но требует awareness при чтении."
+
+known_intentional_gaps:
+  - domain: cpu
+    gap: "keyword research для 27 из 29 CPU не проведена"
+    impact: "Coverage Matrix для SEO-интентов неполная"
+    ticket: null
+  - domain: gpu
+    gap: "paired CPU×GPU бенчмарки отсутствуют (все observation'ы — training_data)"
+    impact: "bottleneck-расчёт для сборок недостоверен"
+    ticket: null
+  - domain: motherboard
+    gap: "A520/A620/H810 entry-level платы отсутствуют"
+    impact: "минимальный — бюджетный вход на платформу редко требует детального обзора"
+    ticket: null

@@ -1,0 +1,38 @@
+dimension:
+  id: msi-b550-tomahawk
+  type: motherboard
+  canonical_name: MSI MAG B550 Tomahawk
+  scd_type: 0
+attributes:
+  vendor: MSI
+  chipset: AMD B550
+  socket: AM4
+  form_factor: ATX
+  memory:
+    slots: 4
+    type: DDR4
+    max_speed_mt_s: 4400
+    max_capacity_gb: 128
+  vrm:
+    phases: 10+2+1
+    power_stages_a: 60
+    heatsink: да, два радиатора
+  pcie:
+  - slot: PCIe 4.0 x16
+    count: 1
+  - slot: PCIe 3.0 x16 (x4)
+    count: 1
+  m2_slots:
+  - version: PCIe 4.0 x4
+    count: 1
+  - version: PCIe 3.0 x4
+    count: 1
+  sata_ports: 6
+  lan: 2.5GbE (Realtek)
+  wifi: нет
+  audio: Realtek ALC1200
+  usb_rear: 1x USB-C 10Gbps, 2x USB-A 10Gbps, 2x USB-A 5Gbps
+  price_rub: 13500
+  price_note: DNS, Jul 2026
+  recommendation: Оптимальная плата AM4 — VRM держит 5800X3D, два M.2, 2.5GbE
+  pick_type: default

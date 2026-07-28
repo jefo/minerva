@@ -1,0 +1,25 @@
+fact:
+  id: intel-core-i5-13600k-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: intel-core-i5-13600k
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer II 280
+measures:
+  power_draw_mt_w: 170
+  temp_mt_c: 80
+  power_draw_gaming_w: 100
+  temp_gaming_c: 62
+  tdp_spec_w: 125
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: https://www.techpowerup.com/review/intel-core-i5-13600k/23.html
+  source_title: TechPowerUp, Oct 2022
+  observed_at: 2024-2025
+  observed_by: hermes-agent
+  note: 'Data from published CPU review. Blender Classroom all-core for MT power/temp.
+    Gaming power: average across test suite.'
+lineage:
+  nodes: []
+  edges: []

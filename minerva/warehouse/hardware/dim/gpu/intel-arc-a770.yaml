@@ -1,0 +1,15 @@
+dimension:
+  id: intel-arc-a770
+  type: gpu
+  canonical_name: Intel Arc A770 16GB
+  scd_type: 0
+attributes:
+  vendor: intel
+  architecture: Alchemist (Xe HPG)
+  vram_gb: 16
+  bus_width_bit: 256
+  tdp_w: 225
+  release_year: 2022
+  msrp_usd: 349
+  performance_tier: entry
+  target_resolution: 1080p

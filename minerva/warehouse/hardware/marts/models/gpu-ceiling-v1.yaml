@@ -1,0 +1,359 @@
+# GPU Ceiling Model
+# FPS каждой видеокарты на лучшем CPU (9800X3D)
+# Используется как baseline для synthetic engine: Estimated_FPS = Ceiling × CPU_Scaling
+# Источник: GN, TPU GPU reviews. All tested on Ryzen 7 9800X3D.
+# Confidence: 0.88 (verified_review) для GN, 0.85 для TPU
+
+model:
+  name: gpu-ceiling-v1
+  version: "1.0"
+  baseline_cpu: amd-ryzen-7-9800x3d
+  confidence: 0.88
+  sources:
+    - "Gamers Nexus GPU reviews 2024-2025 (9800X3D test bench)"
+    - "TechPowerUp GPU reviews 2025 (9800X3D)"
+
+  # Games: GN test suite cross-section. CS2/Hogwarts not in GN suite — need TPU.
+  games:
+    cyberpunk_2077:
+      full_name: "Cyberpunk 2077: Phantom Liberty"
+      gn_tested: true
+    starfield:
+      full_name: "Starfield"
+      gn_tested: true
+    dragons_dogma_2:
+      full_name: "Dragon's Dogma 2"
+      gn_tested: true
+    black_myth_wukong:
+      full_name: "Black Myth: Wukong"
+      gn_tested: true
+    baldurs_gate_3:
+      full_name: "Baldur's Gate 3"
+      gn_tested: true  # tested in B580/older reviews, not always in new ones
+    counter_strike_2:
+      full_name: "Counter-Strike 2"
+      gn_tested: false  # not in GN test suite — source from TPU/YouTube
+    hogwarts_legacy:
+      full_name: "Hogwarts Legacy"
+      gn_tested: false  # not in GN suite — source from TPU/YouTube
+
+  ceilings:
+    # ======== NVIDIA RTX 50 series (Blackwell) ========
+    nvidia-rtx-5090:
+      canonical_name: "NVIDIA GeForce RTX 5090"
+      source: "GN RTX 5080 review (Jan 2025) — 5090 as comparison"
+      status: partial
+      fps:
+        starfield:
+          "4K": 108
+          "1440p": 147
+        dragons_dogma_2:
+          "4K": 133
+        black_myth_wukong:
+          "4K": 86
+          "1440p": 130
+          "1080p": 160
+        cyberpunk_2077: {}  # crashed in 5080 review
+      note: "Only tested as comparison in 5080 review. Full 5090 review not scraped."
+
+    nvidia-rtx-5080:
+      canonical_name: "NVIDIA GeForce RTX 5080"
+      source: "GN RTX 5080 FE review, Jan 30, 2025"
+      status: partial
+      fps:
+        starfield:
+          "1080p": 132
+        dragons_dogma_2:
+          "1440p": 134
+        final_fantasy_xiv:
+          "4K": 112
+        dying_light_2:
+          "4K": 81
+        cyberpunk_2077: {}  # game kept crashing
+        black_myth_wukong: {}  # RT only tested
+      note: "Cyberpunk crashed in testing. Starfield/Dragon's Dogma 2/FFXIV raster tested."
+
+    nvidia-rtx-5070-ti:
+      canonical_name: "NVIDIA GeForce RTX 5070 Ti"
+      source: "GN RTX 5070 Ti review, Feb 20, 2025"
+      status: good
+      fps:
+        starfield:
+          "4K": 68
+          "1440p": 101
+        dragons_dogma_2:
+          "4K": 74
+          "1080p": 151
+        black_myth_wukong:
+          "1440p": 87
+          "1080p": 105
+        final_fantasy_xiv:
+          "4K": 97
+      note: "1% low available for Black Myth Wukong (75/70). Raster only — RT tested separately."
+
+    nvidia-rtx-5070:
+      canonical_name: "NVIDIA GeForce RTX 5070"
+      source: "GN RTX 5070 FE review, Mar 5, 2025"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "4K": 41
+          "1440p": 89
+        starfield:
+          "4K": 54
+          "1080p": 104
+          "1440p": 83  # computed: 5070 Ti leads 5070 by 22% at 1440p, 5070 Ti=101 → 5070=83
+        dragons_dogma_2:
+          "4K": 56
+          "1080p": 126
+        black_myth_wukong:
+          "4K": 40
+          "1440p": 72
+          "1080p": 98
+        final_fantasy_xiv:
+          "4K": 78
+        baldurs_gate_3:
+          "1440p": 105  # YouTube paired
+      note: "Full GN review scraped. 12GB VRAM. Beats 4070 Ti in raster, 22% behind 5070 Ti at 1440p. BG3 from YouTube paired benchmark."
+
+    nvidia-rtx-5060-ti:
+      canonical_name: "NVIDIA GeForce RTX 5060 Ti 16GB"
+      source: "GN RTX 5060 Ti review, Apr 16, 2025"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "4K": 31
+          "1440p": 68
+        starfield:
+          "4K": 41
+          "1440p": 65
+          "1080p": 82
+        dragons_dogma_2:
+          "4K": 40
+          "1440p": 70
+          "1080p": 93
+        black_myth_wukong:
+          "4K": 31
+          "1440p": 57
+          "1080p": 81
+      note: "Best-covered GPU. Full raster data at all resolutions for 4 games."
+
+    nvidia-rtx-5060:
+      canonical_name: "NVIDIA GeForce RTX 5060"
+      source: "GN 'Forbidden Review', ~May 2025"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "4K": 24
+          "1440p": 55
+          "1080p": 89
+        starfield:
+          "4K": 33
+          "1440p": 52
+          "1080p": 66
+        dragons_dogma_2:
+          "1440p": 57
+          "1080p": 76
+        black_myth_wukong:
+          "4K": 25
+          "1440p": 46
+          "1080p": 66
+        final_fantasy_xiv:
+          "4K": 47
+      note: "MSRP $300. 8GB VRAM — ограничение в 4K и RT-heavy сценах."
+
+    # ======== AMD RX 9000 series (RDNA 4) ========
+    amd-rx-9070-xt:
+      canonical_name: "AMD Radeon RX 9070 XT"
+      source: "GN RX 9070 XT review, Mar 5, 2025"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "4K": 53
+          "1440p": 109
+        starfield:
+          "1080p": 127
+        dragons_dogma_2:
+          "4K": 70
+          "1080p": 145
+        black_myth_wukong:
+          "1440p": 83
+      note: "16GB VRAM. Beats 5070 in raster, loses in RT. Dragon's Dogma 2 1080p=145 FPS shows strong raster advantage."
+
+    amd-rx-9070:
+      canonical_name: "AMD Radeon RX 9070"
+      source: "GN RX 9070 review, Mar 6, 2025"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "1080p": 148
+        starfield:
+          "4K": 63
+          "1440p": 96
+          "1080p": 118
+        dragons_dogma_2:
+          "4K": 64
+          "1440p": 106
+        black_myth_wukong:
+          "4K": 41
+          "1440p": 75
+          "1080p": 104
+      note: "56 CU vs 64 CU XT. ~9-12% behind XT. Most efficient GPU on market. Cyberpunk 1080p=148 FPS."
+
+    amd-rx-9060-xt:
+      canonical_name: "AMD Radeon RX 9060 XT 16GB"
+      source: "GN RX 9060 XT review, Jun 4, 2025 (tested on 12700KF, not 9800X3D!)"
+      status: excellent
+      fps:
+        cyberpunk_2077:
+          "4K": 30
+          "1440p": 64
+          "1080p": 100
+        starfield:
+          "4K": 39
+          "1440p": 62
+          "1080p": 77
+        dragons_dogma_2:
+          "1440p": 65
+        black_myth_wukong:
+          "4K": 26
+          "1440p": 49
+          "1080p": 71
+        final_fantasy_xiv:
+          "1440p": 85
+      note: "⚠️ GN review tested on 12700KF, not 9800X3D! Add ~2-3% uplift for 9800X3D ceiling estimation. MSRP $300 (16GB), $260 (8GB). RDNA 4, 16GB VRAM. Trades blows with 5060 in raster."
+
+    # ======== Intel Arc (Battlemage) ========
+    intel-arc-b580:
+      canonical_name: "Intel Arc B580"
+      source: "GN Arc B580 review, Dec 12, 2024"
+      status: good
+      fps:
+        cyberpunk_2077:
+          "1440p": 53
+        starfield:
+          "1080p": 51
+        dragons_dogma_2:
+          "1440p": 44
+        black_myth_wukong:
+          "1440p": 35
+          "1080p": 54  # RTX 4060 at 54, B580 below
+        resident_evil_4:
+          "1440p": 85
+        final_fantasy_xiv:
+          "4K": 47
+      note: "MSRP $250. Scales well at higher resolutions vs 4060. PCIe 4.0 x8 limitation. Frametime pacing issues in some games."
+
+    intel-arc-b570:
+      canonical_name: "Intel Arc B570"
+      status: not_tested
+      fps: {}
+      note: "Launch after B580. No GN review yet. Estimate: ~10-12% below B580."
+
+    intel-arc-a770:
+      canonical_name: "Intel Arc A770 16GB"
+      source: "GN Arc 2024 Revisit, Feb 2024 (tested on 12700K, not 9800X3D)"
+      status: outdated
+      fps: {}
+      note: "Tested on old test bench (12700K). Needs retest on 9800X3D or use relative scaling from B580 review."
+
+    # ======== NVIDIA RTX 40 series (Ada Lovelace) ========
+    nvidia-rtx-4090:
+      canonical_name: "NVIDIA GeForce RTX 4090"
+      source: "GN B580 review (Dec 2024) — 4090 as ceiling comparison"
+      status: partial
+      fps:
+        starfield:
+          "1080p": 137  # from B580 review chart position
+      note: "4090 tested in B580 review on 9800X3D. Only Starfield 1080p explicitly extracted."
+
+    nvidia-rtx-4070-ti-super:
+      canonical_name: "NVIDIA GeForce RTX 4070 Ti Super"
+      status: training_data_only
+      fps: {}
+      note: "Training data available (confidence 0.75). No GN retest on 9800X3D for this specific model. Can interpolate from 4070 Ti + 4080."
+
+    nvidia-rtx-4070-super:
+      canonical_name: "NVIDIA GeForce RTX 4070 Super"
+      status: training_data_only
+      fps: {}
+      note: "Training data. ~5-10% behind 4070 Ti."
+
+    nvidia-rtx-4060-ti:
+      canonical_name: "NVIDIA GeForce RTX 4060 Ti 8GB"
+      source: "GN B580 review (Dec 2024)"
+      status: partial
+      fps:
+        starfield:
+          "1440p": 52  # estimated from B580 chart (B580 below 4060 by ~17%, 4060Ti above)
+        dragons_dogma_2:
+          "1440p": 62  # estimated from B580 chart
+      note: "Tested in B580 review on 9800X3D. Specific FPS need extraction from charts."
+
+    nvidia-rtx-4060:
+      canonical_name: "NVIDIA GeForce RTX 4060"
+      source: "GN B580 review (Dec 2024)"
+      status: partial
+      fps:
+        black_myth_wukong:
+          "1080p": 54
+        starfield:
+          "1440p": 43  # estimated (B580 + 17%)
+      note: "Training data available (confidence 0.75). B580 review on 9800X3D provides verified comparison."
+
+    nvidia-rtx-3060:
+      canonical_name: "NVIDIA GeForce RTX 3060 12GB"
+      status: training_data_only
+      fps: {}
+      note: "Training data (confidence 0.75). No GN retest on 9800X3D."
+
+    # ======== AMD RX 7000 series (RDNA 3) ========
+    amd-rx-7900-xtx:
+      canonical_name: "AMD Radeon RX 7900 XTX"
+      source: "GN 9070 XT review + B580 review"
+      status: partial
+      fps:
+        starfield:
+          "1080p": 135  # leads 5070 Ti by 6% at 1080p
+      note: "Present in most GN GPU charts as comparison. Specific FPS need extraction."
+
+    amd-rx-7800-xt:
+      canonical_name: "AMD Radeon RX 7800 XT"
+      source: "GN B580 review (Dec 2024)"
+      status: partial
+      fps: {}
+      note: "Present in B580 review charts. ~on par with 4070 in raster."
+
+    amd-rx-7700-xt:
+      canonical_name: "AMD Radeon RX 7700 XT"
+      status: training_data_only
+      fps: {}
+      note: "Training data. ~RTX 4060 Ti level."
+
+    amd-rx-7600:
+      canonical_name: "AMD Radeon RX 7600"
+      source: "GN B580 review"
+      status: partial
+      fps:
+        starfield:
+          "1440p": 48  # 5% ahead of B580 at Starfield 1440p
+      note: "Training data available. B580 review provides verified comparison."
+
+  coverage_summary:
+    total_gpus: 17
+    excellent: 5   # 5060, 5060 Ti, 5070, 9070, 9060 XT
+    good: 3        # 5070 Ti, 9070 XT, B580
+    partial: 5     # 5080, 5090, 4090, 4060 Ti, 4060, 7900 XTX, 7600
+    needs_extraction: 0
+    outdated_training: 4  # 4070 Ti Super, 4070 Super, 3060, 7700 XT
+    not_tested: 1   # B570
+
+  gaps:
+    critical:
+      - "Counter-Strike 2: 0 GPU ceilings — не в GN test suite. Источник: TPU/YouTube."
+      - "Hogwarts Legacy: 0 GPU ceilings — не в GN test suite. Источник: TPU/YouTube."
+      - "5080/5090: очень фрагментарно. Нужен полный скрейпинг GN обзоров на 9800X3D."
+      - "9060 XT: ⚠️ GN обзор на 12700KF, не на 9800X3D. Нужна корректировка ~+2-3%."
+    moderate:
+      - "Old GPUs (4070 Ti Super, 4070 Super, 3060, 7700 XT): только training_data. Можно верифицировать через interpolation от известных карт."
+      - "B570: нет обзора на 9800X3D. Можно оценить как B580 × 0.88."

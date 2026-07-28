@@ -1,0 +1,25 @@
+fact:
+  id: amd-ryzen-7-7800x3d-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: amd-ryzen-7-7800x3d
+  benchmark_scenario: Synthetic MT
+  cooler: Arctic Liquid Freezer II 280
+measures:
+  power_draw_mt_w: 82
+  temp_mt_c: 68
+  power_draw_gaming_w: 52
+  temp_gaming_c: 48
+  tdp_spec_w: 120
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: https://www.techpowerup.com/review/amd-ryzen-7-7800x3d/29.html
+  source_title: TechPowerUp, Apr 2023
+  observed_at: 2024-2025
+  observed_by: hermes-agent
+  note: 'Data from published CPU review. Blender Classroom all-core for MT power/temp.
+    Gaming power: average across test suite.'
+lineage:
+  nodes: []
+  edges: []

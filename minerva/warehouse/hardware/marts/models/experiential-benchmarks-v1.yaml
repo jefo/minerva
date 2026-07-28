@@ -1,0 +1,231 @@
+# Experiential Benchmarks Model
+# Назначение: "какой опыт я получу с этой связкой CPU+GPU в моих любимых играх"
+# Отличие от GPU Ceiling: experiential, не comparative
+# Источник: YouTube (ручная экстракция Eugene)
+# Confidence: 0.85 (youtube_benchmark, verified by human)
+
+model:
+  name: experiential-benchmarks-v1
+  version: "1.0"
+  purpose: >
+    Ответ на вопрос пользователя: «Пойдёт ли у меня КС2 на 240 FPS с 7600X + 5070?»
+    Не для сравнения GPU между собой. Для принятия решения о сборке.
+  extraction_method: manual
+  extractor: Eugene Kaizin
+  confidence: 0.85
+  confidence_basis: youtube_benchmark_human_verified
+
+games:
+  competitive:
+    - id: counter-strike-2
+      name: "Counter-Strike 2"
+      priority: P0
+      audience: "СНГ #1, мир"
+      key_question: "Хватит ли FPS для 144/240/360Hz монитора?"
+      relevant_settings: ["Competitive Low", "Competitive High", "Native"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Главный запрос СНГ-аудитории. Важен 1% low, не только avg."
+
+    - id: dota-2
+      name: "Dota 2"
+      priority: P1
+      audience: "СНГ, ЮВА"
+      key_question: "Сколько FPS в замесе 5x5?"
+      relevant_settings: ["Max", "Competitive Low"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Source 2 — CPU-bound. Важен minimum FPS в драках."
+
+    - id: valorant
+      name: "Valorant"
+      priority: P2
+      audience: "молодёжь, мир"
+      key_question: "300+ FPS стабильно?"
+      relevant_settings: ["Competitive Low"]
+      relevant_resolutions: ["1080p"]
+      note: "Очень нетребовательная. Любой современный CPU выдаст 200+."
+
+    - id: apex-legends
+      name: "Apex Legends"
+      priority: P2
+      audience: "массовый"
+      relevant_settings: ["Competitive Low", "High"]
+      relevant_resolutions: ["1080p", "1440p"]
+
+    - id: fortnite
+      name: "Fortnite"
+      priority: P2
+      audience: "массовый, молодёжь"
+      relevant_settings: ["Performance Mode", "DX12 High"]
+      relevant_resolutions: ["1080p"]
+      note: "Performance Mode сильно поднимает FPS на слабых CPU."
+
+    - id: pubg
+      name: "PUBG: BATTLEGROUNDS"
+      priority: P2
+      audience: "СНГ-ветеран"
+      relevant_settings: ["Competitive Low", "High"]
+      relevant_resolutions: ["1080p", "1440p"]
+
+  tactical_survival:
+    - id: escape-from-tarkov
+      name: "Escape from Tarkov"
+      priority: P1
+      audience: "СНГ-ядерный"
+      key_question: "Сколько FPS на Streets of Tarkov?"
+      relevant_settings: ["Medium", "High"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Очень CPU-bound. Важен 1% low. Карта Streets — худший сценарий. Нужны данные с разных карт."
+
+    - id: rust
+      name: "Rust"
+      priority: P2
+      audience: "популярный"
+      relevant_settings: ["Medium", "High"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "CPU-bound на высоких популяциях серверов."
+
+    - id: hunt-showdown
+      name: "Hunt: Showdown 1896"
+      priority: P2
+      audience: "нишевый"
+      relevant_settings: ["Medium", "High"]
+      relevant_resolutions: ["1080p", "1440p"]
+
+  military_mmo:
+    - id: world-of-tanks
+      name: "World of Tanks"
+      priority: P1
+      audience: "СНГ-классика"
+      key_question: "Тянет ли HD-клиент на ультра?"
+      relevant_settings: ["Ultra", "Medium"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Старый движок (Core Engine). CPU-bound в снайперском режиме."
+
+    - id: war-thunder
+      name: "War Thunder"
+      priority: P2
+      audience: "СНГ + мир"
+      relevant_settings: ["Movie", "High"]
+      relevant_resolutions: ["1080p", "1440p", "4K"]
+      note: "Dagor Engine. Хорошо масштабируется на GPU."
+
+  open_world_rpg:
+    - id: stalker-2
+      name: "S.T.A.L.K.E.R. 2: Heart of Chornobyl"
+      priority: P0
+      audience: "СНГ-флагман"
+      key_question: "Пойдёт ли на High 1440p без статтеров?"
+      relevant_settings: ["Medium", "High", "Epic"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Unreal Engine 5. Очень требовательный. traversal stutter — известная проблема. Важен frametime consistency."
+
+    - id: kingdom-come-deliverance-2
+      name: "Kingdom Come: Deliverance 2"
+      priority: P2
+      audience: "растущий, хит 2025"
+      relevant_settings: ["Medium", "High", "Ultra"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "CryEngine. Хорошо оптимизирован. Честные системные требования."
+
+    - id: gta-v
+      name: "Grand Theft Auto V / Online"
+      priority: P1
+      audience: "вечнозелёный"
+      relevant_settings: ["Very High", "Ultra"]
+      relevant_resolutions: ["1080p", "1440p", "4K"]
+      note: "10+ лет, но всё ещё популярен. GTA Online обновляется."
+
+    - id: red-dead-redemption-2
+      name: "Red Dead Redemption 2"
+      priority: P1
+      audience: "вечный"
+      relevant_settings: ["High", "Ultra"]
+      relevant_resolutions: ["1080p", "1440p", "4K"]
+      note: "Эталон графики. Требователен к GPU."
+
+    - id: witcher-3
+      name: "The Witcher 3: Wild Hunt (Next-Gen)"
+      priority: P1
+      audience: "классика"
+      relevant_settings: ["RT Ultra", "Ultra+"]
+      relevant_resolutions: ["1080p", "1440p", "4K"]
+      note: "Next-gen версия с RT. Требовательна к GPU."
+
+    - id: cyberpunk-2077
+      name: "Cyberpunk 2077"
+      priority: P2
+      audience: "уже покрыт в GPU Ceiling"
+      relevant_settings: ["Ultra", "RT Ultra"]
+      relevant_resolutions: ["1080p", "1440p", "4K"]
+      note: "Уже есть GPU Ceiling данные из GN. YouTube дополнит experiential angle."
+
+  sandbox:
+    - id: minecraft
+      name: "Minecraft (Java Edition с шейдерами)"
+      priority: P2
+      audience: "свой мир"
+      key_question: "Сколько FPS с Complementary/Sildur's шейдерами?"
+      relevant_settings: ["Shader: Complementary Ultra", "Shader: Sildur's High"]
+      relevant_resolutions: ["1080p", "1440p"]
+      note: "Java Edition — CPU-bound. Шейдеры — GPU-bound. Нужно указывать версию шейдеров и расстояние прорисовки."
+
+data_schema:
+  fact_id_format: "{game_id}-{cpu_short}-{gpu_short}-{res}-{settings_tag}"
+  example: "cs2-7600x-5070-1080p-comp-low"
+  
+  required_fields:
+    source:
+      - game          # human-readable name
+      - cpu           # human-readable name
+      - gpu           # human-readable name
+      - resolution    # 1080p, 1440p, 4K
+      - settings      # Competitive Low, Medium, High, Ultra, Epic, etc.
+      - map           # для competitive: Dust2, Streets of Tarkov, etc.
+    measures:
+      - fps_avg
+      - fps_1pct_low    # 0 if not available
+      - fps_0_1pct_low  # 0 if not available
+    conditions:
+      - upscaler       # native, DLSS, FSR
+      - frame_gen      # true/false
+    meta:
+      - confidence      # 0.85 for youtube_benchmark_human_verified
+      - source_url      # YouTube URL
+      - source_channel  # Channel name
+      - timestamp       # mm:ss in video
+      - extracted_by    # "eugene-kaizin"
+      - test_bench      # CPU, RAM specs if mentioned in video
+      - note
+
+youtube_search_templates:
+  english:
+    - '"{cpu_name}" "{gpu_name}" "{game}" benchmark 1080p'
+    - '"{cpu_name}" "{gpu_name}" "{game}" fps test 1440p'
+    - '"{game}" benchmark "{gpu_name}" 2025 fps'
+  russian:
+    - '"{game_ru}" тест FPS "{cpu_short}" "{gpu_short}"'
+    - '"{game_ru}" "{cpu_short}" бенчмарк'
+    - 'тест "{game_ru}" 2025 FPS разные процессоры'
+
+extraction_priority:
+  P0:
+    - counter-strike-2
+    - stalker-2
+  P1:
+    - dota-2
+    - escape-from-tarkov
+    - world-of-tanks
+    - gta-v
+    - red-dead-redemption-2
+    - witcher-3
+  P2:
+    - kingdom-come-deliverance-2
+    - rust
+    - war-thunder
+    - valorant
+    - apex-legends
+    - fortnite
+    - pubg
+    - hunt-showdown
+    - minecraft
+    - cyberpunk-2077

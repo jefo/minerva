@@ -1,0 +1,25 @@
+fact:
+  id: intel-core-i3-12100f-power-thermal-2026-07
+  type: power_thermal_observation
+source:
+  cpu: intel-core-i3-12100f
+  benchmark_scenario: Synthetic MT
+  cooler: Intel Laminar RM1 (stock)
+measures:
+  power_draw_mt_w: 85
+  temp_mt_c: 55
+  power_draw_gaming_w: 65
+  temp_gaming_c: 48
+  tdp_spec_w: 60
+meta:
+  confidence: 0.88
+  confidence_basis: verified_review
+  source_url: https://www.techpowerup.com/review/intel-core-i3-12100f/
+  source_title: TechPowerUp, Jan 2022
+  observed_at: 2024-2025
+  observed_by: hermes-agent
+  note: 'Data from published CPU review. Blender Classroom all-core for MT power/temp.
+    Gaming power: average across test suite.'
+lineage:
+  nodes: []
+  edges: []
