@@ -1,0 +1,10 @@
+dimension:
+  id: "valorant"
+  type: game_title
+  canonical_name: "VALORANT"
+  scd_type: 0
+attributes:
+  developer: "Riot Games"
+  engine: "Unreal Engine 4"
+  release_year: 2020
+  genre: "tactical-shooter"

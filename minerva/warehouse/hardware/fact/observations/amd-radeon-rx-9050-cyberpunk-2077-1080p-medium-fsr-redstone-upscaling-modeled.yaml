@@ -1,0 +1,38 @@
+fact:
+  id: amd-radeon-rx-9050-cyberpunk-2077-1080p-medium-fsr-redstone-upscaling-modeled
+  type: observation
+source:
+  gpu: RX 9050
+  game_title: Cyberpunk 2077
+  resolution: 1080p
+  graphics_preset: Medium
+  driver_version: Adrenalin 26.7.1
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_delta_pct_avg: 28
+  fps_delta_pct_1pct_low: 27
+  fps_delta_pct_range: 25-45
+conditions:
+  upscaler: FSR Redstone (ML)
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+  stack_component: upscaling
+meta:
+  confidence: 0.75
+  confidence_basis: modeled_projection
+  model_source_gpu: amd-rx-9070-xt
+  model_method: 'CU-scaling caveat: RX 9050 (16 CU) vs source RX 9070 XT (64 CU). Абсолютные значения не масштабируются линейно,
+    но качественный характер поведения технологии переносится (тот же 2nd Gen AI Accelerator блок)'
+  observed_at: 2026-07
+  observed_by: manual
+  source_channel: 9070 XT breakdown test
+  note: 'FSR Redstone ML-Upscaling даёт +25-45% FPS в зависимости от целевого разрешения апскейла (Quality/Balanced/Performance).
+    Для RX 9050 на 1080p Medium/Balanced: апскейл с внутреннего 720p→1080p даёт честный прирост — рендерится меньше пикселей,
+    GPU физически разгружается. В отличие от FG, 1% Low масштабируется вместе со средним FPS.'
+lineage:
+  nodes:
+  - observation:amd-rx-9070-xt-cyberpunk-2077-1080p-medium-fsr-redstone
+  edges:
+  - from: amd-rx-9070-xt-cyberpunk-2077-1080p-medium-fsr-redstone
+    to: modeled
+    transform: CU-scaling projection (16/64 CU), same AI Accelerator block

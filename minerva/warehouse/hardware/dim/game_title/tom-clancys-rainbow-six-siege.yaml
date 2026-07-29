@@ -1,0 +1,10 @@
+dimension:
+  id: "tom-clancys-rainbow-six-siege"
+  type: game_title
+  canonical_name: "Tom Clancy's Rainbow Six Siege"
+  scd_type: 0
+attributes:
+  developer: "Ubisoft Montreal"
+  engine: "AnvilNext 2.0"
+  release_year: 2015
+  genre: "tactical-shooter"

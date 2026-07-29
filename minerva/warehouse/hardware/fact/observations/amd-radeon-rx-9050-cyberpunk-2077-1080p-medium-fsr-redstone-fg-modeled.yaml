@@ -1,0 +1,39 @@
+fact:
+  id: amd-radeon-rx-9050-cyberpunk-2077-1080p-medium-fsr-redstone-fg-modeled
+  type: observation
+source:
+  gpu: RX 9050
+  game_title: Cyberpunk 2077
+  resolution: 1080p
+  graphics_preset: Medium
+  driver_version: Adrenalin 26.7.1
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_delta_pct_smoothness: 60
+  fps_delta_pct_1pct_low: -41
+conditions:
+  upscaler: FSR Redstone (ML)
+  frame_gen: ML Frame Generation
+  ray_tracing: 'Off'
+  stack_component: frame_gen
+meta:
+  confidence: 0.75
+  confidence_basis: modeled_projection
+  model_source_gpu: amd-rx-9070-xt
+  model_method: 'CU-scaling caveat: RX 9050 (16 CU) vs source RX 9070 XT (64 CU). Абсолютные значения не масштабируются линейно,
+    но качественный характер поведения технологии переносится (тот же 2nd Gen AI Accelerator блок)'
+  observed_at: 2026-07
+  observed_by: manual
+  source_channel: 9070 XT breakdown test
+  note: 'FG вставляет интерполированные кадры между реально отрендеренными. Средний FPS растёт сильно (+60% smoothness), ощущение
+    картинки — глаже. Но отзывчивость (input lag) не улучшается: управление реагирует на частоту базового рендера. 1% Low
+    относительно среднего FPS проседает (-41%) — заявленный средний FPS маскирует неровность подачи кадров. Порог применимости
+    для RX 9050: FG имеет смысл только когда базовый FPS уже 50-60+. При базовых 30-40 FPS интерполяция усиливает артефакты
+    и задержку.'
+lineage:
+  nodes:
+  - observation:amd-rx-9070-xt-cyberpunk-2077-1080p-medium-fsr-redstone-fg
+  edges:
+  - from: amd-rx-9070-xt-cyberpunk-2077-1080p-medium-fsr-redstone-fg
+    to: modeled
+    transform: CU-scaling projection (16/64 CU), same AI Accelerator block

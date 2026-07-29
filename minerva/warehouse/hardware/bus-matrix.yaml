@@ -19,6 +19,8 @@ bus_matrix:
         RTX 5060 Ti 16GB: rtx-5060-ti-16gb
         RX 9060 XT: rx-9060-xt
         RX 9060 XT 16GB: rx-9060-xt-16gb
+        RX 9050: amd-radeon-rx-9050
+        'Radeon RX 9050': amd-radeon-rx-9050
       attributes:
       - architecture
       - vendor
@@ -58,6 +60,7 @@ bus_matrix:
         'COD: Black Ops 6 SP': cod-black-ops-6-sp
         'COD: Warzone': cod-warzone
         'Call of Duty: Black Ops 6': call-of-duty-black-ops-6
+        'Call of Duty: Black Ops 7': call-of-duty-black-ops-7
         'Clair Obscur: Expedition 33': clair-obscur-expedition-33
         Counter Strike 2: counter-strike-2
         Counter-Strike 2: counter-strike-2
@@ -129,9 +132,11 @@ bus_matrix:
         The Last of Us Part I: the-last-of-us-part-i
         The Last of Us Part II: the-last-of-us-part-ii
         The Last of Us Part II Remastered: the-last-of-us-part-2
+        'Tom Clancy''s Rainbow Six Siege': tom-clancys-rainbow-six-siege
         'Warhammer 40,000: Space Marine 2': warhammer-40,000-space-marine-2
         'Warhammer 40K: Space Marine 2': space-marine-2
         Witchfire: witchfire
+        VALORANT: valorant
       used_in_marts:
       - coverage
       - competitive
@@ -188,6 +193,7 @@ bus_matrix:
         '546.33': '546.33'
         '572.16': '572.16'
         Adrenalin 25.6.1: adrenalin-25.6.1
+        Adrenalin 26.6.2: adrenalin-26.6.2
       used_in_marts:
       - coverage
       - engineering

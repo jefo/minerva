@@ -1,0 +1,10 @@
+dimension:
+  id: "call-of-duty-black-ops-7"
+  type: game_title
+  canonical_name: "Call of Duty: Black Ops 7"
+  scd_type: 0
+attributes:
+  developer: "Treyarch / Raven Software"
+  engine: "IW 10.0"
+  release_year: 2026
+  genre: "fps"

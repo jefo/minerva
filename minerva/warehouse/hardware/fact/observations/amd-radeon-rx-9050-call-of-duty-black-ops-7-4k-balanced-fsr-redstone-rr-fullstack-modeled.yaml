@@ -1,0 +1,42 @@
+fact:
+  id: amd-radeon-rx-9050-call-of-duty-black-ops-7-4k-balanced-fsr-redstone-rr-fullstack-modeled
+  type: observation
+source:
+  gpu: RX 9050
+  game_title: 'Call of Duty: Black Ops 7'
+  resolution: 4k
+  graphics_preset: Balanced
+  driver_version: Adrenalin 26.7.1
+  cpu: AMD Ryzen 7 9800X3D
+measures:
+  fps_native_rt: 23
+  fps_full_stack: 109
+  fps_delta_pct: 374
+  fps_delta_pct_annualized: null
+conditions:
+  upscaler: FSR Redstone (ML)
+  frame_gen: ML Frame Generation
+  ray_tracing: 'On'
+  ray_reconstruction: Ray Regeneration (ML denoiser)
+  stack_component: full_stack
+meta:
+  confidence: 0.7
+  confidence_basis: modeled_projection
+  model_source_gpu: amd-rx-9070-xt
+  model_method: 'CU-scaling caveat: RX 9050 (16 CU) vs source RX 9070 XT (64 CU). Абсолютные значения не масштабируются линейно
+    вниз, качественный характер технологии переносится (тот же 2nd Gen AI Accelerator блок)'
+  observed_at: 2026-07
+  observed_by: manual
+  source_channel: 9070 XT breakdown test + independent reviews
+  note: 'Ray Regeneration решает другую задачу чем апскейл/FG: восстанавливает детализацию RT из разреженных (undersampled)
+    сэмплов. Позволяет включить RT там, где раньше пришлось бы его выключать. На 9070 XT: 23 fps native 4K+RT → 109 fps full
+    stack. Для RX 9050 — целевой сценарий: не путь-трейсинг на бюджетке, а точечное включение RT-отражений/теней в поддерживаемых
+    играх без полного отказа от играбельного FPS.'
+lineage:
+  nodes:
+  - observation:amd-rx-9070-xt-call-of-duty-black-ops-7-4k-balanced-fsr-redstone-rr-fullstack
+  edges:
+  - from: amd-rx-9070-xt-call-of-duty-black-ops-7-4k-balanced-fsr-redstone-rr-fullstack
+    to: modeled
+    transform: CU-scaling projection (16/64 CU), same AI Accelerator block. 4K→1080p resolution adjustment for target GPU
+      class

@@ -1,0 +1,111 @@
+dimension:
+  id: "amd-radeon-rx-9050"
+  type: "gpu"
+  canonical_name: "AMD Radeon RX 9050 8GB"
+  aliases: ["RX 9050", "Radeon RX 9050", "9050"]
+  scd_type: 0
+attributes:
+  vendor: "amd"
+  architecture: "RDNA 4"
+  gpu_die: "Navi 44"
+  lithography: "TSMC N4P (4nm)"
+  transistor_count_bn: 29.7
+  launch_date: "2026-07-28"
+  msrp_usd: 279
+  launch_markets: ["APJ", "Latin America"]
+  vram:
+    size_gb: 8
+    type: "GDDR6"
+    bus_width_bit: 128
+    bandwidth_gb_s: 288
+    speed_gbps: 18
+  vram_sku_oem:
+    size_gb: 4
+    bus_width_bit: 64
+    bandwidth_gb_s: 144
+  compute:
+    compute_units: 16
+    stream_processors: 1024
+    texture_units: 64
+    rops: 64
+    ray_accelerators: 16
+    ai_accelerators: 32
+    rt_generation: 3
+  compute_peak:
+    fp32_tflops: 10.6
+    fp16_vector_tflops: 10.6
+    fp16_matrix_tflops: 43
+    fp16_matrix_sparsity_tflops: 85
+    fp8_matrix_tflops: 85
+    fp8_matrix_sparsity_tflops: 170
+    int8_matrix_tops: 85
+    int8_matrix_sparsity_tops: 170
+    int4_matrix_tops: 170
+    int4_matrix_sparsity_tops: 341
+  clock:
+    game_clock_mhz: 1920
+    boost_clock_mhz: 2600
+  cache:
+    infinity_cache_mb: 32
+  power:
+    tbp_w: 92
+    connector: "1× 8-pin"
+    recommended_psu_w: 450
+  interface:
+    pcie: "5.0 x16"
+    pcie_note: "по данным Wccftech/VideoCardz; на странице AMD не указано напрямую"
+    displayport: "2.1a"
+    hdmi: "2.1b"
+  media:
+    av1_decode: true
+    av1_encode: true
+    h264_4k_decode: true
+    h264_4k_encode: true
+    hevc_h265_decode: true
+    hevc_h265_encode: true
+  software:
+    upscaler: "FSR Redstone"
+    frame_gen: "AFMF"
+    driver_day_one: "Adrenalin 26.7.1"
+    supported_os: ["Windows 10 64-bit", "Windows 11 64-bit", "Linux x86_64"]
+    features:
+      - "AMD Fluid Motion Frames"
+      - "Smart Access Memory"
+      - "Smart Access Video"
+      - "Radeon Anti-Lag 2"
+      - "Image Sharpening 2"
+      - "FreeSync"
+      - "HYPR-RX"
+      - "Noise Suppression"
+  aib_examples:
+    sapphire_pulse:
+      model: "SAPPHIRE Radeon RX 9050 PULSE 8GB"
+      tbp_w: 100
+      game_clock_mhz: 2260
+      boost_clock_mhz: 2760
+      form_factor_mm: "200 x 109.25 x 40.6"
+      slots: 2
+      fans: 2
+    asrock_challenger:
+      model: "ASRock Radeon RX 9050 Challenger 8GB"
+      boost_clock_mhz: 2600
+      psu_recommendation_w: 450
+relationships:
+  architecture_ref: null
+  vendor_ref: null
+meta:
+  source: "AMD Radeon RX 9050 Product Specifications"
+  source_url: "https://www.amd.com/en/products/graphics/radeon-rx-9050"
+  supplementary_sources:
+    - "PCWorld"
+    - "VideoCardz"
+    - "Wccftech"
+    - "TweakTown"
+    - "TheFPSReview"
+    - "TechPowerUp"
+    - "SAPPHIRE product page"
+    - "ASRock product page"
+  references:
+    redstone_stack_analysis: "references/redstone-stack-rx9050-analysis.md"
+  acquired_at: "2026-07-29"
+  acquired_by: "manual"

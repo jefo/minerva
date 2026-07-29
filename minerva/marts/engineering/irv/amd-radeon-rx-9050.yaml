@@ -1,0 +1,310 @@
+intent_resolution:
+  layer: 0
+  gpu: "amd-radeon-rx-9050"
+  version: "2.0"
+
+  hypothesis:
+    statement: >
+      SFF thermal envelope (92W × 200mm dual-slot) — primary constraint.
+      Он диктует: 4 чипа памяти (PCB real estate) → 128-bit → 288 GB/s GDDR6.
+      16 CU — максимум compute при 92W и Game Clock 1920 MHz.
+      Транзисторный бюджет размечен в пользу платформы (медиа-движок, DP 2.1a, PCIe 5.0, AI-ускорители, Infinity Cache),
+      compute добирается софтом (FSR Redstone). Полнофункциональная платформа с SFF-дизайном, не урезанная бюджетная карта.
+    evidence_coverage: "~90% — объясняет 18 из 20 ключевых observations"
+    assumptions_count: 2  # primary constraint (SFF thermal) + engineering preference (platform completeness)
+
+  optimisation_problem:
+    statement: "Максимизировать platform completeness и OEM compatibility в пределах SFF thermal envelope (92W, 200mm dual-slot), с учётом ограничений кристалла Navi 44 и $279 MSRP"
+    objective: "platform completeness per watt in SFF form factor"
+    constraints: [P.1, P.2, P.3]
+
+  constraint_hierarchy:
+    primary:
+      description: "SFF thermal envelope: 92W TBP, 200mm PCB, dual-slot cooler — физический предел для 4-литровых корпусов и OEM-сборок с ограниченным airflow"
+      nature: physics
+    secondary:
+      - "4 чипа памяти максимум — physical PCB limit 200mm (2 чипа на сторону, dual-slot кулер не позволяет компоненты с тыльной стороны)"
+      - "16 CU — thermal budget ceiling: 92W / 5.75W per CU = 16 CU максимум при Game Clock 1920 MHz"
+      - "VRM limited: single 8-pin + 450W PSU — пиковая нагрузка VRM ограничивает Boost Clock (2600 MHz, не 3.1 GHz как у 180W карт)"
+    implementation:
+      - "GDDR6 (не GDDR7): memory controller Navi 44 не поддерживает GDDR7 signaling (physics). GDDR7 чипы также физически крупнее — не влезают 4 чипа в 200mm PCB."
+      - "32MB Infinity Cache размещён на кристалле (не на PCB) — компенсация узкой шины без дополнительных чипов памяти. IC использует die area, не PCB real estate."
+      - "1920 MHz Game Clock — результат balancing: выше частоты → выше TBP → превышает 92W. AIB-карты (SAPPHIRE PULSE) поднимают Game Clock до 2260 MHz ценой +8W TBP (100W)."
+    business:
+      - "$279 MSRP — между B580 ($249) и RTX 5060 ($299). Зазор $20 от RTX 5060 оправдан 92W vs 150W TBP."
+      - "4GB OEM SKU — yield harvesting: кристаллы с дефектами в контроллере памяти (64 из 128 бит) продаются в OEM-канал (Best Buy, Dell). Не маркетинговая сегментация."
+      - "APJ + LatAm launch first — OEM-heavy рынки. SFF-карты расходятся через системных интеграторов, не розничных геймеров."
+
+  design_economy:
+    transistor_budget_29_7B:
+      compute_16_CU: "~8-10B — то что осталось после платформенных allocations"
+      infinity_cache_32MB: "~4-6B — компенсирует узкую шину. Без IC: bandwidth hit rate ↓ 30-40% на повторяющихся данных"
+      media_block: "~2-3B — AV1 encode/decode + H.264 + HEVC. Позиционирует карту как полноценную платформу"
+      ai_accelerators_32: "~2-3B — 2nd Gen. Основа FSR Redstone. Без них: upscaling только non-ML (качество хуже)"
+      display_io_pcie: "~2-3B — DP 2.1a + HDMI 2.1b + PCIe 5.0 x16. Намеренно современные, не урезанные"
+      overhead: "~5-8B — связь, управление, PHY"
+    sacrificed:
+      - "Каждые 2B транзисторов на медиа-движок ≈ 4-6 CU не пошли в compute"
+      - "Каждые 2B на AI-ускорители ≈ 4-6 CU — но без них FSR Redstone невозможен"
+      - "Каждые 2B на DP 2.1a / PCIe 5.0 ≈ экономия $3-5 BOM на более дешёвых альтернативах — сознательно НЕ сэкономили"
+      - "FSR Redstone — софтверная компенсация: compute, сэкономленный на платформе, возвращается через upscaling (+25-45% FPS)"
+
+  missing_features:
+    - feature: "GDDR7 память"
+      if_added: "Требует перепроектирования memory controller Navi 44. Карта получила бы 448 GB/s (+55%), но стала бы принципиально другим продуктом — с новым кристаллом и другой себестоимостью."
+      omission_nature: architectural  # physics: memory controller incompatible
+    - feature: "12GB или 16GB VRAM"
+      if_added: "Требует 192-bit шины → 6 чипов памяти → не влезает в 200mm PCB → требует удлинения платы → ломает SFF-конверт → другой продукт."
+      omission_nature: architectural  # cascaded from primary constraint
+    - feature: "24 или 32 CU"
+      if_added: "24 CU × 5.75W = 138W → превышает 92W TBP → требует другого thermal solution → карта перестаёт быть SFF. Либо снизить частоты ниже эффективного порога."
+      omission_nature: architectural  # cascaded from primary constraint
+    - feature: "DisplayPort 1.4 (вместо 2.1a)"
+      if_added: "DP 1.4 ДЕШЕВЛЕ. Наличие DP 2.1a — positive choice: платформа позиционируется как современная, несмотря на скромный compute. Экономия $2-3 BOM отвергнута в пользу platform completeness."
+      omission_nature: intentional  # engineering preferred modern I/O
+    - feature: "PCIe 4.0 (вместо 5.0 x16)"
+      if_added: "PCIe 4.0 x8 было бы ДЕШЕВЛЕ и ДОСТАТОЧНО для bandwidth этого класса. PCIe 5.0 x16 — positive choice: запас на старые платформы (PCIe 3.0 ×16 = 5.0 ×4) + positioning."
+      omission_nature: intentional  # engineering preferred full lanes
+
+  design_pressures:
+    - pressure: less_power
+      direction: "минимальный TBP, 92W"
+      magnitude: CRITICAL
+    - pressure: smaller_board
+      direction: "200mm PCB, dual-slot, ITX/SFF совместимость"
+      magnitude: CRITICAL
+    - pressure: platform_completeness
+      direction: "DP 2.1a, HDMI 2.1b, PCIe 5.0 x16, полный медиа-блок, AI-ускорители"
+      magnitude: HIGH
+    - pressure: lower_cost
+      direction: "$279 MSRP, GDDR6 вместо GDDR7"
+      magnitude: HIGH
+    - pressure: more_performance
+      direction: "выше частоты, больше CU"
+      magnitude: MEDIUM  # подавлено less_power
+    - pressure: more_bandwidth
+      direction: "шире шина, быстрее память"
+      magnitude: MEDIUM  # подавлено smaller_board
+    - pressure: software_capability
+      direction: "FSR Redstone, AFMF, Ray Regeneration"
+      magnitude: HIGH  # компенсация подавленных more_performance и more_bandwidth
+
+  design_space:
+    DS.1:
+      dimension: thermal_form_factor
+      pressures: [less_power, smaller_board]
+      signal: "92W TBP, 1×8-pin, 450W PSU, 200×109×40.6mm dual-slot (SAPPHIRE PULSE)"
+      expectation: "SFF thermal envelope — организующий принцип дизайна. Определяет всё: от числа чипов памяти до Game Clock."
+      importance: CRITICAL
+      inevitability: physics
+      rejected_alternatives:
+        DS.1.R1: "120-130W TBP (как RTX 5050). REJECTED: требует dual-slot кулер с тепловыми трубками + возможно 2×8-pin → не влезает в 200mm SFF. Карта перестаёт быть ITX-совместимой."
+        DS.1.R2: "170mm ultra-compact PCB. REJECTED: не разместить 4 чипа GDDR6 + VRM на плате короче 170mm. 200mm — минимальная длина для данного набора компонентов."
+    DS.2:
+      dimension: compute_budget
+      pressures: [more_performance, less_power]
+      signal: "Navi 44, 16 CU, 1024 SP, 29.7B транзисторов, Game Clock 1920 MHz"
+      expectation: "16 CU — максимум compute при 92W. Каждый CU ≈ 5.75W при Game Clock. 24 CU потребовали бы ~138W."
+      importance: CRITICAL
+      inevitability: physics
+      rejected_alternatives:
+        DS.2.R1: "Navi 48 (урезанный до 24-32 CU). REJECTED: другой кристалл (больше площадь, выше TBP baseline). Даже урезанный Navi 48 не укладывается в 92W."
+        DS.2.R2: "16 CU на повышенных частотах (Game Clock 2400+ MHz). REJECTED: VRM в SFF не dissipate достаточно тепла. SAPPHIRE PULSE достигает 2260 MHz ценой +8W (100W total) — предел AIB-разгона."
+    DS.3:
+      dimension: memory_interface
+      pressures: [more_bandwidth, smaller_board, lower_cost]
+      signal: "128-bit + GDDR6 18 Gbps + 32MB Infinity Cache = 288 GB/s"
+      expectation: "128-bit — physical limit: 4 чипа максимум на 200mm PCB. 32MB IC компенсирует узкую шину без доп. чипов."
+      importance: CRITICAL
+      inevitability: physics
+      rejected_alternatives:
+        DS.3.R1: "GDDR7 28 Gbps на 128-bit → 448 GB/s. REJECTED: memory controller Navi 44 не поддерживает GDDR7 signaling (physics). GDDR7 чипы также физически крупнее."
+        DS.3.R2: "160-bit + GDDR6 → 360 GB/s. REJECTED: требует 5 чипов → не влезает в 200mm PCB. Удлинение платы ломает SFF-конверт."
+        DS.3.R3: "Без Infinity Cache (как у RX 7600). REJECTED: без IC эффективный bandwidth падает на 30-40% для повторяющихся данных. 32MB IC использует die area (не PCB), что совместимо с SFF."
+    DS.4:
+      dimension: platform_io
+      pressures: [platform_completeness, lower_cost]
+      signal: "DP 2.1a, HDMI 2.1b, PCIe 5.0 x16, полный медиа-блок (AV1 enc/dec, H.264, HEVC)"
+      expectation: "Намеренно современные интерфейсы. DP 2.1a ДОРОЖЕ DP 1.4. PCIe 5.0 x16 ДОРОЖЕ 4.0 x8. Позиционирование: полноценная платформа, не урезанная бюджетка."
+      importance: HIGH
+      inevitability: engineering
+      rejected_alternatives:
+        DS.4.R1: "DP 1.4 + HDMI 2.0 + PCIe 4.0 x8. REJECTED: дешевле на $5-7 BOM, но позиционирует карту как 'прошлое поколение'. Инженеры сознательно выбрали современные I/O."
+    DS.5:
+      dimension: software_stack
+      pressures: [software_capability, more_performance]
+      signal: "FSR Redstone (ML-upscaling) + AFMF (frame gen) + Ray Regeneration. RDNA 4 exclusive."
+      expectation: "Софтверный стек — компенсация аппаратных ограничений. 16 CU не тянут 1080p Ultra нативно → Redstone добавляет +25-45% FPS. FG даёт плавность при базовых 50+ FPS."
+      importance: CRITICAL
+      inevitability: software
+      rejected_alternatives:
+        DS.5.R1: "FSR 3 (non-ML upscaling). REJECTED: качество и стабильность кадра хуже. RDNA 4 имеет 2nd Gen AI Accelerators специально под ML-upscaling — не использовать их = wasted transistors."
+    DS.6:
+      dimension: vram_configuration
+      pressures: [more_vram, smaller_board, lower_cost]
+      signal: "8GB GDDR6 retail (128-bit), 4GB GDDR6 OEM (64-bit)"
+      expectation: "8GB — 4 чипа × 2GB. 4GB — yield harvesting: кристаллы с дефектным контроллером памяти."
+      importance: CRITICAL
+      inevitability: physics  # 8GB — physical layout; 4GB — yield economics
+      rejected_alternatives:
+        DS.6.R1: "12GB (6 чипов × 2GB). REJECTED: 6 чипов на 200mm PCB не разместить."
+        DS.6.R2: "Только 8GB, без 4GB SKU. REJECTED: yield loss на defective memory controllers. OEM-канал принимает 4GB — офисные/кассовые машины."
+    DS.7:
+      dimension: price_target
+      pressures: [lower_cost, platform_completeness]
+      signal: "$279 MSRP, APJ + LatAm launch first"
+      expectation: "Между B580 ($249) и RTX 5060 ($299). Премия $30 над B580 оправдана 92W TBP и platform I/O. Запуск в OEM-heavy регионах."
+      importance: CRITICAL
+      inevitability: business
+      rejected_alternatives:
+        DS.7.R1: "$249 (match B580). REJECTED: съедает маржу. При $249 пришлось бы урезать platform I/O или IC — ломает product identity."
+
+  decisions:
+    Dec.1:
+      description: "Зафиксировать SFF thermal envelope 92W как организующий принцип дизайна"
+      pressures_resolved: [less_power, smaller_board]
+      inevitability: physics
+      addresses: [DS.1]
+      rejects: [DS.1.R1, DS.1.R2]
+      rationale: "92W × 200mm dual-slot — физический предел для 4-литровых SFF-корпусов и OEM-сборок со stock-охлаждением. Этот constraint определяет всё: число чипов памяти, число CU, частоты, VRM. Не 'выбор low-power дизайна' — physical constraint, задающий класс продукта."
+
+    Dec.2:
+      description: "Использовать Navi 44 как цельный кристалл — 16 CU, без урезания, 29.7B транзисторов"
+      pressures_resolved: [more_performance, less_power]
+      inevitability: physics
+      addresses: [DS.2]
+      rejects: [DS.2.R1, DS.2.R2]
+      rationale: "16 CU — максимум compute при 92W. Каждый CU потребляет ~5.75W при Game Clock 1920 MHz. 24 CU → 138W — за пределами thermal envelope. Полный кристалл без harvesting → ниже себестоимость. Navi 48 (32+ CU) — другой кристалл с другой TBP baseline."
+
+    Dec.3:
+      description: "128-bit шина + 4 чипа GDDR6 18 Gbps + 32MB Infinity Cache = 288 GB/s"
+      pressures_resolved: [more_bandwidth, smaller_board, lower_cost]
+      inevitability: physics
+      addresses: [DS.3]
+      rejects: [DS.3.R1, DS.3.R2, DS.3.R3]
+      rationale: "4 чипа — physical PCB limit 200mm. 128-bit — следствие. GDDR6 — единственный вариант: GDDR7 не поддерживается контроллером Navi 44. 32MB IC — размещён на кристалле, не на PCB: компенсирует узкую шину без дополнительных чипов. Без IC эффективный bandwidth ↓ 30-40%."
+
+    Dec.4:
+      description: "Современные платформенные интерфейсы: DP 2.1a, HDMI 2.1b, PCIe 5.0 x16, полный медиа-блок"
+      pressures_resolved: [platform_completeness, lower_cost]
+      inevitability: engineering
+      addresses: [DS.4]
+      rejects: [DS.4.R1]
+      rationale: "Сознательный выбор в пользу современной платформы. DP 2.1a дороже DP 1.4 на ~$2-3 BOM. PCIe 5.0 x16 дороже 4.0 x8. Инженеры НЕ стали экономить на I/O — платформа позиционируется как полноценная, не урезанная. Медиа-блок (AV1 enc/dec) требует транзисторного бюджета (~2-3B) — столько же стоило бы 4-6 CU."
+
+    Dec.5:
+      description: "Ставка на FSR Redstone + AFMF + Ray Regeneration как главный рычаг производительности"
+      pressures_resolved: [software_capability, more_performance]
+      inevitability: software
+      addresses: [DS.5]
+      rejects: [DS.5.R1]
+      rationale: "16 CU недостаточно для нативного 1080p Ultra. FSR Redstone — софтверная компенсация: +25-45% FPS через upscaling (рендерится меньше пикселей). AFMF — плавность при базовых 50+ FPS. Ray Regeneration — RT без дополнительного compute. RDNA 4 AI Accelerators существуют именно для этого."
+
+    Dec.6:
+      description: "8GB retail (4×2GB) + 4GB OEM (2×2GB, 64-bit) — yield-harvesting SKU"
+      pressures_resolved: [more_vram, lower_cost, better_yields]
+      inevitability: physics  # 8GB layout; 4GB — yield economics
+      addresses: [DS.6]
+      rejects: [DS.6.R1, DS.6.R2]
+      rationale: "8GB — 4 чипа по 2GB, физический предел PCB. 4GB OEM — не маркетинговая сегментация. Кристаллы с дефектным контроллером памяти (только 64 из 128 бит работают) нельзя продать как 8GB. OEM-канал (Best Buy, Dell) принимает 4GB для офисных машин → zero waste."
+
+    Dec.7:
+      description: "$279 MSRP — между B580 ($249) и RTX 5060 ($299). APJ + LatAm first."
+      pressures_resolved: [lower_cost, platform_completeness]
+      inevitability: business
+      addresses: [DS.7]
+      rejects: [DS.7.R1]
+      rationale: "Зазор $20 от RTX 5060 оправдан: 92W vs 150W + PCIe 5.0 x16 vs x8 + DP 2.1a. Премия $30 над B580 оправдана: SFF thermal + FSR Redstone + platform I/O. Запуск в APJ/LatAm — OEM-heavy регионы, где SFF-карты расходятся через системных интеграторов."
+
+  consequences:
+    C.1:
+      description: "Bandwidth = 288 GB/s (+29% vs RX 7600 224 GB/s, −19% vs RTX 5060 355 GB/s с GDDR7)"
+      derives_from: [Dec.3]
+      measurable: true
+    C.2:
+      description: "TBP = 92W — самая низкая в сегменте: 1.6× ниже RTX 5060 (150W), 2.1× ниже B580 (190W)"
+      derives_from: [Dec.1, Dec.2]
+      measurable: true
+    C.3:
+      description: "Game Clock 1920 MHz — потолок стабильной частоты при SFF VRM. AIB-карты (SAPPHIRE PULSE) поднимают до 2260 MHz ценой +8W (100W total)"
+      derives_from: [Dec.1]
+      measurable: true
+    C.4:
+      description: "Без FSR Redstone: 16 CU locked at 1080p Medium 40-60 fps. С Redstone: +25-45% FPS, 1080p High/RT достижим через upscaling+FG при базовых 50+ FPS"
+      derives_from: [Dec.5]
+      measurable: true
+    C.5:
+      description: "PCIe 5.0 x16 — 32 GT/s через 16 линий. На PCIe 3.0 платформах: эквивалентно PCIe 4.0 x8 (достаточно). Намеренно избыточно."
+      derives_from: [Dec.4]
+      measurable: true
+    C.6:
+      description: "8GB VRAM — ceiling для RT-текстур High/Ultra при 1080p. Infinity Cache частично компенсирует: hit rate 50-70% для повторяющихся данных снижает эффективную VRAM-нагрузку"
+      derives_from: [Dec.3, Dec.6]
+      measurable: true
+    C.7:
+      description: "DP 2.1a + HDMI 2.1b — поддержка 4K 240Hz и 8K 60Hz дисплеев. Для карты этого класса — платформенная инвестиция, не геймерская необходимость"
+      derives_from: [Dec.4]
+      measurable: true
+
+  tradeoffs:
+    T.1:
+      axis: "thermal_envelope_vs_compute"
+      pressures: [less_power vs more_performance]
+      economy: "92W TBP → 16 CU. Каждые +8W TBP → +1-2 CU. RTX 5060 (150W) = +58W → +12 CU (3840 CUDA). RX 9050 жертвует compute ради SFF."
+      choice: "92W TBP, 16 CU, Game Clock 1920 MHz"
+      cost: "Минимальный compute в сегменте. Без FSR Redstone карта locked at 1080p Medium."
+      benefit: "Самая низкая TBP в сегменте (1.6× ниже конкурентов). ITX, HTPC, пассивные сборки. OEM-совместимость без замены БП."
+
+    T.2:
+      axis: "pcb_real_estate_vs_bandwidth"
+      pressures: [smaller_board vs more_bandwidth]
+      economy: "200mm PCB → 4 чипа. Каждые +25mm PCB → +1 чип → +64 GB/s. RX 9050 жертвует bandwidth ради SFF. Infinity Cache (4-6B транзисторов) — компенсация."
+      choice: "200mm PCB, 4×GDDR6, 128-bit, 288 GB/s + 32MB IC"
+      cost: "288 GB/s — на 19% ниже RTX 5060 с GDDR7 (355 GB/s). Без IC было бы ~200 GB/s effective."
+      benefit: "SFF-совместимость (200mm). GDDR6 дешевле GDDR7. IC компенсирует узкую шину для повторяющихся данных без доп. чипов."
+
+    T.3:
+      axis: "platform_investment_vs_compute_investment"
+      pressures: [platform_completeness vs more_performance]
+      economy: "DP 2.1a + PCIe 5.0 x16 + медиа-блок → ~6-9B транзисторов → эквивалент 12-18 CU. Инженеры разместили бюджет в платформу, не в compute."
+      choice: "DP 2.1a, HDMI 2.1b, PCIe 5.0 x16, AV1 enc/dec, AI-ускорители 2nd Gen"
+      cost: "Транзисторный бюджет, который мог быть потрачен на +12-18 CU. FSR Redstone частично компенсирует."
+      benefit: "Полнофункциональная платформа. Современные дисплей-выходы (4K 240Hz). Медиа-возможности (стриминг, запись). PCIe 5.0 — запас на будущее."
+
+    T.4:
+      axis: "software_recovery_vs_hardware_capability"
+      pressures: [software_capability vs more_performance]
+      economy: "FSR Redstone требует AI-ускорителей (2-3B транзисторов). Без них — софтверный стек не работает. С ними — +25-45% FPS при тех же 16 CU."
+      choice: "FSR Redstone + AFMF + Ray Regeneration — RDNA 4 exclusive"
+      cost: "FG добавляет задержку (input lag на уровне базового рендера). 1% Low проседают на 41% при FG. Требует базовых 50+ FPS — ниже FG бесполезен."
+      benefit: "Upscaling +25-45% FPS честно (рендерится меньше пикселей). Ray Regeneration — RT без доп. лучей. AI-ускорители окупают свой transistor budget."
+
+    T.5:
+      axis: "yield_economics_vs_product_clarity"
+      pressures: [better_yields vs segment_positioning]
+      economy: "Дефектные кристаллы (64/128 бит) → 4GB OEM SKU. Без этого: yield loss ~5-15% на Navi 44. С этим: +$XX млн сохранённой стоимости кристаллов."
+      choice: "8GB retail (128-bit) + 4GB OEM (64-bit) — один кристалл, два SKU"
+      cost: "4GB SKU фрагментирует восприятие: 'RX 9050 = 4GB карта' в сознании розничного покупателя."
+      benefit: "Нулевая отбраковка кристаллов с дефектами memory controller. OEM-канал получает современную платформу (DP 2.1a, AV1) для офисных машин."
+
+  engineering_intent:
+    question: "Как сбалансированы SFF thermal envelope (92W × 200mm), платформенные инвестиции (DP 2.1a, PCIe 5.0, медиа-блок, AI-ускорители) и софтверный стек (FSR Redstone) в GPU с 16 CU Navi 44, принимая $279 MSRP как бизнес-ограничение?"
+    L1: "Создать полнофункциональную SFF-платформу с софтверно-компенсированным compute, максимизируя platform completeness per watt при физическом ограничении 92W × 200mm dual-slot."
+    L2_strategy:
+      Dec.1: "Зафиксировать SFF thermal envelope 92W как организующий принцип (200mm PCB, dual-slot, single 8-pin)"
+      Dec.2: "Использовать Navi 44 (16 CU, 29.7B транзисторов) — максимум compute при 92W"
+      Dec.3: "128-bit + 4×GDDR6 18 Gbps + 32MB Infinity Cache = 288 GB/s (physical limit: 4 чипа на 200mm)"
+      Dec.4: "DP 2.1a + HDMI 2.1b + PCIe 5.0 x16 + полный медиа-блок — платформенная инвестиция (~6-9B транзисторов)"
+      Dec.5: "FSR Redstone + AFMF + Ray Regeneration — софтверная компенсация: +25-45% FPS через upscaling"
+      Dec.6: "8GB retail + 4GB OEM (yield harvesting defective memory controllers)"
+      Dec.7: "$279 MSRP — между B580 ($249) и RTX 5060 ($299)"
+    L3_consequences:
+      C.1: "Bandwidth 288 GB/s (+29% vs RX 7600, −19% vs RTX 5060 GDDR7)"
+      C.2: "92W TBP — 1.6× ниже RTX 5060, 2.1× ниже B580"
+      C.3: "Game Clock 1920 MHz (SFF VRM limit); AIB до 2260 MHz ценой +8W"
+      C.4: "Без Redstone: locked 1080p Medium. С Redstone: 1080p High/RT через upscaling+FG"
+      C.5: "PCIe 5.0 x16 — намеренно избыточно, запас на старые платформы"
+      C.6: "8GB VRAM + 32MB IC — эффективный bandwidth ↑ 30-40% для повторяющихся данных"
+      C.7: "DP 2.1a/HDMI 2.1b — 4K 240Hz / 8K 60Hz, платформенная инвестиция"
+
+  product_role: "SFF-optimised platform GPU: 16 CU RDNA 4 + FSR Redstone в термальном конверте 92W × 200mm dual-slot, с полноценным медиа-блоком и современными дисплей-выходами"

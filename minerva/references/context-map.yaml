@@ -1,6 +1,6 @@
 context_map:
   warehouse: hardware
-  generated: '2026-07-15T19:59:35Z'
+  generated: '2026-07-29T15:17:18Z'
   dimensions:
     architecture:
       count: 6
@@ -39,10 +39,12 @@ context_map:
       - id: synthetic-mt
         canonical_name: Synthetic Multi-Thread
     chipset:
-      count: 3
+      count: 4
       entities:
       - id: amd-b650
         canonical_name: AMD B650
+      - id: intel-b860
+        canonical_name: Intel B860
       - id: intel-z790
         canonical_name: Intel Z790
       - id: intel-z890
@@ -238,7 +240,7 @@ context_map:
       - id: nvidia-geforce-572.16_v2026-03
         canonical_name: ''
     game_title:
-      count: 71
+      count: 74
       entities:
       - id: 007-first-light
         canonical_name: '007: First Light'
@@ -278,6 +280,9 @@ context_map:
         genre: action-rpg
       - id: call-of-duty-black-ops-6
         canonical_name: 'Call of Duty: Black Ops 6'
+        genre: fps
+      - id: call-of-duty-black-ops-7
+        canonical_name: 'Call of Duty: Black Ops 7'
         genre: fps
       - id: call-of-duty-warzone
         canonical_name: 'Call of Duty: Warzone'
@@ -450,22 +455,68 @@ context_map:
       - id: the-last-of-us-part-i
         canonical_name: The Last of Us Part I
         genre: action-adventure
+      - id: tom-clancys-rainbow-six-siege
+        canonical_name: Tom Clancy's Rainbow Six Siege
+        genre: tactical-shooter
+      - id: valorant
+        canonical_name: VALORANT
+        genre: tactical-shooter
       - id: witchfire
         canonical_name: Witchfire
         genre: fps-roguelite
     gpu:
-      count: 10
+      count: 18
       entities:
+      - id: amd-radeon-rx-9050
+        canonical_name: AMD Radeon RX 9050 8GB
+        vendor: amd
+        architecture: RDNA 4
+        vram: 8GB GDDR6
+      - id: amd-rx-7600
+        canonical_name: AMD Radeon RX 7600 8GB
+        vendor: amd
+        architecture: RDNA 3
+        vram: ?GB ?
+      - id: amd-rx-7700-xt
+        canonical_name: AMD Radeon RX 7700 XT 12GB
+        vendor: amd
+        architecture: RDNA 3
+        vram: ?GB ?
+      - id: amd-rx-7800-xt
+        canonical_name: AMD Radeon RX 7800 XT 16GB
+        vendor: amd
+        architecture: RDNA 3
+        vram: ?GB ?
+      - id: amd-rx-7900-xtx
+        canonical_name: AMD Radeon RX 7900 XTX 24GB
+        vendor: amd
+        architecture: RDNA 3
+        vram: ?GB ?
       - id: amd-rx-9060-xt
         canonical_name: AMD Radeon RX 9060 XT 16GB
         vendor: amd
         architecture: RDNA 4
         vram: 16GB GDDR6
+      - id: intel-arc-a770
+        canonical_name: Intel Arc A770 16GB
+        vendor: intel
+        architecture: Alchemist (Xe HPG)
+        vram: ?GB ?
+      - id: intel-arc-b570
+        canonical_name: Intel Arc B570 10GB
+        vendor: intel
+        architecture: Battlemage (Xe2 HPG)
+        vram: ?GB ?
       - id: intel-arc-b580
         canonical_name: Intel Arc B580 12GB
         vendor: intel
         architecture: Xe2-HPG (Battlemage)
         vram: 12GB GDDR6
+      - id: nvidia-rtx-3060-12gb
+        canonical_name: NVIDIA GeForce RTX 3060 12GB
+        vendor: nvidia
+        architecture: Ampere
+        vram: ?GB ?
       - id: nvidia-rtx-4060-ti-8gb
         canonical_name: NVIDIA GeForce RTX 4060 Ti 8GB
         vendor: nvidia
@@ -531,6 +582,39 @@ context_map:
         canonical_name: Ultra
       - id: very-high
         canonical_name: Very High
+    motherboard:
+      count: 15
+      entities:
+      - id: asrock-b450m-pro4
+        canonical_name: ASRock B450M Pro4
+      - id: asrock-b650e-pg-itx
+        canonical_name: ASRock B650E PG-ITX WiFi
+      - id: asrock-b650m-pro-rs
+        canonical_name: ASRock B650M Pro RS
+      - id: asrock-b860m-pro-rs-rev1.0
+        canonical_name: ASRock B860M Pro RS (rev 1.0)
+      - id: asrock-h610m-hdv-m2
+        canonical_name: ASRock H610M-HDV/M.2
+      - id: asrock-z790-pg-riptide
+        canonical_name: ASRock Z790 PG Riptide
+      - id: asus-rog-strix-z890-e
+        canonical_name: ASUS ROG Strix Z890-E Gaming WiFi
+      - id: asus-tuf-gaming-x870-plus-wifi
+        canonical_name: ASUS TUF Gaming X870-Plus WiFi
+      - id: gigabyte-b860-gaming-x-wifi6e-rev1.0
+        canonical_name: Gigabyte B860 GAMING X WIFI6E (rev 1.0)
+      - id: gigabyte-x670e-aorus-master
+        canonical_name: Gigabyte X670E AORUS Master
+      - id: msi-b550-tomahawk
+        canonical_name: MSI MAG B550 Tomahawk
+      - id: msi-b760-tomahawk-wifi
+        canonical_name: MSI MAG B760 Tomahawk WiFi
+      - id: msi-b860-gaming-plus-wifi-rev1.0
+        canonical_name: MSI B860 GAMING PLUS WIFI (rev 1.0)
+      - id: msi-mag-b650-tomahawk-wifi
+        canonical_name: MSI MAG B650 TOMAHAWK WIFI
+      - id: msi-mag-x570-tomahawk-wifi
+        canonical_name: MSI MAG X570 Tomahawk WiFi
     resolution:
       count: 4
       entities:
@@ -554,7 +638,7 @@ context_map:
       - id: lga-1851
         canonical_name: LGA 1851
   observations:
-    total: 779
+    total: 948
     games_covered:
     - '007: First Light'
     - 'A Plague Tale: Requiem'
@@ -576,6 +660,7 @@ context_map:
     - 'COD: Black Ops 6 SP'
     - 'COD: Warzone'
     - 'Call of Duty: Black Ops 6'
+    - 'Call of Duty: Black Ops 7'
     - 'Clair Obscur: Expedition 33'
     - Counter Strike 2
     - Counter-Strike 2
@@ -589,6 +674,7 @@ context_map:
     - Delta Force
     - Desordre
     - 'Doom: The Dark Ages'
+    - Dragon's Dogma 2
     - 'Dying Light: The Beast'
     - Fortnite
     - Forza Horizon 5
@@ -647,6 +733,8 @@ context_map:
     - The Last of Us Part I
     - The Last of Us Part II
     - The Last of Us Part II Remastered
+    - Tom Clancy's Rainbow Six Siege
+    - VALORANT
     - 'Warhammer 40,000: Space Marine 2'
     - 'Warhammer 40K: Space Marine 2'
     - Witchfire
@@ -654,6 +742,7 @@ context_map:
     - 1080p
     - 1440p
     - 4K
+    - 4k
     - 720p
     - n/a
     graphics_presets:
@@ -669,9 +758,20 @@ context_map:
     - Ultra Nightmare
     - Very High
     - n/a
-    component_count: 41
+    component_count: 53
     components:
+    - AMD Radeon RX 7600 8GB
+    - AMD Radeon RX 7700 XT 12GB
+    - AMD Radeon RX 7800 XT 16GB
+    - AMD Radeon RX 7900 XTX 24GB
+    - AMD Radeon RX 9070
+    - AMD Radeon RX 9070 XT
     - Arc B580
+    - Intel Arc A770 16GB
+    - Intel Arc B570 10GB
+    - NVIDIA GeForce RTX 3060 12GB
+    - NVIDIA GeForce RTX 5070
+    - NVIDIA GeForce RTX 5070 Ti
     - RTX 4060
     - RTX 4060 Ti 8GB
     - RTX 4070 Super
@@ -681,6 +781,7 @@ context_map:
     - RTX 5060
     - RTX 5060 Ti
     - RTX 5060 Ti 16GB
+    - RX 9050
     - RX 9060 XT
     - RX 9060 XT 16GB
     - amd-ryzen-5-5600
@@ -713,6 +814,53 @@ context_map:
     - intel-core-ultra-7-265k
     - intel-core-ultra-9-285k
     by_component:
+      AMD Radeon RX 7600 8GB:
+        count: 15
+        sample_ids:
+        - amd-rx-7600-baldurs-gate-3-1080p_high
+        - amd-rx-7600-baldurs-gate-3-1440p_ultra
+        - amd-rx-7600-baldurs-gate-3-4k_ultra
+        - amd-rx-7600-counter-strike-2-1080p_high
+        - amd-rx-7600-counter-strike-2-1440p_ultra
+      AMD Radeon RX 7700 XT 12GB:
+        count: 15
+        sample_ids:
+        - amd-rx-7700-xt-baldurs-gate-3-1080p_high
+        - amd-rx-7700-xt-baldurs-gate-3-1440p_ultra
+        - amd-rx-7700-xt-baldurs-gate-3-4k_ultra
+        - amd-rx-7700-xt-counter-strike-2-1080p_high
+        - amd-rx-7700-xt-counter-strike-2-1440p_ultra
+      AMD Radeon RX 7800 XT 16GB:
+        count: 15
+        sample_ids:
+        - amd-rx-7800-xt-baldurs-gate-3-1080p_high
+        - amd-rx-7800-xt-baldurs-gate-3-1440p_ultra
+        - amd-rx-7800-xt-baldurs-gate-3-4k_ultra
+        - amd-rx-7800-xt-counter-strike-2-1080p_high
+        - amd-rx-7800-xt-counter-strike-2-1440p_ultra
+      AMD Radeon RX 7900 XTX 24GB:
+        count: 15
+        sample_ids:
+        - amd-rx-7900-xtx-baldurs-gate-3-1080p_high
+        - amd-rx-7900-xtx-baldurs-gate-3-1440p_ultra
+        - amd-rx-7900-xtx-baldurs-gate-3-4k_ultra
+        - amd-rx-7900-xtx-counter-strike-2-1080p_high
+        - amd-rx-7900-xtx-counter-strike-2-1440p_ultra
+      AMD Radeon RX 9070:
+        count: 4
+        sample_ids:
+        - rx-9070-9800x3d-black-myth-wukong-1440p-high-native
+        - rx-9070-9800x3d-cyberpunk-2077-1080p-ultra-native
+        - rx-9070-9800x3d-dragons-dogma-2-4k-max-native
+        - rx-9070-9800x3d-starfield-1440p-ultra-native
+      AMD Radeon RX 9070 XT:
+        count: 6
+        sample_ids:
+        - rx-9070-xt-9800x3d-black-myth-wukong-1440p-high-native
+        - rx-9070-xt-9800x3d-cyberpunk-2077-1440p-ultra-native
+        - rx-9070-xt-9800x3d-cyberpunk-2077-4k-ultra-native
+        - rx-9070-xt-9800x3d-dragons-dogma-2-1080p-max-native
+        - rx-9070-xt-9800x3d-dragons-dogma-2-4k-max-native
       Arc B580:
         count: 45
         sample_ids:
@@ -721,6 +869,43 @@ context_map:
         - arc-b580-battlefield-6-1440p-fg3x3x
         - arc-b580-battlefield-6-1440p-fg4x4x
         - arc-b580-battlefield-6-1440p-fgoff
+      Intel Arc A770 16GB:
+        count: 15
+        sample_ids:
+        - intel-arc-a770-baldurs-gate-3-1080p_high
+        - intel-arc-a770-baldurs-gate-3-1440p_ultra
+        - intel-arc-a770-baldurs-gate-3-4k_ultra
+        - intel-arc-a770-counter-strike-2-1080p_high
+        - intel-arc-a770-counter-strike-2-1440p_ultra
+      Intel Arc B570 10GB:
+        count: 15
+        sample_ids:
+        - intel-arc-b570-baldurs-gate-3-1080p_high
+        - intel-arc-b570-baldurs-gate-3-1440p_ultra
+        - intel-arc-b570-baldurs-gate-3-4k_ultra
+        - intel-arc-b570-counter-strike-2-1080p_high
+        - intel-arc-b570-counter-strike-2-1440p_ultra
+      NVIDIA GeForce RTX 3060 12GB:
+        count: 15
+        sample_ids:
+        - nvidia-rtx-3060-12gb-baldurs-gate-3-1080p_high
+        - nvidia-rtx-3060-12gb-baldurs-gate-3-1440p_ultra
+        - nvidia-rtx-3060-12gb-baldurs-gate-3-4k_ultra
+        - nvidia-rtx-3060-12gb-counter-strike-2-1080p_high
+        - nvidia-rtx-3060-12gb-counter-strike-2-1440p_ultra
+      NVIDIA GeForce RTX 5070:
+        count: 2
+        sample_ids:
+        - rtx-5070-9800x3d-baldurs-gate-3-1440p-ultra-native
+        - rtx-5070-9800x3d-cyberpunk-2077-1440p-ultra-native
+      NVIDIA GeForce RTX 5070 Ti:
+        count: 5
+        sample_ids:
+        - rtx-5070-ti-9800x3d-black-myth-wukong-1440p-high-native
+        - rtx-5070-ti-9800x3d-dragons-dogma-2-1080p-max-native
+        - rtx-5070-ti-9800x3d-dragons-dogma-2-4k-max-native
+        - rtx-5070-ti-9800x3d-starfield-1440p-ultra-native
+        - rtx-5070-ti-9800x3d-starfield-4k-ultra-native
       RTX 4060:
         count: 56
         sample_ids:
@@ -793,6 +978,14 @@ context_map:
         - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg4x
         - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q-mfg6x
         - rtx-5060-ti-007-first-light-1440p-optimized-dlss-q
+      RX 9050:
+        count: 11
+        sample_ids:
+        - amd-radeon-rx-9050-007-first-light-1080p-medium-native
+        - amd-radeon-rx-9050-call-of-duty-black-ops-7-1080p-balanced-native
+        - amd-radeon-rx-9050-call-of-duty-black-ops-7-4k-balanced-fsr-redstone-rr-fullstack-modeled
+        - amd-radeon-rx-9050-counter-strike-2-1080p-medium-native
+        - amd-radeon-rx-9050-cyberpunk-2077-1080p-medium-fsr-redstone-fg-modeled
       RX 9060 XT:
         count: 36
         sample_ids:
@@ -810,7 +1003,7 @@ context_map:
         - rx-9060-xt-apex-legends-1440p-max-native
         - rx-9060-xt-banishers-ghosts-of-new-eden-1440p-high-fsr-balanced
       amd-ryzen-5-5600:
-        count: 19
+        count: 20
         sample_ids:
         - amd-ryzen-5-5600-1080p-low-baldurs-gate-3-native
         - amd-ryzen-5-5600-1080p-low-counter-strike-2-native
@@ -818,7 +1011,7 @@ context_map:
         - amd-ryzen-5-5600-1080p-low-hogwarts-legacy-native
         - amd-ryzen-5-5600-1080p-low-starfield-native
       amd-ryzen-5-7500f:
-        count: 20
+        count: 21
         sample_ids:
         - amd-ryzen-5-7500f-1080p-low-baldurs-gate-3-native
         - amd-ryzen-5-7500f-1080p-low-counter-strike-2-native
@@ -826,14 +1019,15 @@ context_map:
         - amd-ryzen-5-7500f-1080p-low-hogwarts-legacy-native
         - amd-ryzen-5-7500f-1080p-low-starfield-native
       amd-ryzen-5-7600:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-5-7600-synthetic-1t-cinebench-r23
         - amd-ryzen-5-7600-synthetic-1t-geekbench6
         - amd-ryzen-5-7600-synthetic-mt-cinebench-r23
         - amd-ryzen-5-7600-synthetic-mt-geekbench6
+        - amd-ryzen-5-7600-power-thermal-2026-07
       amd-ryzen-5-7600x:
-        count: 19
+        count: 20
         sample_ids:
         - amd-ryzen-5-7600x-1080p-low-baldurs-gate-3-native
         - amd-ryzen-5-7600x-1080p-low-counter-strike-2-native
@@ -841,7 +1035,7 @@ context_map:
         - amd-ryzen-5-7600x-1080p-low-hogwarts-legacy-native
         - amd-ryzen-5-7600x-1080p-low-starfield-native
       amd-ryzen-5-9600x:
-        count: 22
+        count: 23
         sample_ids:
         - amd-ryzen-5-9600x-1080p-low-baldurs-gate-3-native
         - amd-ryzen-5-9600x-1080p-low-counter-strike-2-native
@@ -849,7 +1043,7 @@ context_map:
         - amd-ryzen-5-9600x-1080p-low-hogwarts-legacy-native
         - amd-ryzen-5-9600x-1080p-low-starfield-native
       amd-ryzen-7-5700x3d:
-        count: 20
+        count: 21
         sample_ids:
         - amd-ryzen-7-5700x3d-1080p-low-baldurs-gate-3-native
         - amd-ryzen-7-5700x3d-1080p-low-counter-strike-2-native
@@ -857,7 +1051,7 @@ context_map:
         - amd-ryzen-7-5700x3d-1080p-low-hogwarts-legacy-native
         - amd-ryzen-7-5700x3d-1080p-low-starfield-native
       amd-ryzen-7-7700:
-        count: 22
+        count: 23
         sample_ids:
         - amd-ryzen-7-7700-1080p-low-baldurs-gate-3-native
         - amd-ryzen-7-7700-1080p-low-counter-strike-2-native
@@ -865,7 +1059,7 @@ context_map:
         - amd-ryzen-7-7700-1080p-low-hogwarts-legacy-native
         - amd-ryzen-7-7700-1080p-low-starfield-native
       amd-ryzen-7-7700x:
-        count: 9
+        count: 10
         sample_ids:
         - amd-ryzen-7-7700x-1080p-low-baldurs-gate-3-native
         - amd-ryzen-7-7700x-1080p-low-counter-strike-2-native
@@ -873,7 +1067,7 @@ context_map:
         - amd-ryzen-7-7700x-1080p-low-hogwarts-legacy-native
         - amd-ryzen-7-7700x-1080p-low-starfield-native
       amd-ryzen-7-7800x3d:
-        count: 22
+        count: 23
         sample_ids:
         - amd-ryzen-7-7800x3d-1080p-low-baldurs-gate-3-native
         - amd-ryzen-7-7800x3d-1080p-low-counter-strike-2-native
@@ -881,14 +1075,15 @@ context_map:
         - amd-ryzen-7-7800x3d-1080p-low-hogwarts-legacy-native
         - amd-ryzen-7-7800x3d-1080p-low-starfield-native
       amd-ryzen-7-9700x:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-7-9700x-synthetic-1t-cinebench-r23
         - amd-ryzen-7-9700x-synthetic-1t-geekbench6
         - amd-ryzen-7-9700x-synthetic-mt-cinebench-r23
         - amd-ryzen-7-9700x-synthetic-mt-geekbench6
+        - amd-ryzen-7-9700x-power-thermal-2026-07
       amd-ryzen-7-9800x3d:
-        count: 22
+        count: 25
         sample_ids:
         - amd-ryzen-7-9800x3d-1080p-low-baldurs-gate-3-native
         - amd-ryzen-7-9800x3d-1080p-low-counter-strike-2-native
@@ -896,14 +1091,15 @@ context_map:
         - amd-ryzen-7-9800x3d-1080p-low-hogwarts-legacy-native
         - amd-ryzen-7-9800x3d-1080p-low-starfield-native
       amd-ryzen-9-7900:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-9-7900-synthetic-1t-cinebench-r23
         - amd-ryzen-9-7900-synthetic-1t-geekbench6
         - amd-ryzen-9-7900-synthetic-mt-cinebench-r23
         - amd-ryzen-9-7900-synthetic-mt-geekbench6
+        - amd-ryzen-9-7900-power-thermal-2026-07
       amd-ryzen-9-7950x:
-        count: 12
+        count: 13
         sample_ids:
         - amd-ryzen-9-7950x-1080p-low-baldurs-gate-3-native
         - amd-ryzen-9-7950x-1080p-low-counter-strike-2-native
@@ -911,21 +1107,23 @@ context_map:
         - amd-ryzen-9-7950x-1080p-low-hogwarts-legacy-native
         - amd-ryzen-9-7950x-1080p-low-starfield-native
       amd-ryzen-9-7950x3d:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-9-7950x3d-synthetic-1t-cinebench-r23
         - amd-ryzen-9-7950x3d-synthetic-1t-geekbench6
         - amd-ryzen-9-7950x3d-synthetic-mt-cinebench-r23
         - amd-ryzen-9-7950x3d-synthetic-mt-geekbench6
+        - amd-ryzen-9-7950x3d-power-thermal-2026-07
       amd-ryzen-9-9900x:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-9-9900x-synthetic-1t-cinebench-r23
         - amd-ryzen-9-9900x-synthetic-1t-geekbench6
         - amd-ryzen-9-9900x-synthetic-mt-cinebench-r23
         - amd-ryzen-9-9900x-synthetic-mt-geekbench6
+        - amd-ryzen-9-9900x-power-thermal-2026-07
       amd-ryzen-9-9950x:
-        count: 7
+        count: 8
         sample_ids:
         - amd-ryzen-9-9950x-productivity-7zip
         - amd-ryzen-9-9950x-productivity-blender-classroom
@@ -933,21 +1131,23 @@ context_map:
         - amd-ryzen-9-9950x-synthetic-1t-geekbench6
         - amd-ryzen-9-9950x-synthetic-mt-cinebench-r23
       amd-ryzen-9-9950x3d:
-        count: 4
+        count: 5
         sample_ids:
         - amd-ryzen-9-9950x3d-synthetic-1t-cinebench-r23
         - amd-ryzen-9-9950x3d-synthetic-1t-geekbench6
         - amd-ryzen-9-9950x3d-synthetic-mt-cinebench-r23
         - amd-ryzen-9-9950x3d-synthetic-mt-geekbench6
+        - amd-ryzen-9-9950x3d-power-thermal-2026-07
       intel-core-i3-12100f:
-        count: 4
+        count: 5
         sample_ids:
         - intel-core-i3-12100f-synthetic-1t-cinebench-r23
         - intel-core-i3-12100f-synthetic-1t-geekbench6
         - intel-core-i3-12100f-synthetic-mt-cinebench-r23
         - intel-core-i3-12100f-synthetic-mt-geekbench6
+        - intel-core-i3-12100f-power-thermal-2026-07
       intel-core-i5-12400f:
-        count: 19
+        count: 20
         sample_ids:
         - intel-core-i5-12400f-1080p-low-baldurs-gate-3-native
         - intel-core-i5-12400f-1080p-low-counter-strike-2-native
@@ -955,7 +1155,7 @@ context_map:
         - intel-core-i5-12400f-1080p-low-hogwarts-legacy-native
         - intel-core-i5-12400f-1080p-low-starfield-native
       intel-core-i5-13400f:
-        count: 19
+        count: 20
         sample_ids:
         - intel-core-i5-13400f-1080p-low-baldurs-gate-3-native
         - intel-core-i5-13400f-1080p-low-counter-strike-2-native
@@ -963,7 +1163,7 @@ context_map:
         - intel-core-i5-13400f-1080p-low-hogwarts-legacy-native
         - intel-core-i5-13400f-1080p-low-starfield-native
       intel-core-i5-13600k:
-        count: 5
+        count: 6
         sample_ids:
         - intel-core-i5-13600k-1080p-low-baldurs-gate-3-native
         - intel-core-i5-13600k-1080p-low-counter-strike-2-native
@@ -971,7 +1171,7 @@ context_map:
         - intel-core-i5-13600k-1080p-low-hogwarts-legacy-native
         - intel-core-i5-13600k-1080p-low-starfield-native
       intel-core-i5-14600k:
-        count: 20
+        count: 21
         sample_ids:
         - intel-core-i5-14600k-1080p-low-baldurs-gate-3-native
         - intel-core-i5-14600k-1080p-low-counter-strike-2-native
@@ -979,7 +1179,7 @@ context_map:
         - intel-core-i5-14600k-1080p-low-hogwarts-legacy-native
         - intel-core-i5-14600k-1080p-low-starfield-native
       intel-core-i7-14700k:
-        count: 7
+        count: 8
         sample_ids:
         - intel-core-i7-14700k-productivity-7zip
         - intel-core-i7-14700k-productivity-blender-classroom
@@ -987,7 +1187,7 @@ context_map:
         - intel-core-i7-14700k-synthetic-1t-geekbench6
         - intel-core-i7-14700k-synthetic-mt-cinebench-r23
       intel-core-i9-14900k:
-        count: 9
+        count: 10
         sample_ids:
         - intel-core-i9-14900k-1080p-low-baldurs-gate-3-native
         - intel-core-i9-14900k-1080p-low-counter-strike-2-native
@@ -995,14 +1195,15 @@ context_map:
         - intel-core-i9-14900k-1080p-low-hogwarts-legacy-native
         - intel-core-i9-14900k-1080p-low-starfield-native
       intel-core-ultra-5-225f:
-        count: 4
+        count: 5
         sample_ids:
         - intel-core-ultra-5-225f-synthetic-1t-cinebench-r23
         - intel-core-ultra-5-225f-synthetic-1t-geekbench6
         - intel-core-ultra-5-225f-synthetic-mt-cinebench-r23
         - intel-core-ultra-5-225f-synthetic-mt-geekbench6
+        - intel-core-ultra-5-225f-power-thermal-2026-07
       intel-core-ultra-5-245k:
-        count: 20
+        count: 21
         sample_ids:
         - intel-core-ultra-5-245k-1080p-low-baldurs-gate-3-native
         - intel-core-ultra-5-245k-1080p-low-counter-strike-2-native
@@ -1010,14 +1211,15 @@ context_map:
         - intel-core-ultra-5-245k-1080p-low-hogwarts-legacy-native
         - intel-core-ultra-5-245k-1080p-low-starfield-native
       intel-core-ultra-7-265f:
-        count: 4
+        count: 5
         sample_ids:
         - intel-core-ultra-7-265f-synthetic-1t-cinebench-r23
         - intel-core-ultra-7-265f-synthetic-1t-geekbench6
         - intel-core-ultra-7-265f-synthetic-mt-cinebench-r23
         - intel-core-ultra-7-265f-synthetic-mt-geekbench6
+        - intel-core-ultra-7-265f-power-thermal-2026-07
       intel-core-ultra-7-265k:
-        count: 7
+        count: 8
         sample_ids:
         - intel-core-ultra-7-265k-productivity-7zip
         - intel-core-ultra-7-265k-productivity-blender-classroom
@@ -1025,12 +1227,13 @@ context_map:
         - intel-core-ultra-7-265k-synthetic-1t-geekbench6
         - intel-core-ultra-7-265k-synthetic-mt-cinebench-r23
       intel-core-ultra-9-285k:
-        count: 4
+        count: 5
         sample_ids:
         - intel-core-ultra-9-285k-synthetic-1t-cinebench-r23
         - intel-core-ultra-9-285k-synthetic-1t-geekbench6
         - intel-core-ultra-9-285k-synthetic-mt-cinebench-r23
         - intel-core-ultra-9-285k-synthetic-mt-geekbench6
+        - intel-core-ultra-9-285k-power-thermal-2026-07
   marts:
     laws:
       count: 2
@@ -1054,4 +1257,6 @@ context_map:
     patterns:
       count: 0
       items: []
-  capabilities: []
+  capabilities:
+  - build-economics
+  - forecast-lifecycle
