@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-baldurs-gate-3-1440p-ultra-native
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Baldur's Gate 3
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2025-Q1
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 87
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'off'
+meta:
+  confidence: 0.55
+  confidence_basis: projection_from_adjacent_tier
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: Training Data — review consensus'
+  note: 'Projected from nvidia-rtx-4060 (FPS=75) × uplift 1.165 (tier-average from
+    DWH + training data). Source: Training data consensus. 1440p Ultra native.'
+lineage:
+  nodes: []
+  edges: []

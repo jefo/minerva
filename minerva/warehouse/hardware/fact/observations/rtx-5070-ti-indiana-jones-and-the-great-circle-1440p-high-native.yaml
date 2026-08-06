@@ -1,0 +1,29 @@
+fact:
+  id: rtx-5070-ti-indiana-jones-and-the-great-circle-1440p-high-native
+  type: observation
+source:
+  gpu: RTX 5070 Ti
+  game_title: Indiana Jones And The Great Circle
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 73
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus'
+  note: RTX 4060=35FPS → RTX 5070 Ti=73FPS (×2.090). Training data estimate.
+lineage:
+  nodes: []
+  edges: []

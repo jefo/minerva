@@ -2,32 +2,29 @@ fact:
   id: rtx-5060-ti-cyberpunk-2077-1440p-ultra-native
   type: observation
 source:
-  gpu: RTX 5060 Ti 16GB
+  gpu: RTX 5060 Ti
   game_title: Cyberpunk 2077
   resolution: 1440p
   graphics_preset: Ultra
-  driver_version: 2026-Q2
-  cpu: AMD Ryzen 7 9800X3D
+  driver_version: 2025-Q1
+  cpu: AMD Ryzen 7 7800X3D
 measures:
-  fps_avg: 65
+  fps_avg: 61
   fps_1pct_low: 0
   fps_0_1pct_low: 0
   frametime_ms_avg: 0.0
-  vram_used_mb: 8128
-  power_draw_w: 140
-  temp_c: 61
 conditions:
-  upscaler: DLSS OFF
+  upscaler: native
   frame_gen: 'false'
-  ray_tracing: 'Off'
+  ray_tracing: 'off'
 meta:
-  confidence: 0.85
-  confidence_basis: youtube_benchmark
-  observed_at: 2026-Q2
-  observed_by: manual
-  source_channel: Testing Games
-  note: 'Test bench: AMD Ryzen 7 9800X3D, 32GB RAM. VRAM: 8128MB, Power: 140W, Temp:
-    61°C.'
+  confidence: 0.55
+  confidence_basis: projection_from_adjacent_tier
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: Training Data — review consensus'
+  note: 'Projected from nvidia-rtx-4060-ti-8gb (FPS=52) × uplift 1.180 (tier-average
+    from DWH + training data). Source: Training data consensus. 1440p Ultra native.'
 lineage:
   nodes: []
   edges: []

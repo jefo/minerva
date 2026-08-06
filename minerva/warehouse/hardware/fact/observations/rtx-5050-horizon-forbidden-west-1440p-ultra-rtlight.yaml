@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5050-horizon-forbidden-west-1440p-ultra-rtlight
+  type: observation
+source:
+  gpu: RTX 5050
+  game_title: Horizon Forbidden West
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 31
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: Light
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus'
+  note: RTX 4060=37FPs (1440p/Ultra, RT=Light) → RTX 5050=31FPS (×0.850). Training
+    data estimate.
+lineage:
+  nodes: []
+  edges: []

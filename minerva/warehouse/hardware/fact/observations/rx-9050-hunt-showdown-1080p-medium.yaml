@@ -1,0 +1,30 @@
+fact:
+  id: rx-9050-hunt-showdown-1080p-medium
+  type: observation
+source:
+  gpu: Radeon RX 9050
+  game_title: Hunt Showdown
+  resolution: 1080p
+  graphics_preset: Medium
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 135
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → AMD RDNA 4'
+  note: RTX 4060=169FPs (1080p/Medium) → Radeon RX 9050=135FPS (×0.800). Training
+    data estimate.
+lineage:
+  nodes: []
+  edges: []

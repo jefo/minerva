@@ -1,0 +1,30 @@
+fact:
+  id: rx-9070-the-last-of-us-part-2-1440p-high-fsr4p
+  type: observation
+source:
+  gpu: Radeon RX 9070
+  game_title: The Last Of Us Part 2
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 139
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: FSR4-Performance
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → AMD RDNA 4'
+  note: RTX 4060=87FPs (1440p/High, FSR4-Performance) → Radeon RX 9070=139FPS (×1.600).
+    Training data estimate.
+lineage:
+  nodes: []
+  edges: []

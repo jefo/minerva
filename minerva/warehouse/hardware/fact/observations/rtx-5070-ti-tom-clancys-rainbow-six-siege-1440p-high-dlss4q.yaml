@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5070-ti-tom-clancys-rainbow-six-siege-1440p-high-dlss4q
+  type: observation
+source:
+  gpu: RTX 5070 Ti
+  game_title: Tom Clancys Rainbow Six Siege
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 548
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS4-Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus'
+  note: RTX 4060=262FPs (1440p/High, DLSS4-Quality) → RTX 5070 Ti=548FPS (×2.090).
+    Training data estimate.
+lineage:
+  nodes: []
+  edges: []

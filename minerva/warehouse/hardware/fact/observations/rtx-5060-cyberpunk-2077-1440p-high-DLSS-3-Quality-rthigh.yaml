@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-cyberpunk-2077-1440p-high-DLSS-3-Quality-rthigh
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Cyberpunk 2077
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: '546.33'
+  cpu: Intel Core i5-13400F
+measures:
+  fps_avg: 62
+  fps_1pct_low: 45
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS 3 Quality
+  frame_gen: 'false'
+  ray_tracing: high
+meta:
+  confidence: 0.55
+  confidence_basis: projection_from_adjacent_tier
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: Hardware Unboxed'
+  note: 'Projected from nvidia-rtx-4060 (FPS=52) × uplift 1.190 (per-game from DWH
+    overlap). Source: '
+lineage:
+  nodes: []
+  edges: []

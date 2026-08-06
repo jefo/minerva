@@ -1,0 +1,31 @@
+fact:
+  id: rtx-5070-ti-starfield-1440p-ultra-DLSS-Quality
+  type: observation
+source:
+  gpu: RTX 5070 Ti
+  game_title: Starfield
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2025-Q1
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 97
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS Quality
+  frame_gen: 'false'
+  ray_tracing: 'off'
+meta:
+  confidence: 0.55
+  confidence_basis: projection_from_adjacent_tier
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: Training Data — GN/HUB/TechSpot consensus'
+  note: 'Projected from nvidia-rtx-4070-ti-super (FPS=88) × uplift 1.100 (tier-average
+    from DWH + training data). Source: Training data consensus. Native ~60-70, DLSS
+    Q ~80-95. CPU-heavy.'
+lineage:
+  nodes: []
+  edges: []

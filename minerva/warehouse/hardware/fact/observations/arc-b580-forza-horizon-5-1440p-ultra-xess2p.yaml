@@ -1,0 +1,30 @@
+fact:
+  id: arc-b580-forza-horizon-5-1440p-ultra-xess2p
+  type: observation
+source:
+  gpu: Arc B580
+  game_title: Forza Horizon 5
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 113
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: XeSS2-Performance
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → Intel Battlemage'
+  note: RTX 4060=108FPs (1440p/Ultra, XeSS2-Performance) → Arc B580=113FPS (×1.050).
+    Training data estimate.
+lineage:
+  nodes: []
+  edges: []

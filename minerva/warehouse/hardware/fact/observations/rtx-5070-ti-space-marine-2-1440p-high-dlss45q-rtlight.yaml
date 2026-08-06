@@ -1,0 +1,31 @@
+fact:
+  id: rtx-5070-ti-space-marine-2-1440p-high-dlss45q-rtlight
+  type: observation
+source:
+  gpu: RTX 5070 Ti
+  game_title: Space Marine 2
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 113
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS4.5-Quality
+  frame_gen: 'false'
+  ray_tracing: Light
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus (DLSS4.5)'
+  note: RTX 4060=54FPs (1440p/High, RT=Light, DLSS4-Quality) → RTX 5070 Ti=113FPS
+    (×2.090). Training data estimate. DLSS4.5 = Blackwell exclusive, same perf, improved
+    IQ.
+lineage:
+  nodes: []
+  edges: []

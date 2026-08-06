@@ -1,0 +1,30 @@
+fact:
+  id: rx-9070-star-wars-outlaws-1440p-ultra-fsr4q-rtheavy
+  type: observation
+source:
+  gpu: Radeon RX 9070
+  game_title: Star Wars Outlaws
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 32
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: FSR4-Quality
+  frame_gen: 'false'
+  ray_tracing: Heavy
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → AMD RDNA 4'
+  note: RTX 4060=20FPs (1440p/Ultra, RT=Heavy, FSR4-Quality) → Radeon RX 9070=32FPS
+    (×1.600). Training data estimate.
+lineage:
+  nodes: []
+  edges: []

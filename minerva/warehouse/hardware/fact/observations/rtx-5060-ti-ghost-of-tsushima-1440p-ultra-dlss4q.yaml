@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-ti-ghost-of-tsushima-1440p-ultra-dlss4q
+  type: observation
+source:
+  gpu: RTX 5060 Ti
+  game_title: Ghost Of Tsushima
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 73
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS4-Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus'
+  note: RTX 4060=54FPs (1440p/Ultra, DLSS4-Quality) → RTX 5060 Ti=73FPS (×1.360).
+    Training data estimate.
+lineage:
+  nodes: []
+  edges: []

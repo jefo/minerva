@@ -1,0 +1,29 @@
+fact:
+  id: arc-b570-sons-of-the-forest-1440p-ultra
+  type: observation
+source:
+  gpu: Arc B570
+  game_title: Sons Of The Forest
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 43
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → Intel Battlemage'
+  note: RTX 4060=48FPs (1440p/Ultra) → Arc B570=43FPS (×0.890). Training data estimate.
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5060-horizon-forbidden-west-1440p-high-native
+  type: observation
+source:
+  gpu: RTX 5060
+  game_title: Horizon Forbidden West
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 5 5600X
+measures:
+  fps_avg: 58
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'off'
+meta:
+  confidence: 0.55
+  confidence_basis: projection_from_adjacent_tier
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: Testing Games'
+  note: 'Projected from nvidia-rtx-4060 (FPS=52) × uplift 1.120 (per-game from DWH
+    overlap). Source: Test bench: AMD Ryzen 5 5600X, DDR4 ~16GB. DLSS 3 Frame Gen.'
+lineage:
+  nodes: []
+  edges: []

@@ -1,0 +1,30 @@
+fact:
+  id: rx-9060-black-myth-wukong-1440p-ultra
+  type: observation
+source:
+  gpu: Radeon RX 9060
+  game_title: Black Myth Wukong
+  resolution: 1440p
+  graphics_preset: Ultra
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 47
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: native
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 baseline → AMD RDNA 4'
+  note: RTX 4060=41FPs (1440p/Ultra) → Radeon RX 9060=47FPS (×1.150). Training data
+    estimate.
+lineage:
+  nodes: []
+  edges: []

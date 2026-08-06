@@ -1,0 +1,30 @@
+fact:
+  id: rtx-5050-marvel-rivals-1440p-high-dlss4q
+  type: observation
+source:
+  gpu: RTX 5050
+  game_title: Marvel Rivals
+  resolution: 1440p
+  graphics_preset: High
+  driver_version: 2026-Q2
+  cpu: AMD Ryzen 7 7800X3D
+measures:
+  fps_avg: 92
+  fps_1pct_low: 0
+  fps_0_1pct_low: 0
+  frametime_ms_avg: 0.0
+conditions:
+  upscaler: DLSS4-Quality
+  frame_gen: 'false'
+  ray_tracing: 'Off'
+meta:
+  confidence: 0.45
+  confidence_basis: training_data_projection
+  observed_at: 2026-08
+  observed_by: projection_pipeline
+  source_channel: 'Projection: training data RTX 4060 review consensus'
+  note: RTX 4060=108FPs (1440p/High, DLSS4-Quality) → RTX 5050=92FPS (×0.850). Training
+    data estimate.
+lineage:
+  nodes: []
+  edges: []
